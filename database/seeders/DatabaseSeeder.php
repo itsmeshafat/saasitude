@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             DefaultSettingsSeeder::class,
             StaffRolesSeeder::class,
+            PlansAndFeaturesSeeder::class,
         ]);
 
         User::factory()->create([
