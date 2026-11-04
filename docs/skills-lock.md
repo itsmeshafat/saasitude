@@ -18,6 +18,6 @@ Design skills (`nextlevelbuilder/ui-ux-pro-max-skill`, `ArnavPuri/designskills`)
 - Restore from lock on a fresh clone: `npx skills@latest experimental_install`
 - Update to latest: `npx skills@latest update` (review the diff before committing — do not run on autopilot per AGENTS.md's third-party skill rules)
 
-## Still to do
+## Done
 
-Run `/setup-matt-pocock-skills` once (sets issue tracker + docs location) — not run yet.
+- `/setup-matt-pocock-skills` — run 2026-11-04. Issue tracker set to local files, docs location set to `docs/`.
