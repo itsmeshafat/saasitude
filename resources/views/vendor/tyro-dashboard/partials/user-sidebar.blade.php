@@ -53,6 +53,18 @@
                 </svg>
                 My Profile
             </a>
+            <a href="{{ route('dashboard.team') }}" class="sidebar-link {{ request()->routeIs('dashboard.team') ? 'active' : '' }}">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+                Team
+            </a>
+            <a href="{{ route('dashboard.workspace-settings') }}" class="sidebar-link {{ request()->routeIs('dashboard.workspace-settings') ? 'active' : '' }}">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+                Workspace Settings
+            </a>
             @if(config('tyro-dashboard.features.invitation_system', true))
             <a href="{{ route($dashboardRoute::name('invitations.index')) }}" class="sidebar-link {{ request()->routeIs($dashboardRoute::pattern('invitations.index')) ? 'active' : '' }}">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
