@@ -49,6 +49,24 @@ class Workspace extends Model
         return $this->hasMany(WorkspaceInvitation::class);
     }
 
+    public function subscriptions(): HasMany
+    {
+        return $this->hasMany(Subscription::class);
+    }
+
+    public function activeSubscription(): ?Subscription
+    {
+        return $this->subscriptions()
+            ->whereIn('status', ['active', 'trialing'])
+            ->latest()
+            ->first();
+    }
+
+    public function gatewayCustomers(): HasMany
+    {
+        return $this->hasMany(GatewayCustomer::class);
+    }
+
     public function isSuspended(): bool
     {
         return $this->suspended_at !== null;
