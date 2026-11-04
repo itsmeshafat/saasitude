@@ -35,5 +35,11 @@
         <env name="STRIPE_KEY" value="pk_test_placeholder"/>
         <env name="STRIPE_SECRET" value="sk_test_placeholder"/>
         <env name="STRIPE_WEBHOOK_SECRET" value="whsec_placeholder00000000000000000000000000000000000000000"/>
+        <env name="PADDLE_API_KEY" value="test_placeholder_paddle_api_key"/>
+        <env name="PADDLE_WEBHOOK_SECRET" value="test_placeholder_paddle_webhook_secret"/>
+        <env name="PADDLE_SANDBOX" value="true"/>
+        <env name="SSLCOMMERZ_STORE_ID" value="test_store_id"/>
+        <env name="SSLCOMMERZ_STORE_PASSWORD" value="test_store_password"/>
+        <env name="SSLCOMMERZ_SANDBOX" value="true"/>
     </php>
 </phpunit>

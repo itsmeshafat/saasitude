@@ -67,6 +67,16 @@ class Workspace extends Model
         return $this->hasMany(GatewayCustomer::class);
     }
 
+    public function payments(): HasMany
+    {
+        return $this->hasMany(Payment::class);
+    }
+
+    public function invoices(): HasMany
+    {
+        return $this->hasMany(Invoice::class);
+    }
+
     public function isSuspended(): bool
     {
         return $this->suspended_at !== null;

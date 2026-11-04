@@ -11,6 +11,8 @@ Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
 })->purpose('Display an inspiring quote');
 
+Schedule::command('billing:renewals')->dailyAt('09:00')->name('billing:renewals');
+
 // Dispatch GracePeriodExpiryJob for past_due subscriptions that have exceeded the grace period
 Schedule::call(function (): void {
     $graceDays = (int) app(SettingsService::class)->get('grace_period_days', 5);

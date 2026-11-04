@@ -14,7 +14,7 @@ class Subscription extends Model
     protected $fillable = [
         'workspace_id', 'plan_id', 'gateway', 'gateway_subscription_id',
         'gateway_customer_id', 'status', 'trial_ends_at', 'current_period_start',
-        'current_period_end', 'cancel_at_period_end', 'canceled_at', 'metadata',
+        'current_period_end', 'cancel_at_period_end', 'app_driven_renewal', 'canceled_at', 'metadata',
     ];
 
     protected $casts = [
@@ -22,6 +22,7 @@ class Subscription extends Model
         'current_period_start' => 'datetime',
         'current_period_end' => 'datetime',
         'cancel_at_period_end' => 'boolean',
+        'app_driven_renewal' => 'boolean',
         'canceled_at' => 'datetime',
         'metadata' => 'array',
     ];

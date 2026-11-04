@@ -1,7 +1,11 @@
 <?php
 
 use App\Actions\SwitchWorkspace;
+use App\Http\Controllers\AdminInvoiceController;
 use App\Http\Controllers\BillingController;
+use App\Http\Controllers\InvoiceController;
+use App\Http\Controllers\PaddleWebhookController;
+use App\Http\Controllers\SSLCommerzWebhookController;
 use App\Http\Controllers\StripeWebhookController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\WorkspaceSettingsController;
@@ -14,6 +18,8 @@ Route::get('/', function () {
 
 // Webhook endpoints — excluded from CSRF via bootstrap/app.php
 Route::post('webhooks/stripe', [StripeWebhookController::class, 'handle'])->name('webhooks.stripe');
+Route::post('webhooks/paddle', [PaddleWebhookController::class, 'handle'])->name('webhooks.paddle');
+Route::post('webhooks/sslcommerz', [SSLCommerzWebhookController::class, 'handle'])->name('webhooks.sslcommerz');
 
 Route::middleware(['auth'])->group(function (): void {
     Route::get('dashboard/workspace-settings', [WorkspaceSettingsController::class, 'show'])->name('dashboard.workspace-settings');
@@ -31,6 +37,13 @@ Route::middleware(['auth'])->group(function (): void {
     Route::get('dashboard/billing/success', [BillingController::class, 'success'])->name('dashboard.billing.success');
     Route::get('dashboard/billing/cancel', [BillingController::class, 'cancel'])->name('dashboard.billing.cancel');
     Route::get('dashboard/billing/portal', [BillingController::class, 'portal'])->name('dashboard.billing.portal');
+    Route::get('dashboard/billing/invoices', [InvoiceController::class, 'index'])->name('dashboard.billing.invoices');
+    Route::get('dashboard/billing/invoices/{invoice}/download', [InvoiceController::class, 'download'])->name('dashboard.billing.invoices.download');
+
+    // Admin billing
+    Route::get('dashboard/admin/billing/invoices', [AdminInvoiceController::class, 'index'])->name('admin.billing.invoices');
+    Route::get('dashboard/admin/billing/invoices/{invoice}/download', [AdminInvoiceController::class, 'download'])->name('admin.billing.invoices.download');
+    Route::post('dashboard/admin/billing/invoices/{invoice}/regenerate', [AdminInvoiceController::class, 'regenerate'])->name('admin.billing.invoices.regenerate');
 
     Route::post('dashboard/workspace/switch', function (Request $request, SwitchWorkspace $action) {
         $action->execute($request->user(), (int) $request->input('workspace_id'));
