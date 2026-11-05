@@ -4,31 +4,6 @@
 @section('meta_description', 'Transparent SaaS pricing in USD and BDT. Monthly or annual billing, 14-day free trial, cancel anytime.')
 
 @section('content')
-<style>
-.pricing { padding: 72px 0; }
-.pricing h1 { font-size: 36px; text-align: center; margin-bottom: 8px; }
-.pricing > p { text-align: center; color: var(--muted-foreground); }
-.controls { display: flex; justify-content: center; gap: 12px; margin: 24px 0 8px; flex-wrap: wrap; }
-.pill { display: inline-flex; border: 1px solid var(--glass-border); border-radius: 999px; overflow: hidden;
-        background: var(--glass-strong); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur); }
-.pill button { padding: 8px 18px; background: transparent; border: 0; cursor: pointer; font-size: 14px;
-               color: var(--muted-foreground); transition: color .15s, background .15s; }
-.pill button.on { background: var(--primary); color: var(--primary-foreground); }
-.plans { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 40px; align-items: stretch; }
-.plan { border-radius: 18px; padding: 28px; position: relative; display: flex; flex-direction: column; }
-.plan.featured { background: var(--glass-strong); border: 2px solid oklch(0.546 0.237 258 / 0.65); box-shadow: 0 24px 48px -20px oklch(0.546 0.237 258 / 0.5); }
-.plan .pop { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--primary); color: var(--primary-foreground); font-size: 12px; font-weight: 700; padding: 4px 12px; border-radius: 999px; }
-.plan h2 { font-size: 15px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted-foreground); }
-.plan .price { font-size: 40px; font-weight: 800; margin: 8px 0; }
-.plan .price small { font-size: 14px; font-weight: 400; color: var(--muted-foreground); }
-.plan ul { list-style: none; margin: 16px 0 24px; font-size: 14px; color: var(--muted-foreground); }
-.plan li { padding: 6px 0; }
-.plan li::before { content: "✓ "; color: var(--success); font-weight: 700; }
-.plan .btn { margin-top: auto; text-align: center; }
-.missing { color: var(--muted-foreground); font-size: 15px; }
-@media (max-width: 620px) { .plans { grid-template-columns: 1fr; } }
-@media (max-width: 1020px) { .plans { gap: 12px; } .plan { padding: 18px; } .plan .price { font-size: 30px; } }
-</style>
 
 {{-- Prices are rendered server-side per interval; the toggles swap visibility (no JS framework needed). --}}
 <section class="pricing">

@@ -5,16 +5,6 @@
 
 @section('content')
 {{-- LAWYER REVIEW REQUIRED: all legal copy below is placeholder boilerplate and must be reviewed before launch. --}}
-<style>
-.legal { max-width: 760px; margin: 0 auto; padding: 72px 0; }
-.legal h1 { font-size: 32px; margin-bottom: 8px; }
-.legal .flag { display: inline-block; font-size: 12px; font-weight: 700; padding: 4px 12px; border-radius: 999px;
-               background: oklch(0.769 0.188 70 / 0.2); color: var(--foreground); border: 1px solid oklch(0.769 0.188 70 / 0.5); margin-bottom: 24px; }
-.legal h2 { font-size: 20px; margin: 28px 0 8px; }
-.legal p, .legal li { color: var(--muted-foreground); font-size: 15px; margin-bottom: 10px; }
-.legal ul { padding-left: 20px; }
-.legal-body { border-radius: 18px; padding: 36px; }
-</style>
 
 <section class="legal">
     <h1>{{ $heading }}</h1>
