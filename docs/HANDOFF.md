@@ -75,7 +75,15 @@ All migrations are run (including coupons/coupon_redemptions, 2026-11-05).
 - `admin_roles` config now includes `finance` + `support` (console entry; actions still privilege-gated).
 - 15 new tests in AdminConsoleTest; suite 93/93.
 
-**Next: Phase 9 mobile API** (docs/06-api.md; verify Tyro Login API surface first) — email templates, support inbox, data-requests screens from Phase 8 list deliberately deferred to Phase 10.
+**Phase 9 mobile API — DONE (2026-11-05):**
+- `/api/v1` in routes/api.php: me (+password/sessions), devices (push tokens), workspaces CRUD + members/invitations, plans, billing (subscription/usage/invoices/payments/checkout/cancel/resume/change-plan), app/config.
+- Middleware: `workspace.context` (X-Workspace-Id vs membership, cached), `idempotency` (required header on payment POSTs). Error envelope in bootstrap/app.php. Rate limits per token (60/min) + per IP (240/min).
+- Tyro Login API surface audited and documented in `docs/api-auth-surface.md` — auth reused (`POST /api/login`), no forking.
+- Checkout returns hosted-checkout URL for in-app browser — no native card form, no store billing (open decision documented in 06-api.md).
+- 19 contract tests in ApiV1Test; suite 112/112.
+- NOT done: OpenAPI spec (Scramble/Scribe — needs user approval for new dependency); P1 endpoints (notifications, support, data rights); ETag caching (T-025 follow-up).
+
+**Next: Phase 10** — transactional emails (18 per docs/04-billing.md), notifications, support inbox + Phase 8 deferred screens (email templates, support inbox, data requests).
 
 ---
 
