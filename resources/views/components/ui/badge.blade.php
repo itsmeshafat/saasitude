@@ -1,18 +1,21 @@
 @props(['variant' => 'default'])
 
 @php
+    // Design-system classes from the Tyro stylesheet (.badge*) — NOT inline utilities.
     $variants = [
-        'default'   => 'bg-[var(--primary)] text-[var(--primary-foreground)]',
-        'secondary' => 'bg-[var(--secondary)] text-[var(--secondary-foreground)] border border-[var(--border)]',
-        'outline'   => 'border border-[var(--border)] text-[var(--foreground)] bg-transparent',
-        'success'   => 'bg-[var(--success)] text-white',
-        'warning'   => 'bg-[var(--warning)] text-white',
-        'danger'    => 'bg-[var(--destructive)] text-[var(--destructive-foreground)]',
-        'info'      => 'bg-[var(--info)] text-[var(--info-foreground,#fff)]',
-        'muted'     => 'bg-[var(--muted)] text-[var(--muted-foreground)]',
+        'default'   => 'badge-primary',
+        'primary'   => 'badge-primary',
+        'secondary' => 'badge-secondary',
+        'success'   => 'badge-success',
+        'warning'   => 'badge-warning',
+        'danger'    => 'badge-danger',
+        'info'      => 'badge-info',
+        // Tyro has no muted/outline badge variants — closest system equivalents:
+        'muted'     => 'badge-secondary',
+        'outline'   => 'badge-secondary',
     ];
 @endphp
 
-<span {{ $attributes->merge(['class' => 'inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium ' . ($variants[$variant] ?? $variants['default'])]) }}>
+<span {{ $attributes->merge(['class' => 'badge ' . ($variants[$variant] ?? $variants['default'])]) }}>
     {{ $slot }}
 </span>
