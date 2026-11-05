@@ -3,6 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+    // Theme before first paint: saved preference, else OS preference.
+    (function () {
+        var saved = localStorage.getItem('theme');
+        var dark = saved ? saved === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+        document.documentElement.classList.toggle('dark', dark);
+    })();
+</script>
 @guest
     <title>@yield('title', config('app.name')) — SaaS billing boilerplate</title>
     <meta name="description" content="@yield('meta_description', 'Launch your SaaS with multi-gateway billing, workspaces, entitlements and a mobile API. Powered by Stripe, Paddle and SSLCommerz.')">
@@ -41,18 +49,18 @@
                background: var(--glass-strong); }
     .pub-logo { font-size: 19px; font-weight: 800; text-decoration: none; color: var(--foreground); }
     .pub-logo span { color: var(--primary); }
-    .pub-links { display: flex; gap: 22px; font-size: 15px; }
+    .pub-links { display: flex; gap: 22px; font-size: 15px; align-items: center; }
     .pub-links a { text-decoration: none; color: var(--muted-foreground); }
     .pub-links a:hover { color: var(--foreground); }
+    .theme-btn { background: transparent; border: 1px solid var(--border); color: var(--foreground);
+                 border-radius: 999px; width: 34px; height: 34px; cursor: pointer; font-size: 15px;
+                 display: inline-flex; align-items: center; justify-content: center; }
     .pub-footer { margin: 96px 0 40px; padding: 32px; border-radius: var(--radius);
                   display: flex; flex-wrap: wrap; gap: 24px; justify-content: space-between; align-items: center;
                   font-size: 14px; color: var(--muted-foreground); }
     .pub-footer a { color: var(--muted-foreground); text-decoration: none; margin-left: 18px; }
     .pub-footer a:hover { color: var(--foreground); }
     @media (max-width: 720px) { .pub-links { display: none; } }
-    @media (prefers-color-scheme: dark) {
-        html:not(.light) body { --background: oklch(0.13 0.02 254); }
-    }
 </style>
 @vite('resources/css/app.css')
 </head>
@@ -64,6 +72,7 @@
             <a href="{{ route('public.pricing') }}">Pricing</a>
             <a href="{{ route('public.changelog') }}">Changelog</a>
             <a href="{{ route('public.contact') }}">Contact</a>
+            <button type="button" class="theme-btn" id="theme-toggle" aria-label="Toggle theme">◐</button>
         </div>
         @guest
             <a class="btn btn-primary" style="padding:9px 18px;font-size:14px" href="{{ url('/register') }}">Sign up free</a>
@@ -83,5 +92,11 @@
         </div>
     </footer>
 </div>
+<script>
+    document.getElementById('theme-toggle').addEventListener('click', function () {
+        var dark = document.documentElement.classList.toggle('dark');
+        localStorage.setItem('theme', dark ? 'dark' : 'light');
+    });
+</script>
 </body>
 </html>

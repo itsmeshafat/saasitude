@@ -80,13 +80,13 @@
         --card: oklch(0.21 0.028 254 / 0.55);
         --card-foreground: oklch(0.97 0.005 254);
         --muted: oklch(0.28 0.02 254 / 0.6);
-        --muted-foreground: oklch(0.68 0.015 254);
+        --muted-foreground: oklch(0.8 0.015 254);
         --accent: oklch(0.3 0.04 258 / 0.6);
         --accent-foreground: oklch(0.97 0.005 254);
         --secondary: oklch(0.28 0.02 254 / 0.7);
         --secondary-foreground: oklch(0.97 0.005 254);
-        --border: oklch(1 0 0 / 12%);
-        --input: oklch(1 0 0 / 16%);
+        --border: oklch(1 0 0 / 18%);
+        --input: oklch(1 0 0 / 22%);
         --ring: oklch(0.62 0.2 258);
         --destructive: oklch(0.704 0.191 22.216);
         --destructive-foreground: oklch(0.985 0 0);
@@ -94,7 +94,7 @@
         /* Cobalt Glass — smoked */
         --glass: oklch(0.21 0.028 254 / 0.55);
         --glass-strong: oklch(0.24 0.03 254 / 0.75);
-        --glass-border: oklch(1 0 0 / 0.14);
+        --glass-border: oklch(1 0 0 / 0.2);
         --glass-blur: blur(18px) saturate(1.4);
         --glass-highlight: inset 0 1px 0 oklch(1 0 0 / 0.1);
         --mesh:

@@ -101,19 +101,19 @@
         --secondary: {{ $cssVal('--secondary', 'oklch(0.28 0.02 254 / 0.7)', $darkOverrides) }};
         --secondary-foreground: {{ $cssVal('--secondary-foreground', 'oklch(0.97 0.005 254)', $darkOverrides) }};
         --muted: {{ $cssVal('--muted', 'oklch(0.28 0.02 254 / 0.6)', $darkOverrides) }};
-        --muted-foreground: {{ $cssVal('--muted-foreground', 'oklch(0.68 0.015 254)', $darkOverrides) }};
+        --muted-foreground: {{ $cssVal('--muted-foreground', 'oklch(0.8 0.015 254)', $darkOverrides) }};
         --accent: {{ $cssVal('--accent', 'oklch(0.3 0.04 258 / 0.6)', $darkOverrides) }};
         --accent-foreground: {{ $cssVal('--accent-foreground', 'oklch(0.97 0.005 254)', $darkOverrides) }};
         --destructive: {{ $cssVal('--destructive', 'oklch(0.704 0.191 22.216)', $darkOverrides) }};
         --destructive-foreground: {{ $cssVal('--destructive-foreground', 'oklch(0.985 0 0)', $darkOverrides) }};
-        --border: {{ $cssVal('--border', 'oklch(1 0 0 / 12%)', $darkOverrides) }};
-        --input: {{ $cssVal('--input', 'oklch(1 0 0 / 16%)', $darkOverrides) }};
+        --border: {{ $cssVal('--border', 'oklch(1 0 0 / 18%)', $darkOverrides) }};
+        --input: {{ $cssVal('--input', 'oklch(1 0 0 / 22%)', $darkOverrides) }};
         --ring: {{ $cssVal('--ring', 'oklch(0.62 0.2 258)', $darkOverrides) }};
 
         /* Glass system — dark smoked glass */
         --glass: oklch(0.21 0.028 254 / 0.55);
         --glass-strong: oklch(0.24 0.03 254 / 0.75);
-        --glass-border: oklch(1 0 0 / 0.14);
+        --glass-border: oklch(1 0 0 / 0.2);
         --glass-blur: blur(18px) saturate(1.4);
         --glass-highlight: inset 0 1px 0 oklch(1 0 0 / 0.1);
         --mesh:
