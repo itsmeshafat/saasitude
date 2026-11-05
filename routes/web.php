@@ -27,6 +27,9 @@ use App\Http\Controllers\WorkspaceSettingsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+// PROTOTYPE (throwaway) — Phase 11 public-site visual directions. Local only.
+Route::view('/prototype/public-site', 'prototype.public-site')->middleware('proto.local');
+
 Route::get('/', function () {
     return view('welcome');
 });

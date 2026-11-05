@@ -1,8 +1,33 @@
-# Design System Master — Cobalt Pro
+# Design System Master — Cobalt Glass
 
-**Direction A — chosen 2026-11-04**
+**Direction: A (Cobalt Classic SaaS) + glassmorphism — chosen 2026-11-06**
 
-Deep institutional blue with crisp white surfaces. Trust + precision for a SaaS billing product.
+Cobalt Pro's palette on frosted surfaces: translucent oklch fills + `backdrop-blur(18px) saturate(1.5)`
+over a fixed gradient mesh (blue/violet/teal blobs). Applied to dashboards and the public site.
+
+## Glass tokens (defined in shadcn-theme.blade.php, light + dark)
+
+| Token | Light | Dark |
+|---|---|---|
+| `--glass` | `oklch(1 0 0 / 0.55)` | `oklch(0.21 0.028 254 / 0.55)` |
+| `--glass-strong` | `oklch(1 0 0 / 0.72)` | `oklch(0.24 0.03 254 / 0.75)` |
+| `--glass-border` | `oklch(1 0 0 / 0.65)` | `oklch(1 0 0 / 0.14)` |
+| `--glass-blur` | `blur(18px) saturate(1.5)` | `blur(18px) saturate(1.4)` |
+| `--glass-highlight` | `inset 0 1px 0 oklch(1 0 0 / 0.6)` | `inset 0 1px 0 oklch(1 0 0 / 0.1)` |
+| `--mesh` | 3 radial gradients (light) | 3 radial gradients (deep) |
+
+## Rules
+
+- Glass on large surfaces only (`.card`, `.topbar`, `.sidebar`, modals); small controls use
+  translucent fills without blur for performance.
+- `--card`/`--popover`/`--muted`/`--secondary` are translucent versions of the base colors —
+  components that don't set backdrop-filter still read as glass-tinted.
+- The mesh lives on `body` (`background-image: var(--mesh); background-attachment: fixed`);
+  `.page-content` is transparent so it shows through.
+- Sidebar branding env vars (`TYRO_DASHBOARD_SIDEBAR_*`) override the glass sidebar ONLY when
+  explicitly set in .env.
+- Radius: `0.75rem`. Contrast: foreground tokens unchanged from Cobalt Pro (WCAG-safe on the
+  55%-white/55%-black surfaces).
 
 ---
 

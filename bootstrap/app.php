@@ -26,6 +26,8 @@ return Application::configure(basePath: dirname(__DIR__))
             'entitlement' => EnsureEntitlement::class,
             'workspace.context' => EnsureWorkspaceContext::class,
             'idempotency' => RequireIdempotencyKey::class,
+            // PROTOTYPE: allow the throwaway prototype route in local env only
+            'proto.local' => \App\Http\Middleware\LocalOnly::class,
         ]);
         $middleware->validateCsrfTokens(except: ['webhooks/*']);
         // Billing banners on authenticated dashboard pages (Phase 10)

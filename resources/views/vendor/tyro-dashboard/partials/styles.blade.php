@@ -9,23 +9,21 @@
 
     :root {
         @php
-            $sbColorBg = config('tyro-dashboard.branding.sidebar_bg') ?: '#0e0e0e';
-            $sbColorText = config('tyro-dashboard.branding.sidebar_text') ?: '#f8fafc';
-            $sbColorPrimary = config('tyro-dashboard.branding.sidebar_primary') ?: '#333333';
-            $sbColorAccent = config('tyro-dashboard.branding.sidebar_accent') ?: '#f5f5f5';
-            $sbColorAccentFg = config('tyro-dashboard.branding.sidebar_accent_foreground') ?: '#171717';
-            $sbColorHeaderBorder = config('tyro-dashboard.branding.sidebar_header_border') ?: '#333c56';
+            // Cobalt Glass: sidebar branding overrides apply ONLY when the env
+            // vars are explicitly set — otherwise the glass tokens win.
+            $sbColorBg = env('TYRO_DASHBOARD_SIDEBAR_BG');
+            $sbColorText = env('TYRO_DASHBOARD_SIDEBAR_TEXT');
+            $sbColorPrimary = env('TYRO_DASHBOARD_SIDEBAR_PRIMARY');
+            $sbColorAccent = env('TYRO_DASHBOARD_SIDEBAR_ACCENT');
+            $sbColorAccentFg = env('TYRO_DASHBOARD_SIDEBAR_ACCENT_FOREGROUND');
+            $sbColorHeaderBorder = env('TYRO_DASHBOARD_SIDEBAR_HEADER_BORDER');
         @endphp
-        --sidebar: {{ $sbColorBg }} !important;
-        --sidebar-foreground: {{ $sbColorText }} !important;
-        /* --sidebar-primary */
-        --sidebar-primary: {{ $sbColorPrimary }} !important;
-        /* --sidebar-header-border */
-        --sidebar-header-border: {{ $sbColorHeaderBorder }} !important;
-        /* --sidebar-accent */
-        --sidebar-accent: {{ $sbColorAccent }} !important;
-        /* --sidebar-accent-foreground */
-        --sidebar-accent-foreground: {{ $sbColorAccentFg }} !important;
+        @if($sbColorBg)--sidebar: {{ $sbColorBg }} !important;@endif
+        @if($sbColorText)--sidebar-foreground: {{ $sbColorText }} !important;@endif
+        @if($sbColorPrimary)--sidebar-primary: {{ $sbColorPrimary }} !important;@endif
+        @if($sbColorHeaderBorder)--sidebar-header-border: {{ $sbColorHeaderBorder }} !important;@endif
+        @if($sbColorAccent)--sidebar-accent: {{ $sbColorAccent }} !important;@endif
+        @if($sbColorAccentFg)--sidebar-accent-foreground: {{ $sbColorAccentFg }} !important;@endif
         @php
             $sbLogoShape = config('tyro-dashboard.branding.sidebar_logo_shape', 'circle') === 'rectangle' ? 'rectangle' : 'circle';
             $sbLogoRadius = trim((string) config('tyro-dashboard.branding.sidebar_logo_border_radius', '0'));
@@ -71,7 +69,10 @@
 
     body {
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-        background-color: var(--muted);
+        background-color: var(--background);
+        /* Cobalt Glass: gradient mesh rendered behind the frosted surfaces */
+        background-image: var(--mesh);
+        background-attachment: fixed;
         min-height: 100vh;
         line-height: 1.6;
         color: var(--foreground);
@@ -86,11 +87,13 @@
         min-height: 100vh;
     }
 
-    /* Sidebar - shadcn style */
+    /* Sidebar — frosted glass panel */
     .sidebar {
         width: 280px;
         background-color: var(--sidebar);
-        border-right: 1px solid var(--border);
+        backdrop-filter: var(--glass-blur);
+        -webkit-backdrop-filter: var(--glass-blur);
+        border-right: 1px solid var(--sidebar-border);
         position: fixed;
         top: 0;
         left: 0;
@@ -398,10 +401,12 @@
         margin-left: 25px;
     }
 
-    /* Top Bar - shadcn style */
+    /* Top Bar — frosted glass */
     .topbar {
-        background-color: var(--background);
-        border-bottom: 1px solid var(--border);
+        background-color: var(--glass-strong);
+        backdrop-filter: var(--glass-blur);
+        -webkit-backdrop-filter: var(--glass-blur);
+        border-bottom: 1px solid var(--glass-border);
         padding: 0 1.5rem;
         height: 64px;
         display: flex;
@@ -699,11 +704,11 @@
         margin: 0.3rem 0.125rem;
     }
 
-    /* Page Content */
+    /* Page Content — transparent so the mesh backdrop shows through the glass */
     .page-content {
         padding: 2rem;
         flex: 1;
-        background-color: var(--background);
+        background-color: transparent;
         /* max-width: 1200px; */
     }
 
@@ -734,11 +739,13 @@
         color: var(--muted-foreground);
     }
 
-    /* Cards - shadcn style */
+    /* Cards — Cobalt Glass: frosted surface over the mesh backdrop */
     .card {
-        background: var(--background);
-        border: 1px solid var(--border);
-        border-radius: 8px;
+        background: var(--glass);
+        backdrop-filter: var(--glass-blur);
+        -webkit-backdrop-filter: var(--glass-blur);
+        border: 1px solid var(--glass-border);
+        border-radius: var(--radius);
         box-shadow: var(--card-shadow);
     }
 
@@ -1074,8 +1081,10 @@
         font-size: 0.9375rem;
         font-family: inherit;
         border: 1px solid var(--input);
-        border-radius: 8px;
-        background-color: var(--background);
+        border-radius: var(--radius);
+        background-color: var(--glass);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
         color: var(--foreground);
         transition: border-color 0.15s ease, box-shadow 0.15s ease;
         line-height: 1.5;
