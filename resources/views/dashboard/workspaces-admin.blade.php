@@ -28,7 +28,7 @@
             @if($search !== '')
                 <a href="{{ route('admin.workspaces.index') }}" class="filter-label">Clear</a>
             @endif
-            <a href="{ route("admin.exports.csv', 'workspaces'", request()->query()) }" class="btn btn-sm btn-outline-btn" style="margin-left:auto">Export CSV</a>
+            <a href="{{ route('admin.exports.csv', 'workspaces', request()->query()) }}" class="btn btn-sm btn-outline-btn" style="margin-left:auto">Export CSV</a>
         </form>
     </div>
 

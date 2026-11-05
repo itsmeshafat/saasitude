@@ -18,6 +18,31 @@
     </div>
 </div>
 
+<div class="stats-grid">
+    <div class="stat-card">
+        <div class="stat-icon stat-icon-success">✓</div>
+        <div class="stat-label">Succeeded</div>
+        <div class="stat-value">{{ $statusTotals['succeeded']->count ?? 0 }}</div>
+        <div class="stat-label">${{ number_format(($statusTotals['succeeded']->amount ?? 0) / 100, 2) }}</div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-icon stat-icon-danger">✕</div>
+        <div class="stat-label">Failed</div>
+        <div class="stat-value">{{ $statusTotals['failed']->count ?? 0 }}</div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-icon stat-icon-warning">↩</div>
+        <div class="stat-label">Refunded</div>
+        <div class="stat-value">{{ $statusTotals['refunded']->count ?? 0 }}</div>
+        <div class="stat-label">${{ number_format(($statusTotals['refunded']->amount ?? 0) / 100, 2) }}</div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-icon stat-icon-info">⌛</div>
+        <div class="stat-label">Pending</div>
+        <div class="stat-value">{{ $statusTotals['pending']->count ?? 0 }}</div>
+    </div>
+</div>
+
 <div class="card">
     <div class="card-header">
         <form method="GET" class="filters-bar" style="width: 100%;">
@@ -34,7 +59,7 @@
                 </select>
             </div>
             <x-ui.button variant="outline" size="sm" type="submit">Filter</x-ui.button>
-            <a href="{ route("admin.exports.csv', 'payments'", request()->query()) }" class="btn btn-sm btn-outline-btn" style="margin-left:auto">Export CSV</a>
+            <a href="{{ route('admin.exports.csv', 'payments', request()->query()) }}" class="btn btn-sm btn-outline-btn" style="margin-left:auto">Export CSV</a>
         </form>
     </div>
 

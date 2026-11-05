@@ -18,6 +18,15 @@
     </div>
 </div>
 
+<div class="tabs">
+    <a href="{{ route('admin.support.index') }}" class="tab-link {{ $filterStatus === '' ? 'active' : '' }}">All ({{ $statusCounts->sum() }})</a>
+    @foreach(['open', 'pending', 'closed'] as $status)
+        <a href="{{ route('admin.support.index', ['status' => $status]) }}" class="tab-link {{ $filterStatus === $status ? 'active' : '' }}">
+            {{ ucfirst($status) }} ({{ $statusCounts[$status] ?? 0 }})
+        </a>
+    @endforeach
+</div>
+
 <div class="card">
     <div class="card-header">
         <form method="GET" class="filters-bar" style="width: 100%;">

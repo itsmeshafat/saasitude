@@ -17,15 +17,14 @@ class AdminPaymentsController extends Controller
     {
         $search = (string) $request->query('search');
 
-        $payments = Payment::query()
-            ->with(['workspace.owner', 'subscription.plan'])
-            ->when($request->query('status'), fn ($q, $status) => $q->where('status', $status))
-            ->when($search !== '', function ($query) use ($search) {
-                $query->where(function ($q) use ($search) {
-                    $q->where('gateway_payment_id', 'like', "%{$search}%")
-                        ->orWhereHas('workspace', fn ($w) => $w->where('name', 'like', "%{$search}%"));
-                });
-            })
+        // Totals over the same filtered set as the table (unpaginated).
+        $totals = clone $this->filteredQuery($request, $search);
+        $statusTotals = $totals->selectRaw("status, count(*) as count, sum(case when status in ('succeeded','refunded') then amount else 0 end) as amount")
+            ->groupBy('status')
+            ->get()
+            ->keyBy('status');
+
+        $payments = $this->filteredQuery($request, $search)
             ->latest()
             ->paginate(25)
             ->withQueryString();
@@ -35,7 +34,21 @@ class AdminPaymentsController extends Controller
             'search' => $search,
             'statuses' => ['pending', 'succeeded', 'failed', 'refunded'],
             'filterStatus' => (string) $request->query('status', ''),
+            'statusTotals' => $statusTotals,
         ]);
+    }
+
+    private function filteredQuery(Request $request, string $search)
+    {
+        return Payment::query()
+            ->with(['workspace.owner', 'subscription.plan'])
+            ->when($request->query('status'), fn ($q, $status) => $q->where('status', $status))
+            ->when($search !== '', function ($query) use ($search) {
+                $query->where(function ($q) use ($search) {
+                    $q->where('gateway_payment_id', 'like', "%{$search}%")
+                        ->orWhereHas('workspace', fn ($w) => $w->where('name', 'like', "%{$search}%"));
+                });
+            });
     }
 
     /**

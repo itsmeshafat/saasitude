@@ -20,6 +20,15 @@
     </div>
 </div>
 
+<div class="stats-grid">
+    <div class="stat-card">
+        <div class="stat-icon stat-icon-success">$</div>
+        <div class="stat-label">Paid this year</div>
+        <div class="stat-value">${{ number_format($paidThisYear / 100, 2) }}</div>
+        <div class="stat-label">{{ now()->format('Y') }} · paid invoices</div>
+    </div>
+</div>
+
 <div class="card">
     @if($invoices->isEmpty())
         <div class="card-body">

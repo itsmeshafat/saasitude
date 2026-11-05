@@ -18,6 +18,19 @@
     </div>
 </div>
 
+<div class="card mb-6">
+    <div class="card-body">
+        <div class="flex flex-wrap gap-x-8 gap-y-2">
+            @foreach(['trialing' => 'success', 'active' => 'success', 'past_due' => 'warning', 'canceled' => 'muted', 'expired' => 'muted'] as $status => $variant)
+                <a href="{{ route('admin.subscriptions.index', ['status' => $status, 'gateway' => $filters['gateway']]) }}" class="text-sm hover:underline">
+                    <span class="font-semibold">{{ $statusCounts[$status] ?? 0 }}</span>
+                    <span class="text-[var(--muted-foreground)] ml-1">{{ ucfirst(str_replace('_', ' ', $status)) }}</span>
+                </a>
+            @endforeach
+        </div>
+    </div>
+</div>
+
 <div class="card">
     <div class="card-header">
         <form method="GET" class="filters-bar" style="width: 100%;">
@@ -40,7 +53,7 @@
                 </select>
             </div>
             <x-ui.button variant="outline" size="sm" type="submit">Filter</x-ui.button>
-            <a href="{ route("admin.exports.csv', 'subscriptions'", request()->query()) }" class="btn btn-sm btn-outline-btn" style="margin-left:auto">Export CSV</a>
+            <a href="{{ route('admin.exports.csv', 'subscriptions', request()->query()) }}" class="btn btn-sm btn-outline-btn" style="margin-left:auto">Export CSV</a>
         </form>
     </div>
 

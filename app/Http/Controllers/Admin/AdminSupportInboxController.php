@@ -24,6 +24,7 @@ class AdminSupportInboxController extends Controller
         return view('dashboard.support-inbox', [
             'tickets' => $tickets,
             'filterStatus' => (string) $request->query('status', ''),
+            'statusCounts' => SupportTicket::selectRaw('status, count(*) as count')->groupBy('status')->pluck('count', 'status'),
         ]);
     }
 

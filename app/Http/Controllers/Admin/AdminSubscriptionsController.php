@@ -23,6 +23,7 @@ class AdminSubscriptionsController extends Controller
             'subscriptions' => $subscriptions,
             'statuses' => ['trialing', 'active', 'past_due', 'canceled', 'expired'],
             'gateways' => ['stripe', 'paddle', 'sslcommerz', 'manual'],
+            'statusCounts' => Subscription::selectRaw('status, count(*) as count')->groupBy('status')->pluck('count', 'status'),
             'filters' => [
                 'status' => (string) $request->query('status', ''),
                 'gateway' => (string) $request->query('gateway', ''),

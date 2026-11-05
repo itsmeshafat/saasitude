@@ -21,7 +21,12 @@ class InvoiceController extends Controller
             ->latest()
             ->paginate(15);
 
-        return view('dashboard.billing.invoices', compact('invoices', 'workspace'));
+        $paidThisYear = (int) Invoice::where('workspace_id', $workspace->id)
+            ->where('status', 'paid')
+            ->whereYear('created_at', now()->year)
+            ->sum('amount');
+
+        return view('dashboard.billing.invoices', compact('invoices', 'workspace', 'paidThisYear'));
     }
 
     public function download(Request $request, Invoice $invoice): StreamedResponse|Response

@@ -24,6 +24,12 @@
     </div>
 </div>
 
+<div class="tabs">
+    <a href="{{ route('dashboard.notifications') }}" class="tab-link {{ $filter === 'all' ? 'active' : '' }}">All ({{ $totalCount }})</a>
+    <a href="{{ route('dashboard.notifications', ['filter' => 'unread']) }}" class="tab-link {{ $filter === 'unread' ? 'active' : '' }}">Unread ({{ $unreadCount }})</a>
+    <a href="{{ route('dashboard.notifications', ['filter' => 'read']) }}" class="tab-link {{ $filter === 'read' ? 'active' : '' }}">Read ({{ $totalCount - $unreadCount }})</a>
+</div>
+
 
 <div class="card mb-6">
     @if($notifications->isEmpty())
