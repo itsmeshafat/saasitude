@@ -9,21 +9,115 @@
 @endsection
 
 @section('content')
+@php
+    $myMembership = $workspace->workspaceMembers->firstWhere('user_id', $user->id);
+    $canManage = $myMembership && $myMembership->isAdmin();
+@endphp
+
 <div class="page-header">
     <div class="page-header-row">
         <div>
             <h1 class="page-title">Team</h1>
-            <p class="page-description" style="font-size: 1rem;">Welcome to your new page.</p>
+            <p class="page-description">Members of {{ $workspace->name }}.</p>
         </div>
     </div>
 </div>
 
-<div class="card">
-    <div class="card-header">
-        <h3 class="card-title" style="font-size: 1.0625rem;">Team Content</h3>
-    </div>
-    <div class="card-body">
-        <p>This is a new user dashboard page. Start building your content here.</p>
+<div class="card mb-6">
+    <div class="card-header"><h3 class="card-title">Members ({{ $members->count() }})</h3></div>
+    <div class="table-container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Member</th>
+                    <th>Role</th>
+                    <th>Joined</th>
+                    @if($canManage)<th></th>@endif
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($members as $member)
+                    <tr>
+                        <td>
+                            <div class="user-cell">
+                                <div class="user-cell-avatar">{{ substr($member->user?->name ?? '?', 0, 1) }}</div>
+                                <div>
+                                    <div class="font-medium">{{ $member->user?->name ?? '—' }}</div>
+                                    <div class="text-sm text-[var(--muted-foreground)]">{{ $member->user?->email }}</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <x-ui.badge variant="{{ $member->isOwner() ? 'primary' : 'secondary' }}">{{ ucfirst($member->role) }}</x-ui.badge>
+                        </td>
+                        <td>{{ optional($member->joined_at ?? $member->created_at)->format('M j, Y') }}</td>
+                        @if($canManage)
+                            <td style="text-align:right">
+                                @unless($member->isOwner() || $member->user_id === $user->id)
+                                    <form method="POST" action="{{ route('dashboard.team.remove', $member) }}"
+                                          x-data @submit.prevent="showDanger('Remove member?', '{{ $member->user?->email }} will lose access to this workspace.', () => $el.submit())">
+                                        @csrf
+                                        <x-ui.button variant="danger" size="sm" type="submit">Remove</x-ui.button>
+                                    </form>
+                                @endunless
+                            </td>
+                        @endif
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
     </div>
 </div>
+
+@if($canManage)
+<div class="grid grid-cols-1 xl:grid-cols-2 gap-6">
+    <div class="card">
+        <div class="card-header"><h3 class="card-title">Invite a member</h3></div>
+        <div class="card-body">
+            <form method="POST" action="{{ route('dashboard.team.invite') }}">
+                @csrf
+                <div class="mb-4">
+                    <label class="block text-sm font-medium mb-1" for="email">Email</label>
+                    <input type="email" name="email" id="email" value="{{ old('email') }}" class="form-input" required>
+                    @error('email')<p class="text-sm text-[var(--destructive)] mt-1">{{ $message }}</p>@enderror
+                </div>
+                <div class="mb-4">
+                    <label class="block text-sm font-medium mb-1" for="role">Role</label>
+                    <select name="role" id="role" class="form-select" required>
+                        @foreach(['member' => 'Member', 'admin' => 'Admin', 'billing' => 'Billing'] as $value => $label)
+                            <option value="{{ $value }}" @selected(old('role') === $value)>{{ $label }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <x-ui.button variant="primary" type="submit">Send invitation</x-ui.button>
+            </form>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header"><h3 class="card-title">Pending invitations ({{ $invitations->count() }})</h3></div>
+        @if($invitations->isEmpty())
+            <div class="card-body"><x-ui.empty-state title="No pending invitations" description="Invited teammates will appear here until they accept." /></div>
+        @else
+            <div class="table-container">
+                <table class="table table-compact">
+                    <tbody>
+                        @foreach($invitations as $invitation)
+                            <tr>
+                                <td>
+                                    <span class="font-medium">{{ $invitation->email }}</span>
+                                    <div class="text-xs text-[var(--muted-foreground)]">
+                                        {{ ucfirst($invitation->role) }} · expires {{ $invitation->expires_at?->format('M j, Y') }}
+                                    </div>
+                                </td>
+                                <td style="text-align:right"><x-ui.badge variant="warning">Pending</x-ui.badge></td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        @endif
+    </div>
+</div>
+@endif
 @endsection
