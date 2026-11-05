@@ -34,8 +34,8 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         // Glass-theme pagination everywhere (Tyro .pagination classes).
-        Paginator::defaultView('tyro');
-        Paginator::defaultSimpleView('tyro');
+        Paginator::defaultView('pagination::tyro');
+        Paginator::defaultSimpleView('pagination::tyro');
 
         Blade::if('entitlement', function (string $key): bool {
             $workspace = auth()->user()?->currentWorkspace();
