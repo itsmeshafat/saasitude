@@ -12,6 +12,7 @@ use App\Services\GatewayManager;
 use App\Services\Push\FCMDriver;
 use App\Services\SettingsService;
 use Illuminate\Foundation\AliasLoader;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
@@ -32,6 +33,10 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
+        // Glass-theme pagination everywhere (Tyro .pagination classes).
+        Paginator::defaultView('tyro');
+        Paginator::defaultSimpleView('tyro');
+
         Blade::if('entitlement', function (string $key): bool {
             $workspace = auth()->user()?->currentWorkspace();
 
