@@ -391,6 +391,7 @@
     .main-content {
         flex: 1;
         margin-left: 280px;
+        min-width: 0; /* allow flex children (cards, tables) to shrink on mobile */
         min-height: 100vh;
         display: flex;
         flex-direction: column;
@@ -708,6 +709,7 @@
     .page-content {
         padding: 2rem;
         flex: 1;
+        min-width: 0; /* break min-content propagation from cards/tables */
         background-color: transparent;
         /* max-width: 1200px; */
     }

@@ -54,7 +54,7 @@
             </form>
 
             <div class="mt-4 text-xs text-[var(--muted-foreground)]">
-                Webhook URL: <code class="break-all">{{ $gateway['webhook_url'] }}</code>
+                Webhook URL: <code class="inline-block max-w-full" style="overflow-wrap:anywhere">{{ $gateway['webhook_url'] }}</code>
             </div>
         </div>
     </div>
