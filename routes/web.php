@@ -4,7 +4,9 @@ use App\Actions\SwitchWorkspace;
 use App\Http\Controllers\Admin\AdminOverviewController;
 use App\Http\Controllers\Admin\AdminPaymentsController;
 use App\Http\Controllers\Admin\AdminSubscriptionsController;
+use App\Http\Controllers\Admin\AdminSupportInboxController;
 use App\Http\Controllers\Admin\AdminWorkspacesController;
+use App\Http\Controllers\Admin\EmailTemplatesController;
 use App\Http\Controllers\Admin\GatewaySettingsController;
 use App\Http\Controllers\Admin\SystemHealthController;
 use App\Http\Controllers\Admin\WebhookEventsController;
@@ -13,11 +15,13 @@ use App\Http\Controllers\BillingController;
 use App\Http\Controllers\BillingOverviewController;
 use App\Http\Controllers\CancelSubscriptionController;
 use App\Http\Controllers\InvoiceController;
+use App\Http\Controllers\NotificationsController;
 use App\Http\Controllers\PaddleWebhookController;
 use App\Http\Controllers\PaymentMethodsController;
 use App\Http\Controllers\PlansController;
 use App\Http\Controllers\SSLCommerzWebhookController;
 use App\Http\Controllers\StripeWebhookController;
+use App\Http\Controllers\SupportController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\WorkspaceSettingsController;
 use Illuminate\Http\Request;
@@ -68,6 +72,18 @@ Route::middleware(['auth'])->group(function (): void {
     Route::get('dashboard/billing/payment-methods', [PaymentMethodsController::class, 'show'])->name('dashboard.payment-methods');
     Route::get('dashboard/billing/cancel-subscription', [CancelSubscriptionController::class, 'show'])->name('dashboard.cancel-subscription');
     Route::post('dashboard/billing/cancel-subscription', [CancelSubscriptionController::class, 'cancel'])->name('dashboard.cancel-subscription.cancel');
+
+    // Notifications (Phase 10)
+    Route::get('dashboard/notifications', [NotificationsController::class, 'index'])->name('dashboard.notifications');
+    Route::post('dashboard/notifications/{id}/read', [NotificationsController::class, 'markRead'])->name('dashboard.notifications.read');
+    Route::post('dashboard/notifications/read-all', [NotificationsController::class, 'markAllRead'])->name('dashboard.notifications.read-all');
+    Route::post('dashboard/notifications/preferences', [NotificationsController::class, 'updatePreferences'])->name('dashboard.notifications.preferences');
+
+    // Support tickets (Phase 10)
+    Route::get('dashboard/support', [SupportController::class, 'index'])->name('dashboard.support');
+    Route::post('dashboard/support', [SupportController::class, 'store'])->name('dashboard.support.store');
+    Route::get('dashboard/support/{ticket}', [SupportController::class, 'show'])->name('dashboard.support.show');
+    Route::post('dashboard/support/{ticket}/reply', [SupportController::class, 'reply'])->name('dashboard.support.reply');
 });
 
 // Admin console (Phase 8)
@@ -88,4 +104,19 @@ Route::middleware(['auth', 'tyro-dashboard.admin'])->group(function (): void {
     Route::get('dashboard/gateway-settings', [GatewaySettingsController::class, 'show'])->name('admin.gateway-settings');
     Route::post('dashboard/gateway-settings', [GatewaySettingsController::class, 'update'])->name('admin.gateway-settings.update');
     Route::get('dashboard/system-health', [SystemHealthController::class, 'show'])->name('admin.system-health');
+});
+
+// Admin support inbox (Phase 10)
+Route::middleware(['auth', 'tyro-dashboard.admin'])->group(function (): void {
+    Route::get('dashboard/support-inbox', [AdminSupportInboxController::class, 'index'])->name('admin.support.index');
+    Route::get('dashboard/support-inbox/{ticket}', [AdminSupportInboxController::class, 'show'])->name('admin.support.show');
+    Route::post('dashboard/support-inbox/{ticket}/reply', [AdminSupportInboxController::class, 'reply'])->name('admin.support.reply');
+    Route::post('dashboard/support-inbox/{ticket}/close', [AdminSupportInboxController::class, 'close'])->name('admin.support.close');
+});
+
+// Email templates admin preview (Phase 10)
+Route::middleware(['auth', 'tyro-dashboard.admin'])->group(function (): void {
+    Route::get('dashboard/email-templates', [EmailTemplatesController::class, 'index'])->name('admin.email-templates');
+    Route::get('dashboard/email-templates/{key}', [EmailTemplatesController::class, 'show'])->name('admin.email-templates.show');
+    Route::post('dashboard/email-templates/{key}/send-test', [EmailTemplatesController::class, 'sendTest'])->name('admin.email-templates.send-test');
 });

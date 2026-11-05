@@ -2,7 +2,9 @@
 
 use App\Http\Middleware\EnsureEntitlement;
 use App\Http\Middleware\EnsureWorkspaceContext;
+use App\Http\Middleware\PastDueBanner;
 use App\Http\Middleware\RequireIdempotencyKey;
+use App\Http\Middleware\TrialEndingNotice;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Application;
@@ -26,6 +28,8 @@ return Application::configure(basePath: dirname(__DIR__))
             'idempotency' => RequireIdempotencyKey::class,
         ]);
         $middleware->validateCsrfTokens(except: ['webhooks/*']);
+        // Billing banners on authenticated dashboard pages (Phase 10)
+        $middleware->web(append: [TrialEndingNotice::class, PastDueBanner::class]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         $exceptions->shouldRenderJsonWhen(

@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Hidden;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -40,6 +41,21 @@ class User extends Authenticatable
         return $this->belongsToMany(Workspace::class, 'workspace_members')
             ->withPivot('role', 'joined_at')
             ->withTimestamps();
+    }
+
+    public function devices(): HasMany
+    {
+        return $this->hasMany(Device::class);
+    }
+
+    public function appNotifications(): HasMany
+    {
+        return $this->hasMany(AppNotification::class);
+    }
+
+    public function tickets(): HasMany
+    {
+        return $this->hasMany(SupportTicket::class);
     }
 
     public function currentWorkspace(): ?Workspace

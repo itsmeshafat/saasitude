@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\V1\BillingApiController;
 use App\Http\Controllers\Api\V1\DeviceController;
 use App\Http\Controllers\Api\V1\MeController;
+use App\Http\Controllers\Api\V1\NotificationApiController;
 use App\Http\Controllers\Api\V1\PlanApiController;
 use App\Http\Controllers\Api\V1\WorkspaceApiController;
 use Illuminate\Cache\RateLimiting\Limit;
@@ -43,6 +44,12 @@ Route::prefix('v1')
         // Devices ( push tokens )
         Route::post('devices', [DeviceController::class, 'store'])->middleware('abilities:write');
         Route::delete('devices/{deviceId}', [DeviceController::class, 'destroy'])->middleware('abilities:write');
+
+        // Notifications ( Phase 10 )
+        Route::get('notifications', [NotificationApiController::class, 'index'])->middleware('abilities:read');
+        Route::patch('notifications/{id}/read', [NotificationApiController::class, 'markRead'])->middleware('abilities:write');
+        Route::get('notifications/preferences', [NotificationApiController::class, 'preferences'])->middleware('abilities:read');
+        Route::patch('notifications/preferences', [NotificationApiController::class, 'updatePreferences'])->middleware('abilities:write');
 
         // Workspaces ( own list/create — no workspace context needed )
         Route::get('workspaces', [WorkspaceApiController::class, 'index'])->middleware('abilities:read');

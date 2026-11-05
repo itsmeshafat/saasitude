@@ -3,11 +3,13 @@
 namespace App\Providers;
 
 use App\Contracts\PaymentGateway;
+use App\Contracts\PushNotificationDriver;
 use App\Facades\Entitlements;
 use App\Gateways\StripeGateway;
 use App\Services\EntitlementService;
 use App\Services\GatewayCustomerResolver;
 use App\Services\GatewayManager;
+use App\Services\Push\FCMDriver;
 use App\Services\SettingsService;
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\Facades\Blade;
@@ -18,6 +20,8 @@ class AppServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->app->singleton(SettingsService::class);
+        $this->app->singleton(FCMDriver::class);
+        $this->app->bind(PushNotificationDriver::class, FCMDriver::class);
         $this->app->singleton(EntitlementService::class);
         $this->app->singleton(GatewayCustomerResolver::class);
         $this->app->singleton(GatewayManager::class);

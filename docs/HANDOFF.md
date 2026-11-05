@@ -83,7 +83,15 @@ All migrations are run (including coupons/coupon_redemptions, 2026-11-05).
 - 19 contract tests in ApiV1Test; suite 112/112.
 - NOT done: OpenAPI spec (Scramble/Scribe — needs user approval for new dependency); P1 endpoints (notifications, support, data rights); ETag caching (T-025 follow-up).
 
-**Next: Phase 10** — transactional emails (18 per docs/04-billing.md), notifications, support inbox + Phase 8 deferred screens (email templates, support inbox, data requests).
+**Phase 10 notifications/email/support — DONE (2026-11-06):**
+- 12 queued transactional mailables on a shared `TransactionalMail` base + Tyro-style table layout (`emails.layouts.base`): TrialStarted/TrialEnding/PaymentSucceeded/PaymentFailedMail/PlanChanged/SubscriptionCanceledMail/SubscriptionResumed/RefundIssued/CardExpiring/AccountDeletionConfirmed/DataExportReady (+ existing SubscriptionRenewalReminder). Wired to SubscriptionActivated/PaymentFailed/SubscriptionCanceled events in WorkspaceServiceProvider.
+- In-app notifications: `notifications` table + `AppNotification` model, `NotificationService` (in-app row + push via `PushNotificationDriver` interface, `FCMDriver` stub bound in container), per-type push/email prefs in settings (`user.{id}.notify.{type}.{push|email}`). API: GET/PATCH notifications + preferences (list shape, no dotted keys). User screen at /dashboard/notifications.
+- Support: `support_tickets` (TKT-YYYY-NNNNN via lockForUpdate counter) + `ticket_messages`, `SupportTicketService` (create/reply/close, staff reply → customer notification; customer reply → pending; closed tickets immutable). User screens /dashboard/support(+/{ticket}); admin inbox /dashboard/support-inbox (reply/close behind support.reply, showDanger on close).
+- Email templates admin: /dashboard/email-templates list + per-template iframe preview with sample data + "send test to me" (settings.manage).
+- AdminNotice middlewares appended to web group: TrialEndingNotice (≤3 days left → amber banner w/ plan link), PastDueBanner (red banner w/ payment-method link).
+- 12 new tests; suite 124/124. Push faked via `tests/Fakes/FakePushDriver`.
+
+**Next: Phase 11 public site** — landing/pricing/contact/legal/changelog with SEO; spec requires proposing 2 visual directions with /prototype before building and waiting for user choice.
 
 ---
 
