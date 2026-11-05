@@ -12,8 +12,15 @@
 <div class="page-header">
     <div class="page-header-row">
         <div>
-            <h1 class="page-title">Choose a Plan</h1>
-            <p class="page-description">Select the plan that fits your workspace.</p>
+            <h1 class="page-title">Checkout</h1>
+            <p class="page-description">
+                Paying in {{ $currency }} via {{ ucfirst($gateway->key()) }}.
+                @foreach($supportedCurrencies as $cur)
+                    @if($cur !== $currency)
+                        <a href="{{ route('dashboard.billing.checkout', ['currency' => $cur]) }}" class="underline">Switch to {{ $cur }}</a>
+                    @endif
+                @endforeach
+            </p>
         </div>
     </div>
 </div>
@@ -29,13 +36,13 @@
         @foreach($prices->groupBy('plan_id') as $planId => $planPrices)
             @php $plan = $planPrices->first()->plan @endphp
             @foreach($planPrices as $price)
-            <label class="card cursor-pointer border-2 hover:border-blue-500 transition-colors {{ old('plan_price_id') == $price->id ? 'border-blue-500' : 'border-transparent' }}" style="padding: 1.5rem;">
+            <label class="card cursor-pointer border-2 hover:border-[var(--primary)] transition-colors {{ old('plan_price_id') == $price->id ? 'border-[var(--primary)]' : 'border-transparent' }}" style="padding: 1.5rem;">
                 <input type="radio" name="plan_price_id" value="{{ $price->id }}" class="sr-only" {{ old('plan_price_id') == $price->id ? 'checked' : '' }}>
                 <div class="font-semibold text-lg">{{ $plan->name }}</div>
-                <div class="text-gray-500 text-sm mt-1">{{ $plan->description }}</div>
+                <div class="text-[var(--muted-foreground)] text-sm mt-1">{{ $plan->description }}</div>
                 <div class="mt-3 font-bold text-xl">
                     {{ strtoupper($price->currency) }} {{ number_format($price->amount_minor / 100, 2) }}
-                    <span class="text-sm font-normal text-gray-500">/ {{ $price->interval }}</span>
+                    <span class="text-sm font-normal text-[var(--muted-foreground)]">/ {{ $price->interval }}</span>
                 </div>
             </label>
             @endforeach
@@ -43,7 +50,7 @@
     </div>
 
     @error('plan_price_id')
-        <p class="text-red-500 text-sm mb-4">{{ $message }}</p>
+        <p class="text-[var(--destructive)] text-sm mb-4">{{ $message }}</p>
     @enderror
 
     <div class="mb-4" style="max-width: 320px;">
@@ -56,7 +63,7 @@
 </form>
 
 @if(in_array('portal', $gateway->capabilities()))
-    <div class="mt-6 text-sm text-gray-500">
+    <div class="mt-6 text-sm text-[var(--muted-foreground)]">
         Already subscribed? <a href="{{ route('dashboard.billing.portal') }}" class="underline">Manage billing</a>
     </div>
 @endif

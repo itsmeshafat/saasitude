@@ -7,6 +7,7 @@ use App\Facades\Entitlements;
 use App\Gateways\StripeGateway;
 use App\Services\EntitlementService;
 use App\Services\GatewayCustomerResolver;
+use App\Services\GatewayManager;
 use App\Services\SettingsService;
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\Facades\Blade;
@@ -19,6 +20,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(SettingsService::class);
         $this->app->singleton(EntitlementService::class);
         $this->app->singleton(GatewayCustomerResolver::class);
+        $this->app->singleton(GatewayManager::class);
         $this->app->bind(PaymentGateway::class, StripeGateway::class);
 
         AliasLoader::getInstance()->alias('Entitlements', Entitlements::class);

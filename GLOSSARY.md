@@ -36,3 +36,9 @@ Phase 1 — finalised 2026-11-04. Update this file; never let it drift from the 
 **Device** — A registered mobile client (iOS/Android) or web session that may receive push notifications. Stored in `devices (user_id, platform, push_token, app_version, last_seen_at)`. Used by the mobile API layer.
 
 **AuditEntry** — A record of a state-changing action on a model that uses `HasAuditTrail`. Stored in Tyro's `tyro_audit_logs` table. Contains actor, action, model type/ID, old/new values, and timestamp. Read-only after creation.
+
+**Coupon** — A discount code redeemable at checkout. Either `percent` (0–100) or `fixed` (integer minor units + required ISO currency). Optionally restricted to specific plans (`plan_ids` JSON), capped by `max_redemptions`, and dated via `expires_at`. Stored in `coupons`. Once-per-workspace; deletable only while it has no redemptions (deactivate otherwise). Discounts are always computed as integer minor units.
+
+**CouponRedemption** — The record of a workspace applying a coupon: coupon, workspace, optional gateway coupon id, amount off in minor units, and `applied_at`. Stored in `coupon_redemptions`. `coupons.redeemed_count` is incremented atomically when a redemption is recorded.
+
+**GatewayManager** — App service (`app/Services/GatewayManager.php`) that resolves gateway adapters by key (`stripe`, `paddle`, `sslcommerz`), lists all registered gateways, exposes the container-default gateway, and routes checkout by currency (BDT → SSLCommerz, otherwise default). Singleton.

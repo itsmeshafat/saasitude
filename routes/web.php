@@ -3,8 +3,12 @@
 use App\Actions\SwitchWorkspace;
 use App\Http\Controllers\AdminInvoiceController;
 use App\Http\Controllers\BillingController;
+use App\Http\Controllers\BillingOverviewController;
+use App\Http\Controllers\CancelSubscriptionController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\PaddleWebhookController;
+use App\Http\Controllers\PaymentMethodsController;
+use App\Http\Controllers\PlansController;
 use App\Http\Controllers\SSLCommerzWebhookController;
 use App\Http\Controllers\StripeWebhookController;
 use App\Http\Controllers\TeamController;
@@ -50,4 +54,11 @@ Route::middleware(['auth'])->group(function (): void {
 
         return redirect()->back();
     })->name('dashboard.workspace.switch');
+
+    // User billing screens (Phase 7)
+    Route::get('dashboard/billing', [BillingOverviewController::class, 'show'])->name('dashboard.billing');
+    Route::get('dashboard/billing/plans', [PlansController::class, 'show'])->name('dashboard.plans');
+    Route::get('dashboard/billing/payment-methods', [PaymentMethodsController::class, 'show'])->name('dashboard.payment-methods');
+    Route::get('dashboard/billing/cancel-subscription', [CancelSubscriptionController::class, 'show'])->name('dashboard.cancel-subscription');
+    Route::post('dashboard/billing/cancel-subscription', [CancelSubscriptionController::class, 'cancel'])->name('dashboard.cancel-subscription.cancel');
 });

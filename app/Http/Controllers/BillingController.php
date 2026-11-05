@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\ApplyCoupon;
 use App\Contracts\PaymentGateway;
 use App\DTOs\CheckoutOptions;
 use App\Models\PlanPrice;
+use App\Services\GatewayManager;
 use App\Services\SettingsService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -12,7 +14,7 @@ use Illuminate\View\View;
 
 class BillingController extends Controller
 {
-    public function checkout(Request $request, PaymentGateway $gateway): View|RedirectResponse
+    public function checkout(Request $request, GatewayManager $gateways): View|RedirectResponse
     {
         $workspace = $request->user()->currentWorkspace();
 
@@ -20,15 +22,25 @@ class BillingController extends Controller
             return redirect()->route('dashboard.workspace-settings');
         }
 
+        $currency = strtoupper((string) $request->query('currency', 'USD'));
+        $gateway = $gateways->forCurrency($currency);
+
         $prices = PlanPrice::with('plan')
             ->whereNotNull('gateway_price_id')
             ->where('gateway', $gateway->key())
+            ->where('currency', $currency)
             ->get();
 
-        return view('dashboard.billing.checkout', compact('workspace', 'prices', 'gateway'));
+        return view('dashboard.billing.checkout', [
+            'workspace' => $workspace,
+            'prices' => $prices,
+            'gateway' => $gateway,
+            'currency' => $currency,
+            'supportedCurrencies' => ['USD', 'BDT'],
+        ]);
     }
 
-    public function startCheckout(Request $request, PaymentGateway $gateway): RedirectResponse
+    public function startCheckout(Request $request, GatewayManager $gateways, ApplyCoupon $coupons): RedirectResponse
     {
         $request->validate([
             'plan_price_id' => 'required|exists:plan_prices,id',
@@ -42,14 +54,27 @@ class BillingController extends Controller
         }
 
         $price = PlanPrice::findOrFail($request->input('plan_price_id'));
+        $gateway = $gateways->resolve($price->gateway);
+
+        // Validate the coupon against this workspace and price before redirecting.
+        // The redemption itself is recorded by the verified webhook, never here.
+        if ($couponCode = $request->input('coupon')) {
+            try {
+                $coupons->execute($workspace, $couponCode, $price);
+            } catch (\RuntimeException $e) {
+                return redirect()->route('dashboard.billing.checkout', ['currency' => $price->currency])
+                    ->withInput()
+                    ->with('error', $e->getMessage());
+            }
+        }
 
         $trialDays = app(SettingsService::class)->get('trial_length_days', 14);
 
         $session = $gateway->startCheckout($workspace, $price, new CheckoutOptions(
             successUrl: route('dashboard.billing.success').'?session_id={CHECKOUT_SESSION_ID}',
-            cancelUrl: route('dashboard.billing.checkout'),
+            cancelUrl: route('dashboard.billing.checkout', ['currency' => $price->currency]),
             trialDays: (int) $trialDays,
-            coupon: $request->input('coupon'),
+            coupon: $couponCode,
         ));
 
         return redirect()->away($session->url);

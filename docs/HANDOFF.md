@@ -31,6 +31,7 @@ Key doc files in `docs/`:
 | Phase 6 — Billing: SSLCommerz + renewals | ✓ | T-017–T-018 |
 | Phase 7 — Invoices & receipts (backend) | ✓ | T-019–T-020 |
 | Phase 6.5 — Design system (Cobalt Pro) | ✓ | — |
+| T-021 Coupons + Phase 7 user billing UI | ✓ (2026-11-05) | T-021 + billing screens |
 
 ---
 
@@ -51,14 +52,22 @@ Security rules (non-negotiable):
 
 ## Current state of migrations
 
-Three migrations are **pending** (not yet run):
-```
-2026_11_04_084323_add_app_driven_renewal_to_subscriptions_table
-2026_11_04_084452_create_payments_table
-2026_11_04_084453_create_invoices_table
-```
+All migrations are run (including coupons/coupon_redemptions, 2026-11-05).
 
-Run `php artisan migrate` before starting.
+## Done on 2026-11-05 (T-021 + Phase 7 user billing UI)
+
+- `GatewayManager` (`app/Services/GatewayManager.php`): resolve by key, `all()`, `default()`, `forCurrency()` (BDT→SSLCommerz). Singleton.
+- T-021 Coupons: `coupons` + `coupon_redemptions` tables, `Coupon` (HasCrud, admin-gated, audit, delete-guard), `CouponRedemption`, `ApplyCoupon` action (`execute()` validates, `record()` is atomic), `CouponFactory`. Appears in admin sidebar under Resources automatically.
+- Phase 7 screens (routes in `routes/web.php` auth group, views in `resources/views/dashboard/`):
+  - `GET dashboard/billing` — overview (plan, status pill, renewal, usage meters, empty state)
+  - `GET dashboard/billing/plans` — plan cards, USD/BDT toggle, monthly/annual Alpine toggle
+  - `GET/POST dashboard/billing/checkout` — currency→gateway routing, coupon validated via `ApplyCoupon` before redirect (redemption recorded only by webhook)
+  - `GET dashboard/billing/payment-methods` — portal link or last payment
+  - `GET/POST dashboard/billing/cancel-subscription` — reason survey, downgrade offer, showDanger, `CancelSubscription` action (blocked while impersonating, audited, reason in metadata)
+  - `success.blade.php` — "processing" only, never confirms status
+- Fake gateway for tests: `tests/Fakes/FakeGateway.php` (bind over `\App\Gateways\StripeGateway::class`).
+
+**Next: Phase 8 admin console** (see below + `docs/09-phase-prompts.md` Phase 8).
 
 ---
 
