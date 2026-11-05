@@ -1,6 +1,8 @@
 @import 'tailwindcss';
 @import './public.css';
 
+/* Explicit scan sources — auto-detection was missing dashboard views */
+@source '../views';
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
 

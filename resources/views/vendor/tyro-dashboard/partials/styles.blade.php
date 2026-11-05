@@ -36,13 +36,9 @@
         --sidebar-logo-fit: {{ $sbLogoShape === 'rectangle' ? 'contain' : 'cover' }};
     }
 
-    *,
-    *::before,
-    *::after {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-    }
+    {{-- The universal margin/padding reset lives in Tailwind's base layer (preflight).
+         A reset here would be unlayered CSS, which beats every layered Tailwind
+         utility (mb-*, p-*, ...) — that broke all spacing utilities app-wide. --}}
 
     html {
         scrollbar-width: thin;

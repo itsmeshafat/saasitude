@@ -3,8 +3,10 @@
    All colors via design tokens (var(--*)) — never hard-coded. */
 
 /* ==== public ==== */
+/* NOTE: no universal margin/padding reset here — it would be unlayered CSS
+   imported AFTER Tailwind and would beat every margin or padding utility
+   app-wide. Tailwind v4's preflight already provides the reset in @layer base. */
 :root { color-scheme: light dark; }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         background-color: var(--background);
