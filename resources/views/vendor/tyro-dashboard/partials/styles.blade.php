@@ -2,6 +2,11 @@
 @include('tyro-dashboard::partials.shadcn-theme')
 
 <style>
+    /* Guard: hidden (visibility-only) dropdown menus must not create horizontal scroll on mobile */
+    body {
+        overflow-x: hidden;
+    }
+
     :root {
         @php
             $sbColorBg = config('tyro-dashboard.branding.sidebar_bg') ?: '#0e0e0e';
@@ -411,6 +416,8 @@
         display: flex;
         align-items: center;
         gap: 0.75rem;
+        min-width: 0;
+        flex: 1;
     }
 
     .mobile-menu-btn {
@@ -438,6 +445,9 @@
         gap: 0.5rem;
         font-size: 0.9375rem;
         color: var(--muted-foreground);
+        min-width: 0;
+        overflow: hidden;
+        white-space: nowrap;
     }
 
     .breadcrumb a {
