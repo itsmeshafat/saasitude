@@ -3,7 +3,8 @@
 @section('title', 'Invoices')
 
 @section('breadcrumb')
-<a href="{{ route($dashboardRoute::name('index')) }}">Dashboard</a>
+{{-- This view renders outside the dashboard/* composer scope, so no $dashboardRoute here. --}}
+<a href="{{ url('/dashboard') }}">Dashboard</a>
 <span class="breadcrumb-separator">/</span>
 <span>Invoices</span>
 @endsection
