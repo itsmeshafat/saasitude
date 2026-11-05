@@ -40,44 +40,66 @@
     :root {
         --primary: oklch(0.546 0.237 258);
         --primary-foreground: oklch(0.985 0 0);
-        --background: oklch(0.985 0.003 258);
+        --background: oklch(0.965 0.012 258);
         --foreground: oklch(0.144 0.022 254);
-        --card: oklch(1 0 0);
+        --card: oklch(1 0 0 / 0.55);
         --card-foreground: oklch(0.144 0.022 254);
-        --muted: oklch(0.962 0.008 258);
-        --muted-foreground: oklch(0.556 0.015 254);
-        --accent: oklch(0.925 0.045 258);
+        --muted: oklch(0.962 0.008 258 / 0.6);
+        --muted-foreground: oklch(0.42 0.025 254);
+        --accent: oklch(0.925 0.045 258 / 0.7);
         --accent-foreground: oklch(0.144 0.022 254);
-        --secondary: oklch(0.962 0.008 258);
+        --secondary: oklch(0.962 0.008 258 / 0.7);
         --secondary-foreground: oklch(0.144 0.022 254);
-        --border: oklch(0.898 0.010 258);
-        --input: oklch(0.898 0.010 258);
+        --border: oklch(0.546 0.237 258 / 0.18);
+        --input: oklch(0.546 0.237 258 / 0.22);
         --ring: oklch(0.546 0.237 258);
         --destructive: oklch(0.577 0.245 27.325);
         --destructive-foreground: oklch(1 0 0);
         --success: oklch(0.627 0.194 149);
         --warning: oklch(0.769 0.188 70);
         --info: oklch(0.546 0.237 258);
-        --radius: 0.5rem;
+        --radius: 0.75rem;
+
+        /* Cobalt Glass system (mirrors the dashboard shadcn-theme) */
+        --glass: oklch(1 0 0 / 0.55);
+        --glass-strong: oklch(1 0 0 / 0.72);
+        --glass-border: oklch(1 0 0 / 0.65);
+        --glass-blur: blur(18px) saturate(1.5);
+        --glass-highlight: inset 0 1px 0 oklch(1 0 0 / 0.6);
+        --mesh:
+            radial-gradient(600px 420px at 12% -6%, oklch(0.72 0.16 250 / 0.42), transparent 65%),
+            radial-gradient(760px 520px at 96% 12%, oklch(0.78 0.14 300 / 0.34), transparent 62%),
+            radial-gradient(680px 540px at 42% 108%, oklch(0.8 0.13 190 / 0.32), transparent 60%);
     }
 
     .dark {
         --primary: oklch(0.546 0.237 258);
         --primary-foreground: oklch(0.985 0 0);
-        --background: oklch(0.144 0.022 254);
-        --foreground: oklch(0.980 0.005 258);
-        --card: oklch(0.198 0.020 254);
-        --card-foreground: oklch(0.980 0.005 258);
-        --muted: oklch(0.265 0.015 254);
-        --muted-foreground: oklch(0.698 0.010 254);
-        --accent: oklch(0.265 0.015 254);
-        --accent-foreground: oklch(0.980 0.005 258);
-        --secondary: oklch(0.265 0.015 254);
-        --secondary-foreground: oklch(0.980 0.005 258);
-        --border: oklch(1 0 0 / 10%);
-        --input: oklch(1 0 0 / 15%);
-        --ring: oklch(0.546 0.237 258);
+        --background: oklch(0.13 0.02 254);
+        --foreground: oklch(0.97 0.005 254);
+        --card: oklch(0.21 0.028 254 / 0.55);
+        --card-foreground: oklch(0.97 0.005 254);
+        --muted: oklch(0.28 0.02 254 / 0.6);
+        --muted-foreground: oklch(0.68 0.015 254);
+        --accent: oklch(0.3 0.04 258 / 0.6);
+        --accent-foreground: oklch(0.97 0.005 254);
+        --secondary: oklch(0.28 0.02 254 / 0.7);
+        --secondary-foreground: oklch(0.97 0.005 254);
+        --border: oklch(1 0 0 / 12%);
+        --input: oklch(1 0 0 / 16%);
+        --ring: oklch(0.62 0.2 258);
         --destructive: oklch(0.704 0.191 22.216);
         --destructive-foreground: oklch(0.985 0 0);
+
+        /* Cobalt Glass — smoked */
+        --glass: oklch(0.21 0.028 254 / 0.55);
+        --glass-strong: oklch(0.24 0.03 254 / 0.75);
+        --glass-border: oklch(1 0 0 / 0.14);
+        --glass-blur: blur(18px) saturate(1.4);
+        --glass-highlight: inset 0 1px 0 oklch(1 0 0 / 0.1);
+        --mesh:
+            radial-gradient(600px 420px at 12% -6%, oklch(0.35 0.14 258 / 0.5), transparent 65%),
+            radial-gradient(760px 520px at 96% 12%, oklch(0.35 0.12 310 / 0.4), transparent 62%),
+            radial-gradient(680px 540px at 42% 108%, oklch(0.33 0.1 200 / 0.4), transparent 60%);
     }
 }

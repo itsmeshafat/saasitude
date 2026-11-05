@@ -35,6 +35,27 @@ class SupportTicketService
         });
     }
 
+    /** Contact-form ticket from an anonymous visitor (public site). */
+    public function createGuest(string $email, string $subject, string $category, string $body): SupportTicket
+    {
+        return DB::transaction(function () use ($email, $subject, $category, $body) {
+            $ticket = SupportTicket::create([
+                'number' => $this->nextNumber(),
+                'guest_email' => $email,
+                'subject' => $subject,
+                'category' => $category,
+            ]);
+
+            $ticket->messages()->create([
+                'user_id' => null,
+                'is_staff' => false,
+                'body' => $body,
+            ]);
+
+            return $ticket;
+        });
+    }
+
     public function reply(SupportTicket $ticket, User $author, string $body, bool $isStaff): TicketMessage
     {
         if ($ticket->status === 'closed') {

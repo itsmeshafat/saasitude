@@ -19,6 +19,11 @@ use App\Http\Controllers\NotificationsController;
 use App\Http\Controllers\PaddleWebhookController;
 use App\Http\Controllers\PaymentMethodsController;
 use App\Http\Controllers\PlansController;
+use App\Http\Controllers\Public\ChangelogController;
+use App\Http\Controllers\Public\ContactController;
+use App\Http\Controllers\Public\LegalController;
+use App\Http\Controllers\Public\SiteController;
+use App\Http\Controllers\Public\SitemapController;
 use App\Http\Controllers\SSLCommerzWebhookController;
 use App\Http\Controllers\StripeWebhookController;
 use App\Http\Controllers\SupportController;
@@ -30,9 +35,14 @@ use Illuminate\Support\Facades\Route;
 // PROTOTYPE (throwaway) — Phase 11 public-site visual directions. Local only.
 Route::view('/prototype/public-site', 'prototype.public-site')->middleware('proto.local');
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Public site (Phase 11)
+Route::get('/', [SiteController::class, 'home'])->name('public.home');
+Route::get('pricing', [SiteController::class, 'pricing'])->name('public.pricing');
+Route::get('contact', [ContactController::class, 'show'])->name('public.contact');
+Route::post('contact', [ContactController::class, 'submit'])->middleware('throttle:6,1')->name('public.contact.submit');
+Route::get('changelog', [ChangelogController::class, 'index'])->name('public.changelog');
+Route::get('sitemap.xml', [SitemapController::class, 'index'])->name('public.sitemap');
+Route::get('{page}', [LegalController::class, 'show'])->whereIn('page', ['terms', 'privacy', 'refund-policy'])->name('public.legal');
 
 // Webhook endpoints — excluded from CSRF via bootstrap/app.php
 Route::post('webhooks/stripe', [StripeWebhookController::class, 'handle'])->name('webhooks.stripe');

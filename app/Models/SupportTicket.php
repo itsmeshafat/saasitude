@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class SupportTicket extends Model
 {
     protected $fillable = [
-        'number', 'user_id', 'workspace_id', 'subject', 'category', 'status', 'closed_at',
+        'number', 'user_id', 'workspace_id', 'guest_email', 'subject', 'category', 'status', 'closed_at',
     ];
 
     protected $casts = [
