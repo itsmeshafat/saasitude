@@ -24,11 +24,11 @@
             <div class="search-box">
                 <input type="text" name="search" value="{{ $search }}" placeholder="Name or owner email…" class="form-input">
             </div>
-            <x-ui.button variant="outline" size="sm" type="submit">Search</x-ui.button>
+            <x-ui.button variant="primary" size="sm" type="submit">Search</x-ui.button>
             @if($search !== '')
                 <a href="{{ route('admin.workspaces.index') }}" class="filter-label">Clear</a>
             @endif
-            <x-ui.button href="{ route('admin.exports.csv', 'workspaces', request()->query()) }" variant="outline" size="sm" class="ml-auto">Export CSV</x-ui.button>
+            <x-ui.button href="{{ route('admin.exports.csv', 'workspaces', request()->query()) }}" variant="secondary" size="sm" class="ml-auto">Export CSV</x-ui.button>
         </form>
     </div>
 

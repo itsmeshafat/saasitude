@@ -52,8 +52,8 @@
                     @endforeach
                 </select>
             </div>
-            <x-ui.button variant="outline" size="sm" type="submit">Filter</x-ui.button>
-            <x-ui.button href="{ route('admin.exports.csv', 'subscriptions', request()->query()) }" variant="outline" size="sm" class="ml-auto">Export CSV</x-ui.button>
+            <x-ui.button variant="primary" size="sm" type="submit">Filter</x-ui.button>
+            <x-ui.button href="{{ route('admin.exports.csv', 'subscriptions', request()->query()) }}" variant="secondary" size="sm" class="ml-auto">Export CSV</x-ui.button>
         </form>
     </div>
 

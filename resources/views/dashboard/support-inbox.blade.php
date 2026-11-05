@@ -39,7 +39,7 @@
                     @endforeach
                 </select>
             </div>
-            <x-ui.button variant="outline" size="sm" type="submit">Filter</x-ui.button>
+            <x-ui.button variant="primary" size="sm" type="submit">Filter</x-ui.button>
         </form>
     </div>
 

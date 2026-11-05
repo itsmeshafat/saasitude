@@ -25,11 +25,11 @@
             <div class="search-box">
                 <input type="text" name="search" value="{{ request('search') }}" placeholder="Search by invoice # or workspace…" class="form-input">
             </div>
-            <x-ui.button variant="outline" size="sm" type="submit">Search</x-ui.button>
+            <x-ui.button variant="primary" size="sm" type="submit">Search</x-ui.button>
             @if(request('search'))
                 <a href="{{ route('admin.billing.invoices') }}" class="filter-label">Clear</a>
             @endif
-            <x-ui.button href="{ route('admin.exports.csv', 'invoices', request()->query()) }" variant="outline" size="sm" class="ml-auto">Export CSV</x-ui.button>
+            <x-ui.button href="{{ route('admin.exports.csv', 'invoices', request()->query()) }}" variant="secondary" size="sm" class="ml-auto">Export CSV</x-ui.button>
         </form>
     </div>
 
