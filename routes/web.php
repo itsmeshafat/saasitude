@@ -50,6 +50,19 @@ Route::post('webhooks/paddle', [PaddleWebhookController::class, 'handle'])->name
 Route::post('webhooks/sslcommerz', [SSLCommerzWebhookController::class, 'handle'])->name('webhooks.sslcommerz');
 
 Route::middleware(['auth'])->group(function (): void {
+    // Role-aware landing: admins -> analytics, users -> billing overview.
+    // Named tyro-dashboard.index so package internals (e.g. EnsureIsAdmin's
+    // non-admin redirect) resolve to this role-aware entry point.
+    Route::get('dashboard', function (Request $request) {
+        $user = $request->user();
+
+        if ($user && method_exists($user, 'hasAnyRole') && $user->hasAnyRole(['admin', 'super-admin', 'finance', 'support'])) {
+            return redirect()->route('dashboard.overview');
+        }
+
+        return redirect()->route('dashboard.billing');
+    })->name('tyro-dashboard.index');
+
     Route::get('dashboard/workspace-settings', [WorkspaceSettingsController::class, 'show'])->name('dashboard.workspace-settings');
     Route::put('dashboard/workspace-settings', [WorkspaceSettingsController::class, 'update'])->name('dashboard.workspace-settings.update');
     Route::post('dashboard/workspace-settings/transfer', [WorkspaceSettingsController::class, 'transferOwnership'])->name('dashboard.workspace-settings.transfer');
