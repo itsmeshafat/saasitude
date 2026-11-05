@@ -30,6 +30,13 @@ class SystemHealthController extends Controller
 
         return view('dashboard.system-health', [
             'checks' => $checks,
+            'queueDepth' => $queueDepth,
+            'failedJobs' => $failedJobs,
+            'dbSizeMb' => $dbSizeMb,
+            'diskFreeGb' => $diskFreeGb,
+            'diskTotalGb' => $diskTotalGb,
+            'diskUsedPct' => $diskTotalGb > 0 ? round(($diskTotalGb - $diskFreeGb) / $diskTotalGb * 100, 1) : 0,
+            'schedulerLastRun' => $schedulerSetting ? Carbon::parse($schedulerSetting) : null,
             'failedRecent' => DB::table('failed_jobs')->latest('failed_at')->limit(5)->get(),
         ]);
     }

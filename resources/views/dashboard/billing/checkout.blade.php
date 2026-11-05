@@ -1,11 +1,13 @@
 @extends('tyro-dashboard::layouts.user')
 
-@section('title', 'Upgrade Plan')
+@section('title', 'Checkout')
 
 @section('breadcrumb')
 <a href="{{ route($dashboardRoute::name('index')) }}">Dashboard</a>
 <span class="breadcrumb-separator">/</span>
-<span>Upgrade</span>
+<a href="{{ route('dashboard.billing') }}">Billing</a>
+<span class="breadcrumb-separator">/</span>
+<span>Checkout</span>
 @endsection
 
 @section('content')
@@ -25,38 +27,82 @@
     </div>
 </div>
 
-
 <form method="POST" action="{{ route('dashboard.billing.checkout.start') }}">
     @csrf
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-        @foreach($prices->groupBy('plan_id') as $planId => $planPrices)
-            @php $plan = $planPrices->first()->plan @endphp
-            @foreach($planPrices as $price)
-            <label class="card cursor-pointer border-2 hover:border-[var(--primary)] transition-colors {{ old('plan_price_id') == $price->id ? 'border-[var(--primary)]' : 'border-transparent' }}" style="padding: 1.5rem;">
-                <input type="radio" name="plan_price_id" value="{{ $price->id }}" class="sr-only" {{ old('plan_price_id') == $price->id ? 'checked' : '' }}>
-                <div class="font-semibold text-lg">{{ $plan->name }}</div>
-                <div class="text-[var(--muted-foreground)] text-sm mt-1">{{ $plan->description }}</div>
-                <div class="mt-3 font-bold text-xl">
-                    {{ strtoupper($price->currency) }} {{ number_format($price->amount_minor / 100, 2) }}
-                    <span class="text-sm font-normal text-[var(--muted-foreground)]">/ {{ $price->interval }}</span>
+    <div class="grid grid-cols-1 xl:grid-cols-3 gap-6">
+        <div class="xl:col-span-2">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                @foreach($prices->groupBy('plan_id') as $planId => $planPrices)
+                    @php $plan = $planPrices->first()->plan @endphp
+                    @foreach($planPrices as $price)
+                        <label class="card cursor-pointer border-2 hover:border-[var(--primary)] transition-colors {{ old('plan_price_id') == $price->id ? 'border-[var(--primary)]' : 'border-transparent' }}" style="padding: 1.5rem;">
+                            <input type="radio" name="plan_price_id" value="{{ $price->id }}" class="sr-only" checked>
+                            <div class="flex items-center justify-between">
+                                <div class="font-semibold text-lg">{{ $plan->name }}</div>
+                                <x-ui.badge variant="{{ $price->interval === 'year' ? 'success' : 'secondary' }}">{{ $price->interval === 'year' ? 'Annual · 2 months free' : 'Monthly' }}</x-ui.badge>
+                            </div>
+                            <div class="text-[var(--muted-foreground)] text-sm mt-1">{{ $plan->description }}</div>
+                            <div class="mt-3 font-bold text-xl">
+                                {{ strtoupper($price->currency) }} {{ number_format($price->amount_minor / 100, 2) }}
+                                <span class="text-sm font-normal text-[var(--muted-foreground)]">/ {{ $price->interval }}</span>
+                            </div>
+                        </label>
+                    @endforeach
+                @endforeach
+            </div>
+
+            @error('plan_price_id')
+                <p class="text-[var(--destructive)] text-sm mb-4">{{ $message }}</p>
+            @enderror
+
+            <div class="card" style="max-width: 480px;">
+                <div class="card-header"><h3 class="card-title">Coupon</h3></div>
+                <div class="card-body">
+                    <label class="block text-sm font-medium mb-1" for="coupon">Coupon code (optional)</label>
+                    <input type="text" id="coupon" name="coupon" value="{{ old('coupon') }}"
+                           class="form-input" placeholder="e.g. SAVE20">
+                    <p class="text-xs text-[var(--muted-foreground)] mt-2">Discounts are validated before payment and applied by the gateway.</p>
                 </div>
-            </label>
-            @endforeach
-        @endforeach
+            </div>
+        </div>
+
+        {{-- Order summary --}}
+        <div class="card" style="align-self: start; position: sticky; top: 88px;">
+            <div class="card-header"><h3 class="card-title">Summary</h3></div>
+            <div class="card-body">
+                @php($selected = $prices->first(fn ($p) => (string) $p->id === (string) old('plan_price_id')) ?? $prices->first())
+                @if($selected)
+                    <div class="space-y-3 text-sm">
+                        <div class="flex justify-between">
+                            <span class="text-[var(--muted-foreground)]">Plan</span>
+                            <span class="font-medium">{{ $selected->plan->name }}</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-[var(--muted-foreground)]">Billing</span>
+                            <span class="font-medium">{{ $selected->interval === 'year' ? 'Annual' : 'Monthly' }}</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-[var(--muted-foreground)]">Price</span>
+                            <span class="font-medium">{{ strtoupper($selected->currency) }} {{ number_format($selected->amount_minor / 100, 2) }}</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-[var(--muted-foreground)]">Gateway</span>
+                            <span class="font-medium">{{ ucfirst($gateway->key()) }}</span>
+                        </div>
+                        <div class="flex justify-between pt-3 border-t border-[var(--border)]">
+                            <span class="font-semibold">Due today</span>
+                            <span class="font-bold text-lg">{{ strtoupper($selected->currency) }} {{ number_format($selected->amount_minor / 100, 2) }}</span>
+                        </div>
+                        <p class="text-xs text-[var(--muted-foreground)]">14-day free trial — you won't be charged until the trial ends. Cancel anytime.</p>
+                    </div>
+                @endif
+                <div class="mt-4">
+                    <button type="submit" class="btn btn-primary w-full">Continue to payment →</button>
+                </div>
+            </div>
+        </div>
     </div>
-
-    @error('plan_price_id')
-        <p class="text-[var(--destructive)] text-sm mb-4">{{ $message }}</p>
-    @enderror
-
-    <div class="mb-4" style="max-width: 320px;">
-        <label class="block text-sm font-medium mb-1" for="coupon">Coupon code (optional)</label>
-        <input type="text" id="coupon" name="coupon" value="{{ old('coupon') }}"
-               class="form-input w-full" placeholder="PROMO2024">
-    </div>
-
-    <button type="submit" class="btn btn-primary">Continue to payment →</button>
 </form>
 
 @if(in_array('portal', $gateway->capabilities()))
