@@ -15,47 +15,76 @@
             <h1 class="page-title">Subscriptions</h1>
             <p class="page-description">Filter by status and gateway.</p>
         </div>
-        <form method="GET" class="flex flex-wrap gap-2">
-            <select name="status" class="form-input">
-                <option value="">All statuses</option>
-                @foreach($statuses as $status)
-                    <option value="{{ $status }}" @selected($filters['status'] === $status)>{{ ucfirst($status) }}</option>
-                @endforeach
-            </select>
-            <select name="gateway" class="form-input">
-                <option value="">All gateways</option>
-                @foreach($gateways as $gateway)
-                    <option value="{{ $gateway }}" @selected($filters['gateway'] === $gateway)>{{ ucfirst($gateway) }}</option>
-                @endforeach
-            </select>
-            <x-ui.button variant="outline" type="submit">Filter</x-ui.button>
-        </form>
     </div>
 </div>
 
 <div class="card">
-    <div class="card-body">
-        @forelse($subscriptions as $subscription)
-            <div class="flex flex-wrap items-center justify-between gap-3 py-3 border-b border-[var(--border)] last:border-0">
-                <div>
-                    <a href="{{ route('admin.subscriptions.show', $subscription) }}" class="font-semibold hover:underline">
-                        {{ $subscription->workspace->name }} · {{ $subscription->plan->name }}
-                    </a>
-                    <div class="text-sm text-[var(--muted-foreground)]">
-                        {{ $subscription->workspace->owner->email }}
-                        · renews {{ optional($subscription->current_period_end)->format('M j, Y') ?? '—' }}
-                    </div>
-                </div>
-                <div class="flex items-center gap-2">
-                    <x-ui.badge variant="info">{{ ucfirst($subscription->gateway) }}</x-ui.badge>
-                    <x-ui.status-pill :status="$subscription->status" />
-                </div>
+    <div class="card-header">
+        <form method="GET" class="filters-bar" style="width: 100%;">
+            <div class="filter-group">
+                <span class="filter-label">Status</span>
+                <select name="status" class="form-select">
+                    <option value="">All</option>
+                    @foreach($statuses as $status)
+                        <option value="{{ $status }}" @selected($filters['status'] === $status)>{{ ucfirst($status) }}</option>
+                    @endforeach
+                </select>
             </div>
-        @empty
-            <x-ui.empty-state title="No subscriptions found" description="Adjust the filters and try again." />
-        @endforelse
-
-        {{ $subscriptions->links() }}
+            <div class="filter-group">
+                <span class="filter-label">Gateway</span>
+                <select name="gateway" class="form-select">
+                    <option value="">All</option>
+                    @foreach($gateways as $gateway)
+                        <option value="{{ $gateway }}" @selected($filters['gateway'] === $gateway)>{{ ucfirst($gateway) }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <x-ui.button variant="outline" size="sm" type="submit">Filter</x-ui.button>
+        </form>
     </div>
+
+    @if($subscriptions->isEmpty())
+        <div class="card-body">
+            <x-ui.empty-state title="No subscriptions found" description="Adjust the filters and try again." />
+        </div>
+    @else
+        <div class="table-container">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Workspace</th>
+                        <th>Plan</th>
+                        <th>Owner</th>
+                        <th>Renews</th>
+                        <th>Gateway</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($subscriptions as $subscription)
+                        <tr>
+                            <td>
+                                <a href="{{ route('admin.subscriptions.show', $subscription) }}" class="font-semibold hover:underline">
+                                    {{ $subscription->workspace->name }}
+                                </a>
+                            </td>
+                            <td>{{ $subscription->plan->name }}</td>
+                            <td>
+                                <div class="user-cell">
+                                    <div class="user-cell-avatar">{{ substr($subscription->workspace->owner->name ?? '?', 0, 1) }}</div>
+                                    <span>{{ $subscription->workspace->owner->email }}</span>
+                                </div>
+                            </td>
+                            <td>{{ optional($subscription->current_period_end)->format('M j, Y') ?? '—' }}</td>
+                            <td><x-ui.badge variant="info">{{ ucfirst($subscription->gateway) }}</x-ui.badge></td>
+                            <td><x-ui.status-pill :status="$subscription->status" /></td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    @endif
 </div>
+
+{{ $subscriptions->links() }}
 @endsection

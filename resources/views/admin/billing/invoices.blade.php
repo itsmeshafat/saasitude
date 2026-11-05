@@ -2,64 +2,81 @@
 
 @section('title', 'Invoices')
 
+@section('breadcrumb')
+<a href="{{ route($dashboardRoute::name('index')) }}">Dashboard</a>
+<span class="breadcrumb-separator">/</span>
+<span>Invoices</span>
+@endsection
+
 @section('content')
 <div class="page-header">
     <div class="page-header-row">
         <div>
             <h1 class="page-title">Invoices</h1>
+            <p class="page-description">All invoices across workspaces.</p>
         </div>
     </div>
 </div>
 
-<form method="GET" class="mb-4 flex gap-2" style="max-width: 400px;">
-    <input type="text" name="search" value="{{ request('search') }}"
-           placeholder="Search by invoice # or workspace…"
-           class="form-input flex-1">
-    <button type="submit" class="btn btn-secondary">Search</button>
-    @if(request('search'))
-        <a href="{{ route('admin.billing.invoices') }}" class="btn btn-secondary">Clear</a>
-    @endif
-</form>
-
-
 <div class="card">
-    <table class="table w-full">
-        <thead>
-            <tr>
-                <th>Invoice #</th>
-                <th>Workspace</th>
-                <th>Date</th>
-                <th>Amount</th>
-                <th>Status</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @forelse($invoices as $invoice)
-            <tr>
-                <td>{{ $invoice->number }}</td>
-                <td>{{ $invoice->workspace?->name }}</td>
-                <td>{{ $invoice->issued_at?->format('M j, Y') ?? $invoice->created_at->format('M j, Y') }}</td>
-                <td>{{ $invoice->formattedAmount() }}</td>
-                <td><span class="badge badge-{{ $invoice->status === 'paid' ? 'success' : 'secondary' }}">{{ ucfirst($invoice->status) }}</span></td>
-                <td class="flex gap-2">
-                    @if($invoice->pdf_path)
-                        <a href="{{ route('admin.billing.invoices.download', $invoice) }}" class="btn btn-sm btn-secondary">PDF</a>
-                    @endif
-                    <form method="POST" action="{{ route('admin.billing.invoices.regenerate', $invoice) }}">
-                        @csrf
-                        <button type="submit" class="btn btn-sm btn-secondary">Regenerate</button>
-                    </form>
-                </td>
-            </tr>
-            @empty
-            <tr><td colspan="6" class="text-gray-500 text-center py-4">No invoices found.</td></tr>
-            @endforelse
-        </tbody>
-    </table>
+    <div class="card-header">
+        <form method="GET" class="filters-bar" style="width: 100%;">
+            <div class="search-box">
+                <input type="text" name="search" value="{{ request('search') }}" placeholder="Search by invoice # or workspace…" class="form-input">
+            </div>
+            <x-ui.button variant="outline" size="sm" type="submit">Search</x-ui.button>
+            @if(request('search'))
+                <a href="{{ route('admin.billing.invoices') }}" class="filter-label">Clear</a>
+            @endif
+        </form>
+    </div>
+
+    @if($invoices->isEmpty())
+        <div class="card-body">
+            <x-ui.empty-state title="No invoices found" description="Invoices will appear here as payments are received." />
+        </div>
+    @else
+        <div class="table-container">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Invoice #</th>
+                        <th>Workspace</th>
+                        <th>Date</th>
+                        <th>Amount</th>
+                        <th>Status</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($invoices as $invoice)
+                        <tr>
+                            <td>{{ $invoice->number }}</td>
+                            <td>{{ $invoice->workspace?->name }}</td>
+                            <td>{{ $invoice->issued_at?->format('M j, Y') ?? $invoice->created_at->format('M j, Y') }}</td>
+                            <td>{{ $invoice->formattedAmount() }}</td>
+                            <td>
+                                <x-ui.badge variant="{{ $invoice->status === 'paid' ? 'success' : 'secondary' }}">{{ ucfirst($invoice->status) }}</x-ui.badge>
+                            </td>
+                            <td>
+                                <div class="action-buttons">
+                                    @if($invoice->pdf_path)
+                                        <a href="{{ route('admin.billing.invoices.download', $invoice) }}" class="btn btn-sm btn-secondary">PDF</a>
+                                    @endif
+                                    <form method="POST" action="{{ route('admin.billing.invoices.regenerate', $invoice) }}"
+                                          x-data @submit.prevent="showConfirm('Regenerate PDF?', 'The stored PDF will be rebuilt from the current invoice data.', () => $el.submit())">
+                                        @csrf
+                                        <button type="submit" class="btn btn-sm btn-secondary">Regenerate</button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    @endif
 </div>
 
-<div class="mt-4">
-    {{ $invoices->links() }}
-</div>
+{{ $invoices->links() }}
 @endsection
