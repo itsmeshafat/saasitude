@@ -58,11 +58,21 @@
                         ['access', 'Roles & API', 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z'],
                         ['access-caching', 'Caching & audit', 'M4 7v10c0 2 3.6 3 8 3s8-1 8-3V7M4 7c0 2 3.6 3 8 3s8-1 8-3M4 7c0-2 3.6-3 8-3s8 1 8 3m0 5c0 2-3.6 3-8 3s-8-1-8-3'],
                     ],
+                    'Billing' => [
+                        ['billing', 'Billing & gateways', 'M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z'],
+                    ],
                 ];
             @endphp
             @foreach($settingsNav as $groupLabel => $groupItems)
                 <div class="vtabs-group" data-vtab-group>
                     <div class="vtabs-group-label">{{ $groupLabel }}</div>
+                    @if($groupLabel === 'Billing' && config('tyro-dashboard.features.smtp_settings', true))
+                        {{-- SMTP lives on its own package page — link out, styled as a vtab --}}
+                        <a class="vtabs-item" href="{{ route($dashboardRoute::name('settings.smtp.index')) }}">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                            SMTP settings ↗
+                        </a>
+                    @endif
                     @foreach($groupItems as [$tabId, $tabLabel, $tabIcon])
                         <button class="vtabs-item{{ $loop->parent->first && $loop->first ? ' active' : '' }}" data-vtab="{{ $tabId }}" type="button">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" d="{{ $tabIcon }}"/></svg>
@@ -103,6 +113,10 @@
             @include('settings.partials._tab-access')
             @include('settings.partials._tab-access-caching')
             @include('settings.partials._tab-media')
+            {{-- Namespaced include: bare names resolve to the PACKAGE views dir,
+                 where our custom tab doesn't exist. The tyro-dashboard:: namespace
+                 checks published overrides (resources/views/vendor/...) first. --}}
+            @include('tyro-dashboard::settings.partials._tab-billing')
 
             <div class="search-no-results" id="settingsNoResults">
                 <div class="search-no-results-inner">
