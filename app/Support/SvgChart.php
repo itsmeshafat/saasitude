@@ -140,6 +140,22 @@ class SvgChart
         }, array_values($values), array_keys($values));
     }
 
+    /** Compact human number for chart captions: 950 → 950, 48700 → 48.7k, 1200000 → 1.2M. */
+    public static function compact(float|int $value): string
+    {
+        $abs = abs($value);
+
+        if ($abs >= 1_000_000) {
+            return rtrim(rtrim(number_format($value / 1_000_000, 1), '0'), '.').'M';
+        }
+
+        if ($abs >= 1_000) {
+            return rtrim(rtrim(number_format($value / 1_000, 1), '0'), '.').'k';
+        }
+
+        return (string) round($value, 2);
+    }
+
     private static function n(float $value): string
     {
         return (string) round($value, 2);

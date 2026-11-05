@@ -18,6 +18,8 @@
     <link href="https://fonts.bunny.net/css?family=inter:400,500,600,700&display=swap" rel="stylesheet" />
 
     @include('tyro-dashboard::partials.styles')
+    {{-- App CSS (Tailwind + Cobalt Glass tokens) — required by x-ui.* components --}}
+    @vite('resources/css/app.css')
     @stack('styles')
 </head>
 
