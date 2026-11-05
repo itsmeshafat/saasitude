@@ -26,37 +26,46 @@
 
 
 <div class="card mb-6">
-    <div class="card-body">
-        @forelse($notifications as $notification)
-            <div class="flex flex-wrap items-center justify-between gap-3 py-3 border-b border-[var(--border)] last:border-0 {{ $notification->read_at ? 'opacity-70' : '' }}">
-                <div>
-                    <div class="font-semibold">{{ $notification->title }}
-                        @unless($notification->read_at)
-                            <x-ui.badge variant="info">New</x-ui.badge>
-                        @endunless
-                    </div>
-                    @if($notification->body)
-                        <div class="text-sm text-[var(--muted-foreground)]">{{ $notification->body }}</div>
-                    @endif
-                    <div class="text-xs text-[var(--muted-foreground)] mt-1">{{ $notification->created_at?->diffForHumans() }}</div>
-                </div>
-                <div class="flex items-center gap-2">
-                    @if($notification->action_url)
-                        <a href="{{ $notification->action_url }}"><x-ui.button variant="outline" size="sm">View</x-ui.button></a>
-                    @endif
-                    @unless($notification->read_at)
-                        <form method="POST" action="{{ route('dashboard.notifications.read', $notification->id) }}">
-                            @csrf
-                            <x-ui.button variant="ghost" size="sm" type="submit">Mark read</x-ui.button>
-                        </form>
-                    @endunless
-                </div>
-            </div>
-        @empty
+    @if($notifications->isEmpty())
+        <div class="card-body">
             <x-ui.empty-state title="No notifications" description="Billing and team activity will appear here." />
-        @endforelse
-
-        {{ $notifications->links() }}
-    </div>
+        </div>
+    @else
+        <div class="table-container">
+            <table class="table {{ $notifications->first()->read_at ? '' : '' }}">
+                <tbody>
+                    @foreach($notifications as $notification)
+                        <tr class="{{ $notification->read_at ? 'table-no-hover' : '' }}" {{ $notification->read_at ? '' : 'style="font-weight:500"' }}>
+                            <td>
+                                {{ $notification->title }}
+                                @unless($notification->read_at)
+                                    <x-ui.badge variant="info">New</x-ui.badge>
+                                @endunless
+                                @if($notification->body)
+                                    <div class="text-sm text-[var(--muted-foreground)]" style="font-weight:400">{{ $notification->body }}</div>
+                                @endif
+                                <div class="text-xs text-[var(--muted-foreground)]" style="font-weight:400">{{ $notification->created_at?->diffForHumans() }}</div>
+                            </td>
+                            <td style="text-align:right">
+                                <div class="action-buttons">
+                                    @if($notification->action_url)
+                                        <a href="{{ $notification->action_url }}"><x-ui.button variant="outline" size="sm">View</x-ui.button></a>
+                                    @endif
+                                    @unless($notification->read_at)
+                                        <form method="POST" action="{{ route('dashboard.notifications.read', $notification->id) }}">
+                                            @csrf
+                                            <x-ui.button variant="ghost" size="sm" type="submit">Mark read</x-ui.button>
+                                        </form>
+                                    @endunless
+                                </div>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    @endif
 </div>
+
+{{ $notifications->links() }}
 @endsection

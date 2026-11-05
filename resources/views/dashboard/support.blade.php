@@ -50,21 +50,31 @@
 
     <div class="card">
         <div class="card-header"><h3 class="card-title">My tickets</h3></div>
-        <div class="card-body">
-            @forelse($tickets as $ticket)
-                <div class="flex items-center justify-between py-2 border-b border-[var(--border)] last:border-0">
-                    <a href="{{ route('dashboard.support.show', $ticket) }}" class="hover:underline">
-                        <span class="font-medium">{{ $ticket->subject }}</span>
-                        <span class="text-xs text-[var(--muted-foreground)] ml-2">{{ $ticket->number }}</span>
-                    </a>
-                    <x-ui.badge variant="{{ $ticket->status === 'open' ? 'success' : ($ticket->status === 'pending' ? 'warning' : 'muted') }}">
-                        {{ ucfirst($ticket->status) }}
-                    </x-ui.badge>
-                </div>
-            @empty
+        @if($tickets->isEmpty())
+            <div class="card-body">
                 <x-ui.empty-state title="No tickets yet" description="Your support requests will appear here." />
-            @endforelse
-        </div>
+            </div>
+        @else
+            <div class="table-container">
+                <table class="table table-compact">
+                    <tbody>
+                        @foreach($tickets as $ticket)
+                            <tr>
+                                <td>
+                                    <a href="{{ route('dashboard.support.show', $ticket) }}" class="hover:underline font-medium">{{ $ticket->subject }}</a>
+                                    <div class="text-xs text-[var(--muted-foreground)]">{{ $ticket->number }} · {{ $ticket->updated_at?->diffForHumans() }}</div>
+                                </td>
+                                <td style="text-align:right">
+                                    <x-ui.badge variant="{{ $ticket->status === 'open' ? 'success' : ($ticket->status === 'pending' ? 'warning' : 'muted') }}">
+                                        {{ ucfirst($ticket->status) }}
+                                    </x-ui.badge>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        @endif
     </div>
 </div>
 @endsection
