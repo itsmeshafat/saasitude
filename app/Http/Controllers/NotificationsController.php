@@ -3,12 +3,31 @@
 namespace App\Http\Controllers;
 
 use App\Services\SettingsService;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class NotificationsController extends Controller
 {
+    /** JSON poll for the topbar bell: unread count + latest 5 notifications. */
+    public function poll(Request $request): JsonResponse
+    {
+        $notifications = $request->user()->appNotifications()->latest('id')->limit(5)->get();
+
+        return response()->json([
+            'unread' => $request->user()->appNotifications()->whereNull('read_at')->count(),
+            'items' => $notifications->map(fn ($n) => [
+                'id' => $n->id,
+                'title' => $n->title,
+                'body' => $n->body,
+                'action_url' => $n->action_url,
+                'read' => $n->read_at !== null,
+                'ago' => $n->created_at?->diffForHumans(),
+            ]),
+        ]);
+    }
+
     public function index(Request $request): View
     {
         $filter = $request->query('filter', 'all');

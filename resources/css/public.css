@@ -2,6 +2,7 @@
    Extracted from per-page inline <style> blocks; imported by app.css.
    All colors via design tokens (var(--*)) — never hard-coded. */
 
+@layer components {
 /* ==== public ==== */
 /* NOTE: no universal margin/padding reset here — it would be unlayered CSS
    imported AFTER Tailwind and would beat every margin or padding utility
@@ -119,3 +120,4 @@
 .entry h2 { font-size: 20px; margin-bottom: 12px; }
 .entry ul { padding-left: 20px; }
 .entry li { font-size: 14px; color: var(--muted-foreground); margin-bottom: 6px; }
+}

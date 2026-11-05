@@ -12,6 +12,23 @@
     </div>
 
     <div class="topbar-right">
+        <!-- Notification Bell (real-time via polling) -->
+        <div class="notif-bell" id="notifBell">
+            <button type="button" class="topbar-btn" id="notifBellBtn" aria-label="Notifications">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                </svg>
+                <span class="notif-count" id="notifCount" hidden>0</span>
+            </button>
+            <div class="notif-dropdown" id="notifDropdown" hidden>
+                <div class="notif-dropdown-header">
+                    <span>Notifications</span>
+                    <a href="{{ route('dashboard.notifications') }}">View all</a>
+                </div>
+                <div id="notifItems" class="notif-items"></div>
+            </div>
+        </div>
+
         <!-- Theme Toggle -->
         <button type="button" class="topbar-btn" onclick="toggleTheme()" aria-label="Toggle theme">
             <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: none;">
@@ -85,4 +102,81 @@
             </div>
         </div>
     </div>
+
+<script>
+    // Real-time notification bell: poll every 30s, toggle dropdown, mark read on click.
+    (function () {
+        var btn = document.getElementById('notifBellBtn');
+        var dropdown = document.getElementById('notifDropdown');
+        var countEl = document.getElementById('notifCount');
+        var itemsEl = document.getElementById('notifItems');
+        if (!btn) return;
+
+        function escapeHtml(str) {
+            var d = document.createElement('div');
+            d.textContent = str ?? '';
+            return d.innerHTML;
+        }
+
+        function render(data) {
+            if (data.unread > 0) {
+                countEl.textContent = data.unread > 99 ? '99+' : data.unread;
+                countEl.hidden = false;
+            } else {
+                countEl.hidden = true;
+            }
+
+            if (data.items.length === 0) {
+                itemsEl.innerHTML = '<div class="notif-empty">No notifications yet</div>';
+                return;
+            }
+
+            itemsEl.innerHTML = data.items.map(function (n) {
+                return '<a class="notif-item' + (n.read ? '' : ' unread') + '"' +
+                    ' data-notif-id="' + n.id + '"' +
+                    (n.action_url ? ' href="' + escapeHtml(n.action_url) + '"' : ' href="{{ route('dashboard.notifications') }}"') + '>' +
+                    '<div class="notif-item-title">' + escapeHtml(n.title) + '</div>' +
+                    (n.body ? '<div class="notif-item-body">' + escapeHtml(n.body) + '</div>' : '') +
+                    '<div class="notif-item-time">' + escapeHtml(n.ago || '') + '</div>' +
+                    '</a>';
+            }).join('');
+
+            itemsEl.querySelectorAll('.notif-item.unread').forEach(function (el) {
+                el.addEventListener('click', function () {
+                    var token = document.querySelector('#systemSettingsForm input[name="_token"]')?.value
+                        || document.querySelector('meta[name="csrf-token"]')?.content;
+                    if (token) {
+                        fetch('{{ route('dashboard.notifications.read', 0) }}'.replace('/0', '/' + el.dataset.notifId), {
+                            method: 'POST',
+                            headers: { 'X-CSRF-TOKEN': token },
+                            keepalive: true,
+                        });
+                    }
+                });
+            });
+        }
+
+        function poll() {
+            fetch('{{ route('dashboard.notifications.poll') }}', { headers: { 'X-Requested-With': 'XMLHttpRequest' } })
+                .then(function (r) { return r.ok ? r.json() : null; })
+                .then(function (data) { if (data) render(data); })
+                .catch(function () {});
+        }
+
+        btn.addEventListener('click', function (e) {
+            e.stopPropagation();
+            dropdown.hidden = !dropdown.hidden;
+            if (!dropdown.hidden) poll();
+        });
+
+        document.addEventListener('click', function (e) {
+            if (!document.getElementById('notifBell').contains(e.target)) {
+                dropdown.hidden = true;
+            }
+        });
+
+        poll();
+        setInterval(poll, 30000);
+    })();
+</script>
 </header>

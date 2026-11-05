@@ -102,6 +102,7 @@ Route::middleware(['auth'])->group(function (): void {
 
     // Notifications (Phase 10)
     Route::get('dashboard/notifications', [NotificationsController::class, 'index'])->name('dashboard.notifications');
+    Route::get('dashboard/notifications/poll', [NotificationsController::class, 'poll'])->name('dashboard.notifications.poll');
     Route::post('dashboard/notifications/{id}/read', [NotificationsController::class, 'markRead'])->name('dashboard.notifications.read');
     Route::post('dashboard/notifications/read-all', [NotificationsController::class, 'markAllRead'])->name('dashboard.notifications.read-all');
     Route::post('dashboard/notifications/preferences', [NotificationsController::class, 'updatePreferences'])->name('dashboard.notifications.preferences');

@@ -493,6 +493,114 @@
         height: 18px;
     }
 
+    /* Notification bell (topbar) */
+    .notif-bell {
+        position: relative;
+    }
+
+    .notif-bell .topbar-btn {
+        position: relative;
+        display: flex;
+        align-items: center;
+    }
+
+    .notif-count {
+        position: absolute;
+        top: -2px;
+        right: -2px;
+        min-width: 16px;
+        height: 16px;
+        padding: 0 4px;
+        border-radius: 999px;
+        background: var(--destructive);
+        color: var(--destructive-foreground);
+        font-size: 10px;
+        font-weight: 700;
+        line-height: 16px;
+        text-align: center;
+    }
+
+    .notif-dropdown {
+        position: absolute;
+        top: calc(100% + 8px);
+        right: 0;
+        width: 340px;
+        max-width: calc(100vw - 32px);
+        background: var(--popover);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        z-index: 100;
+        overflow: hidden;
+    }
+
+    .notif-dropdown-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.75rem 1rem;
+        font-weight: 600;
+        font-size: 0.875rem;
+        border-bottom: 1px solid var(--border);
+    }
+
+    .notif-dropdown-header a {
+        font-size: 0.75rem;
+        color: var(--primary);
+        text-decoration: none;
+        font-weight: 500;
+    }
+
+    .notif-items {
+        max-height: 320px;
+        overflow-y: auto;
+    }
+
+    .notif-item {
+        display: block;
+        padding: 0.625rem 1rem;
+        border-bottom: 1px solid var(--border);
+        text-decoration: none;
+        color: var(--foreground);
+        transition: background 0.15s ease;
+    }
+
+    .notif-item:last-child {
+        border-bottom: none;
+    }
+
+    .notif-item:hover {
+        background: var(--accent);
+    }
+
+    .notif-item.unread {
+        background: oklch(0.546 0.237 258 / 0.06);
+    }
+
+    .notif-item-title {
+        font-size: 0.8125rem;
+        font-weight: 600;
+        margin-bottom: 2px;
+    }
+
+    .notif-item-body {
+        font-size: 0.75rem;
+        color: var(--muted-foreground);
+        margin-bottom: 2px;
+    }
+
+    .notif-item-time {
+        font-size: 0.6875rem;
+        color: var(--muted-foreground);
+    }
+
+    .notif-empty {
+        padding: 1.5rem;
+        text-align: center;
+        font-size: 0.8125rem;
+        color: var(--muted-foreground);
+    }
+
     /* User Dropdown */
     .user-dropdown {
         position: relative;
