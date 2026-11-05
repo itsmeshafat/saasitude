@@ -77,44 +77,62 @@
 
     <div class="card">
         <div class="card-header"><h3 class="card-title">Recent payments</h3></div>
-        <div class="card-body">
-            @forelse($workspace->payments as $payment)
-                <div class="flex justify-between py-2 border-b border-[var(--border)] last:border-0 text-sm">
-                    <span>{{ strtoupper($payment->currency) }} {{ number_format($payment->amount / 100, 2) }}</span>
-                    <span class="text-[var(--muted-foreground)]">{{ optional($payment->created_at)->format('M j, Y') }} · {{ $payment->status }}</span>
-                </div>
-            @empty
-                <p class="text-sm text-[var(--muted-foreground)]">No payments yet.</p>
-            @endforelse
-        </div>
+        @if($workspace->payments->isEmpty())
+            <div class="card-body"><x-ui.empty-state title="No payments yet" /></div>
+        @else
+            <div class="table-container">
+                <table class="table table-compact">
+                    <tbody>
+                        @foreach($workspace->payments as $payment)
+                            <tr>
+                                <td>{{ strtoupper($payment->currency) }} {{ number_format($payment->amount / 100, 2) }}</td>
+                                <td style="text-align:right">{{ optional($payment->created_at)->format('M j, Y') }} · {{ $payment->status }}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        @endif
     </div>
 
     <div class="card">
         <div class="card-header"><h3 class="card-title">Subscription history</h3></div>
-        <div class="card-body">
-            @forelse($workspace->subscriptions as $subscription)
-                <div class="flex justify-between py-2 border-b border-[var(--border)] last:border-0 text-sm">
-                    <a href="{{ route('admin.subscriptions.show', $subscription) }}" class="hover:underline">{{ $subscription->plan->name }}</a>
-                    <span class="text-[var(--muted-foreground)]">{{ $subscription->status }}</span>
-                </div>
-            @empty
-                <p class="text-sm text-[var(--muted-foreground)]">No subscriptions yet.</p>
-            @endforelse
-        </div>
+        @if($workspace->subscriptions->isEmpty())
+            <div class="card-body"><x-ui.empty-state title="No subscriptions yet" /></div>
+        @else
+            <div class="table-container">
+                <table class="table table-compact">
+                    <tbody>
+                        @foreach($workspace->subscriptions as $subscription)
+                            <tr>
+                                <td><a href="{{ route('admin.subscriptions.show', $subscription) }}" class="hover:underline">{{ $subscription->plan->name }}</a></td>
+                                <td style="text-align:right"><x-ui.status-pill :status="$subscription->status" /></td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        @endif
     </div>
 
     <div class="card">
         <div class="card-header"><h3 class="card-title">Recent invoices</h3></div>
-        <div class="card-body">
-            @forelse($workspace->invoices as $invoice)
-                <div class="flex justify-between py-2 border-b border-[var(--border)] last:border-0 text-sm">
-                    <span>{{ $invoice->number }}</span>
-                    <span class="text-[var(--muted-foreground)]">{{ optional($invoice->created_at)->format('M j, Y') }}</span>
-                </div>
-            @empty
-                <p class="text-sm text-[var(--muted-foreground)]">No invoices yet.</p>
-            @endforelse
-        </div>
+        @if($workspace->invoices->isEmpty())
+            <div class="card-body"><x-ui.empty-state title="No invoices yet" /></div>
+        @else
+            <div class="table-container">
+                <table class="table table-compact">
+                    <tbody>
+                        @foreach($workspace->invoices as $invoice)
+                            <tr>
+                                <td>{{ $invoice->number }}</td>
+                                <td style="text-align:right">{{ optional($invoice->created_at)->format('M j, Y') }}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        @endif
     </div>
 </div>
 @endsection

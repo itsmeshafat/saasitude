@@ -30,29 +30,41 @@
 <div class="grid grid-cols-1 xl:grid-cols-2 gap-6">
     <div class="card">
         <div class="card-header"><h3 class="card-title">State timeline</h3></div>
-        <div class="card-body">
-            @forelse($timeline as $entry)
-                <div class="flex justify-between py-2 border-b border-[var(--border)] last:border-0 text-sm">
-                    <span class="font-medium">{{ $entry['event'] }}@if($entry['detail']) <span class="text-[var(--muted-foreground)]">({{ $entry['detail'] }})</span>@endif</span>
-                    <span class="text-[var(--muted-foreground)]">{{ optional($entry['at'])->format('M j, Y H:i') }}</span>
-                </div>
-            @empty
-                <p class="text-sm text-[var(--muted-foreground)]">No events recorded.</p>
-            @endforelse
-        </div>
+        @if($timeline->isEmpty())
+            <div class="card-body"><x-ui.empty-state title="No events recorded" /></div>
+        @else
+            <div class="table-container">
+                <table class="table table-compact">
+                    <tbody>
+                        @foreach($timeline as $entry)
+                            <tr>
+                                <td class="font-medium">{{ $entry['event'] }}@if($entry['detail']) <span class="text-[var(--muted-foreground)]">({{ $entry['detail'] }})</span>@endif</td>
+                                <td style="text-align:right">{{ optional($entry['at'])->format('M j, Y H:i') }}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        @endif
     </div>
 
     <div class="card">
         <div class="card-header"><h3 class="card-title">Details</h3></div>
-        <div class="card-body space-y-2 text-sm">
-            <div class="flex justify-between"><span class="text-[var(--muted-foreground)]">Status</span><span class="font-medium">{{ $subscription->status }}</span></div>
-            <div class="flex justify-between"><span class="text-[var(--muted-foreground)]">Trial ends</span><span>{{ optional($subscription->trial_ends_at)->format('M j, Y') ?? '—' }}</span></div>
-            <div class="flex justify-between"><span class="text-[var(--muted-foreground)]">Current period</span><span>{{ optional($subscription->current_period_start)->format('M j') }} → {{ optional($subscription->current_period_end)->format('M j, Y') }}</span></div>
-            <div class="flex justify-between"><span class="text-[var(--muted-foreground)]">Cancels at period end</span><span>{{ $subscription->cancel_at_period_end ? 'Yes' : 'No' }}</span></div>
-            <div class="flex justify-between"><span class="text-[var(--muted-foreground)]">App-driven renewal</span><span>{{ $subscription->app_driven_renewal ? 'Yes' : 'No' }}</span></div>
-            @if($subscription->metadata['cancellation_reason'] ?? null)
-                <div class="flex justify-between"><span class="text-[var(--muted-foreground)]">Cancel reason</span><span>{{ $subscription->metadata['cancellation_reason'] }}</span></div>
-            @endif
+        <div class="card-body">
+            <div class="table-container">
+                <table class="table table-compact">
+                    <tbody>
+                        <tr><td>Status</td><td style="text-align:right"><x-ui.status-pill :status="$subscription->status" /></td></tr>
+                        <tr><td>Trial ends</td><td style="text-align:right">{{ optional($subscription->trial_ends_at)->format('M j, Y') ?? '—' }}</td></tr>
+                        <tr><td>Current period</td><td style="text-align:right">{{ optional($subscription->current_period_start)->format('M j') }} → {{ optional($subscription->current_period_end)->format('M j, Y') }}</td></tr>
+                        <tr><td>Cancels at period end</td><td style="text-align:right">{{ $subscription->cancel_at_period_end ? 'Yes' : 'No' }}</td></tr>
+                        <tr><td>App-driven renewal</td><td style="text-align:right">{{ $subscription->app_driven_renewal ? 'Yes' : 'No' }}</td></tr>
+                        @if($subscription->metadata['cancellation_reason'] ?? null)
+                            <tr><td>Cancel reason</td><td style="text-align:right">{{ $subscription->metadata['cancellation_reason'] }}</td></tr>
+                        @endif
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>
