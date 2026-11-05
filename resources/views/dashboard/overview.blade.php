@@ -18,40 +18,53 @@
     </div>
 </div>
 
-<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 mb-6">
-    <div class="card"><div class="card-body">
-        <div class="text-sm text-[var(--muted-foreground)]">MRR</div>
-        <div class="text-2xl font-bold">${{ number_format($mrrMinor / 100, 2) }}</div>
-    </div></div>
-    <div class="card"><div class="card-body">
-        <div class="text-sm text-[var(--muted-foreground)]">ARR</div>
-        <div class="text-2xl font-bold">${{ number_format($arrMinor / 100, 0) }}</div>
-    </div></div>
-    <div class="card"><div class="card-body">
-        <div class="text-sm text-[var(--muted-foreground)]">Churn rate</div>
-        <div class="text-2xl font-bold">{{ $churnRate }}%</div>
-        <div class="text-xs text-[var(--muted-foreground)]">canceled / active at month start</div>
-    </div></div>
-    <div class="card"><div class="card-body">
-        <div class="text-sm text-[var(--muted-foreground)]">Trial conversion</div>
-        <div class="text-2xl font-bold">{{ $trialConversionRate }}%</div>
-        <div class="text-xs text-[var(--muted-foreground)]">activated / started this month</div>
-    </div></div>
+<div class="stats-grid">
+    <div class="stat-card">
+        <div class="stat-icon stat-icon-primary">$</div>
+        <div class="stat-label">MRR</div>
+        <div class="stat-value">${{ number_format($mrrMinor / 100, 2) }}</div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-icon stat-icon-info">↗</div>
+        <div class="stat-label">ARR</div>
+        <div class="stat-value">${{ number_format($arrMinor / 100, 0) }}</div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-icon stat-icon-warning">↓</div>
+        <div class="stat-label">Churn rate</div>
+        <div class="stat-value">{{ $churnRate }}%</div>
+        <div class="stat-label">canceled / active at month start</div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-icon stat-icon-success">✓</div>
+        <div class="stat-label">Trial conversion</div>
+        <div class="stat-value">{{ $trialConversionRate }}%</div>
+        <div class="stat-label">activated / started this month</div>
+    </div>
 </div>
 
-<div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-    <div class="card"><div class="card-body">
-        <div class="text-sm text-[var(--muted-foreground)]">Active subscriptions</div>
-        <div class="text-xl font-semibold">{{ $activeCount }}</div>
-    </div></div>
-    <div class="card"><div class="card-body">
-        <div class="text-sm text-[var(--muted-foreground)]">Trials in progress</div>
-        <div class="text-xl font-semibold">{{ $trialCount }}</div>
-    </div></div>
-    <div class="card"><div class="card-body">
-        <div class="text-sm text-[var(--muted-foreground)]">Failed payments (month)</div>
-        <div class="text-xl font-semibold {{ $failedPayments > 0 ? 'text-[var(--destructive)]' : '' }}">{{ $failedPayments }}</div>
-    </div></div>
+<div class="stats-grid">
+    <div class="stat-card">
+        <div class="stat-icon stat-icon-primary">◆</div>
+        <div class="stat-label">Active subscriptions</div>
+        <div class="stat-value">{{ $activeCount }}</div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-icon stat-icon-success">⏳</div>
+        <div class="stat-label">Trials in progress</div>
+        <div class="stat-value">{{ $trialCount }}</div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-icon {{ $failedPayments > 0 ? 'stat-icon-danger' : 'stat-icon-success' }}">!</div>
+        <div class="stat-label">Failed payments (month)</div>
+        <div class="stat-value">{{ $failedPayments }}</div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-icon stat-icon-info">⌂</div>
+        <div class="stat-label">Workspaces</div>
+        <div class="stat-value">{{ $workspaceCount }}</div>
+        <a href="{{ route('admin.workspaces.index') }}" class="stat-label" style="text-decoration:underline">Manage →</a>
+    </div>
 </div>
 
 <div class="card mb-6">
@@ -65,14 +78,6 @@
         @empty
             <x-ui.empty-state title="No subscriptions yet" description="Active and trialing subscriptions will appear here." />
         @endforelse
-    </div>
-</div>
-
-<div class="card">
-    <div class="card-header"><h3 class="card-title">Workspaces</h3></div>
-    <div class="card-body">
-        <div class="text-2xl font-bold">{{ $workspaceCount }}</div>
-        <a href="{{ route('admin.workspaces.index') }}" class="text-sm text-[var(--primary)] underline-offset-4 hover:underline">Manage workspaces →</a>
     </div>
 </div>
 @endsection
