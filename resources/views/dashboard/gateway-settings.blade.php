@@ -32,19 +32,17 @@
                 @csrf
                 <input type="hidden" name="gateway" value="{{ $key }}">
 
-                <div class="mb-4">
-                    <label class="block text-sm font-medium mb-1">Mode</label>
-                    <select name="mode" class="form-input">
+                <div class="form-group">
+                    <label class="form-label">Mode</label>
+                    <select name="mode" class="form-select">
                         <option value="test" @selected($gateway['mode'] === 'test')>Test</option>
                         <option value="live" @selected($gateway['mode'] === 'live')>Live</option>
                     </select>
                 </div>
 
                 @foreach($gateway['secrets'] as $secretKey => $masked)
-                    <div class="mb-4">
-                        <label class="block text-sm font-medium mb-1" for="{{ $key }}_{{ $secretKey }}">
-                            {{ Str::headline($secretKey) }}
-                        </label>
+                    <div class="form-group">
+                        <label class="form-label" for="{{ $key }}_{{ $secretKey }}">{{ Str::headline($secretKey) }}</label>
                         <input type="password" id="{{ $key }}_{{ $secretKey }}" name="secrets[{{ $secretKey }}]"
                                class="form-input" placeholder="{{ $masked ?: 'Not set' }}" autocomplete="off">
                     </div>

@@ -20,7 +20,7 @@
 
 <div class="card">
     <div class="card-header">
-        <form method="GET" class="filters-bar" style="width: 100%;" onsubmit="return false;">
+        <form method="GET" class="filters-bar" onsubmit="return false;">
             <div class="search-box">
                 <input type="text" id="template-search" placeholder="Filter templates…" class="form-input" autocomplete="off">
             </div>
@@ -31,9 +31,7 @@
             <div class="template-row flex flex-wrap items-center justify-between gap-3 py-3 border-b border-[var(--border)] last:border-0" data-name="{{ strtolower($template['subject']) }}">
                 <a href="{{ route('admin.email-templates.show', $template['key']) }}" class="font-semibold hover:underline">{{ $template['subject'] }}</a>
                 <div class="flex items-center gap-2">
-                    <a href="{{ route('admin.email-templates.show', $template['key']) }}">
-                        <x-ui.button variant="outline" size="sm">Preview</x-ui.button>
-                    </a>
+                    <x-ui.button href="{{ route('admin.email-templates.show', $template['key']) }}" variant="outline" size="sm">Preview</x-ui.button>
                     @if($user->hasPrivilege('settings.manage'))
                         <form method="POST" action="{{ route('admin.email-templates.send-test', $template['key']) }}">
                             @csrf

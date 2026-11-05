@@ -21,7 +21,7 @@
 
 <div class="card">
     <div class="card-header">
-        <form method="GET" class="filters-bar" style="width: 100%;">
+        <form method="GET" class="filters-bar">
             <div class="search-box">
                 <input type="text" name="search" value="{{ request('search') }}" placeholder="Search by invoice # or workspace…" class="form-input">
             </div>
@@ -29,7 +29,7 @@
             @if(request('search'))
                 <a href="{{ route('admin.billing.invoices') }}" class="filter-label">Clear</a>
             @endif
-            <a href="{{ route('admin.exports.csv', 'invoices', request()->query()) }}" class="btn btn-sm btn-outline-btn" style="margin-left:auto">Export CSV</a>
+            <x-ui.button href="{ route('admin.exports.csv', 'invoices', request()->query()) }" variant="outline" size="sm" class="ml-auto">Export CSV</x-ui.button>
         </form>
     </div>
 
@@ -63,12 +63,12 @@
                             <td>
                                 <div class="action-buttons">
                                     @if($invoice->pdf_path)
-                                        <a href="{{ route('admin.billing.invoices.download', $invoice) }}" class="btn btn-sm btn-secondary">PDF</a>
+                                        <x-ui.button href="{{ route('admin.billing.invoices.download', $invoice) }}" variant="secondary" size="sm">PDF</x-ui.button>
                                     @endif
                                     <form method="POST" action="{{ route('admin.billing.invoices.regenerate', $invoice) }}"
                                           x-data @submit.prevent="showConfirm('Regenerate PDF?', 'The stored PDF will be rebuilt from the current invoice data.', () => $el.submit())">
                                         @csrf
-                                        <button type="submit" class="btn btn-sm btn-secondary">Regenerate</button>
+                                        <x-ui.button type="submit" variant="secondary" size="sm">Regenerate</x-ui.button>
                                     </form>
                                 </div>
                             </td>

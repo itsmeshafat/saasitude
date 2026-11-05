@@ -41,21 +41,21 @@
             <table class="table {{ $notifications->first()->read_at ? '' : '' }}">
                 <tbody>
                     @foreach($notifications as $notification)
-                        <tr class="{{ $notification->read_at ? 'table-no-hover' : '' }}" {{ $notification->read_at ? '' : 'style="font-weight:500"' }}>
+                        <tr class="{{ $notification->read_at ? 'table-no-hover opacity-70' : 'font-medium' }}">
                             <td>
                                 {{ $notification->title }}
                                 @unless($notification->read_at)
                                     <x-ui.badge variant="info">New</x-ui.badge>
                                 @endunless
                                 @if($notification->body)
-                                    <div class="text-sm text-[var(--muted-foreground)]" style="font-weight:400">{{ $notification->body }}</div>
+                                    <div class="text-sm text-[var(--muted-foreground)]">{{ $notification->body }}</div>
                                 @endif
-                                <div class="text-xs text-[var(--muted-foreground)]" style="font-weight:400">{{ $notification->created_at?->diffForHumans() }}</div>
+                                <div class="text-xs text-[var(--muted-foreground)]">{{ $notification->created_at?->diffForHumans() }}</div>
                             </td>
-                            <td style="text-align:right">
+                            <td class="text-right">
                                 <div class="action-buttons">
                                     @if($notification->action_url)
-                                        <a href="{{ $notification->action_url }}"><x-ui.button variant="outline" size="sm">View</x-ui.button></a>
+                                        <x-ui.button href="{{ $notification->action_url }}" variant="outline" size="sm">View</x-ui.button>
                                     @endif
                                     @unless($notification->read_at)
                                         <form method="POST" action="{{ route('dashboard.notifications.read', $notification->id) }}">

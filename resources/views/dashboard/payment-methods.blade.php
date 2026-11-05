@@ -32,9 +32,7 @@
             Cards and payment methods for {{ ucfirst($gateway->key()) }} are managed securely in the
             billing portal. Updating a card there applies to future renewals automatically.
         </p>
-        <a href="{{ route('dashboard.billing.portal') }}">
-            <x-ui.button variant="primary">Open {{ ucfirst($gateway->key()) }} billing portal</x-ui.button>
-        </a>
+        <x-ui.button href="{{ route('dashboard.billing.portal') }}" variant="primary">Open {{ ucfirst($gateway->key()) }} billing portal</x-ui.button>
     </div>
 </div>
 @elseif($lastPayment)

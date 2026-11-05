@@ -52,7 +52,7 @@
                         </td>
                         <td>{{ optional($member->joined_at ?? $member->created_at)->format('M j, Y') }}</td>
                         @if($canManage)
-                            <td style="text-align:right">
+                            <td class="text-right">
                                 @unless($member->isOwner() || $member->user_id === $user->id)
                                     <form method="POST" action="{{ route('dashboard.team.remove', $member) }}"
                                           x-data @submit.prevent="showDanger('Remove member?', '{{ $member->user?->email }} will lose access to this workspace.', () => $el.submit())">
@@ -76,18 +76,13 @@
         <div class="card-body">
             <form method="POST" action="{{ route('dashboard.team.invite') }}">
                 @csrf
-                <div class="mb-4">
-                    <label class="block text-sm font-medium mb-1" for="email">Email</label>
-                    <input type="email" name="email" id="email" value="{{ old('email') }}" class="form-input" required>
-                    @error('email')<p class="text-sm text-[var(--destructive)] mt-1">{{ $message }}</p>@enderror
-                </div>
-                <div class="mb-4">
-                    <label class="block text-sm font-medium mb-1" for="role">Role</label>
-                    <select name="role" id="role" class="form-select" required>
-                        @foreach(['member' => 'Member', 'admin' => 'Admin', 'billing' => 'Billing'] as $value => $label)
-                            <option value="{{ $value }}" @selected(old('role') === $value)>{{ $label }}</option>
-                        @endforeach
-                    </select>
+                <x-ui.input type="email" name="email" id="email" value="{{ old('email') }}"
+                            label="Email" required :error="$errors->first('email')" />
+
+                <div class="form-group">
+                    <x-ui.select name="role" id="role" label="Role" required
+                                 :options="['member' => 'Member', 'admin' => 'Admin', 'billing' => 'Billing']"
+                                 :error="$errors->first('role')" />
                 </div>
                 <x-ui.button variant="primary" type="submit">Send invitation</x-ui.button>
             </form>
@@ -110,7 +105,7 @@
                                         {{ ucfirst($invitation->role) }} · expires {{ $invitation->expires_at?->format('M j, Y') }}
                                     </div>
                                 </td>
-                                <td style="text-align:right"><x-ui.badge variant="warning">Pending</x-ui.badge></td>
+                                <td class="text-right"><x-ui.badge variant="warning">Pending</x-ui.badge></td>
                             </tr>
                         @endforeach
                     </tbody>

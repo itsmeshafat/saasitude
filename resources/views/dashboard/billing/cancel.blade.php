@@ -26,9 +26,9 @@
             </div>
         </div>
         <div class="mt-6 flex flex-wrap gap-2">
-            <a href="{{ route('dashboard.billing.checkout') }}"><x-ui.button variant="primary">Retry checkout</x-ui.button></a>
-            <a href="{{ route('dashboard.plans') }}"><x-ui.button variant="outline">Compare plans</x-ui.button></a>
-            <a href="{{ route('dashboard.billing') }}"><x-ui.button variant="ghost">Back to billing</x-ui.button></a>
+            <x-ui.button href="{{ route('dashboard.billing.checkout') }}" variant="primary">Retry checkout</x-ui.button>
+            <x-ui.button href="{{ route('dashboard.plans') }}" variant="outline">Compare plans</x-ui.button>
+            <x-ui.button href="{{ route('dashboard.billing') }}" variant="ghost">Back to billing</x-ui.button>
         </div>
     </div>
 </div>

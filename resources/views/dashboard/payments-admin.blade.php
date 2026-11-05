@@ -45,7 +45,7 @@
 
 <div class="card">
     <div class="card-header">
-        <form method="GET" class="filters-bar" style="width: 100%;">
+        <form method="GET" class="filters-bar">
             <div class="search-box">
                 <input type="text" name="search" value="{{ $search }}" placeholder="Gateway ref or workspace…" class="form-input">
             </div>
@@ -59,7 +59,7 @@
                 </select>
             </div>
             <x-ui.button variant="outline" size="sm" type="submit">Filter</x-ui.button>
-            <a href="{{ route('admin.exports.csv', 'payments', request()->query()) }}" class="btn btn-sm btn-outline-btn" style="margin-left:auto">Export CSV</a>
+            <x-ui.button href="{ route('admin.exports.csv', 'payments', request()->query()) }" variant="outline" size="sm" class="ml-auto">Export CSV</x-ui.button>
         </form>
     </div>
 

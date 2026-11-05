@@ -60,7 +60,7 @@
                 @csrf
                 <div>
                     <label class="block text-xs font-medium mb-1" for="plan_id">Force plan</label>
-                    <select name="plan_id" id="plan_id" class="form-input" required>
+                    <select name="plan_id" id="plan_id" class="form-select" required>
                         @foreach($plans as $plan)
                             <option value="{{ $plan->id }}">{{ $plan->name }}</option>
                         @endforeach
@@ -86,7 +86,7 @@
                         @foreach($workspace->payments as $payment)
                             <tr>
                                 <td>{{ strtoupper($payment->currency) }} {{ number_format($payment->amount / 100, 2) }}</td>
-                                <td style="text-align:right">{{ optional($payment->created_at)->format('M j, Y') }} · {{ $payment->status }}</td>
+                                <td class="text-right">{{ optional($payment->created_at)->format('M j, Y') }} · {{ $payment->status }}</td>
                             </tr>
                         @endforeach
                     </tbody>
@@ -106,7 +106,7 @@
                         @foreach($workspace->subscriptions as $subscription)
                             <tr>
                                 <td><a href="{{ route('admin.subscriptions.show', $subscription) }}" class="hover:underline">{{ $subscription->plan->name }}</a></td>
-                                <td style="text-align:right"><x-ui.status-pill :status="$subscription->status" /></td>
+                                <td class="text-right"><x-ui.status-pill :status="$subscription->status" /></td>
                             </tr>
                         @endforeach
                     </tbody>
@@ -126,7 +126,7 @@
                         @foreach($workspace->invoices as $invoice)
                             <tr>
                                 <td>{{ $invoice->number }}</td>
-                                <td style="text-align:right">{{ optional($invoice->created_at)->format('M j, Y') }}</td>
+                                <td class="text-right">{{ optional($invoice->created_at)->format('M j, Y') }}</td>
                             </tr>
                         @endforeach
                     </tbody>

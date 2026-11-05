@@ -34,7 +34,7 @@
         <div class="card-body">
             <x-ui.empty-state title="No invoices yet" description="Invoices appear here after your first payment.">
                 <x-slot:action>
-                    <a href="{{ route('dashboard.plans') }}"><x-ui.button variant="primary">View plans</x-ui.button></a>
+                    <x-ui.button href="{{ route('dashboard.plans') }}" variant="primary">View plans</x-ui.button>
                 </x-slot:action>
             </x-ui.empty-state>
         </div>
@@ -61,7 +61,7 @@
                             </td>
                             <td>
                                 @if($invoice->pdf_path)
-                                    <a href="{{ route('dashboard.billing.invoices.download', $invoice) }}" class="btn btn-sm btn-secondary">Download PDF</a>
+                                    <x-ui.button href="{{ route('dashboard.billing.invoices.download', $invoice) }}" variant="secondary" size="sm">Download PDF</x-ui.button>
                                 @endif
                             </td>
                         </tr>

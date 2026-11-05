@@ -33,8 +33,8 @@
         </div>
 
         <div class="mt-4 flex flex-wrap gap-2">
-            <a href="{{ route('dashboard.billing') }}"><x-ui.button variant="primary">Go to billing</x-ui.button></a>
-            <a href="{{ route($dashboardRoute::name('index')) }}"><x-ui.button variant="outline">Go to dashboard</x-ui.button></a>
+            <x-ui.button href="{{ route('dashboard.billing') }}" variant="primary">Go to billing</x-ui.button>
+            <x-ui.button href="{{ route($dashboardRoute::name('index')) }}" variant="outline">Go to dashboard</x-ui.button>
         </div>
     </div>
 </div>

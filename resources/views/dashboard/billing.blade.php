@@ -52,13 +52,13 @@
         </div>
 
         <div class="flex flex-wrap gap-2 mt-6">
-            <a href="{{ route('dashboard.plans') }}"><x-ui.button variant="primary">Change plan</x-ui.button></a>
+            <x-ui.button href="{{ route('dashboard.plans') }}" variant="primary">Change plan</x-ui.button>
             @if($hasPortal)
-                <a href="{{ route('dashboard.billing.portal') }}"><x-ui.button variant="outline">Manage billing portal</x-ui.button></a>
+                <x-ui.button href="{{ route('dashboard.billing.portal') }}" variant="outline">Manage billing portal</x-ui.button>
             @endif
-            <a href="{{ route('dashboard.billing.invoices') }}"><x-ui.button variant="outline">Invoices</x-ui.button></a>
+            <x-ui.button href="{{ route('dashboard.billing.invoices') }}" variant="outline">Invoices</x-ui.button>
             @if($subscription->isActive() && !$subscription->cancel_at_period_end)
-                <a href="{{ route('dashboard.cancel-subscription') }}"><x-ui.button variant="danger">Cancel subscription</x-ui.button></a>
+                <x-ui.button href="{{ route('dashboard.cancel-subscription') }}" variant="danger">Cancel subscription</x-ui.button>
             @endif
         </div>
     </div>
@@ -84,7 +84,7 @@
             title="No active plan"
             description="Choose a plan to unlock features for this workspace." />
         <div class="mt-4 flex justify-center">
-            <a href="{{ route('dashboard.plans') }}"><x-ui.button>View plans</x-ui.button></a>
+            <x-ui.button href="{{ route('dashboard.plans') }}">View plans</x-ui.button>
         </div>
     </div>
 </div>

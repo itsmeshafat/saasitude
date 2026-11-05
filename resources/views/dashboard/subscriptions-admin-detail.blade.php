@@ -39,7 +39,7 @@
                         @foreach($timeline as $entry)
                             <tr>
                                 <td class="font-medium">{{ $entry['event'] }}@if($entry['detail']) <span class="text-[var(--muted-foreground)]">({{ $entry['detail'] }})</span>@endif</td>
-                                <td style="text-align:right">{{ optional($entry['at'])->format('M j, Y H:i') }}</td>
+                                <td class="text-right">{{ optional($entry['at'])->format('M j, Y H:i') }}</td>
                             </tr>
                         @endforeach
                     </tbody>
@@ -54,13 +54,13 @@
             <div class="table-container">
                 <table class="table table-compact">
                     <tbody>
-                        <tr><td>Status</td><td style="text-align:right"><x-ui.status-pill :status="$subscription->status" /></td></tr>
-                        <tr><td>Trial ends</td><td style="text-align:right">{{ optional($subscription->trial_ends_at)->format('M j, Y') ?? '—' }}</td></tr>
-                        <tr><td>Current period</td><td style="text-align:right">{{ optional($subscription->current_period_start)->format('M j') }} → {{ optional($subscription->current_period_end)->format('M j, Y') }}</td></tr>
-                        <tr><td>Cancels at period end</td><td style="text-align:right">{{ $subscription->cancel_at_period_end ? 'Yes' : 'No' }}</td></tr>
-                        <tr><td>App-driven renewal</td><td style="text-align:right">{{ $subscription->app_driven_renewal ? 'Yes' : 'No' }}</td></tr>
+                        <tr><td>Status</td><td class="text-right"><x-ui.status-pill :status="$subscription->status" /></td></tr>
+                        <tr><td>Trial ends</td><td class="text-right">{{ optional($subscription->trial_ends_at)->format('M j, Y') ?? '—' }}</td></tr>
+                        <tr><td>Current period</td><td class="text-right">{{ optional($subscription->current_period_start)->format('M j') }} → {{ optional($subscription->current_period_end)->format('M j, Y') }}</td></tr>
+                        <tr><td>Cancels at period end</td><td class="text-right">{{ $subscription->cancel_at_period_end ? 'Yes' : 'No' }}</td></tr>
+                        <tr><td>App-driven renewal</td><td class="text-right">{{ $subscription->app_driven_renewal ? 'Yes' : 'No' }}</td></tr>
                         @if($subscription->metadata['cancellation_reason'] ?? null)
-                            <tr><td>Cancel reason</td><td style="text-align:right">{{ $subscription->metadata['cancellation_reason'] }}</td></tr>
+                            <tr><td>Cancel reason</td><td class="text-right">{{ $subscription->metadata['cancellation_reason'] }}</td></tr>
                         @endif
                     </tbody>
                 </table>

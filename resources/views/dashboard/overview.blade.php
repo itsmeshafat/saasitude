@@ -15,9 +15,7 @@
             <h1 class="page-title">Overview</h1>
             <p class="page-description">Billing metrics for {{ now()->format('F Y') }}.</p>
         </div>
-        <a href="{{ route('admin.exports.report') }}">
-            <x-ui.button variant="outline">Download monthly report (PDF)</x-ui.button>
-        </a>
+        <x-ui.button href="{{ route('admin.exports.report') }}" variant="outline">Download monthly report (PDF)</x-ui.button>
     </div>
 </div>
 

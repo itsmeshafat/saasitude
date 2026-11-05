@@ -36,7 +36,7 @@
                 @foreach($prices->groupBy('plan_id') as $planId => $planPrices)
                     @php $plan = $planPrices->first()->plan @endphp
                     @foreach($planPrices as $price)
-                        <label class="card cursor-pointer border-2 hover:border-[var(--primary)] transition-colors {{ old('plan_price_id') == $price->id ? 'border-[var(--primary)]' : 'border-transparent' }}" style="padding: 1.5rem;">
+                        <label class="card p-6 cursor-pointer border-2 hover:border-[var(--primary)] transition-colors {{ old('plan_price_id') == $price->id ? 'border-[var(--primary)]' : 'border-transparent' }}">
                             <input type="radio" name="plan_price_id" value="{{ $price->id }}" class="sr-only" checked>
                             <div class="flex items-center justify-between">
                                 <div class="font-semibold text-lg">{{ $plan->name }}</div>
@@ -56,7 +56,7 @@
                 <p class="text-[var(--destructive)] text-sm mb-4">{{ $message }}</p>
             @enderror
 
-            <div class="card" style="max-width: 480px;">
+            <div class="card max-w-md">
                 <div class="card-header"><h3 class="card-title">Coupon</h3></div>
                 <div class="card-body">
                     <label class="block text-sm font-medium mb-1" for="coupon">Coupon code (optional)</label>
@@ -68,7 +68,7 @@
         </div>
 
         {{-- Order summary --}}
-        <div class="card" style="align-self: start; position: sticky; top: 88px;">
+        <div class="card md:sticky md:top-24 self-start">
             <div class="card-header"><h3 class="card-title">Summary</h3></div>
             <div class="card-body">
                 @php($selected = $prices->first(fn ($p) => (string) $p->id === (string) old('plan_price_id')) ?? $prices->first())
@@ -98,7 +98,7 @@
                     </div>
                 @endif
                 <div class="mt-4">
-                    <button type="submit" class="btn btn-primary w-full">Continue to payment →</button>
+                    <x-ui.button type="submit" full>Continue to payment →</x-ui.button>
                 </div>
             </div>
         </div>

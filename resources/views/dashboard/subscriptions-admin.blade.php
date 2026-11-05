@@ -33,7 +33,7 @@
 
 <div class="card">
     <div class="card-header">
-        <form method="GET" class="filters-bar" style="width: 100%;">
+        <form method="GET" class="filters-bar">
             <div class="filter-group">
                 <span class="filter-label">Status</span>
                 <select name="status" class="form-select">
@@ -53,7 +53,7 @@
                 </select>
             </div>
             <x-ui.button variant="outline" size="sm" type="submit">Filter</x-ui.button>
-            <a href="{{ route('admin.exports.csv', 'subscriptions', request()->query()) }}" class="btn btn-sm btn-outline-btn" style="margin-left:auto">Export CSV</a>
+            <x-ui.button href="{ route('admin.exports.csv', 'subscriptions', request()->query()) }" variant="outline" size="sm" class="ml-auto">Export CSV</x-ui.button>
         </form>
     </div>
 

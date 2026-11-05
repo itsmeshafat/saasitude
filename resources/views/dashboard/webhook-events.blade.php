@@ -20,7 +20,7 @@
 
 <div class="card">
     <div class="card-header">
-        <form method="GET" class="filters-bar" style="width: 100%;">
+        <form method="GET" class="filters-bar">
             <div class="filter-group">
                 <span class="filter-label">Gateway</span>
                 <select name="gateway" class="form-select">

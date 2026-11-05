@@ -19,19 +19,20 @@
         </div>
         <div class="flex items-center gap-2">
             @foreach(['USD', 'BDT'] as $cur)
-                <a href="{{ route('dashboard.plans', ['currency' => $cur]) }}"
-                   class="px-3 py-1.5 rounded-md text-sm font-medium border {{ $currency === $cur ? 'border-[var(--primary)] text-[var(--primary)]' : 'border-[var(--border)] text-[var(--muted-foreground)]' }}">
-                    {{ $cur === 'USD' ? '$ USD' : '৳ BDT' }}
-                </a>
+                <x-ui.button href="{{ route('dashboard.plans', ['currency' => $cur]) }}"
+                             variant="{{ $currency === $cur ? 'secondary' : 'outline' }}"
+                             size="sm">{{ $cur === 'USD' ? '$ USD' : '৳ BDT' }}</x-ui.button>
             @endforeach
         </div>
     </div>
 </div>
 
 <div class="mb-6 flex justify-center">
-    <div class="inline-flex rounded-lg border border-[var(--border)] p-1" id="interval-toggle">
-        <button type="button" data-interval="month" class="px-4 py-1.5 rounded-md text-sm font-medium bg-[var(--primary)] text-[var(--primary-foreground)]">Monthly</button>
-        <button type="button" data-interval="year" class="px-4 py-1.5 rounded-md text-sm font-medium text-[var(--muted-foreground)]">Annual</button>
+    <div class="inline-flex gap-1 p-1 rounded-[var(--radius)] border" style="border-color: var(--border); background: var(--muted);" id="interval-toggle">
+        <button type="button" data-interval="month"
+                class="btn btn-sm {{ request()->query('interval', 'month') !== 'year' ? 'btn-primary' : 'btn-ghost-btn' }}">Monthly</button>
+        <button type="button" data-interval="year"
+                class="btn btn-sm {{ request()->query('interval', 'month') === 'year' ? 'btn-primary' : 'btn-ghost-btn' }}">Annual</button>
     </div>
 </div>
 
@@ -60,9 +61,7 @@
                 </ul>
                 @if($plan->id !== $currentPlanId)
                 <div class="mt-4">
-                    <a href="{{ route('dashboard.billing.checkout', ['currency' => $currency]) }}">
-                        <x-ui.button variant="primary" class="w-full">Choose {{ $plan->name }}</x-ui.button>
-                    </a>
+                    <x-ui.button href="{{ route('dashboard.billing.checkout', ['currency' => $currency]) }}" variant="primary" class="w-full">Choose {{ $plan->name }}</x-ui.button>
                 </div>
                 @endif
             </x-ui.plan-card>
@@ -92,9 +91,8 @@
 
             toggle.querySelectorAll('[data-interval]').forEach(function (b) {
                 var on = b === btn;
-                b.classList.toggle('bg-[var(--primary)]', on);
-                b.classList.toggle('text-[var(--primary-foreground)]', on);
-                b.classList.toggle('text-[var(--muted-foreground)]', !on);
+                b.classList.toggle('btn-primary', on);
+                b.classList.toggle('btn-ghost-btn', !on);
             });
 
             cards.querySelectorAll('[data-plan-interval]').forEach(function (card) {

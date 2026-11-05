@@ -20,7 +20,7 @@
 
 <div class="card">
     <div class="card-header">
-        <form method="GET" class="filters-bar" style="width: 100%;">
+        <form method="GET" class="filters-bar">
             <div class="search-box">
                 <input type="text" name="search" value="{{ $search }}" placeholder="Name or owner email…" class="form-input">
             </div>
@@ -28,7 +28,7 @@
             @if($search !== '')
                 <a href="{{ route('admin.workspaces.index') }}" class="filter-label">Clear</a>
             @endif
-            <a href="{{ route('admin.exports.csv', 'workspaces', request()->query()) }}" class="btn btn-sm btn-outline-btn" style="margin-left:auto">Export CSV</a>
+            <x-ui.button href="{ route('admin.exports.csv', 'workspaces', request()->query()) }" variant="outline" size="sm" class="ml-auto">Export CSV</x-ui.button>
         </form>
     </div>
 

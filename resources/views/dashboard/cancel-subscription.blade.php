@@ -34,9 +34,7 @@
         </p>
         <div class="flex flex-wrap gap-2">
             @foreach($downgradeOptions as $plan)
-                <a href="{{ route('dashboard.billing.checkout') }}">
-                    <x-ui.button variant="outline">Switch to {{ $plan->name }}</x-ui.button>
-                </a>
+                <x-ui.button href="{{ route('dashboard.billing.checkout') }}" variant="outline">Switch to {{ $plan->name }}</x-ui.button>
             @endforeach
         </div>
     </div>

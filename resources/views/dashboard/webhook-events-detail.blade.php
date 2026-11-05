@@ -47,12 +47,12 @@
             <div class="table-container">
                 <table class="table table-compact">
                     <tbody>
-                        <tr><td>Gateway</td><td style="text-align:right"><x-ui.badge variant="info">{{ ucfirst($event->gateway) }}</x-ui.badge></td></tr>
-                        <tr><td>Status</td><td style="text-align:right">{{ $event->status }}</td></tr>
-                        <tr><td>Attempts</td><td style="text-align:right">{{ $event->attempts }}</td></tr>
-                        <tr><td>Received</td><td style="text-align:right">{{ $event->created_at?->format('M j, Y H:i:s') }}</td></tr>
-                        <tr><td>Processed</td><td style="text-align:right">{{ $event->processed_at?->format('M j, Y H:i:s') ?? '—' }}</td></tr>
-                        <tr><td>Event ID</td><td style="text-align:right; word-break: break-all;">{{ $event->event_id }}</td></tr>
+                        <tr><td>Gateway</td><td class="text-right"><x-ui.badge variant="info">{{ ucfirst($event->gateway) }}</x-ui.badge></td></tr>
+                        <tr><td>Status</td><td class="text-right">{{ $event->status }}</td></tr>
+                        <tr><td>Attempts</td><td class="text-right">{{ $event->attempts }}</td></tr>
+                        <tr><td>Received</td><td class="text-right">{{ $event->created_at?->format('M j, Y H:i:s') }}</td></tr>
+                        <tr><td>Processed</td><td class="text-right">{{ $event->processed_at?->format('M j, Y H:i:s') ?? '—' }}</td></tr>
+                        <tr><td>Event ID</td><td class="text-right" style=" word-break: break-all;">{{ $event->event_id }}</td></tr>
                     </tbody>
                 </table>
             </div>
@@ -62,7 +62,7 @@
     <div class="card xl:col-span-2">
         <div class="card-header">
             <h3 class="card-title">Payload</h3>
-            <button type="button" class="btn btn-sm btn-secondary" onclick="copyPayload(this)">Copy JSON</button>
+            <x-ui.button variant="secondary" size="sm" onclick="copyPayload(this)">Copy JSON</x-ui.button>
         </div>
         <div class="card-body">
             <pre class="text-xs overflow-x-auto rounded-md bg-[var(--muted)] p-4" style="max-height: 60vh;"><code id="payload-json">{{ json_encode($event->payload, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES) }}</code></pre>

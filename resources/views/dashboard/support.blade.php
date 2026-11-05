@@ -25,23 +25,17 @@
         <div class="card-body">
             <form method="POST" action="{{ route('dashboard.support.store') }}">
                 @csrf
-                <div class="mb-4">
-                    <label class="block text-sm font-medium mb-1" for="subject">Subject</label>
-                    <input type="text" name="subject" id="subject" value="{{ old('subject') }}" class="form-input" required>
-                    @error('subject')<p class="text-sm text-[var(--destructive)] mt-1">{{ $message }}</p>@enderror
-                </div>
-                <div class="mb-4">
-                    <label class="block text-sm font-medium mb-1" for="category">Category</label>
-                    <select name="category" id="category" class="form-input" required>
-                        @foreach(['general' => 'General', 'billing' => 'Billing', 'technical' => 'Technical', 'feature' => 'Feature request'] as $value => $label)
-                            <option value="{{ $value }}" @selected(old('category') === $value)>{{ $label }}</option>
-                        @endforeach
-                    </select>
-                </div>
-                <div class="mb-4">
-                    <label class="block text-sm font-medium mb-1" for="body">How can we help?</label>
-                    <textarea name="body" id="body" rows="5" class="form-input" required>{{ old('body') }}</textarea>
-                    @error('body')<p class="text-sm text-[var(--destructive)] mt-1">{{ $message }}</p>@enderror
+                <x-ui.input type="text" name="subject" id="subject" value="{{ old('subject') }}"
+                            label="Subject" required :error="$errors->first('subject')" />
+
+                <x-ui.select name="category" id="category" label="Category" required
+                             :options="['general' => 'General', 'billing' => 'Billing', 'technical' => 'Technical', 'feature' => 'Feature request']"
+                             :error="$errors->first('category')" />
+
+                <div class="form-group">
+                    <label class="form-label" for="body">How can we help?</label>
+                    <textarea name="body" id="body" rows="5" class="form-textarea" required>{{ old('body') }}</textarea>
+                    @error('body')<p class="form-error">{{ $message }}</p>@enderror
                 </div>
                 <x-ui.button variant="primary" type="submit">Submit ticket</x-ui.button>
             </form>
@@ -64,7 +58,7 @@
                                     <a href="{{ route('dashboard.support.show', $ticket) }}" class="hover:underline font-medium">{{ $ticket->subject }}</a>
                                     <div class="text-xs text-[var(--muted-foreground)]">{{ $ticket->number }} · {{ $ticket->updated_at?->diffForHumans() }}</div>
                                 </td>
-                                <td style="text-align:right">
+                                <td class="text-right">
                                     <x-ui.badge variant="{{ $ticket->status === 'open' ? 'success' : ($ticket->status === 'pending' ? 'warning' : 'muted') }}">
                                         {{ ucfirst($ticket->status) }}
                                     </x-ui.badge>

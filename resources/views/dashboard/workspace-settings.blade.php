@@ -24,11 +24,8 @@
         <div class="card-body">
             <form method="POST" action="{{ route('dashboard.workspace-settings.update') }}">
                 @csrf
-                <div class="mb-4">
-                    <label class="block text-sm font-medium mb-1" for="name">Workspace name</label>
-                    <input type="text" name="name" id="name" value="{{ old('name', $workspace->name) }}" class="form-input" required maxlength="255">
-                    @error('name')<p class="text-sm text-[var(--destructive)] mt-1">{{ $message }}</p>@enderror
-                </div>
+                <x-ui.input type="text" name="name" id="name" value="{{ old('name', $workspace->name) }}"
+                            label="Workspace name" required maxlength="255" :error="$errors->first('name')" />
                 <div class="mb-4 text-sm text-[var(--muted-foreground)]">
                     Created {{ $workspace->created_at?->format('M j, Y') }}
                     @if($workspace->is_personal) · personal workspace @endif
@@ -51,7 +48,7 @@
             @else
                 <x-ui.empty-state title="No active plan" description="Choose a plan to unlock features.">
                     <x-slot:action>
-                        <a href="{{ route('dashboard.plans') }}"><x-ui.button>View plans</x-ui.button></a>
+                        <x-ui.button href="{{ route('dashboard.plans') }}">View plans</x-ui.button>
                     </x-slot:action>
                 </x-ui.empty-state>
             @endif
@@ -73,16 +70,15 @@
               x-data @submit.prevent="showDanger('Transfer ownership?', 'The selected member becomes the workspace owner. This cannot be undone here.', () => $el.submit())">
             @csrf
             <div class="flex flex-wrap gap-3 items-end">
-                <div class="flex-1" style="min-width: 240px;">
-                    <label class="block text-sm font-medium mb-1" for="new_owner_id">New owner</label>
-                    <select name="new_owner_id" id="new_owner_id" class="form-select" required>
+                <div class="flex-1 min-w-[240px]">
+                    <x-ui.select name="new_owner_id" id="new_owner_id" label="New owner" required
+                                 :error="$errors->first('new_owner_id')">
                         @foreach($members as $member)
                             @if($member->user_id !== auth()->id())
                                 <option value="{{ $member->user_id }}">{{ $member->user?->name }} ({{ $member->user?->email }})</option>
                             @endif
                         @endforeach
-                    </select>
-                    @error('new_owner_id')<p class="text-sm text-[var(--destructive)] mt-1">{{ $message }}</p>@enderror
+                    </x-ui.select>
                 </div>
                 <x-ui.button variant="danger" type="submit">Transfer ownership</x-ui.button>
             </div>
