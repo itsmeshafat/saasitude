@@ -24,7 +24,9 @@ return [
     | (user management, role management, privilege management, settings).
     |
     */
-    'admin_roles' => ['admin', 'super-admin'],
+    // Staff roles allowed into the admin console at all; fine-grained
+    // actions are still gated by Tyro privileges (billing.refund, etc.).
+    'admin_roles' => ['admin', 'super-admin', 'finance', 'support'],
 
     /*
     |--------------------------------------------------------------------------

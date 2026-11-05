@@ -6,6 +6,7 @@ use App\Contracts\PaymentGateway;
 use App\DTOs\CheckoutOptions;
 use App\DTOs\CheckoutSession;
 use App\Models\GatewayCustomer;
+use App\Models\Payment;
 use App\Models\PlanPrice;
 use App\Models\Subscription;
 use App\Models\Workspace;
@@ -44,6 +45,8 @@ class FakeGateway implements PaymentGateway
     {
         return 'https://portal.example/fake';
     }
+
+    public function refundPayment(Payment $payment): void {}
 
     public function cancel(Subscription $subscription, bool $atPeriodEnd = true): void
     {

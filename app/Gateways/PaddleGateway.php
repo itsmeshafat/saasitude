@@ -6,6 +6,7 @@ use App\Contracts\PaymentGateway;
 use App\DTOs\CheckoutOptions;
 use App\DTOs\CheckoutSession;
 use App\Models\GatewayCustomer;
+use App\Models\Payment;
 use App\Models\PlanPrice;
 use App\Models\Subscription;
 use App\Models\Workspace;
@@ -106,6 +107,11 @@ class PaddleGateway implements PaymentGateway
         );
 
         return $session->urls->general->overview;
+    }
+
+    public function refundPayment(Payment $payment): void
+    {
+        throw new \RuntimeException('Paddle refunds are issued from the Paddle dashboard (MoR).');
     }
 
     public function cancel(Subscription $subscription, bool $atPeriodEnd = true): void

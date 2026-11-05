@@ -22,14 +22,18 @@ class SettingsService
         return $setting->value;
     }
 
-    public function set(string $key, mixed $value): void
+    public function set(string $key, mixed $value, ?bool $secret = null): void
     {
-        $setting = Setting::where('key', $key)->firstOrFail();
+        $setting = Setting::firstOrNew(['key' => $key]);
+
+        if ($secret !== null) {
+            $setting->is_secret = $secret;
+        }
 
         $stored = $setting->is_secret && $value !== null
             ? Crypt::encryptString((string) $value)
             : $value;
 
-        $setting->update(['value' => $stored]);
+        $setting->fill(['value' => $stored])->save();
     }
 }

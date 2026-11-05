@@ -6,6 +6,7 @@ use App\Contracts\PaymentGateway;
 use App\DTOs\CheckoutOptions;
 use App\DTOs\CheckoutSession;
 use App\Models\GatewayCustomer;
+use App\Models\Payment;
 use App\Models\PlanPrice;
 use App\Models\Subscription;
 use App\Models\Workspace;
@@ -97,6 +98,11 @@ class SSLCommerzGateway implements PaymentGateway
     public function portalUrl(Workspace $workspace, string $returnUrl): ?string
     {
         return null; // SSLCommerz has no portal
+    }
+
+    public function refundPayment(Payment $payment): void
+    {
+        throw new \RuntimeException('SSLCommerz refunds must be issued via the refund API / merchant panel.');
     }
 
     public function cancel(Subscription $subscription, bool $atPeriodEnd = true): void

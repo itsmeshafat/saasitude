@@ -1,6 +1,13 @@
 <?php
 
 use App\Actions\SwitchWorkspace;
+use App\Http\Controllers\Admin\AdminOverviewController;
+use App\Http\Controllers\Admin\AdminPaymentsController;
+use App\Http\Controllers\Admin\AdminSubscriptionsController;
+use App\Http\Controllers\Admin\AdminWorkspacesController;
+use App\Http\Controllers\Admin\GatewaySettingsController;
+use App\Http\Controllers\Admin\SystemHealthController;
+use App\Http\Controllers\Admin\WebhookEventsController;
 use App\Http\Controllers\AdminInvoiceController;
 use App\Http\Controllers\BillingController;
 use App\Http\Controllers\BillingOverviewController;
@@ -61,4 +68,24 @@ Route::middleware(['auth'])->group(function (): void {
     Route::get('dashboard/billing/payment-methods', [PaymentMethodsController::class, 'show'])->name('dashboard.payment-methods');
     Route::get('dashboard/billing/cancel-subscription', [CancelSubscriptionController::class, 'show'])->name('dashboard.cancel-subscription');
     Route::post('dashboard/billing/cancel-subscription', [CancelSubscriptionController::class, 'cancel'])->name('dashboard.cancel-subscription.cancel');
+});
+
+// Admin console (Phase 8)
+Route::middleware(['auth', 'tyro-dashboard.admin'])->group(function (): void {
+    Route::get('dashboard/overview', [AdminOverviewController::class, 'show'])->name('dashboard.overview');
+    Route::get('dashboard/workspaces-admin', [AdminWorkspacesController::class, 'index'])->name('admin.workspaces.index');
+    Route::get('dashboard/workspaces-admin/{workspace}', [AdminWorkspacesController::class, 'show'])->name('admin.workspaces.show');
+    Route::post('dashboard/workspaces-admin/{workspace}/suspend', [AdminWorkspacesController::class, 'suspend'])->name('admin.workspaces.suspend');
+    Route::post('dashboard/workspaces-admin/{workspace}/restore', [AdminWorkspacesController::class, 'restore'])->name('admin.workspaces.restore');
+    Route::post('dashboard/workspaces-admin/{workspace}/force-plan', [AdminWorkspacesController::class, 'forcePlan'])->name('admin.workspaces.force-plan');
+    Route::get('dashboard/subscriptions-admin', [AdminSubscriptionsController::class, 'index'])->name('admin.subscriptions.index');
+    Route::get('dashboard/subscriptions-admin/{subscription}', [AdminSubscriptionsController::class, 'show'])->name('admin.subscriptions.show');
+    Route::get('dashboard/payments-admin', [AdminPaymentsController::class, 'index'])->name('admin.payments.index');
+    Route::post('dashboard/payments-admin/{payment}/refund', [AdminPaymentsController::class, 'refund'])->name('admin.payments.refund');
+    Route::get('dashboard/webhook-events', [WebhookEventsController::class, 'index'])->name('admin.webhook-events.index');
+    Route::get('dashboard/webhook-events/{event}', [WebhookEventsController::class, 'show'])->name('admin.webhook-events.show');
+    Route::post('dashboard/webhook-events/{event}/replay', [WebhookEventsController::class, 'replay'])->name('admin.webhook-events.replay');
+    Route::get('dashboard/gateway-settings', [GatewaySettingsController::class, 'show'])->name('admin.gateway-settings');
+    Route::post('dashboard/gateway-settings', [GatewaySettingsController::class, 'update'])->name('admin.gateway-settings.update');
+    Route::get('dashboard/system-health', [SystemHealthController::class, 'show'])->name('admin.system-health');
 });

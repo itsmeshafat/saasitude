@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Workspace extends Model
 {
@@ -52,6 +53,12 @@ class Workspace extends Model
     public function subscriptions(): HasMany
     {
         return $this->hasMany(Subscription::class);
+    }
+
+    /** Latest subscription of any status — eager-loadable, unlike activeSubscription(). */
+    public function latestSubscription(): HasOne
+    {
+        return $this->hasOne(Subscription::class)->latestOfMany();
     }
 
     public function activeSubscription(): ?Subscription

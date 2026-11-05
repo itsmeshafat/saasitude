@@ -67,7 +67,15 @@ All migrations are run (including coupons/coupon_redemptions, 2026-11-05).
   - `success.blade.php` — "processing" only, never confirms status
 - Fake gateway for tests: `tests/Fakes/FakeGateway.php` (bind over `\App\Gateways\StripeGateway::class`).
 
-**Next: Phase 8 admin console** (see below + `docs/09-phase-prompts.md` Phase 8).
+**Phase 8 admin console — DONE (2026-11-05):**
+- Controllers in `app/Http/Controllers/Admin/`: AdminOverviewController (MRR/ARR/churn/trial-conversion formulas documented inline), AdminWorkspacesController (search/detail/suspend/restore/force-plan), AdminSubscriptionsController (filters + timeline), AdminPaymentsController (refund via `billing.refund` privilege, blocked while impersonating, audited), WebhookEventsController (viewer + idempotent replay via `webhooks.replay`), GatewaySettingsController (secrets encrypted via SettingsService, masked display, `settings.manage`), SystemHealthController (queue/failed jobs/disk/db).
+- `PaymentGateway::refundPayment()` added to contract; Stripe implemented, Paddle/SSLCommerz throw (issue via dashboards).
+- `Workspace::latestSubscription()` hasOne-of-many for eager loading (activeSubscription() is NOT a relation).
+- `SettingsService::set()` now creates rows (optional `secret:` param).
+- `admin_roles` config now includes `finance` + `support` (console entry; actions still privilege-gated).
+- 15 new tests in AdminConsoleTest; suite 93/93.
+
+**Next: Phase 9 mobile API** (docs/06-api.md; verify Tyro Login API surface first) — email templates, support inbox, data-requests screens from Phase 8 list deliberately deferred to Phase 10.
 
 ---
 

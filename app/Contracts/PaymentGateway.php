@@ -5,6 +5,7 @@ namespace App\Contracts;
 use App\DTOs\CheckoutOptions;
 use App\DTOs\CheckoutSession;
 use App\Models\GatewayCustomer;
+use App\Models\Payment;
 use App\Models\PlanPrice;
 use App\Models\Subscription;
 use App\Models\Workspace;
@@ -21,6 +22,9 @@ interface PaymentGateway
     public function startCheckout(Workspace $workspace, PlanPrice $price, CheckoutOptions $options): CheckoutSession;
 
     public function portalUrl(Workspace $workspace, string $returnUrl): ?string;
+
+    /** Refund a succeeded payment at the gateway. Throws on failure. */
+    public function refundPayment(Payment $payment): void;
 
     public function cancel(Subscription $subscription, bool $atPeriodEnd = true): void;
 

@@ -6,6 +6,7 @@ use App\Contracts\PaymentGateway;
 use App\DTOs\CheckoutOptions;
 use App\DTOs\CheckoutSession;
 use App\Models\GatewayCustomer;
+use App\Models\Payment;
 use App\Models\PlanPrice;
 use App\Models\Subscription;
 use App\Models\Workspace;
@@ -102,6 +103,13 @@ class StripeGateway implements PaymentGateway
         ]);
 
         return $session->url;
+    }
+
+    public function refundPayment(Payment $payment): void
+    {
+        $this->stripe()->refunds->create([
+            'payment_intent' => $payment->gateway_payment_id,
+        ]);
     }
 
     public function cancel(Subscription $subscription, bool $atPeriodEnd = true): void
