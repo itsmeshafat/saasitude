@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\AdminSubscriptionsController;
 use App\Http\Controllers\Admin\AdminSupportInboxController;
 use App\Http\Controllers\Admin\AdminWorkspacesController;
 use App\Http\Controllers\Admin\EmailTemplatesController;
+use App\Http\Controllers\Admin\ExportController;
 use App\Http\Controllers\Admin\GatewaySettingsController;
 use App\Http\Controllers\Admin\SystemHealthController;
 use App\Http\Controllers\Admin\WebhookEventsController;
@@ -115,6 +116,12 @@ Route::middleware(['auth'])->group(function (): void {
 // Admin console (Phase 8)
 Route::middleware(['auth', 'tyro-dashboard.admin'])->group(function (): void {
     Route::get('dashboard/overview', [AdminOverviewController::class, 'show'])->name('dashboard.overview');
+
+    // Exports (reports + CSV)
+    Route::get('dashboard/admin/exports/report', [ExportController::class, 'report'])->name('admin.exports.report');
+    Route::get('dashboard/admin/exports/{type}', [ExportController::class, 'csv'])
+        ->whereIn('type', ['payments', 'invoices', 'subscriptions', 'workspaces'])
+        ->name('admin.exports.csv');
     Route::get('dashboard/workspaces-admin', [AdminWorkspacesController::class, 'index'])->name('admin.workspaces.index');
     Route::get('dashboard/workspaces-admin/{workspace}', [AdminWorkspacesController::class, 'show'])->name('admin.workspaces.show');
     Route::post('dashboard/workspaces-admin/{workspace}/suspend', [AdminWorkspacesController::class, 'suspend'])->name('admin.workspaces.suspend');

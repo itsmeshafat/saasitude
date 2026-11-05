@@ -8,6 +8,12 @@ use App\Models\Subscription;
 use App\Models\Workspace;
 use Illuminate\View\View;
 
+/**
+ * Billing analytics overview.
+ *
+ * Chart series are computed from payments (actual collected revenue) and
+ * subscriptions (new per month) over the trailing 12 months.
+ */
 class AdminOverviewController extends Controller
 {
     /**
@@ -84,6 +90,34 @@ class AdminOverviewController extends Controller
             ->groupBy('gateway')
             ->pluck('total', 'gateway');
 
+        // ---- Chart series (last 12 months) ----
+        $months = collect(range(11, 0))->map(fn ($i) => now()->subMonths($i)->startOfMonth());
+
+        $revenueByMonth = $months->map(function ($month) {
+            return (int) Payment::where('status', 'succeeded')
+                ->whereBetween('created_at', [$month, $month->copy()->endOfMonth()])
+                ->sum('amount');
+        });
+
+        $newSubsByMonth = $months->map(function ($month) {
+            return Subscription::whereBetween('created_at', [$month, $month->copy()->endOfMonth()])->count();
+        });
+
+        $gatewayMix = Payment::where('status', 'succeeded')
+            ->where('created_at', '>=', now()->subYear())
+            ->selectRaw('gateway, sum(amount) as total')
+            ->groupBy('gateway')
+            ->pluck('total', 'gateway');
+
+        // Month-over-month delta for the MRR proxy (this month's revenue vs last month's).
+        $revenueThisMonth = $revenueByMonth->last();
+        $revenueLastMonth = $revenueByMonth->slice(-2, 1)->first();
+        $revenueDeltaPct = $revenueLastMonth > 0
+            ? round(($revenueThisMonth - $revenueLastMonth) / $revenueLastMonth * 100, 1)
+            : null;
+
+        $labels = $months->map(fn ($m) => $m->format('M'))->all();
+
         return view('dashboard.overview', [
             'mrrMinor' => $mrrMinor,
             'arrMinor' => $mrrMinor * 12,
@@ -94,6 +128,13 @@ class AdminOverviewController extends Controller
             'workspaceCount' => Workspace::count(),
             'failedPayments' => $failedPayments,
             'byGateway' => $byGateway,
+            // Charts
+            'revenueByMonth' => $revenueByMonth->all(),
+            'newSubsByMonth' => $newSubsByMonth->all(),
+            'gatewayMix' => $gatewayMix,
+            'monthLabels' => $labels,
+            'revenueDeltaPct' => $revenueDeltaPct,
+            'revenueThisMonth' => $revenueThisMonth,
         ]);
     }
 }

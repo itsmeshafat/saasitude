@@ -34,6 +34,7 @@
                 </select>
             </div>
             <x-ui.button variant="outline" size="sm" type="submit">Filter</x-ui.button>
+            <a href="{ route("admin.exports.csv', 'payments'", request()->query()) }" class="btn btn-sm btn-outline-btn" style="margin-left:auto">Export CSV</a>
         </form>
     </div>
 

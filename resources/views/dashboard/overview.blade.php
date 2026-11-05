@@ -15,19 +15,27 @@
             <h1 class="page-title">Overview</h1>
             <p class="page-description">Billing metrics for {{ now()->format('F Y') }}.</p>
         </div>
+        <a href="{{ route('admin.exports.report') }}">
+            <x-ui.button variant="outline">Download monthly report (PDF)</x-ui.button>
+        </a>
     </div>
 </div>
 
 <div class="stats-grid">
     <div class="stat-card">
         <div class="stat-icon stat-icon-primary">$</div>
-        <div class="stat-label">MRR</div>
-        <div class="stat-value">${{ number_format($mrrMinor / 100, 2) }}</div>
+        <div class="stat-label">Revenue this month</div>
+        <div class="stat-value">${{ number_format($revenueThisMonth / 100, 2) }}</div>
+        @if($revenueDeltaPct !== null)
+            <span class="stat-change {{ $revenueDeltaPct >= 0 ? 'stat-change-up' : 'stat-change-down' }}">
+                {{ $revenueDeltaPct >= 0 ? '▲' : '▼' }} {{ abs($revenueDeltaPct) }}% vs last month
+            </span>
+        @endif
     </div>
     <div class="stat-card">
         <div class="stat-icon stat-icon-info">↗</div>
-        <div class="stat-label">ARR</div>
-        <div class="stat-value">${{ number_format($arrMinor / 100, 0) }}</div>
+        <div class="stat-label">MRR (active plans)</div>
+        <div class="stat-value">${{ number_format($mrrMinor / 100, 2) }}</div>
     </div>
     <div class="stat-card">
         <div class="stat-icon stat-icon-warning">↓</div>
@@ -67,17 +75,45 @@
     </div>
 </div>
 
-<div class="card mb-6">
-    <div class="card-header"><h3 class="card-title">Active subscriptions by gateway</h3></div>
-    <div class="card-body">
-        @forelse($byGateway as $gateway => $count)
-            <div class="flex items-center justify-between py-2 border-b border-[var(--border)] last:border-0">
-                <x-ui.badge variant="info">{{ ucfirst($gateway) }}</x-ui.badge>
-                <span class="font-semibold">{{ $count }}</span>
-            </div>
-        @empty
-            <x-ui.empty-state title="No subscriptions yet" description="Active and trialing subscriptions will appear here." />
-        @endforelse
+<div class="grid grid-cols-1 xl:grid-cols-3 gap-6 mb-6">
+    <div class="card xl:col-span-2">
+        <div class="card-header"><h3 class="card-title">Revenue — last 12 months</h3></div>
+        <div class="card-body">
+            <x-chart.line :values="$revenueByMonth" :labels="$monthLabels" :height="200" />
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header"><h3 class="card-title">Payments by gateway</h3></div>
+        <div class="card-body">
+            <x-chart.donut
+                :values="$gatewayMix->values()->all()"
+                :labels="$gatewayMix->keys()->map(fn ($g) => ucfirst($g))->all()"
+                :size="130" />
+        </div>
+    </div>
+</div>
+
+<div class="grid grid-cols-1 xl:grid-cols-3 gap-6 mb-6">
+    <div class="card xl:col-span-2">
+        <div class="card-header"><h3 class="card-title">New subscriptions — last 12 months</h3></div>
+        <div class="card-body">
+            <x-chart.bars :values="$newSubsByMonth" :labels="$monthLabels" :height="150" />
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header"><h3 class="card-title">Active subscriptions by gateway</h3></div>
+        <div class="card-body">
+            @forelse($byGateway as $gateway => $count)
+                <div class="flex items-center justify-between py-2 border-b border-[var(--border)] last:border-0">
+                    <x-ui.badge variant="info">{{ ucfirst($gateway) }}</x-ui.badge>
+                    <span class="font-semibold">{{ $count }}</span>
+                </div>
+            @empty
+                <x-ui.empty-state title="No subscriptions yet" description="Active and trialing subscriptions will appear here." />
+            @endforelse
+        </div>
     </div>
 </div>
 @endsection
