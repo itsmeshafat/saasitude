@@ -9,8 +9,10 @@
 .pricing h1 { font-size: 36px; text-align: center; margin-bottom: 8px; }
 .pricing > p { text-align: center; color: var(--muted-foreground); }
 .controls { display: flex; justify-content: center; gap: 12px; margin: 24px 0 8px; flex-wrap: wrap; }
-.pill { display: inline-flex; border: 1px solid var(--glass-border); border-radius: 999px; overflow: hidden; background: oklch(1 0 0 / 0.5); backdrop-filter: blur(12px); }
-.pill button { padding: 8px 18px; background: transparent; border: 0; cursor: pointer; font-size: 14px; color: var(--muted-foreground); }
+.pill { display: inline-flex; border: 1px solid var(--glass-border); border-radius: 999px; overflow: hidden;
+        background: var(--glass-strong); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur); }
+.pill button { padding: 8px 18px; background: transparent; border: 0; cursor: pointer; font-size: 14px;
+               color: var(--muted-foreground); transition: color .15s, background .15s; }
 .pill button.on { background: var(--primary); color: var(--primary-foreground); }
 .plans { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 40px; align-items: stretch; }
 .plan { border-radius: 18px; padding: 28px; position: relative; display: flex; flex-direction: column; }
@@ -23,43 +25,45 @@
 .plan li { padding: 6px 0; }
 .plan li::before { content: "✓ "; color: var(--success); font-weight: 700; }
 .plan .btn { margin-top: auto; text-align: center; }
+.missing { color: var(--muted-foreground); font-size: 15px; }
 @media (max-width: 620px) { .plans { grid-template-columns: 1fr; } }
 @media (max-width: 1020px) { .plans { gap: 12px; } .plan { padding: 18px; } .plan .price { font-size: 30px; } }
 </style>
 
-<section class="pricing" x-data="{ interval: 'month', currency: 'USD' }">
+{{-- Prices are rendered server-side per interval; the toggles swap visibility (no JS framework needed). --}}
+<section class="pricing">
     <h1>Simple, transparent pricing</h1>
     <p>USD via Stripe/Paddle · ৳BDT via SSLCommerz · 14-day free trial</p>
 
     <div class="controls">
-        <div class="pill">
-            <button type="button" :class="interval === 'month' && 'on'" @click="interval = 'month'">Monthly</button>
-            <button type="button" :class="interval === 'year' && 'on'" @click="interval = 'year'">Annual −17%</button>
+        <div class="pill" role="group" aria-label="Billing interval">
+            <button type="button" class="on" data-toggle="interval" data-value="month">Monthly</button>
+            <button type="button" data-toggle="interval" data-value="year">Annual −17%</button>
         </div>
-        <div class="pill">
-            <button type="button" :class="currency === 'USD' && 'on'" @click="currency = 'USD'">$ USD</button>
-            <button type="button" :class="currency === 'BDT' && 'on'" @click="currency = 'BDT'">৳ BDT</button>
+        <div class="pill" role="group" aria-label="Currency">
+            <button type="button" class="on" data-toggle="currency" data-value="USD">$ USD</button>
+            <button type="button" data-toggle="currency" data-value="BDT">৳ BDT</button>
         </div>
     </div>
 
-    <div class="plans">
+    <div class="plans" id="plan-grid" data-interval="month" data-currency="USD">
         @foreach($plans as $plan)
             <div class="plan glass {{ $plan->slug === 'starter' ? 'featured' : '' }}">
                 @if($plan->slug === 'starter')<span class="pop">Most popular</span>@endif
                 <h2>{{ $plan->name }}</h2>
-                <template x-if="true">
-                    <div class="price" x-text="
-                        @foreach($plan->prices as $price)
-                            @if($price->currency === 'USD')
-                                (currency === 'USD' && interval === '{{ $price->interval }}') ? '${{ number_format($price->amount_minor / 100, 0) }}' :
-                            @else
-                                (currency === 'BDT' && interval === '{{ $price->interval }}') ? '৳{{ number_format($price->amount_minor / 100, 0) }}' :
-                            @endif
-                        @endforeach
-                        (currency === 'USD' ? '—' : '৳ —')
-                    "></div>
-                </template>
-                <small style="color:var(--muted-foreground)" x-text="interval === 'year' ? '/year' : '/month'"></small>
+                @foreach(['month', 'year'] as $interval)
+                    @foreach(['USD', 'BDT'] as $currency)
+                        @php($price = $plan->prices->first(fn ($p) => $p->currency === $currency && $p->interval === $interval))
+                        @if($price)
+                            <div class="price" data-price
+                                 data-interval="{{ $interval }}" data-currency="{{ $currency }}"
+                                 {{ $interval !== 'month' || $currency !== 'USD' ? 'hidden' : '' }}>
+                                {{ $currency === 'USD' ? '$' : '৳' }}{{ number_format($price->amount_minor / 100, 0) }}<small>/{{ $interval === 'year' ? 'yr' : 'mo' }}</small>
+                            </div>
+                        @endif
+                    @endforeach
+                @endforeach
+                <div class="missing" data-missing hidden>Not available in this billing option</div>
                 <p style="font-size:14px;color:var(--muted-foreground);margin-top:8px">{{ $plan->description }}</p>
                 <ul>
                     @foreach($plan->planFeatures->filter(fn($pf) => $pf->feature) as $pf)
@@ -75,4 +79,41 @@
         @endforeach
     </div>
 </section>
+
+<script>
+(function () {
+    var grid = document.getElementById('plan-grid');
+    if (!grid) return;
+
+    function sync() {
+        var interval = grid.dataset.interval;
+        var currency = grid.dataset.currency;
+
+        document.querySelectorAll('[data-price]').forEach(function (el) {
+            var match = el.dataset.interval === interval && el.dataset.currency === currency;
+            el.hidden = !match;
+        });
+
+        document.querySelectorAll('[data-missing]').forEach(function (el) {
+            var anyVisible = document.querySelector(
+                '[data-price][data-interval="' + interval + '"][data-currency="' + currency + '"]'
+            );
+            el.hidden = !!anyVisible;
+        });
+    }
+
+    document.querySelectorAll('[data-toggle]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+            var group = btn.dataset.toggle;
+            document.querySelectorAll('[data-toggle="' + group + '"]').forEach(function (b) {
+                b.classList.toggle('on', b === btn);
+            });
+            grid.dataset[group] = btn.dataset.value;
+            sync();
+        });
+    });
+
+    sync();
+})();
+</script>
 @endsection

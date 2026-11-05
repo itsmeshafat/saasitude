@@ -12,8 +12,9 @@
 .mockup { margin: 56px auto 0; max-width: 880px; border-radius: 20px; padding: 18px; }
 .mockup-bar { display: flex; gap: 6px; margin-bottom: 14px; }
 .mockup-bar i { width: 10px; height: 10px; border-radius: 50%; background: var(--border); }
-.mockup-body { background: oklch(1 0 0 / 0.35); border-radius: 14px; padding: 32px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
-.stat { border-radius: 12px; padding: 18px; background: oklch(1 0 0 / 0.5); border: 1px solid var(--glass-border); }
+.mockup-body { background: var(--glass); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
+               border: 1px solid var(--glass-border); border-radius: 14px; padding: 32px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.stat { border-radius: 12px; padding: 18px; background: var(--muted); border: 1px solid var(--glass-border); }
 .stat b { font-size: 24px; display: block; }
 .stat small { color: var(--muted-foreground); }
 .features { padding: 72px 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }

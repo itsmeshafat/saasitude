@@ -28,14 +28,10 @@
     </div>
 </div>
 
-<div x-data="{ interval: 'month' }" class="mb-6 flex justify-center">
-    <div class="inline-flex rounded-lg border border-[var(--border)] p-1">
-        <button type="button" @click="interval = 'month'"
-                :class="interval === 'month' ? 'bg-[var(--primary)] text-[var(--primary-foreground)]' : 'text-[var(--muted-foreground)]'"
-                class="px-4 py-1.5 rounded-md text-sm font-medium">Monthly</button>
-        <button type="button" @click="interval = 'year'"
-                :class="interval === 'year' ? 'bg-[var(--primary)] text-[var(--primary-foreground)]' : 'text-[var(--muted-foreground)]'"
-                class="px-4 py-1.5 rounded-md text-sm font-medium">Annual</button>
+<div class="mb-6 flex justify-center">
+    <div class="inline-flex rounded-lg border border-[var(--border)] p-1" id="interval-toggle">
+        <button type="button" data-interval="month" class="px-4 py-1.5 rounded-md text-sm font-medium bg-[var(--primary)] text-[var(--primary-foreground)]">Monthly</button>
+        <button type="button" data-interval="year" class="px-4 py-1.5 rounded-md text-sm font-medium text-[var(--muted-foreground)]">Annual</button>
     </div>
 </div>
 
@@ -43,19 +39,20 @@
     <div class="alert alert-danger mb-4">{{ session('error') }}</div>
 @endif
 
-<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="plan-cards">
     @foreach($plans as $plan)
         @php
             $price = $plan->prices->firstWhere('currency', $currency);
             $features = $plan->planFeatures->filter(fn ($pf) => $pf->feature);
         @endphp
         @if($price)
-        <div x-show="interval === '{{ $price->interval }}' || '{{ $price->interval }}' === 'month'">
+        <div data-plan-interval="{{ $price->interval }}" data-year-price="{{ number_format((($plan->prices->firstWhere('interval', 'year')->amount_minor) ?? $price->amount_minor * 10) / 100, 2, '.', '') }}">
             <x-ui.plan-card
                 :plan="$plan"
                 :price="number_format($price->amount_minor / 100, 2).' '.strtoupper($price->currency)"
                 :featured="$plan->slug === 'pro'"
-                :current="$plan->id === $currentPlanId">
+                :current="$plan->id === $currentPlanId"
+                data-month-price="{{ number_format($price->amount_minor / 100, 2) }}">
                 <ul class="space-y-2">
                     @foreach($features as $pf)
                         <li class="flex items-start gap-2">
@@ -84,4 +81,36 @@
     </div>
 </div>
 @endif
+
+<script>
+    // Interval toggle: swaps the price line on each plan card (no framework needed).
+    (function () {
+        var toggle = document.getElementById('interval-toggle');
+        var cards = document.getElementById('plan-cards');
+        if (!toggle || !cards) return;
+
+        toggle.addEventListener('click', function (e) {
+            var btn = e.target.closest('[data-interval]');
+            if (!btn) return;
+
+            toggle.querySelectorAll('[data-interval]').forEach(function (b) {
+                var on = b === btn;
+                b.classList.toggle('bg-[var(--primary)]', on);
+                b.classList.toggle('text-[var(--primary-foreground)]', on);
+                b.classList.toggle('text-[var(--muted-foreground)]', !on);
+            });
+
+            cards.querySelectorAll('[data-plan-interval]').forEach(function (card) {
+                var priceEl = card.querySelector('.plan-card-price');
+                if (!priceEl) return;
+                var holder = card.querySelector('[data-month-price]');
+                var amount = btn.dataset.interval === 'year'
+                    ? card.dataset.yearPrice
+                    : (holder ? holder.dataset.monthPrice : card.dataset.monthPrice);
+                // Replace only the leading amount in "12.00 USD" style text.
+                priceEl.textContent = amount + ' ' + (priceEl.textContent.split(' ')[1] || 'USD');
+            });
+        });
+    })();
+</script>
 @endsection

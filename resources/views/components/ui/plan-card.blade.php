@@ -19,7 +19,7 @@
     <div>
         <p class="text-xs font-semibold uppercase tracking-widest {{ $mutedCls }}">{{ $plan->name }}</p>
         <p class="mt-2 flex items-baseline gap-1">
-            <span class="text-4xl font-bold">{{ $price }}</span>
+            <span class="text-4xl font-bold plan-card-price">{{ $price }}</span>
             <span class="text-sm {{ $mutedCls }}">/mo</span>
         </p>
     </div>
