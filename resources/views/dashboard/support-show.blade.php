@@ -23,9 +23,6 @@
     </div>
 </div>
 
-@if(session('error'))
-    <div class="alert alert-danger mb-4">{{ session('error') }}</div>
-@endif
 
 <div class="card mb-6">
     <div class="card-header"><h3 class="card-title">Conversation</h3></div>

@@ -24,9 +24,6 @@
     </div>
 </div>
 
-@if(session('error'))
-    <div class="alert alert-danger mb-4">{{ session('error') }}</div>
-@endif
 
 @if($downgradeOptions->isNotEmpty())
 <div class="card mb-6">

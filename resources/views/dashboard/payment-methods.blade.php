@@ -23,9 +23,6 @@
     </div>
 </div>
 
-@if(session('error'))
-    <div class="alert alert-danger mb-4">{{ session('error') }}</div>
-@endif
 
 @if(in_array('portal', $gateway->capabilities()))
 <div class="card">

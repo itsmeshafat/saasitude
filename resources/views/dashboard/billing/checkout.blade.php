@@ -25,9 +25,6 @@
     </div>
 </div>
 
-@if(session('error'))
-    <div class="alert alert-danger mb-4">{{ session('error') }}</div>
-@endif
 
 <form method="POST" action="{{ route('dashboard.billing.checkout.start') }}">
     @csrf
