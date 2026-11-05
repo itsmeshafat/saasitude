@@ -188,3 +188,23 @@ over a fixed gradient mesh (blue/violet/teal blobs). Applied to dashboards and t
 | canceled            | danger        | Canceled  |
 | paused              | muted         | Paused    |
 | incomplete          | warning       | Incomplete|
+
+---
+
+## Component usage rules (2026-11-06)
+
+Every dashboard view extending `tyro-dashboard::layouts.*` MUST:
+
+- **Flash feedback**: rely on the layout's `partials/flash-messages` (controllers `with('success'|'error')`). Never hand-roll `@if(session(...))` alert blocks.
+- **Alerts**: Tyro CSS defines `.alert-success/-error/-warning/-info` — there is **no** `.alert-danger`.
+- **Stats/KPIs**: `.stats-grid` + `.stat-card`/`.stat-label`/`.stat-value`/`.stat-icon` (+ `-primary/-success/-warning/-danger/-info` variants). Never bare `.card` tiles.
+- **Lists**: `.table` inside `.table-container` (mobile horizontal scroll), `.table-compact` for detail/inline tables. Status columns use `x-ui.status-pill`; category/gateway tags use `x-ui.badge`.
+- **Filter/search forms**: `.filters-bar` + `.filter-group` + `.filter-label` + `.search-box` in the card header.
+- **Pagination**: automatic — `Paginator::defaultView('pagination::tyro')` renders Tyro `.pagination` markup for every `->links()` call.
+- **Destructive actions**: `showDanger(title, msg, cb)`; confirmations `showConfirm`. Never bare forms.
+- **Empty results**: `x-ui.empty-state`.
+- **No inline `<style>` blocks** in dashboard or public views (emails and PDF excepted — different medium).
+
+`x-ui.*` catalogue (`resources/views/components/ui/`): `badge`, `button` (variant/size), `card` (header/footer slots), `empty-state` (icon/title/description/action), `input` (label/error/hint), `plan-card` (plan/price/featured/current, `.plan-card-price` span), `status-pill`, `usage-meter`.
+
+Public site: styles live in `resources/css/public.css` (imported by `app.css`, Vite-bundled) — one glass component set (`.glass`, `.pub-nav`, `.btn`, `.pill`) built on the same tokens. Tyro's dashboard CSS is not loaded on public pages by design.
