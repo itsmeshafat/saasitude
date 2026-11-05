@@ -91,7 +91,13 @@ All migrations are run (including coupons/coupon_redemptions, 2026-11-05).
 - AdminNotice middlewares appended to web group: TrialEndingNotice (≤3 days left → amber banner w/ plan link), PastDueBanner (red banner w/ payment-method link).
 - 12 new tests; suite 124/124. Push faked via `tests/Fakes/FakePushDriver`.
 
-**Next: Phase 11 public site** — landing/pricing/contact/legal/changelog with SEO; spec requires proposing 2 visual directions with /prototype before building and waiting for user choice.
+**Phase 11 public site — DONE (2026-11-06, commits `08505cc` + `23288c2`):**
+- Cobalt Glass design system applied to dashboards (glass tokens + surfaces, mesh backdrop, sidebar env overrides only when set).
+- Public site (Direction A from /prototype, chosen by user): landing, DB-driven pricing (monthly/annual + USD/BDT toggles), rate-limited contact → guest support tickets (user_id/guest_email nullable), legal pages with LAWYER REVIEW flags, markdown changelog (resources/docs/changelog/), dynamic sitemap.xml, SEO on every page.
+- npm deps installed + Vite build working (public tokens in app.css).
+- Suite 132/132. Prototype route remains local-only for reference.
+
+**Next: Phase 12 hardening** — Larastan (level per ADR), security headers/rate limits, N+1 audit, OpenAPI decision (Scramble — needs user approval), design-critique pass, quality gates from docs/10-quality-gates.md.
 
 ---
 
