@@ -1373,6 +1373,13 @@
         margin-top: 0.5rem;
     }
 
+    .form-radio {
+        width: 1rem;
+        height: 1rem;
+        accent-color: var(--primary);
+        cursor: pointer;
+    }
+
     .form-error {
         font-size: 0.8125rem;
         color: var(--destructive);
@@ -1988,6 +1995,7 @@
         align-items: center;
         gap: 0.75rem;
         flex-wrap: wrap;
+        width: 100%;
     }
 
     .search-box {

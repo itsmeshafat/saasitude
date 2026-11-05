@@ -1,15 +1,20 @@
 @props(['label' => null, 'error' => null, 'hint' => null])
 
-<div class="flex flex-col gap-1.5">
+@php
+    // Uses Tyro's .form-input so the field inherits glass styling and focus
+    // treatment consistent with every hand-rolled form in the app.
+@endphp
+
+<div class="form-group !mb-0 flex flex-col gap-1.5">
     @if($label)
-        <label class="text-sm font-medium text-[var(--foreground)]">{{ $label }}</label>
+        <label class="form-label" for="{{ $attributes->get('id') }}">{{ $label }}</label>
     @endif
     <input
-        {{ $attributes->merge(['class' => 'h-11 w-full rounded-[var(--radius)] border border-[var(--input)] bg-[var(--background)] px-3 text-sm text-[var(--foreground)] placeholder:text-[var(--muted-foreground)] focus:outline-none focus:ring-2 focus:ring-[var(--ring)] focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed']) }}
+        {{ $attributes->merge(['class' => 'form-input']) }}
     >
     @if($error)
-        <p class="text-xs text-[var(--destructive)]">{{ $error }}</p>
+        <p class="form-error">{{ $error }}</p>
     @elseif($hint)
-        <p class="text-xs text-[var(--muted-foreground)]">{{ $hint }}</p>
+        <p class="form-hint">{{ $hint }}</p>
     @endif
 </div>
