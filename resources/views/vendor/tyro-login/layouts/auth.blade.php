@@ -12,6 +12,7 @@
     <!-- Fonts: Aeonik stack (system-first) per design system -->
     @include('tyro-login::partials.styles')
 
+    <style> html.dark { background-color: #000000; } </style>
     <script>
         // Theme before first paint: saved preference, else dark (design-system default).
         (function () {

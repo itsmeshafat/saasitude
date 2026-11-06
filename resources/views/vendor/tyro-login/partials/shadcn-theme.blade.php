@@ -72,7 +72,7 @@
 
     /* Dark mode — DEFAULT THEME, brief values verbatim */
     .dark {
-        --background: #000000; /* surface.base */
+        --background: rgba(0, 0, 0, 0.72); /* surface.base as frost — html provides solid #000 beneath */
         --foreground: #ffffff; /* text.tertiary */
         --card: rgba(8, 38, 21, 0.55); /* surface.muted */
         --card-foreground: #ffffff;
