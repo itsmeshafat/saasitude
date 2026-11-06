@@ -108,9 +108,9 @@
         /* Sidebar — light */
         --sidebar: rgba(255, 255, 255, 0.66);
         --sidebar-foreground: #0a1616;
-        --sidebar-primary: #c6fb4b;
-        --sidebar-primary-foreground: #0a1616;
-        --sidebar-accent: rgba(198, 251, 75, 0.18);
+        --sidebar-primary: #4d7c0f;
+        --sidebar-primary-foreground: #ffffff;
+        --sidebar-accent: rgba(77, 124, 15, 0.12);
         --sidebar-accent-foreground: #0a1616;
         --sidebar-border: rgba(10, 22, 22, 0.1);
         --sidebar-ring: rgba(59, 130, 246, 0.5);
