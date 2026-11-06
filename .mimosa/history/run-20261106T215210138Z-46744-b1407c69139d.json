@@ -1,0 +1,54 @@
+{
+  "schemaVersion": "mimosa-finding-history/v1",
+  "runId": "20261106T215210138Z-46744-b1407c69139d",
+  "runStatus": "inconclusive",
+  "errors": [
+    "candidate-select:tests/Feature/ScratchDeleteDebugTest.php: changed_file_unreadable: observed changed file no longer exists or cannot be read",
+    "baseline-read:storage/framework/views/dd119ab75790c429dfafe83909717651.php: baseline_snapshot_unreadable: file is missing from task baseline",
+    "scan:database/migrations/2026_11_07_000001_create_data_exports_table.php: scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+    "scan:app/Models/DataExport.php: scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+    "scan:app/Jobs/ProcessDataExport.php: scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+    "scan:app/Actions/DeleteUserAccount.php: scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+    "scan:app/Http/Controllers/DataPrivacyController.php: scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+    "scan:resources/views/dashboard/data-privacy.blade.php: scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+    "scan:routes/web.php: scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+    "scan:app/Models/User.php: scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+    "scan:app/Http/Controllers/Api/V1/DataRightsApiController.php: scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+    "scan:routes/api.php: scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+    "scan:tests/Feature/DataPrivacyTest.php: scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+    "scan:storage/framework/views/dd119ab75790c429dfafe83909717651.php: scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT"
+  ],
+  "target": ".",
+  "revision": "d32fc7fdbf2f58a94f2eb4231b38f5cb9a5cd636",
+  "diffHash": "00875e030c3b650d04de82507f1b8546a9eba7780884edffeb2d34ca0118705e",
+  "rulesVersion": "unavailable",
+  "recordedAt": "2026-11-06T21:52:10.138Z",
+  "timing": {
+    "startedAt": "2026-11-06T21:52:06.798Z",
+    "completedAt": "2026-11-06T21:52:10.138Z",
+    "durationMs": 3340
+  },
+  "tokens": {
+    "input": 0,
+    "output": 0,
+    "total": 0,
+    "modelCalls": 0,
+    "measurement": "known-zero"
+  },
+  "findings": {
+    "total": 0,
+    "bySeverity": {},
+    "byStatus": {}
+  },
+  "coverage": {
+    "status": "partial",
+    "reasonCounts": {
+      "changed_file_unreadable": 1,
+      "baseline_snapshot_unreadable": 1,
+      "scanner_failed": 12,
+      "project_check_failed": 14
+    }
+  },
+  "evidenceBoundary": "static_only",
+  "immutableReport": ".mimosa/reports/task-review-sess_099766c9-a2c1-4371-9a97-8d50eff811dc-20261106T215210138Z-46744-b1407c69139d.json"
+}

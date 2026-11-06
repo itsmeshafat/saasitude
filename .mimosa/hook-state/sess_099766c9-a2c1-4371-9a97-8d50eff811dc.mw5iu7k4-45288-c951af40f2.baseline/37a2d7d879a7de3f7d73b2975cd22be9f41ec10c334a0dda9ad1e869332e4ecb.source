@@ -53,6 +53,11 @@ class User extends Authenticatable
         return $this->hasMany(AppNotification::class);
     }
 
+    public function dataExports(): HasMany
+    {
+        return $this->hasMany(DataExport::class);
+    }
+
     public function tickets(): HasMany
     {
         return $this->hasMany(SupportTicket::class);

@@ -15,6 +15,7 @@ use App\Http\Controllers\AdminInvoiceController;
 use App\Http\Controllers\BillingController;
 use App\Http\Controllers\BillingOverviewController;
 use App\Http\Controllers\CancelSubscriptionController;
+use App\Http\Controllers\DataPrivacyController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\NotificationsController;
 use App\Http\Controllers\PaddleWebhookController;
@@ -112,6 +113,12 @@ Route::middleware(['auth'])->group(function (): void {
     Route::post('dashboard/support', [SupportController::class, 'store'])->name('dashboard.support.store');
     Route::get('dashboard/support/{ticket}', [SupportController::class, 'show'])->name('dashboard.support.show');
     Route::post('dashboard/support/{ticket}/reply', [SupportController::class, 'reply'])->name('dashboard.support.reply');
+
+    // Data & privacy (export + account deletion)
+    Route::get('dashboard/data-privacy', [DataPrivacyController::class, 'show'])->name('dashboard.data-privacy');
+    Route::post('dashboard/data-privacy/export', [DataPrivacyController::class, 'startExport'])->name('dashboard.data-privacy.export');
+    Route::get('dashboard/data-privacy/{export}/download', [DataPrivacyController::class, 'download'])->name('dashboard.data-privacy.download');
+    Route::post('dashboard/data-privacy/delete', [DataPrivacyController::class, 'deleteAccount'])->name('dashboard.data-privacy.delete');
 });
 
 // Admin console (Phase 8)

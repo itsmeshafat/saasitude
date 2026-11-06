@@ -1,17 +1,77 @@
 {
   "schema_version": "mimosa-task-review/v2",
-  "run_id": "20261106T211354351Z-39176-1c8271ed6259",
+  "run_id": "20261106T215210138Z-46744-b1407c69139d",
   "run_status": "inconclusive",
   "errors": [
     {
-      "stage": "baseline-read",
-      "target": "storage/framework/views/378c4855ab36498435d4554d7938a60b.php",
-      "reason": "baseline_snapshot_unreadable: file is missing from task baseline"
+      "stage": "candidate-select",
+      "target": "tests/Feature/ScratchDeleteDebugTest.php",
+      "reason": "changed_file_unreadable: observed changed file no longer exists or cannot be read"
     },
     {
       "stage": "baseline-read",
-      "target": "storage/framework/views/945a24c213beeb079c01c0967fcf90c6.php",
+      "target": "storage/framework/views/dd119ab75790c429dfafe83909717651.php",
       "reason": "baseline_snapshot_unreadable: file is missing from task baseline"
+    },
+    {
+      "stage": "scan",
+      "target": "database/migrations/2026_11_07_000001_create_data_exports_table.php",
+      "reason": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT"
+    },
+    {
+      "stage": "scan",
+      "target": "app/Models/DataExport.php",
+      "reason": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT"
+    },
+    {
+      "stage": "scan",
+      "target": "app/Jobs/ProcessDataExport.php",
+      "reason": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT"
+    },
+    {
+      "stage": "scan",
+      "target": "app/Actions/DeleteUserAccount.php",
+      "reason": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT"
+    },
+    {
+      "stage": "scan",
+      "target": "app/Http/Controllers/DataPrivacyController.php",
+      "reason": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT"
+    },
+    {
+      "stage": "scan",
+      "target": "resources/views/dashboard/data-privacy.blade.php",
+      "reason": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT"
+    },
+    {
+      "stage": "scan",
+      "target": "routes/web.php",
+      "reason": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT"
+    },
+    {
+      "stage": "scan",
+      "target": "app/Models/User.php",
+      "reason": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT"
+    },
+    {
+      "stage": "scan",
+      "target": "app/Http/Controllers/Api/V1/DataRightsApiController.php",
+      "reason": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT"
+    },
+    {
+      "stage": "scan",
+      "target": "routes/api.php",
+      "reason": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT"
+    },
+    {
+      "stage": "scan",
+      "target": "tests/Feature/DataPrivacyTest.php",
+      "reason": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT"
+    },
+    {
+      "stage": "scan",
+      "target": "storage/framework/views/dd119ab75790c429dfafe83909717651.php",
+      "reason": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT"
     }
   ],
   "coverage": {
@@ -20,33 +80,33 @@
     "scope": "hook_observed_diff",
     "baseline": {
       "complete": true,
-      "captured_files": 509,
+      "captured_files": 517,
       "candidate_limit": 5000,
       "truncated": false,
       "enumeration_error_count": 0,
       "snapshot_error_count": 0,
-      "compensated_target_count": 2
+      "compensated_target_count": 11
     },
     "change_tracking": {
-      "touched_observed": 1,
-      "touched_retained": 1,
+      "touched_observed": 12,
+      "touched_retained": 12,
       "truncated": false,
       "bash_mutation": true,
-      "bash_discovered": 3,
+      "bash_discovered": 12,
       "bash_discovery_limit": 80,
       "bash_discovery_truncated": false
     },
     "candidates": {
-      "eligible_files": 4,
-      "selected_files": 4,
+      "eligible_files": 12,
+      "selected_files": 12,
       "limit": 20,
       "truncated": false
     },
     "scanning": {
-      "required_files": 4,
-      "scanned_files": 4,
+      "required_files": 12,
+      "scanned_files": 0,
       "skipped_files": 0,
-      "failed_files": 0,
+      "failed_files": 12,
       "project_checks_required": 0,
       "project_checks_completed": 0
     },
@@ -57,105 +117,399 @@
       "truncated": false
     },
     "reason_counts": {
-      "baseline_snapshot_unreadable": 2,
-      "project_check_failed": 2
+      "changed_file_unreadable": 1,
+      "baseline_snapshot_unreadable": 1,
+      "scanner_failed": 12,
+      "project_check_failed": 14
     },
     "reasons": [
       {
-        "code": "baseline_snapshot_unreadable",
-        "stage": "baseline-read",
-        "target": "storage/framework/views/378c4855ab36498435d4554d7938a60b.php",
-        "detail": "file is missing from task baseline",
+        "code": "changed_file_unreadable",
+        "stage": "candidate-select",
+        "target": "tests/Feature/ScratchDeleteDebugTest.php",
+        "detail": "observed changed file no longer exists or cannot be read",
         "affects_completion": true
       },
       {
         "code": "baseline_snapshot_unreadable",
         "stage": "baseline-read",
-        "target": "storage/framework/views/945a24c213beeb079c01c0967fcf90c6.php",
+        "target": "storage/framework/views/dd119ab75790c429dfafe83909717651.php",
         "detail": "file is missing from task baseline",
         "affects_completion": true
       },
       {
+        "code": "scanner_failed",
+        "stage": "scan",
+        "target": "database/migrations/2026_11_07_000001_create_data_exports_table.php",
+        "detail": "spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+        "affects_completion": true
+      },
+      {
+        "code": "scanner_failed",
+        "stage": "scan",
+        "target": "app/Models/DataExport.php",
+        "detail": "spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+        "affects_completion": true
+      },
+      {
+        "code": "scanner_failed",
+        "stage": "scan",
+        "target": "app/Jobs/ProcessDataExport.php",
+        "detail": "spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+        "affects_completion": true
+      },
+      {
+        "code": "scanner_failed",
+        "stage": "scan",
+        "target": "app/Actions/DeleteUserAccount.php",
+        "detail": "spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+        "affects_completion": true
+      },
+      {
+        "code": "scanner_failed",
+        "stage": "scan",
+        "target": "app/Http/Controllers/DataPrivacyController.php",
+        "detail": "spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+        "affects_completion": true
+      },
+      {
+        "code": "scanner_failed",
+        "stage": "scan",
+        "target": "resources/views/dashboard/data-privacy.blade.php",
+        "detail": "spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+        "affects_completion": true
+      },
+      {
+        "code": "scanner_failed",
+        "stage": "scan",
+        "target": "routes/web.php",
+        "detail": "spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+        "affects_completion": true
+      },
+      {
+        "code": "scanner_failed",
+        "stage": "scan",
+        "target": "app/Models/User.php",
+        "detail": "spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+        "affects_completion": true
+      },
+      {
+        "code": "scanner_failed",
+        "stage": "scan",
+        "target": "app/Http/Controllers/Api/V1/DataRightsApiController.php",
+        "detail": "spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+        "affects_completion": true
+      },
+      {
+        "code": "scanner_failed",
+        "stage": "scan",
+        "target": "routes/api.php",
+        "detail": "spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+        "affects_completion": true
+      },
+      {
+        "code": "scanner_failed",
+        "stage": "scan",
+        "target": "tests/Feature/DataPrivacyTest.php",
+        "detail": "spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+        "affects_completion": true
+      },
+      {
+        "code": "scanner_failed",
+        "stage": "scan",
+        "target": "storage/framework/views/dd119ab75790c429dfafe83909717651.php",
+        "detail": "spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+        "affects_completion": true
+      },
+      {
         "code": "project_check_failed",
-        "stage": "baseline-read",
-        "target": "storage/framework/views/378c4855ab36498435d4554d7938a60b.php",
-        "detail": "baseline_snapshot_unreadable: file is missing from task baseline",
+        "stage": "candidate-select",
+        "target": "tests/Feature/ScratchDeleteDebugTest.php",
+        "detail": "changed_file_unreadable: observed changed file no longer exists or cannot be read",
         "affects_completion": true
       },
       {
         "code": "project_check_failed",
         "stage": "baseline-read",
-        "target": "storage/framework/views/945a24c213beeb079c01c0967fcf90c6.php",
+        "target": "storage/framework/views/dd119ab75790c429dfafe83909717651.php",
         "detail": "baseline_snapshot_unreadable: file is missing from task baseline",
+        "affects_completion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "scan",
+        "target": "database/migrations/2026_11_07_000001_create_data_exports_table.php",
+        "detail": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+        "affects_completion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "scan",
+        "target": "app/Models/DataExport.php",
+        "detail": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+        "affects_completion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "scan",
+        "target": "app/Jobs/ProcessDataExport.php",
+        "detail": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+        "affects_completion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "scan",
+        "target": "app/Actions/DeleteUserAccount.php",
+        "detail": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+        "affects_completion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "scan",
+        "target": "app/Http/Controllers/DataPrivacyController.php",
+        "detail": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+        "affects_completion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "scan",
+        "target": "resources/views/dashboard/data-privacy.blade.php",
+        "detail": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+        "affects_completion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "scan",
+        "target": "routes/web.php",
+        "detail": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+        "affects_completion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "scan",
+        "target": "app/Models/User.php",
+        "detail": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+        "affects_completion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "scan",
+        "target": "app/Http/Controllers/Api/V1/DataRightsApiController.php",
+        "detail": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+        "affects_completion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "scan",
+        "target": "routes/api.php",
+        "detail": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+        "affects_completion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "scan",
+        "target": "tests/Feature/DataPrivacyTest.php",
+        "detail": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+        "affects_completion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "scan",
+        "target": "storage/framework/views/dd119ab75790c429dfafe83909717651.php",
+        "detail": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
         "affects_completion": true
       }
     ],
     "reasons_truncated": false
   },
-  "generated_at": "2026-11-06T21:13:54.351Z",
+  "generated_at": "2026-11-06T21:52:10.138Z",
   "session_id": "sess_099766c9-a2c1-4371-9a97-8d50eff811dc",
   "target": ".",
-  "revision": "a1b518160affd4a0ab79ab422e59c83512236ed9",
+  "revision": "d32fc7fdbf2f58a94f2eb4231b38f5cb9a5cd636",
   "rules_version": "unavailable",
-  "diff_hash": "198b57e52388e52ae4f92c6b7b142d93988b69b3f5c77c85acba3fb3d0cb97f1",
+  "diff_hash": "00875e030c3b650d04de82507f1b8546a9eba7780884edffeb2d34ca0118705e",
   "diff": {
     "algorithm": "sha256",
-    "changed_file_count": 4,
+    "changed_file_count": 12,
     "changed_files": [
       {
-        "file": "resources/views/vendor/tyro-dashboard/settings/system.blade.php",
-        "ranges": [
-          {
-            "start": 111,
-            "end": 114
-          }
-        ],
-        "before_hash": "3071cbd94483de09c73331dda1c4a9d6cead86eaf58acf119e07f2c3b26b20b0",
-        "after_hash": "7e97d154f773e99a88ed04a1e9693431da4f845ca9b16128fbfbde6202318ff5"
-      },
-      {
-        "file": "storage/framework/views/378c4855ab36498435d4554d7938a60b.php",
+        "file": "app/Actions/DeleteUserAccount.php",
         "ranges": [
           {
             "start": 1,
-            "end": 453
+            "end": 50
           }
         ],
         "before_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-        "after_hash": "48a84fc9ed64bcd4d4d7f06bb25d9bca798f3cf283a14a90dcf6d123bb77d2cc"
+        "after_hash": "ac647729ad38728caaff4b225c8afff1e73887d1f1d0d7e8cc042263cfdd8fc4"
       },
       {
-        "file": "storage/framework/views/73cb7aba6393b29c2f2a74a56cbeb511.php",
+        "file": "app/Http/Controllers/Api/V1/DataRightsApiController.php",
         "ranges": [
           {
-            "start": 110,
-            "end": 112
+            "start": 1,
+            "end": 60
+          }
+        ],
+        "before_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "after_hash": "39f0ace2732181b21577df76481f54f62ffd68268a8d6a2a0808b9f5ce2fab8c"
+      },
+      {
+        "file": "app/Http/Controllers/DataPrivacyController.php",
+        "ranges": [
+          {
+            "start": 1,
+            "end": 66
+          }
+        ],
+        "before_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "after_hash": "3eed2ac5752f1f5b52cc002646c6cfedbf3940445b4d10ee360cb27f4c804375"
+      },
+      {
+        "file": "app/Jobs/ProcessDataExport.php",
+        "ranges": [
+          {
+            "start": 5,
+            "end": 10
           },
           {
-            "start": 133,
-            "end": 133
+            "start": 12,
+            "end": 12
+          },
+          {
+            "start": 14,
+            "end": 17
+          },
+          {
+            "start": 21,
+            "end": 21
+          },
+          {
+            "start": 23,
+            "end": 25
+          },
+          {
+            "start": 27,
+            "end": 54
+          },
+          {
+            "start": 57,
+            "end": 58
+          },
+          {
+            "start": 60,
+            "end": 80
           }
         ],
-        "before_hash": "5570f228c1d991b7c444b13dec423912527114e293462fa81fef329673b7bce7",
-        "after_hash": "e6199c7d815e77c3c7d9e6663a068a5db4216ed5a218625a465119b752e3ea73"
+        "before_hash": "95ea3ad6d3de467f89d7f17afbdacfa8eb9472c0e2d136e5b0685f8917fec19a",
+        "after_hash": "fd13f9b41f59c77cdef915a975fb5fceff9bdac7f4cf46b60936e48c1f3393d5"
       },
       {
-        "file": "storage/framework/views/945a24c213beeb079c01c0967fcf90c6.php",
+        "file": "app/Models/DataExport.php",
+        "ranges": [
+          {
+            "start": 6,
+            "end": 6
+          },
+          {
+            "start": 10,
+            "end": 30
+          }
+        ],
+        "before_hash": "43cc323d55852445aba669f8eafe4b04c50e149763a495bbdb31b1b87d8046dc",
+        "after_hash": "8dbd6bdf9fce2d9a2c2d67152079942716eb88aec2c6cdefb55d1540a2886469"
+      },
+      {
+        "file": "app/Models/User.php",
+        "ranges": [
+          {
+            "start": 56,
+            "end": 60
+          }
+        ],
+        "before_hash": "89fc8b6dd416d09b6a369c1c2bf3f69e265447f0f7f0a273caf51f875d95a789",
+        "after_hash": "ba6ef6f98ab057e779313b21b0fe3991c845d7456b905ea46dbea31cae593b9f"
+      },
+      {
+        "file": "database/migrations/2026_11_07_000001_create_data_exports_table.php",
         "ranges": [
           {
             "start": 1,
-            "end": 133
+            "end": 26
           }
         ],
         "before_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-        "after_hash": "0cedc614a8155fa0cfd6fe3b351f7d08a4cb4a1b014043d8d0343e9beff00d48"
+        "after_hash": "08c2585e3e083bfa7d723eddb2de8717a5698d27b56be8fc32ec1ecece368e1f"
+      },
+      {
+        "file": "resources/views/dashboard/data-privacy.blade.php",
+        "ranges": [
+          {
+            "start": 1,
+            "end": 100
+          }
+        ],
+        "before_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "after_hash": "a43f49fa8b6c70bb2b5e71858d272dd11611938d01adf3eb90988d6097724871"
+      },
+      {
+        "file": "routes/api.php",
+        "ranges": [
+          {
+            "start": 4,
+            "end": 4
+          },
+          {
+            "start": 55,
+            "end": 60
+          }
+        ],
+        "before_hash": "8d5f99e96ca40815324e4acff3c790891c64e97bf4c674d930433f202d42e06d",
+        "after_hash": "2d89f19dbbb105eb6c3bb2ecb1bca440552f1f6a3c437df2885a42508120562b"
+      },
+      {
+        "file": "routes/web.php",
+        "ranges": [
+          {
+            "start": 18,
+            "end": 18
+          },
+          {
+            "start": 116,
+            "end": 121
+          }
+        ],
+        "before_hash": "4866d33ba274fed7decf96163d3812ca0cdc5b9fb3ee4748e861090db2a2c874",
+        "after_hash": "4f35798c10717a7db27060d1ee39db68bc339f0fb3708e6ed38e45f795507778"
+      },
+      {
+        "file": "storage/framework/views/dd119ab75790c429dfafe83909717651.php",
+        "ranges": [
+          {
+            "start": 1,
+            "end": 215
+          }
+        ],
+        "before_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "after_hash": "610fa0766d32ea0528b1aeec557bf040891310f73483d182485501f29c958dc5"
+      },
+      {
+        "file": "tests/Feature/DataPrivacyTest.php",
+        "ranges": [
+          {
+            "start": 1,
+            "end": 182
+          }
+        ],
+        "before_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "after_hash": "20282ece846da3e0c2fda993c611bd539c384cb20ad518ea682d99f0fb8d0046"
       }
     ]
   },
   "timing": {
-    "started_at": "2026-11-06T21:13:51.579Z",
-    "completed_at": "2026-11-06T21:13:54.351Z",
-    "duration_ms": 2772,
+    "started_at": "2026-11-06T21:52:06.798Z",
+    "completed_at": "2026-11-06T21:52:10.138Z",
+    "duration_ms": 3340,
     "measurement": "hook_wall_clock"
   },
   "tokens": {
@@ -170,10 +524,10 @@
     "profile": "gate",
     "operation": "Stop",
     "outcome": "partial/INCONCLUSIVE",
-    "latencyMs": 2772,
-    "peakMemoryBytes": 146763776,
+    "latencyMs": 3340,
+    "peakMemoryBytes": 99086336,
     "memoryMeasurement": "max-observed-process-rss",
-    "scannedFiles": 4,
+    "scannedFiles": 0,
     "cache": {
       "hits": 0,
       "misses": 0,
@@ -198,8 +552,8 @@
   "finding_events": [],
   "findings": [],
   "artifacts": {
-    "immutable_report": ".mimosa/reports/task-review-sess_099766c9-a2c1-4371-9a97-8d50eff811dc-20261106T211354351Z-39176-1c8271ed6259.json",
+    "immutable_report": ".mimosa/reports/task-review-sess_099766c9-a2c1-4371-9a97-8d50eff811dc-20261106T215210138Z-46744-b1407c69139d.json",
     "latest_report": ".mimosa/reports/task-review-sess_099766c9-a2c1-4371-9a97-8d50eff811dc.json",
-    "history_summary": ".mimosa/history/run-20261106T211354351Z-39176-1c8271ed6259.json"
+    "history_summary": ".mimosa/history/run-20261106T215210138Z-46744-b1407c69139d.json"
   }
 }

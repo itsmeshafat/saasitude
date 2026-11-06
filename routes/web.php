@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\EmailTemplatesController;
 use App\Http\Controllers\Admin\ExportController;
 use App\Http\Controllers\Admin\GatewaySettingsController;
 use App\Http\Controllers\Admin\SystemHealthController;
+use App\Http\Controllers\Admin\TyroLoginExtraSettingsController;
 use App\Http\Controllers\Admin\WebhookEventsController;
 use App\Http\Controllers\AdminInvoiceController;
 use App\Http\Controllers\BillingController;
@@ -144,6 +145,7 @@ Route::middleware(['auth', 'tyro-dashboard.admin'])->group(function (): void {
     Route::post('dashboard/webhook-events/{event}/replay', [WebhookEventsController::class, 'replay'])->name('admin.webhook-events.replay');
     Route::get('dashboard/gateway-settings', [GatewaySettingsController::class, 'show'])->name('admin.gateway-settings');
     Route::post('dashboard/gateway-settings', [GatewaySettingsController::class, 'update'])->name('admin.gateway-settings.update');
+    Route::post('dashboard/settings/tyro-login-extra', [TyroLoginExtraSettingsController::class, 'update'])->name('admin.tyro-login-extra.update');
     Route::get('dashboard/system-health', [SystemHealthController::class, 'show'])->name('admin.system-health');
 });
 
