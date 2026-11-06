@@ -19,8 +19,8 @@
         sans-serif, system-ui;
 
     /* Semantic color tokens (light values; dark via .dark below) */
-    --color-primary: #c6fb4b;
-    --color-primary-foreground: #0a1616;
+    --color-primary: #4d7c0f;
+    --color-primary-foreground: #ffffff;
     --color-background: #ffffff;
     --color-foreground: #0a1616;
     --color-card: rgba(255, 255, 255, 0.6);
@@ -33,12 +33,12 @@
     --color-secondary-foreground: #0a1616;
     --color-border: #e5e7eb;
     --color-input: #e5e7eb;
-    --color-ring: rgba(59, 130, 246, 0.5);
+    --color-ring: #2563eb;
     --color-destructive: #dc2626;
     --color-destructive-foreground: #ffffff;
-    --color-success: #c6fb4b;
+    --color-success: #4d7c0f;
     --color-warning: #b45309;
-    --color-info: #3b82f6;
+    --color-info: #2563eb;
 
     /* Radius scale */
     --radius-xs: 2px;
@@ -69,8 +69,8 @@
 /* Runtime vars for components that reference var(--primary) etc. on public pages */
 @layer base {
     :root {
-        --primary: #c6fb4b;
-        --primary-foreground: #0a1616;
+        --primary: #4d7c0f; /* DERIVED dark-lime (AA on white) */
+        --primary-foreground: #ffffff;
         --background: #ffffff;
         --foreground: #0a1616;
         --card: rgba(255, 255, 255, 0.6);
@@ -85,14 +85,14 @@
         --secondary-foreground: #0a1616;
         --border: #e5e7eb;
         --input: #e5e7eb;
-        --ring: rgba(59, 130, 246, 0.5);
+        --ring: #2563eb;
         --destructive: #dc2626;
         --destructive-foreground: #ffffff;
-        --success: #c6fb4b;
-        --success-foreground: #0a1616;
+        --success: #4d7c0f;
+        --success-foreground: #ffffff;
         --warning: #b45309;
         --warning-foreground: #ffffff;
-        --info: #3b82f6;
+        --info: #2563eb; /* DERIVED for AA on white */
         --info-foreground: #ffffff;
         --radius: 12px;
 

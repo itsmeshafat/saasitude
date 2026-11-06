@@ -1,0 +1,62 @@
+{
+  "schemaVersion": "mimosa-finding-history/v1",
+  "runId": "20261106T194753660Z-17124-a0a061bc471b",
+  "runStatus": "inconclusive",
+  "errors": [
+    "candidate-select:storage/framework/views/de860c5d8761a517fcc2425d7ee198fe.php: candidate_limit_exceeded: 23 changed reviewable file(s) were not scanned because the limit is 20",
+    "baseline:.: baseline_partial: baseline capture had enumeration or snapshot errors",
+    "scan:resources/views/vendor/tyro-dashboard/partials/scripts.blade.php: scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+    "scan:resources/views/layouts/public.blade.php: scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+    "scan:resources/views/components/ui/button.blade.php: scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+    "scan:resources/views/vendor/tyro-dashboard/partials/topbar.blade.php: scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+    "scan:storage/framework/views/05e4d4bac7c87e6ee819878dc4ef930b.php: scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+    "scan:storage/framework/views/077007ffda9f11b81f451dea8b351d9f.php: scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+    "scan:storage/framework/views/110c6d66e69cda538025e1ad04e32d96.php: scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+    "scan:storage/framework/views/1f9c7e08c63df6ecaf32d1bc0545fe2a.php: scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+    "scan:storage/framework/views/1fc1b30e9cf62b989b60f239b700222b.php: scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+    "scan:storage/framework/views/2e96bb9ff094e7c4c3f8f4b6e14610c7.php: scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+    "scan:storage/framework/views/31053ab14a3c5b15383208bd7d96ceba.php: scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+    "scan:storage/framework/views/3315204693b0fb39e45c2b7db8b6a07d.php: scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+    "scan:storage/framework/views/4085bb9757e4829c79d78dd88c191ef3.php: scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+    "scan:storage/framework/views/42aeee8812c416aba4fad1bd8a66fe62.php: scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+    "scan:storage/framework/views/810fcf6c3420e0944b55a1920eb53211.php: scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+    "scan:storage/framework/views/92ca2d3e9844d4f470495b1f9e70cf64.php: scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+    "scan:storage/framework/views/93631687d73504be1ea823cc9f733533.php: scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+    "scan:storage/framework/views/99ebbd16773543215394683559811f54.php: scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+    "scan:storage/framework/views/aa3649c85fb4e7500af91bdf9f93c09a.php: scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+    "scan:storage/framework/views/cf4ae1cbd7ab64050bbec882838606e7.php: scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT"
+  ],
+  "target": ".",
+  "revision": "f012916dff5dc74bab776bb6397feddd956bb7af",
+  "diffHash": "895956a475f9b573cbe169c30fecb666e88269355c98fbec80a0eac060aa395d",
+  "rulesVersion": "unavailable",
+  "recordedAt": "2026-11-06T19:47:53.660Z",
+  "timing": {
+    "startedAt": "2026-11-06T19:47:50.900Z",
+    "completedAt": "2026-11-06T19:47:53.660Z",
+    "durationMs": 2760
+  },
+  "tokens": {
+    "input": 0,
+    "output": 0,
+    "total": 0,
+    "modelCalls": 0,
+    "measurement": "known-zero"
+  },
+  "findings": {
+    "total": 0,
+    "bySeverity": {},
+    "byStatus": {}
+  },
+  "coverage": {
+    "status": "partial",
+    "reasonCounts": {
+      "candidate_limit_exceeded": 1,
+      "baseline_partial": 1,
+      "scanner_failed": 20,
+      "project_check_failed": 22
+    }
+  },
+  "evidenceBoundary": "static_only",
+  "immutableReport": ".mimosa/reports/task-review-sess_099766c9-a2c1-4371-9a97-8d50eff811dc-20261106T194753660Z-17124-a0a061bc471b.json"
+}

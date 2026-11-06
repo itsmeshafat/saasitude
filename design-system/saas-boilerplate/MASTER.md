@@ -44,9 +44,13 @@ navigation (3 — sidebar, topbar, tabs), inputs (2 + `.form-*` family).
 `--border #e5e7eb` (border.default solid) · primary/lime unchanged.
 
 **Logged deviations (brief is silent or fails AA):**
-- Light `--muted-foreground: #52645c` — derived from text.inverse; brief's `#9ba5a1` fails AA on white.
+- Light `--primary`/`--success`: `#4d7c0f` (dark lime) with white foreground — the brief's lime `#c6fb4b` is 1.22:1 on white and unreadable anywhere it appears as text (links, eyebrows, stat-changes, badges). Dark lime keeps the brand hue at 4.99:1 AA. Dark mode keeps lime verbatim (fills + text both pass).
+- Light `--ring`/`--info`: `#2563eb` solid — the brief's 50%-alpha blue ring and `#3b82f6` (3.68:1) are below AA/visibility on white.
+- Light `--muted-foreground: #52645c` — derived from text.inverse; brief's `#9ba5a1` fails AA on white (measured 6.29:1 ✓).
 - `--destructive` (red) / `--warning` (amber) retained — required for payment/health states; brief has no equivalents.
 - Display type steps (24/32/48px) — derived by doubling the type scale; the brief's scale caps at 4xl=20 and cannot cover marketing heroes.
+
+**Light-mode contrast measurements (computed, 2026-11-07):** body 18.43:1 · muted 6.29:1 · primary text 4.99:1 · primary button 4.99:1 · table body 18.43:1 · table head 6.29:1 · public eyebrow/logo 4.99:1 — all ≥ 4.5 AA.
 
 ### 2.3 Typography (font tokens verbatim)
 

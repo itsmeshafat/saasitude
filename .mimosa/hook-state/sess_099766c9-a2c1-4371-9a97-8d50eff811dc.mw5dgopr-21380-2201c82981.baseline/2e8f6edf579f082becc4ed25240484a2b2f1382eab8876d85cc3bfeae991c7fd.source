@@ -1,7 +1,0 @@
-<?php $__env->startSection('footer'); ?>
-    <?php if(!empty($footer)): ?>
-        <p style="margin: 16px 0 0 0; font-size: 13px; line-height: 20px; color: #9ca3af;"><?php echo e($footer); ?></p>
-    <?php endif; ?>
-<?php $__env->stopSection(); ?>
-
-<?php echo $__env->make('emails.layouts.base', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH C:\laragon\www\saas\resources\views\emails\transactional.blade.php ENDPATH**/ ?>

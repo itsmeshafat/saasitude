@@ -73,8 +73,8 @@
         --card-foreground: {{ $cssVal('--card-foreground', '#0a1616', $lightOverrides) }};
         --popover: {{ $cssVal('--popover', 'rgba(255, 255, 255, 0.92)', $lightOverrides) }};
         --popover-foreground: {{ $cssVal('--popover-foreground', '#0a1616', $lightOverrides) }};
-        --primary: {{ $cssVal('--primary', '#c6fb4b', $lightOverrides) }}; /* surface.strong */
-        --primary-foreground: {{ $cssVal('--primary-foreground', '#0a1616', $lightOverrides) }};
+        --primary: {{ $cssVal('--primary', '#4d7c0f', $lightOverrides) }}; /* DERIVED dark-lime (AA 4.7:1 on white); brief lime kept for dark */
+        --primary-foreground: {{ $cssVal('--primary-foreground', '#ffffff', $lightOverrides) }};
         --secondary: {{ $cssVal('--secondary', 'rgba(8, 38, 21, 0.06)', $lightOverrides) }};
         --secondary-foreground: {{ $cssVal('--secondary-foreground', '#0a1616', $lightOverrides) }};
         --muted: {{ $cssVal('--muted', 'rgba(8, 38, 21, 0.05)', $lightOverrides) }};
@@ -85,7 +85,7 @@
         --destructive-foreground: {{ $cssVal('--destructive-foreground', '#ffffff', $lightOverrides) }};
         --border: {{ $cssVal('--border', '#e5e7eb', $lightOverrides) }}; /* border.default */
         --input: {{ $cssVal('--input', '#e5e7eb', $lightOverrides) }};
-        --ring: {{ $cssVal('--ring', 'rgba(59, 130, 246, 0.5)', $lightOverrides) }}; /* shadow.3 */
+        --ring: {{ $cssVal('--ring', '#2563eb', $lightOverrides) }}; /* DERIVED solid (50% alpha invisible on white) */
 
         /* Glass system — light: white frost over lime-tinted mesh */
         --glass: rgba(255, 255, 255, 0.6);
@@ -99,7 +99,7 @@
             radial-gradient(680px 540px at 42% 108%, rgba(45, 90, 63, 0.10), transparent 60%);
 
         /* Chart colors — from the palette */
-        --chart-1: #c6fb4b;
+        --chart-1: #4d7c0f; /* DERIVED: lime stroke unreadable on white */
         --chart-2: #0a1616;
         --chart-3: #52645c;
         --chart-4: #2d5a3f;
@@ -116,11 +116,11 @@
         --sidebar-ring: rgba(59, 130, 246, 0.5);
 
         /* Extended semantic (brief-silent extensions, logged) */
-        --success: {{ $cssVal('--success', '#c6fb4b', $lightOverrides) }};
-        --success-foreground: {{ $cssVal('--success-foreground', '#0a1616', $lightOverrides) }};
+        --success: {{ $cssVal('--success', '#4d7c0f', $lightOverrides) }}; /* DERIVED dark-lime for AA */
+        --success-foreground: {{ $cssVal('--success-foreground', '#ffffff', $lightOverrides) }};
         --warning: {{ $cssVal('--warning', '#b45309', $lightOverrides) }};
         --warning-foreground: {{ $cssVal('--warning-foreground', '#ffffff', $lightOverrides) }};
-        --info: {{ $cssVal('--info', '#3b82f6', $lightOverrides) }};
+        --info: {{ $cssVal('--info', '#2563eb', $lightOverrides) }}; /* DERIVED: #3b82f6 is 3.68:1 on white — below AA */
         --info-foreground: {{ $cssVal('--info-foreground', '#ffffff', $lightOverrides) }};
         --danger: {{ $cssVal('--danger', '#dc2626', $lightOverrides) }};
 
