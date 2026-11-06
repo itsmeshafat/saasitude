@@ -1,0 +1,205 @@
+{
+  "schema_version": "mimosa-task-review/v2",
+  "run_id": "20261106T211354351Z-39176-1c8271ed6259",
+  "run_status": "inconclusive",
+  "errors": [
+    {
+      "stage": "baseline-read",
+      "target": "storage/framework/views/378c4855ab36498435d4554d7938a60b.php",
+      "reason": "baseline_snapshot_unreadable: file is missing from task baseline"
+    },
+    {
+      "stage": "baseline-read",
+      "target": "storage/framework/views/945a24c213beeb079c01c0967fcf90c6.php",
+      "reason": "baseline_snapshot_unreadable: file is missing from task baseline"
+    }
+  ],
+  "coverage": {
+    "schema_version": "mimosa-hook-coverage/v1",
+    "status": "partial",
+    "scope": "hook_observed_diff",
+    "baseline": {
+      "complete": true,
+      "captured_files": 509,
+      "candidate_limit": 5000,
+      "truncated": false,
+      "enumeration_error_count": 0,
+      "snapshot_error_count": 0,
+      "compensated_target_count": 2
+    },
+    "change_tracking": {
+      "touched_observed": 1,
+      "touched_retained": 1,
+      "truncated": false,
+      "bash_mutation": true,
+      "bash_discovered": 3,
+      "bash_discovery_limit": 80,
+      "bash_discovery_truncated": false
+    },
+    "candidates": {
+      "eligible_files": 4,
+      "selected_files": 4,
+      "limit": 20,
+      "truncated": false
+    },
+    "scanning": {
+      "required_files": 4,
+      "scanned_files": 4,
+      "skipped_files": 0,
+      "failed_files": 0,
+      "project_checks_required": 0,
+      "project_checks_completed": 0
+    },
+    "notification": {
+      "eligible_findings": 0,
+      "detailed_findings": 0,
+      "detail_limit": 3,
+      "truncated": false
+    },
+    "reason_counts": {
+      "baseline_snapshot_unreadable": 2,
+      "project_check_failed": 2
+    },
+    "reasons": [
+      {
+        "code": "baseline_snapshot_unreadable",
+        "stage": "baseline-read",
+        "target": "storage/framework/views/378c4855ab36498435d4554d7938a60b.php",
+        "detail": "file is missing from task baseline",
+        "affects_completion": true
+      },
+      {
+        "code": "baseline_snapshot_unreadable",
+        "stage": "baseline-read",
+        "target": "storage/framework/views/945a24c213beeb079c01c0967fcf90c6.php",
+        "detail": "file is missing from task baseline",
+        "affects_completion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "baseline-read",
+        "target": "storage/framework/views/378c4855ab36498435d4554d7938a60b.php",
+        "detail": "baseline_snapshot_unreadable: file is missing from task baseline",
+        "affects_completion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "baseline-read",
+        "target": "storage/framework/views/945a24c213beeb079c01c0967fcf90c6.php",
+        "detail": "baseline_snapshot_unreadable: file is missing from task baseline",
+        "affects_completion": true
+      }
+    ],
+    "reasons_truncated": false
+  },
+  "generated_at": "2026-11-06T21:13:54.351Z",
+  "session_id": "sess_099766c9-a2c1-4371-9a97-8d50eff811dc",
+  "target": ".",
+  "revision": "a1b518160affd4a0ab79ab422e59c83512236ed9",
+  "rules_version": "unavailable",
+  "diff_hash": "198b57e52388e52ae4f92c6b7b142d93988b69b3f5c77c85acba3fb3d0cb97f1",
+  "diff": {
+    "algorithm": "sha256",
+    "changed_file_count": 4,
+    "changed_files": [
+      {
+        "file": "resources/views/vendor/tyro-dashboard/settings/system.blade.php",
+        "ranges": [
+          {
+            "start": 111,
+            "end": 114
+          }
+        ],
+        "before_hash": "3071cbd94483de09c73331dda1c4a9d6cead86eaf58acf119e07f2c3b26b20b0",
+        "after_hash": "7e97d154f773e99a88ed04a1e9693431da4f845ca9b16128fbfbde6202318ff5"
+      },
+      {
+        "file": "storage/framework/views/378c4855ab36498435d4554d7938a60b.php",
+        "ranges": [
+          {
+            "start": 1,
+            "end": 453
+          }
+        ],
+        "before_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "after_hash": "48a84fc9ed64bcd4d4d7f06bb25d9bca798f3cf283a14a90dcf6d123bb77d2cc"
+      },
+      {
+        "file": "storage/framework/views/73cb7aba6393b29c2f2a74a56cbeb511.php",
+        "ranges": [
+          {
+            "start": 110,
+            "end": 112
+          },
+          {
+            "start": 133,
+            "end": 133
+          }
+        ],
+        "before_hash": "5570f228c1d991b7c444b13dec423912527114e293462fa81fef329673b7bce7",
+        "after_hash": "e6199c7d815e77c3c7d9e6663a068a5db4216ed5a218625a465119b752e3ea73"
+      },
+      {
+        "file": "storage/framework/views/945a24c213beeb079c01c0967fcf90c6.php",
+        "ranges": [
+          {
+            "start": 1,
+            "end": 133
+          }
+        ],
+        "before_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "after_hash": "0cedc614a8155fa0cfd6fe3b351f7d08a4cb4a1b014043d8d0343e9beff00d48"
+      }
+    ]
+  },
+  "timing": {
+    "started_at": "2026-11-06T21:13:51.579Z",
+    "completed_at": "2026-11-06T21:13:54.351Z",
+    "duration_ms": 2772,
+    "measurement": "hook_wall_clock"
+  },
+  "tokens": {
+    "input": 0,
+    "output": 0,
+    "total": 0,
+    "model_calls": 0,
+    "measurement": "known-zero"
+  },
+  "telemetry": {
+    "schemaVersion": "mimosa-gate-telemetry/v1",
+    "profile": "gate",
+    "operation": "Stop",
+    "outcome": "partial/INCONCLUSIVE",
+    "latencyMs": 2772,
+    "peakMemoryBytes": 146763776,
+    "memoryMeasurement": "max-observed-process-rss",
+    "scannedFiles": 4,
+    "cache": {
+      "hits": 0,
+      "misses": 0,
+      "measurement": "not-applicable"
+    },
+    "denyCount": 0,
+    "tokens": {
+      "input": 0,
+      "output": 0,
+      "total": 0,
+      "modelCalls": 0,
+      "measurement": "known-zero"
+    }
+  },
+  "finding_count": 0,
+  "rewake_finding_count": 0,
+  "evidence_boundary": {
+    "scan": "candidate",
+    "static_fix_verification": "observed_static_only",
+    "runtime_verification": "not_performed"
+  },
+  "finding_events": [],
+  "findings": [],
+  "artifacts": {
+    "immutable_report": ".mimosa/reports/task-review-sess_099766c9-a2c1-4371-9a97-8d50eff811dc-20261106T211354351Z-39176-1c8271ed6259.json",
+    "latest_report": ".mimosa/reports/task-review-sess_099766c9-a2c1-4371-9a97-8d50eff811dc.json",
+    "history_summary": ".mimosa/history/run-20261106T211354351Z-39176-1c8271ed6259.json"
+  }
+}

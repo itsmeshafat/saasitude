@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\V1\BillingApiController;
+use App\Http\Controllers\Api\V1\DataRightsApiController;
 use App\Http\Controllers\Api\V1\DeviceController;
 use App\Http\Controllers\Api\V1\MeController;
 use App\Http\Controllers\Api\V1\NotificationApiController;
@@ -50,6 +51,12 @@ Route::prefix('v1')
         Route::patch('notifications/{id}/read', [NotificationApiController::class, 'markRead'])->middleware('abilities:write');
         Route::get('notifications/preferences', [NotificationApiController::class, 'preferences'])->middleware('abilities:read');
         Route::patch('notifications/preferences', [NotificationApiController::class, 'updatePreferences'])->middleware('abilities:write');
+
+        // Data rights ( P1: export + account deletion )
+        Route::post('me/export', [DataRightsApiController::class, 'export'])
+            ->middleware(['abilities:write', 'idempotency']);
+        Route::delete('me', [DataRightsApiController::class, 'destroy'])
+            ->middleware('abilities:write');
 
         // Workspaces ( own list/create — no workspace context needed )
         Route::get('workspaces', [WorkspaceApiController::class, 'index'])->middleware('abilities:read');

@@ -1,18 +1,16 @@
-@extends('tyro-dashboard::layouts.admin')
+<?php $__env->startSection('title', 'System Settings'); ?>
 
-@section('title', 'System Settings')
-
-@section('breadcrumb')
-<a href="{{ route($dashboardRoute::name('index')) }}">Dashboard</a>
+<?php $__env->startSection('breadcrumb'); ?>
+<a href="<?php echo e(route($dashboardRoute::name('index'))); ?>">Dashboard</a>
 <span class="breadcrumb-separator">/</span>
 <span>System Settings</span>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@push('styles')
-    @include('settings.partials._styles')
-@endpush
+<?php $__env->startPush('styles'); ?>
+    <?php echo $__env->make('settings.partials._styles', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+<?php $__env->stopPush(); ?>
 
-@section('content')
+<?php $__env->startSection('content'); ?>
 <div class="page-header">
     <div class="page-header-row">
         <div>
@@ -28,12 +26,12 @@
     </div>
 </div>
 
-<form id="systemSettingsForm" method="POST" action="{{ route($dashboardRoute::name('settings.system.update')) }}">
-    @csrf
+<form id="systemSettingsForm" method="POST" action="<?php echo e(route($dashboardRoute::name('settings.system.update'))); ?>">
+    <?php echo csrf_field(); ?>
 
     <div class="vtabs-layout">
         <nav class="vtabs-sidebar">
-            @php
+            <?php
                 $settingsNav = [
                     'General' => [
                         ['general', 'General', 'M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6'],
@@ -62,25 +60,26 @@
                         ['billing', 'Billing & gateways', 'M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z'],
                     ],
                 ];
-            @endphp
-            @foreach($settingsNav as $groupLabel => $groupItems)
+            ?>
+            <?php $__currentLoopData = $settingsNav; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $groupLabel => $groupItems): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <div class="vtabs-group" data-vtab-group>
-                    <div class="vtabs-group-label">{{ $groupLabel }}</div>
-                    @if($groupLabel === 'Billing' && config('tyro-dashboard.features.smtp_settings', true))
-                        {{-- SMTP lives on its own package page — link out, styled as a vtab --}}
-                        <a class="vtabs-item" href="{{ route($dashboardRoute::name('settings.smtp.index')) }}">
+                    <div class="vtabs-group-label"><?php echo e($groupLabel); ?></div>
+                    <?php if($groupLabel === 'Billing' && config('tyro-dashboard.features.smtp_settings', true)): ?>
+                        
+                        <a class="vtabs-item" href="<?php echo e(route($dashboardRoute::name('settings.smtp.index'))); ?>">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
                             SMTP settings ↗
                         </a>
-                    @endif
-                    @foreach($groupItems as [$tabId, $tabLabel, $tabIcon])
-                        <button class="vtabs-item{{ $loop->parent->first && $loop->first ? ' active' : '' }}" data-vtab="{{ $tabId }}" type="button">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" d="{{ $tabIcon }}"/></svg>
-                            {{ $tabLabel }}
+                    <?php endif; ?>
+                    <?php $__currentLoopData = $groupItems; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as [$tabId, $tabLabel, $tabIcon]): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <button class="vtabs-item<?php echo e($loop->parent->first && $loop->first ? ' active' : ''); ?>" data-vtab="<?php echo e($tabId); ?>" type="button">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" d="<?php echo e($tabIcon); ?>"/></svg>
+                            <?php echo e($tabLabel); ?>
+
                         </button>
-                    @endforeach
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </div>
-            @endforeach
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             <div class="vtabs-save-bar">
                 <button type="submit" form="systemSettingsForm" class="btn btn-primary btn-sm" style="width:100%;">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px;"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
@@ -98,25 +97,24 @@
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18"/><path d="M6 6l12 12"/></svg>
                 </button>
             </div>
-            @include('settings.partials._tab-general')
-            @include('settings.partials._tab-features')
-            @include('settings.partials._tab-sidebar-colors')
-            @include('settings.partials._tab-admin-bar-colors')
-            @include('settings.partials._tab-dashboard-colors')
-            @include('settings.partials._tab-auth-signin')
-            @include('settings.partials._tab-auth-verification')
-            @include('settings.partials._tab-auth-social')
-            @include('settings.partials._tab-passkeys')
-            @include('settings.partials._tab-auth-lockout')
-            @include('settings.partials._tab-auth-pages')
-            @include('settings.partials._tab-auth-emails')
-            @include('settings.partials._tab-access')
-            @include('settings.partials._tab-access-caching')
-            @include('settings.partials._tab-media')
-            {{-- Namespaced include: bare names resolve to the PACKAGE views dir,
-                 where our custom tab doesn't exist. The tyro-dashboard:: namespace
-                 checks published overrides (resources/views/vendor/...) first. --}}
-            @include('tyro-dashboard::settings.partials._tab-billing')
+            <?php echo $__env->make('settings.partials._tab-general', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+            <?php echo $__env->make('settings.partials._tab-features', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+            <?php echo $__env->make('settings.partials._tab-sidebar-colors', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+            <?php echo $__env->make('settings.partials._tab-admin-bar-colors', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+            <?php echo $__env->make('settings.partials._tab-dashboard-colors', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+            <?php echo $__env->make('settings.partials._tab-auth-signin', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+            <?php echo $__env->make('settings.partials._tab-auth-verification', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+            <?php echo $__env->make('settings.partials._tab-auth-social', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+            <?php echo $__env->make('settings.partials._tab-passkeys', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+            <?php echo $__env->make('settings.partials._tab-auth-lockout', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+            
+            <?php echo $__env->make('tyro-dashboard::settings.partials._tab-auth-pages', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+            <?php echo $__env->make('tyro-dashboard::settings.partials._tab-auth-emails', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+            <?php echo $__env->make('settings.partials._tab-access', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+            <?php echo $__env->make('settings.partials._tab-access-caching', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+            <?php echo $__env->make('settings.partials._tab-media', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+            
+            <?php echo $__env->make('tyro-dashboard::settings.partials._tab-billing', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
 
             <div class="search-no-results" id="settingsNoResults">
                 <div class="search-no-results-inner">
@@ -129,10 +127,12 @@
     </div>
 
 </form>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@push('scripts')
-  @once
-    @include('settings.partials._scripts')
-  @endonce
-@endpush
+<?php $__env->startPush('scripts'); ?>
+  <?php if (! $__env->hasRenderedOnce('6ca394b4-fb32-4e23-948c-61a2c3f4ad57')): $__env->markAsRenderedOnce('6ca394b4-fb32-4e23-948c-61a2c3f4ad57'); ?>
+    <?php echo $__env->make('settings.partials._scripts', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+  <?php endif; ?>
+<?php $__env->stopPush(); ?>
+
+<?php echo $__env->make('tyro-dashboard::layouts.admin', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH C:\laragon\www\saas\resources\views\vendor\tyro-dashboard/settings/system.blade.php ENDPATH**/ ?>
