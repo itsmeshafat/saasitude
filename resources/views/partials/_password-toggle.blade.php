@@ -1,0 +1,63 @@
+{{-- Password visibility toggle — progressive enhancement.
+     Wraps every input[type=password] in a relative container and adds an
+     in-field eye button that swaps the input type. Safety properties:
+     - the button NEVER reads, copies or exposes the value (only toggles
+       the type attribute client-side);
+     - no autocomplete/autofill attributes are changed;
+     - spellcheck/autocapitalize disabled on reveal so OS keyboards do not
+       learn or "correct" the revealed text;
+     - opt out per field with data-password-toggle="off". --}}
+<script>
+    (function () {
+        var EYE = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>';
+        var EYE_OFF = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M2.458 12C3.732 7.943 7.523 5 12 5c1.065 0 2.1.166 3.072.477"/><path stroke-linecap="round" stroke-linejoin="round" d="M3 3l18 18"/></svg>';
+
+        function enhance(root) {
+            root.querySelectorAll('input[type="password"]').forEach(function (input) {
+                if (input.closest('.pt-toggle-wrap') || input.dataset.passwordToggle === 'off') {
+                    return;
+                }
+
+                var wrap = document.createElement('div');
+                wrap.className = 'pt-toggle-wrap';
+                input.parentNode.insertBefore(wrap, input);
+                wrap.appendChild(input);
+
+                var btn = document.createElement('button');
+                btn.type = 'button';
+                btn.className = 'pt-toggle-btn';
+                btn.setAttribute('aria-label', 'Show password');
+                btn.setAttribute('aria-pressed', 'false');
+                btn.tabIndex = 0;
+                btn.innerHTML = EYE;
+
+                btn.addEventListener('click', function () {
+                    var showing = input.type === 'text';
+                    input.type = showing ? 'password' : 'text';
+                    // OS keyboards must not learn or "correct" the revealed text.
+                    input.setAttribute('autocapitalize', 'off');
+                    input.setAttribute('spellcheck', 'false');
+                    btn.innerHTML = showing ? EYE : EYE_OFF;
+                    btn.setAttribute('aria-label', showing ? 'Show password' : 'Hide password');
+                    btn.setAttribute('aria-pressed', showing ? 'false' : 'true');
+                    input.focus({ preventScroll: true });
+                });
+
+                wrap.appendChild(btn);
+            });
+        }
+
+        function init() {
+            enhance(document);
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', init);
+        } else {
+            init();
+        }
+
+        // Re-run for dynamically inserted forms (modals, AJAX views).
+        window.initPasswordToggles = function (root) { enhance(root || document); };
+    })();
+</script>

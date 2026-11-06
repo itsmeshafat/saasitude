@@ -1,3 +1,6 @@
+{{-- Password visibility toggle (progressive enhancement, all password fields) --}}
+@include('partials._password-toggle')
+
 <script>
     // Theme management
     function getTheme() {

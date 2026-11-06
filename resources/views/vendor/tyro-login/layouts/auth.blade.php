@@ -11,6 +11,7 @@
 
     <!-- Fonts: Aeonik stack (system-first) per design system -->
     @include('tyro-login::partials.styles')
+    @include('partials._password-toggle')
 
     <style> html.dark { background-color: #000000; } </style>
     <script>

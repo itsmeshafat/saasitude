@@ -1088,6 +1088,48 @@
             transform: rotate(360deg);
         }
     }
+
+    /* ============================================================
+       Password visibility toggle (progressive enhancement)
+       JS wraps each input[type=password] in .pt-toggle-wrap and adds
+       the button. Safety: the button only swaps input type — the value
+       never leaves the field, is never copied or exposed.
+    ============================================================= */
+    .pt-toggle-wrap {
+        position: relative;
+    }
+
+    .pt-toggle-wrap .form-input,
+    .pt-toggle-wrap input[type="password"],
+    .pt-toggle-wrap input[type="text"].pt-toggled {
+        padding-right: 2.75rem;
+    }
+
+    .pt-toggle-btn {
+        position: absolute;
+        right: 0.5rem;
+        top: 50%;
+        transform: translateY(-50%);
+        padding: 0.375rem;
+        border: none;
+        background: transparent;
+        color: var(--muted-foreground);
+        cursor: pointer;
+        border-radius: var(--radius-xs, 2px);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        transition: color var(--duration-instant, 150ms) ease;
+    }
+
+    .pt-toggle-btn:hover {
+        color: var(--foreground);
+    }
+
+    .pt-toggle-btn svg {
+        width: 18px;
+        height: 18px;
+    }
 </style>
 
     /* Native select popup items — theme-aware */
