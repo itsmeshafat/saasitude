@@ -48,7 +48,7 @@ class SSLCommerzGateway implements PaymentGateway
     {
         $tranId = 'ssl_'.Str::random(16);
 
-        $owner = $workspace->users()->first();
+        $owner = $workspace->owner;
         $nameParts = explode(' ', $owner?->name ?? 'Customer', 2);
 
         $params = [
