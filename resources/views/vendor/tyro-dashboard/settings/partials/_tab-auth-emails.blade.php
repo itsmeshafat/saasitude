@@ -96,6 +96,11 @@
                             </div>
 
                             <div class="sys-settings-surface">
+                                <div class="form-group">
+                                    <label for="TYRO_LOGIN_MAGIC_LINK_EXPIRE" class="form-label">Magic link expiry <span class="env-key">TYRO_LOGIN_MAGIC_LINK_EXPIRE</span></label>
+                                    <input type="number" name="TYRO_LOGIN_MAGIC_LINK_EXPIRE" id="TYRO_LOGIN_MAGIC_LINK_EXPIRE" class="form-input" min="1" max="60" value="{{ old('TYRO_LOGIN_MAGIC_LINK_EXPIRE', $settings['TYRO_LOGIN_MAGIC_LINK_EXPIRE']) }}">
+                                    <p class="form-hint">Minutes until a magic login link expires (1–60).</p>
+                                </div>
                                 <h4 class="sys-settings-surface-title">Email subjects</h4>
                                 <p class="sys-settings-surface-description">Custom email subject lines for auth emails.</p>
 

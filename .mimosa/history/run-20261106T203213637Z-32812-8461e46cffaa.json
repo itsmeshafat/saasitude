@@ -1,0 +1,81 @@
+{
+  "schemaVersion": "mimosa-finding-history/v1",
+  "runId": "20261106T203213637Z-32812-8461e46cffaa",
+  "runStatus": "inconclusive",
+  "errors": [
+    "candidate-select:storage/framework/views/a7b50f51c3a0fc85114e98c998d5571e.php: candidate_limit_exceeded: 9 changed reviewable file(s) were not scanned because the limit is 20",
+    "baseline-read:storage/framework/views/010babf69cbd357f4885920055dcca1d.php: baseline_snapshot_unreadable: file is missing from task baseline",
+    "baseline-read:storage/framework/views/044eed5c877cb9c2b92909571caccd1e.php: baseline_snapshot_unreadable: file is missing from task baseline",
+    "baseline-read:storage/framework/views/0488f6e3b1b5d752108a64eff0ed73a1.php: baseline_snapshot_unreadable: file is missing from task baseline",
+    "baseline-read:storage/framework/views/063324d9131729d88647be1558075bdc.php: baseline_snapshot_unreadable: file is missing from task baseline",
+    "baseline-read:storage/framework/views/06ef796525ad21ef6659fe401636b9e0.php: baseline_snapshot_unreadable: file is missing from task baseline",
+    "baseline-read:storage/framework/views/12e2d950b8f49e3975a4d2c8bc28b200.php: baseline_snapshot_unreadable: file is missing from task baseline",
+    "baseline-read:storage/framework/views/3198d7638124349f58886a9eba85a089.php: baseline_snapshot_unreadable: file is missing from task baseline",
+    "baseline-read:storage/framework/views/3e85958846c673e0d00c7f57f114dfed.php: baseline_snapshot_unreadable: file is missing from task baseline",
+    "baseline-read:storage/framework/views/3f41a55e87b2322baeae665f0ebf2036.php: baseline_snapshot_unreadable: file is missing from task baseline",
+    "baseline-read:storage/framework/views/52e8e6bb84278a30db7d3210d8397a63.php: baseline_snapshot_unreadable: file is missing from task baseline",
+    "baseline-read:storage/framework/views/60b17607a8e1e0f5f9ab2034e9b99bdd.php: baseline_snapshot_unreadable: file is missing from task baseline",
+    "baseline-read:storage/framework/views/61cde8daa1881b7a09dbb4a8b55edf6a.php: baseline_snapshot_unreadable: file is missing from task baseline",
+    "baseline-read:storage/framework/views/73cb7aba6393b29c2f2a74a56cbeb511.php: baseline_snapshot_unreadable: file is missing from task baseline",
+    "baseline-read:storage/framework/views/74c321a6c07970b241ed04d9e7f09734.php: baseline_snapshot_unreadable: file is missing from task baseline",
+    "baseline-read:storage/framework/views/8a54f5e8efe950236195715294046fdf.php: baseline_snapshot_unreadable: file is missing from task baseline",
+    "baseline-read:storage/framework/views/8f969598616a0ab4a5f176eb88eaaf20.php: baseline_snapshot_unreadable: file is missing from task baseline",
+    "baseline-read:storage/framework/views/90d9e78d597f6c485999dd1c00a45993.php: baseline_snapshot_unreadable: file is missing from task baseline",
+    "baseline-read:storage/framework/views/950364cc3b79dc2004779f0836819165.php: baseline_snapshot_unreadable: file is missing from task baseline",
+    "baseline-read:storage/framework/views/a3479e1d558ca8c868aedd47c5bcf367.php: baseline_snapshot_unreadable: file is missing from task baseline",
+    "baseline-read:storage/framework/views/a5120e81a4d73a33113f3c8912e07bb1.php: baseline_snapshot_unreadable: file is missing from task baseline",
+    "scan:storage/framework/views/010babf69cbd357f4885920055dcca1d.php: scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+    "scan:storage/framework/views/044eed5c877cb9c2b92909571caccd1e.php: scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+    "scan:storage/framework/views/0488f6e3b1b5d752108a64eff0ed73a1.php: scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+    "scan:storage/framework/views/063324d9131729d88647be1558075bdc.php: scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+    "scan:storage/framework/views/06ef796525ad21ef6659fe401636b9e0.php: scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+    "scan:storage/framework/views/12e2d950b8f49e3975a4d2c8bc28b200.php: scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+    "scan:storage/framework/views/3198d7638124349f58886a9eba85a089.php: scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+    "scan:storage/framework/views/3e85958846c673e0d00c7f57f114dfed.php: scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+    "scan:storage/framework/views/3f41a55e87b2322baeae665f0ebf2036.php: scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+    "scan:storage/framework/views/52e8e6bb84278a30db7d3210d8397a63.php: scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+    "scan:storage/framework/views/60b17607a8e1e0f5f9ab2034e9b99bdd.php: scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+    "scan:storage/framework/views/61cde8daa1881b7a09dbb4a8b55edf6a.php: scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+    "scan:storage/framework/views/73cb7aba6393b29c2f2a74a56cbeb511.php: scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+    "scan:storage/framework/views/74c321a6c07970b241ed04d9e7f09734.php: scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+    "scan:storage/framework/views/8a54f5e8efe950236195715294046fdf.php: scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+    "scan:storage/framework/views/8f969598616a0ab4a5f176eb88eaaf20.php: scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+    "scan:storage/framework/views/90d9e78d597f6c485999dd1c00a45993.php: scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+    "scan:storage/framework/views/950364cc3b79dc2004779f0836819165.php: scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+    "scan:storage/framework/views/a3479e1d558ca8c868aedd47c5bcf367.php: scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+    "scan:storage/framework/views/a5120e81a4d73a33113f3c8912e07bb1.php: scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT"
+  ],
+  "target": ".",
+  "revision": "85917342a947dd163b36bdce4cb98757f8e7a1a4",
+  "diffHash": "f2c8daef2d3ee9627600cdf3b7ef6bb06a49a5f0dbfdd5a7f65448338c14b85d",
+  "rulesVersion": "unavailable",
+  "recordedAt": "2026-11-06T20:32:13.637Z",
+  "timing": {
+    "startedAt": "2026-11-06T20:32:10.085Z",
+    "completedAt": "2026-11-06T20:32:13.637Z",
+    "durationMs": 3552
+  },
+  "tokens": {
+    "input": 0,
+    "output": 0,
+    "total": 0,
+    "modelCalls": 0,
+    "measurement": "known-zero"
+  },
+  "findings": {
+    "total": 0,
+    "bySeverity": {},
+    "byStatus": {}
+  },
+  "coverage": {
+    "status": "partial",
+    "reasonCounts": {
+      "candidate_limit_exceeded": 1,
+      "baseline_snapshot_unreadable": 20,
+      "scanner_failed": 20,
+      "project_check_failed": 41
+    }
+  },
+  "evidenceBoundary": "static_only",
+  "immutableReport": ".mimosa/reports/task-review-sess_099766c9-a2c1-4371-9a97-8d50eff811dc-20261106T203213637Z-32812-8461e46cffaa.json"
+}

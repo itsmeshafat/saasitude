@@ -404,6 +404,36 @@
                                 </div>
                             </div>
 
+                            <div class="sys-settings-surface">
+                                <h4 class="sys-settings-surface-title">Email not verified page</h4>
+                                <p class="sys-settings-surface-description">Copy shown on the "email not verified" interstitial.</p>
+                                <div class="form-group">
+                                    <label for="TYRO_LOGIN_EMAIL_NOT_VERIFIED_TITLE" class="form-label">Page title <span class="env-key">TYRO_LOGIN_EMAIL_NOT_VERIFIED_TITLE</span></label>
+                                    <input type="text" name="TYRO_LOGIN_EMAIL_NOT_VERIFIED_TITLE" id="TYRO_LOGIN_EMAIL_NOT_VERIFIED_TITLE" class="form-input" maxlength="255" value="{{ old('TYRO_LOGIN_EMAIL_NOT_VERIFIED_TITLE', $settings['TYRO_LOGIN_EMAIL_NOT_VERIFIED_TITLE']) }}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="TYRO_LOGIN_EMAIL_NOT_VERIFIED_SUBTITLE" class="form-label">Page subtitle <span class="env-key">TYRO_LOGIN_EMAIL_NOT_VERIFIED_SUBTITLE</span></label>
+                                    <input type="text" name="TYRO_LOGIN_EMAIL_NOT_VERIFIED_SUBTITLE" id="TYRO_LOGIN_EMAIL_NOT_VERIFIED_SUBTITLE" class="form-input" maxlength="500" value="{{ old('TYRO_LOGIN_EMAIL_NOT_VERIFIED_SUBTITLE', $settings['TYRO_LOGIN_EMAIL_NOT_VERIFIED_SUBTITLE']) }}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="TYRO_LOGIN_EMAIL_NOT_VERIFIED_BG_TITLE" class="form-label">Background title <span class="env-key">TYRO_LOGIN_EMAIL_NOT_VERIFIED_BG_TITLE</span></label>
+                                    <input type="text" name="TYRO_LOGIN_EMAIL_NOT_VERIFIED_BG_TITLE" id="TYRO_LOGIN_EMAIL_NOT_VERIFIED_BG_TITLE" class="form-input" maxlength="255" value="{{ old('TYRO_LOGIN_EMAIL_NOT_VERIFIED_BG_TITLE', $settings['TYRO_LOGIN_EMAIL_NOT_VERIFIED_BG_TITLE']) }}">
+                                </div>
+                                <div class="form-group" style="margin-bottom:0;">
+                                    <label for="TYRO_LOGIN_EMAIL_NOT_VERIFIED_BG_DESCRIPTION" class="form-label">Background description <span class="env-key">TYRO_LOGIN_EMAIL_NOT_VERIFIED_BG_DESCRIPTION</span></label>
+                                    <input type="text" name="TYRO_LOGIN_EMAIL_NOT_VERIFIED_BG_DESCRIPTION" id="TYRO_LOGIN_EMAIL_NOT_VERIFIED_BG_DESCRIPTION" class="form-input" maxlength="500" value="{{ old('TYRO_LOGIN_EMAIL_NOT_VERIFIED_BG_DESCRIPTION', $settings['TYRO_LOGIN_EMAIL_NOT_VERIFIED_BG_DESCRIPTION']) }}">
+                                </div>
+                            </div>
+
+                            <div class="sys-settings-surface" style="margin-top:1rem;">
+                                <h4 class="sys-settings-surface-title">Reset password page</h4>
+                                <p class="sys-settings-surface-description">Subtitle shown under the reset password heading.</p>
+                                <div class="form-group" style="margin-bottom:0;">
+                                    <label for="TYRO_LOGIN_RESET_PASSWORD_BG_SUBTITLE" class="form-label">Background subtitle <span class="env-key">TYRO_LOGIN_RESET_PASSWORD_BG_SUBTITLE</span></label>
+                                    <input type="text" name="TYRO_LOGIN_RESET_PASSWORD_BG_SUBTITLE" id="TYRO_LOGIN_RESET_PASSWORD_BG_SUBTITLE" class="form-input" maxlength="500" value="{{ old('TYRO_LOGIN_RESET_PASSWORD_BG_SUBTITLE', $settings['TYRO_LOGIN_RESET_PASSWORD_BG_SUBTITLE']) }}">
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 </div>

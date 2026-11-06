@@ -108,8 +108,10 @@
             @include('settings.partials._tab-auth-social')
             @include('settings.partials._tab-passkeys')
             @include('settings.partials._tab-auth-lockout')
-            @include('settings.partials._tab-auth-pages')
-            @include('settings.partials._tab-auth-emails')
+            {{-- Namespaced: bare names resolve to the PACKAGE copies (no
+                 custom fields there). Published overrides win via the namespace. --}}
+            @include('tyro-dashboard::settings.partials._tab-auth-pages')
+            @include('tyro-dashboard::settings.partials._tab-auth-emails')
             @include('settings.partials._tab-access')
             @include('settings.partials._tab-access-caching')
             @include('settings.partials._tab-media')
