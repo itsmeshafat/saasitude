@@ -1,0 +1,39 @@
+{
+  "schemaVersion": "mimosa-finding-ledger-batch/v1",
+  "batchId": "stop-20261106T232406520Z-26124-85a21296ace1",
+  "runId": "20261106T232406520Z-26124-85a21296ace1",
+  "runStatus": "completed",
+  "coverage": {
+    "status": "complete",
+    "reasons": []
+  },
+  "source": {
+    "component": "zcode-hook",
+    "operationId": "Stop"
+  },
+  "revision": "a21fd90cf957ab00f05d55f68d46575279745b7e",
+  "diffHash": "b885955168f89368e6c1abca85db79d1ec81b3713436ebed62ff2cfba4ee1baa",
+  "rulesVersion": "unavailable",
+  "sessionHash": "f3ada869c86656b16895682b030512bfad02103280be676ea79ad71d62f6803b",
+  "reportRef": ".mimosa/reports/task-review-sess_099766c9-a2c1-4371-9a97-8d50eff811dc-20261106T232406520Z-26124-85a21296ace1.json",
+  "events": [],
+  "observedFindingIds": [],
+  "verifiedFiles": [
+    {
+      "file": "app/Support/EmailBrand.php",
+      "direct": "complete",
+      "projectContext": "partial"
+    },
+    {
+      "file": "resources/views/emails/layouts/base.blade.php",
+      "direct": "complete",
+      "projectContext": "partial"
+    },
+    {
+      "file": "storage/framework/views/5083b69eaee186acb3be9ab4bd545f63.php",
+      "direct": "complete",
+      "projectContext": "partial"
+    }
+  ],
+  "recordedAt": "2026-11-06T23:24:07.337Z"
+}

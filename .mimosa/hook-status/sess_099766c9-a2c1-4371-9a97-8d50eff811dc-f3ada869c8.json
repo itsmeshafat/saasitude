@@ -1,14 +1,14 @@
 {
   "schemaVersion": "mimosa-hook-status/v1",
-  "recordedAt": "2026-11-06T23:21:01.002Z",
+  "recordedAt": "2026-11-06T23:26:02.994Z",
   "sessionId": "sess_099766c9-a2c1-4371-9a97-8d50eff811dc",
   "event": "PostToolUse",
-  "toolName": "Write",
-  "file": "resources/views/emails/layouts/base.blade.php",
+  "toolName": "Edit",
+  "file": "resources/views/vendor/tyro-dashboard/partials/styles.blade.php",
   "outcome": "clear",
   "coverage": "complete",
   "findingCount": 0,
-  "durationMs": 26,
+  "durationMs": 25,
   "hostState": "hook_complete",
   "reportHint": ".mimosa/reports/"
 }

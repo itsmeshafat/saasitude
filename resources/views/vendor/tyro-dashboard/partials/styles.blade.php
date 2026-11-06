@@ -9,8 +9,24 @@
 
     :root {
         @php
-            // Cobalt Glass: sidebar branding overrides apply ONLY when the env
-            // vars are explicitly set — otherwise the glass tokens win.
+            $sbLogoShape = config('tyro-dashboard.branding.sidebar_logo_shape', 'circle') === 'rectangle' ? 'rectangle' : 'circle';
+            $sbLogoRadius = trim((string) config('tyro-dashboard.branding.sidebar_logo_border_radius', '0'));
+            if ($sbLogoRadius === '') {
+                $sbLogoRadius = '0';
+            }
+        @endphp
+        --sidebar-logo-radius: {{ $sbLogoShape === 'rectangle' ? $sbLogoRadius : '50%' }};
+        --sidebar-logo-width: {{ $sbLogoShape === 'rectangle' ? 'auto' : '36px' }};
+        --sidebar-logo-fit: {{ $sbLogoShape === 'rectangle' ? 'contain' : 'cover' }};
+    }
+
+    {{-- Sidebar branding env overrides: scoped to DARK only. The Appearance >
+         Sidebar tab saves a single palette; with two themes it must not stomp
+         the per-theme tokens (it painted lime+white over the light theme's
+         #4d7c0f+white, making active items unreadable). Light uses the light
+         tokens from shadcn-theme; dark honors the saved branding. --}}
+    html.dark {
+        @php
             $sbColorBg = env('TYRO_DASHBOARD_SIDEBAR_BG');
             $sbColorText = env('TYRO_DASHBOARD_SIDEBAR_TEXT');
             $sbColorPrimary = env('TYRO_DASHBOARD_SIDEBAR_PRIMARY');
@@ -21,19 +37,10 @@
         @if($sbColorBg)--sidebar: {{ $sbColorBg }} !important;@endif
         @if($sbColorText)--sidebar-foreground: {{ $sbColorText }} !important;@endif
         @if($sbColorPrimary)--sidebar-primary: {{ $sbColorPrimary }} !important;@endif
+        @if($sbColorPrimary)--sidebar-primary-foreground: #0a1616 !important;@endif
         @if($sbColorHeaderBorder)--sidebar-header-border: {{ $sbColorHeaderBorder }} !important;@endif
         @if($sbColorAccent)--sidebar-accent: {{ $sbColorAccent }} !important;@endif
         @if($sbColorAccentFg)--sidebar-accent-foreground: {{ $sbColorAccentFg }} !important;@endif
-        @php
-            $sbLogoShape = config('tyro-dashboard.branding.sidebar_logo_shape', 'circle') === 'rectangle' ? 'rectangle' : 'circle';
-            $sbLogoRadius = trim((string) config('tyro-dashboard.branding.sidebar_logo_border_radius', '0'));
-            if ($sbLogoRadius === '') {
-                $sbLogoRadius = '0';
-            }
-        @endphp
-        --sidebar-logo-radius: {{ $sbLogoShape === 'rectangle' ? $sbLogoRadius : '50%' }};
-        --sidebar-logo-width: {{ $sbLogoShape === 'rectangle' ? 'auto' : '36px' }};
-        --sidebar-logo-fit: {{ $sbLogoShape === 'rectangle' ? 'contain' : 'cover' }};
     }
 
     {{-- The universal margin/padding reset lives in Tailwind's base layer (preflight).
