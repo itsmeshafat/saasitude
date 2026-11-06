@@ -1,112 +1,121 @@
 <style>
-    /* ============================================
-       SHADCN UI THEME VARIABLES
-       Customize these variables to match your brand
-       Compatible with shadcn/ui theming
-    ============================================ */
-    
-    :root {
-        /* Base radius for components */
-        --radius: 0.625rem;
-        
-        /* Light mode colors */
-        --background: oklch(1 0 0);
-        --foreground: oklch(0.145 0 0);
-        --card: oklch(1 0 0);
-        --card-foreground: oklch(0.145 0 0);
-        --popover: oklch(1 0 0);
-        --popover-foreground: oklch(0.145 0 0);
-        --primary: oklch(0.205 0 0);
-        --primary-foreground: oklch(0.985 0 0);
-        --secondary: oklch(0.97 0 0);
-        --secondary-foreground: oklch(0.205 0 0);
-        --muted: oklch(0.97 0 0);
-        --muted-foreground: oklch(0.556 0 0);
-        --accent: oklch(0.97 0 0);
-        --accent-foreground: oklch(0.205 0 0);
-        --destructive: oklch(0.577 0.245 27.325);
-        --border: oklch(0.922 0 0);
-        --input: oklch(0.922 0 0);
-        --ring: oklch(0.708 0 0);
-        
-        /* Chart colors */
-        --chart-1: oklch(0.646 0.222 41.116);
-        --chart-2: oklch(0.6 0.118 184.704);
-        --chart-3: oklch(0.398 0.07 227.392);
-        --chart-4: oklch(0.828 0.189 84.429);
-        --chart-5: oklch(0.769 0.188 70.08);
-        
-        /* Sidebar colors */
-        --sidebar: oklch(0.985 0 0);
-        --sidebar-foreground: oklch(0.145 0 0);
-        --sidebar-primary: oklch(0.205 0 0);
-        --sidebar-primary-foreground: oklch(0.985 0 0);
-        --sidebar-accent: oklch(0.97 0 0);
-        --sidebar-accent-foreground: oklch(0.205 0 0);
-        --sidebar-border: oklch(0.922 0 0);
-        --sidebar-ring: oklch(0.708 0 0);
+    /* ============================================================
+       DESIGN SYSTEM — "HOSTING GROWTH" (adopted 2026-11-06)
+       Auth-pages token layer. Mirrors the dashboard shadcn-theme.
+       Dark = DEFAULT theme (brief values verbatim). Light = derived
+       (deviations logged in design-system/saas-boilerplate/MASTER.md).
+       Components MUST consume tokens — never raw hex.
+    ============================================================= */
 
-        /* Extended semantic colors */
-        --success: oklch(0.627 0.194 149.214);
-        --success-foreground: oklch(1 0 0);
-        --warning: oklch(0.769 0.188 70.08);
-        --warning-foreground: oklch(0.205 0 0);
-        --info: oklch(0.623 0.214 259.815);
-        --info-foreground: oklch(1 0 0);
-        
-        /* Card shadows */
-        --card-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-        --card-shadow-hover: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    :root {
+        /* Radius scale */
+        --radius-xs: 2px;
+        --radius-sm: 8px;
+        --radius: 12px;
+        --radius-lg: 16px;
+        --radius-xl: 9999px;
+
+        /* Ring shadows + motion */
+        --shadow-1: 0 0 0 1px rgba(10, 22, 22, 0.08);
+        --shadow-3: 0 0 0 0px rgba(59, 130, 246, 0.5);
+        --duration-instant: 150ms;
+        --duration-fast: 200ms;
+        --duration-normal: 300ms;
+
+        /* Light mode — DERIVED from the Hosting Growth hues */
+        --background: #ffffff;
+        --foreground: #0a1616;
+        --card: rgba(255, 255, 255, 0.6);
+        --card-foreground: #0a1616;
+        --popover: rgba(255, 255, 255, 0.92);
+        --popover-foreground: #0a1616;
+        --primary: #4d7c0f; /* DERIVED dark-lime: brief lime is 1.22:1 on white */
+        --primary-foreground: #ffffff;
+        --secondary: rgba(8, 38, 21, 0.06);
+        --secondary-foreground: #0a1616;
+        --muted: rgba(8, 38, 21, 0.05);
+        --muted-foreground: #52645c; /* DERIVED: brief #9ba5a1 fails AA on white */
+        --accent: rgba(198, 251, 75, 0.16);
+        --accent-foreground: #0a1616;
+        --destructive: #dc2626;
+        --border: #e5e7eb;
+        --input: #e5e7eb;
+        --ring: #2563eb; /* DERIVED solid: 50%-alpha ring invisible on white */
+
+        --chart-1: #4d7c0f;
+        --chart-2: #0a1616;
+        --chart-3: #52645c;
+        --chart-4: #2d5a3f;
+        --chart-5: #3b82f6;
+
+        --success: #4d7c0f;
+        --success-foreground: #ffffff;
+        --warning: #b45309;
+        --warning-foreground: #ffffff;
+        --info: #2563eb;
+        --info-foreground: #ffffff;
+
+        --card-shadow: 0 0 0 1px rgba(10, 22, 22, 0.08), var(--glass-highlight);
+        --card-shadow-hover: 0 0 0 1px rgba(10, 22, 22, 0.14), var(--glass-highlight);
+
+        /* Glass system — light: white frost over lime-tinted mesh */
+        --glass: rgba(255, 255, 255, 0.6);
+        --glass-strong: rgba(255, 255, 255, 0.78);
+        --glass-border: rgba(229, 231, 235, 0.9);
+        --glass-blur: blur(18px) saturate(1.4);
+        --glass-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.7);
+        --mesh:
+            radial-gradient(600px 420px at 12% -6%, rgba(198, 251, 75, 0.16), transparent 65%),
+            radial-gradient(760px 520px at 96% 12%, rgba(8, 38, 21, 0.07), transparent 62%),
+            radial-gradient(680px 540px at 42% 108%, rgba(45, 90, 63, 0.10), transparent 60%);
     }
 
-    /* Dark mode colors */
+    /* Dark mode — DEFAULT THEME, brief values verbatim */
     .dark {
-        --background: oklch(0.145 0 0);
-        --foreground: oklch(0.985 0 0);
-        --card: oklch(0.205 0 0);
-        --card-foreground: oklch(0.985 0 0);
-        --popover: oklch(0.205 0 0);
-        --popover-foreground: oklch(0.985 0 0);
-        --primary: oklch(0.922 0 0);
-        --primary-foreground: oklch(0.205 0 0);
-        --secondary: oklch(0.269 0 0);
-        --secondary-foreground: oklch(0.985 0 0);
-        --muted: oklch(0.269 0 0);
-        --muted-foreground: oklch(0.708 0 0);
-        --accent: oklch(0.269 0 0);
-        --accent-foreground: oklch(0.985 0 0);
-        --destructive: oklch(0.704 0.191 22.216);
-        --border: oklch(1 0 0 / 10%);
-        --input: oklch(1 0 0 / 15%);
-        --ring: oklch(0.556 0 0);
-        
-        /* Chart colors (dark mode) */
-        --chart-1: oklch(0.488 0.243 264.376);
-        --chart-2: oklch(0.696 0.17 162.48);
-        --chart-3: oklch(0.769 0.188 70.08);
-        --chart-4: oklch(0.627 0.265 303.9);
-        --chart-5: oklch(0.645 0.246 16.439);
-        
-        /* Sidebar colors (dark mode) */
-        --sidebar: oklch(0.205 0 0);
-        --sidebar-foreground: oklch(0.985 0 0);
-        --sidebar-primary: oklch(0.488 0.243 264.376);
-        --sidebar-primary-foreground: oklch(0.985 0 0);
-        --sidebar-accent: oklch(0.269 0 0);
-        --sidebar-accent-foreground: oklch(0.985 0 0);
-        --sidebar-border: oklch(1 0 0 / 10%);
-        --sidebar-ring: oklch(0.556 0 0);
+        --background: #000000; /* surface.base */
+        --foreground: #ffffff; /* text.tertiary */
+        --card: rgba(8, 38, 21, 0.55); /* surface.muted */
+        --card-foreground: #ffffff;
+        --popover: rgba(8, 38, 21, 0.92);
+        --popover-foreground: #ffffff;
+        --primary: #c6fb4b; /* surface.strong */
+        --primary-foreground: #0a1616; /* dark text on lime (AA ≈13:1) */
+        --secondary: rgba(8, 38, 21, 0.6);
+        --secondary-foreground: #ffffff;
+        --muted: rgba(8, 38, 21, 0.5);
+        --muted-foreground: #9ba5a1; /* text.inverse (≈7:1 on black) */
+        --accent: rgba(198, 251, 75, 0.1);
+        --accent-foreground: #ffffff;
+        --destructive: #f87171;
+        --border: rgba(229, 231, 235, 0.15); /* border.default @15% */
+        --input: rgba(229, 231, 235, 0.18);
+        --ring: rgba(59, 130, 246, 0.5); /* shadow.3 */
 
-        /* Extended semantic colors (dark mode) */
-        --success: oklch(0.696 0.17 162.48);
-        --success-foreground: oklch(0.145 0 0);
-        --warning: oklch(0.769 0.188 70.08);
-        --warning-foreground: oklch(0.145 0 0);
-        --info: oklch(0.488 0.243 264.376);
-        --info-foreground: oklch(0.985 0 0);
-        
-        /* Card shadows (dark mode) */
-        --card-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.2);
-        --card-shadow-hover: 0 4px 6px -1px rgb(0 0 0 / 0.3), 0 2px 4px -2px rgb(0 0 0 / 0.2);
+        --chart-1: #c6fb4b;
+        --chart-2: #ffffff;
+        --chart-3: #9ba5a1;
+        --chart-4: #2d5a3f;
+        --chart-5: #3b82f6;
+
+        --success: #c6fb4b;
+        --success-foreground: #0a1616;
+        --warning: #fbbf24;
+        --warning-foreground: #0a1616;
+        --info: #3b82f6;
+        --info-foreground: #ffffff;
+
+        --card-shadow: 0 0 0 1px rgba(8, 38, 21, 0.9), var(--glass-highlight);
+        --card-shadow-hover: 0 0 0 1px rgba(229, 231, 235, 0.25), var(--glass-highlight);
+
+        /* Glass system — dark: green frost over lime-tinted mesh on black */
+        --glass: rgba(8, 38, 21, 0.55);
+        --glass-strong: rgba(8, 38, 21, 0.78);
+        --glass-border: rgba(229, 231, 235, 0.2);
+        --glass-blur: blur(18px) saturate(1.3);
+        --glass-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+        --mesh:
+            radial-gradient(600px 420px at 12% -6%, rgba(198, 251, 75, 0.1), transparent 65%),
+            radial-gradient(760px 520px at 96% 12%, rgba(8, 38, 21, 0.55), transparent 62%),
+            radial-gradient(680px 540px at 42% 108%, rgba(45, 90, 63, 0.35), transparent 60%);
     }
 </style>

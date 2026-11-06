@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="light">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="dark">
 
 <head>
     <meta charset="utf-8">
@@ -9,11 +9,18 @@
 
     <title>{{ $branding['app_name'] ?? config('app.name', 'Laravel') }}</title>
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=inter:400,500,600,700&display=swap" rel="stylesheet" />
-
+    <!-- Fonts: Aeonik stack (system-first) per design system -->
     @include('tyro-login::partials.styles')
+
+    <script>
+        // Theme before first paint: saved preference, else dark (design-system default).
+        (function () {
+            var saved = localStorage.getItem('tyro-login-theme');
+            var dark = saved ? saved === 'dark' : true;
+            document.documentElement.classList.toggle('dark', dark);
+            document.documentElement.classList.toggle('light', !dark);
+        })();
+    </script>
 </head>
 
 <body>
@@ -35,7 +42,7 @@
             if (localStorage.getItem('tyro-login-theme')) {
                 return localStorage.getItem('tyro-login-theme');
             }
-            return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            return 'dark';
         }
 
         function setTheme(theme) {

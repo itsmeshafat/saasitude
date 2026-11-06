@@ -1,0 +1,13 @@
+
+<?php if($layout === 'youtube-video'): ?>
+    <?php echo $__env->make('tyro-login::partials.youtube-video', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+<?php elseif($layout === 'animated-birds'): ?>
+    <?php echo $__env->make('tyro-login::partials.animated-birds', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+<?php elseif($layout === 'aurora-waves'): ?>
+    <?php echo $__env->make('tyro-login::partials.aurora-waves', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+<?php elseif($layout === 'particle-network'): ?>
+    <?php echo $__env->make('tyro-login::partials.particle-network', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+<?php elseif($layout === 'tidal'): ?>
+    <?php echo $__env->make('tyro-login::partials.tidal', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+<?php endif; ?>
+<?php /**PATH C:\laragon\www\saas\resources\views\vendor\tyro-login/partials/backgrounds.blade.php ENDPATH**/ ?>
