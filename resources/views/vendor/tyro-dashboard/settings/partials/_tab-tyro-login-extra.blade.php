@@ -13,6 +13,7 @@
             <p class="sys-settings-section-description" style="margin-bottom:1.25rem;">
                 Settings the package's System Settings form does not cover.
                 Saved via the app's own endpoint; requires the <code>settings.manage</code> privilege.
+                Saved values are written to <code>.env</code> — a config refresh applies them everywhere.
                 Route prefix and user-model bindings are deploy-time settings and are intentionally excluded.
             </p>
 
