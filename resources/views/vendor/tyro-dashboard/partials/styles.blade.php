@@ -667,7 +667,9 @@
         position: absolute;
         top: calc(100% + 4px);
         right: 0;
-        background: var(--background);
+        background: var(--glass-strong);
+        backdrop-filter: var(--glass-blur);
+        -webkit-backdrop-filter: var(--glass-blur);
         border: 1px solid var(--border);
         border-radius: 8px;
         box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
@@ -894,8 +896,10 @@
     }
 
     .stat-card {
-        background: var(--background);
-        border: 1px solid var(--border);
+        background: var(--glass);
+        backdrop-filter: var(--glass-blur);
+        -webkit-backdrop-filter: var(--glass-blur);
+        border: 1px solid var(--glass-border);
         border-radius: 10px;
         padding: 1.5rem;
         transition: all var(--duration-instant, 150ms) ease;
@@ -1132,7 +1136,7 @@
     }
 
     .btn-outline-btn {
-        background-color: var(--background);
+        background-color: transparent;
         border: 1px solid var(--input);
         color: var(--foreground);
     }
@@ -1671,18 +1675,19 @@
         width: 20px;
         left: 2px;
         bottom: 2px;
-        background-color: white;
+        background-color: var(--popover, #fff);
         transition: 0.2s;
         border-radius: 50%;
         box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.1);
     }
 
     .toggle-input:checked + .toggle-slider {
-        background-color: var(--foreground);
+        background-color: var(--primary);
     }
 
     .toggle-input:checked + .toggle-slider:before {
         transform: translateX(20px);
+        background-color: var(--primary-foreground);
     }
 
     .toggle-input:checked + .toggle-slider.toggle-slider-primary { background-color: var(--primary); }
@@ -1872,7 +1877,7 @@
 
     .pagination a {
         color: var(--muted-foreground);
-        background-color: var(--background);
+        background-color: var(--glass);
         border: 1px solid var(--border);
     }
 
@@ -2041,7 +2046,9 @@
     }
 
     .modal {
-        background: var(--background);
+        background: var(--glass-strong);
+        backdrop-filter: var(--glass-blur);
+        -webkit-backdrop-filter: var(--glass-blur);
         border-radius: 12px;
         box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
         max-width: 500px;
@@ -3009,8 +3016,10 @@
         align-items: flex-start;
         gap: 0.75rem;
         padding: 1rem;
-        background: #1e1e2e;
-        border: 1px solid #2d2d3f;
+        background: var(--popover);
+        border: 1px solid var(--border);
+        backdrop-filter: var(--glass-blur);
+        -webkit-backdrop-filter: var(--glass-blur);
         border-radius: 10px;
         box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3), 0 4px 6px -4px rgb(0 0 0 / 0.2), 0 0 0 1px rgb(0 0 0 / 0.1);
         max-width: 400px;
@@ -3132,7 +3141,7 @@
     }
 
     .toast-close:hover {
-        background-color: #2d2d3f;
+        background-color: var(--muted);
         color: #ffffff;
     }
 

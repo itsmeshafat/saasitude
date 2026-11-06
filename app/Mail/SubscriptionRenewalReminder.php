@@ -9,26 +9,31 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class SubscriptionRenewalReminder extends Mailable
+class SubscriptionRenewalReminder extends TransactionalMail
 {
-    use Queueable, SerializesModels;
-
     public function __construct(
         public readonly Subscription $subscription,
         public readonly int $daysUntilRenewal,
-    ) {}
+    ) {
+        parent::__construct(
+            subjectLine: "Your subscription renews in {$daysUntilRenewal} day(s)",
+            title: 'Subscription renewing soon',
+            lines: [
+                'Your <strong>'.$subscription->plan->name.'</strong> subscription for <strong>'.$subscription->workspace->name.'</strong> renews in <strong>'.$daysUntilRenewal.' day(s)</strong> on '.$subscription->current_period_end?->format('F j, Y').'.',
+                'To keep your service running, please make sure your payment method is up to date.',
+            ],
+            actionUrl: config('app.url').'/dashboard/billing',
+            actionLabel: 'Review billing',
+        );
+    }
 
     public function envelope(): Envelope
     {
-        return new Envelope(
-            subject: "Your subscription renews in {$this->daysUntilRenewal} day(s)",
-        );
+        return new Envelope(subject: $this->subjectLine);
     }
 
     public function content(): Content
     {
-        return new Content(
-            view: 'emails.billing.renewal-reminder',
-        );
+        return new Content(view: 'emails.transactional');
     }
 }

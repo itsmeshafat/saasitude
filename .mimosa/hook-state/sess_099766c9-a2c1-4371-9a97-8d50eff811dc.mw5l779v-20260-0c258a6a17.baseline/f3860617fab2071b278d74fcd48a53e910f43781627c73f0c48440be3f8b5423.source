@@ -101,6 +101,22 @@ class AdminConsoleTest extends TestCase
             ->assertSee($workspace->name);
     }
 
+    public function test_workspace_detail_renders_without_subscription(): void
+    {
+        // Regression: property access on activeSubscription() returning null
+        // threw LogicException for subscription-less workspaces.
+        $admin = $this->makeAdmin();
+        $user = User::factory()->create();
+        $workspace = Workspace::create([
+            'owner_id' => $user->id, 'name' => 'Bare', 'slug' => 'bare', 'is_personal' => true,
+        ]);
+
+        $this->actingAs($admin)
+            ->get("/dashboard/workspaces-admin/{$workspace->id}")
+            ->assertOk()
+            ->assertSee('No active subscription');
+    }
+
     public function test_admin_can_suspend_and_restore_workspace(): void
     {
         $admin = $this->makeAdmin();

@@ -1,0 +1,40 @@
+{
+  "schemaVersion": "mimosa-finding-history/v1",
+  "runId": "20261106T230439937Z-45428-6efc55efe633",
+  "runStatus": "inconclusive",
+  "errors": [
+    "scan:resources/views/dashboard/workspaces-admin-detail.blade.php: scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+    "scan:tests/Feature/AdminConsoleTest.php: scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT"
+  ],
+  "target": ".",
+  "revision": "83c11700e028627cd4b278b76386e0a6f834debb",
+  "diffHash": "9af33951ab7afdb8d5d58b34b155212762ebfea95948c7cb6c6d8599b9667df0",
+  "rulesVersion": "unavailable",
+  "recordedAt": "2026-11-06T23:04:39.937Z",
+  "timing": {
+    "startedAt": "2026-11-06T23:04:35.952Z",
+    "completedAt": "2026-11-06T23:04:39.937Z",
+    "durationMs": 3985
+  },
+  "tokens": {
+    "input": 0,
+    "output": 0,
+    "total": 0,
+    "modelCalls": 0,
+    "measurement": "known-zero"
+  },
+  "findings": {
+    "total": 0,
+    "bySeverity": {},
+    "byStatus": {}
+  },
+  "coverage": {
+    "status": "partial",
+    "reasonCounts": {
+      "scanner_failed": 2,
+      "project_check_failed": 2
+    }
+  },
+  "evidenceBoundary": "static_only",
+  "immutableReport": ".mimosa/reports/task-review-sess_099766c9-a2c1-4371-9a97-8d50eff811dc-20261106T230439937Z-45428-6efc55efe633.json"
+}
