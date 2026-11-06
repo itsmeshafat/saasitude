@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "mimosa-finding-history/v1",
+  "runId": "20261106T234238946Z-47416-33947dbf5941",
+  "runStatus": "inconclusive",
+  "errors": [
+    "baseline-read:storage/framework/views/cb0b293f90587b7ddac9d682b2a5e795.php: baseline_snapshot_unreadable: file is missing from task baseline",
+    "baseline-read:storage/framework/views/e64affda7c86738f94380769be4ca1af.php: baseline_snapshot_unreadable: file is missing from task baseline",
+    "scan:resources/views/vendor/tyro-dashboard/settings/partials/_tab-sidebar-colors.blade.php: scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+    "scan:resources/views/vendor/tyro-dashboard/settings/system.blade.php: scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+    "scan:storage/framework/views/73cb7aba6393b29c2f2a74a56cbeb511.php: scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+    "scan:storage/framework/views/cb0b293f90587b7ddac9d682b2a5e795.php: scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+    "scan:storage/framework/views/e64affda7c86738f94380769be4ca1af.php: scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT"
+  ],
+  "target": ".",
+  "revision": "9c597cf36ce19a796be2a15fc7797d50e75249ad",
+  "diffHash": "6b43933a56782e7720330dbeb9c89d3a54fcd6fa8e288ef522780e606f979c4d",
+  "rulesVersion": "unavailable",
+  "recordedAt": "2026-11-06T23:42:38.946Z",
+  "timing": {
+    "startedAt": "2026-11-06T23:42:35.916Z",
+    "completedAt": "2026-11-06T23:42:38.946Z",
+    "durationMs": 3030
+  },
+  "tokens": {
+    "input": 0,
+    "output": 0,
+    "total": 0,
+    "modelCalls": 0,
+    "measurement": "known-zero"
+  },
+  "findings": {
+    "total": 0,
+    "bySeverity": {},
+    "byStatus": {}
+  },
+  "coverage": {
+    "status": "partial",
+    "reasonCounts": {
+      "baseline_snapshot_unreadable": 2,
+      "scanner_failed": 5,
+      "project_check_failed": 7
+    }
+  },
+  "evidenceBoundary": "static_only",
+  "immutableReport": ".mimosa/reports/task-review-sess_099766c9-a2c1-4371-9a97-8d50eff811dc-20261106T234238946Z-47416-33947dbf5941.json"
+}

@@ -102,7 +102,7 @@
             </div>
             <?php echo $__env->make('settings.partials._tab-general', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
             <?php echo $__env->make('settings.partials._tab-features', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
-            <?php echo $__env->make('settings.partials._tab-sidebar-colors', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+            <?php echo $__env->make('tyro-dashboard::settings.partials._tab-sidebar-colors', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
             <?php echo $__env->make('settings.partials._tab-admin-bar-colors', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
             <?php echo $__env->make('settings.partials._tab-dashboard-colors', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
             <?php echo $__env->make('settings.partials._tab-auth-signin', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
@@ -134,7 +134,7 @@
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startPush('scripts'); ?>
-  <?php if (! $__env->hasRenderedOnce('51f2f15a-aad6-41ef-ac57-ede0ade46397')): $__env->markAsRenderedOnce('51f2f15a-aad6-41ef-ac57-ede0ade46397'); ?>
+  <?php if (! $__env->hasRenderedOnce('3a198e6c-102a-4ed2-9fd2-1a12d886298f')): $__env->markAsRenderedOnce('3a198e6c-102a-4ed2-9fd2-1a12d886298f'); ?>
     <?php echo $__env->make('settings.partials._scripts', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
   <?php endif; ?>
 <?php $__env->stopPush(); ?>

@@ -50,10 +50,10 @@
                         </svg>
                         Filter Columns
                     </button>
-                    <div class="dropdown-menu" id="filterColumnsDropdown" style="display: none; position: absolute; top: 100%; right: 0; background: white; border: 1px solid #ddd; box-shadow: 0 4px 6px rgba(0,0,0,0.1); border-radius: 4px; min-width: 200px; padding: 0.5rem; z-index: 1000; margin-top: 4px;">
+                    <div class="dropdown-menu" id="filterColumnsDropdown" style="display: none; position: absolute; top: 100%; right: 0; background: var(--popover); border: 1px solid var(--border); box-shadow: 0 4px 6px rgba(0,0,0,0.1); border-radius: 4px; min-width: 200px; padding: 0.5rem; z-index: 1000; margin-top: 4px;">
                         @foreach($config['fields'] as $key => $field)
                         @if(!($field['hide_in_index'] ?? false))
-                        <label style="display: flex; align-items: center; padding: 4px 8px; cursor: pointer; color: #333; user-select: none;">
+                        <label style="display: flex; align-items: center; padding: 4px 8px; cursor: pointer; color: var(--popover-foreground); user-select: none;">
                             <input type="checkbox" class="column-toggle" data-target="{{ $key }}" checked style="margin-right: 8px;">
                             {{ $field['label'] }}
                         </label>
