@@ -15,7 +15,7 @@
 
 <style>
     /* ============================================================
-       DESIGN SYSTEM — "HOSTING GROWTH" (adopted 2026-11-06)
+       DESIGN SYSTEM — "SAAS GROWTH" (adopted 2026-11-06)
        Canonical token source. Mirrored in resources/css/app.css.
        Dark = brief values verbatim (default theme).
        Light = derived from the same hues (deviations logged in
@@ -66,7 +66,7 @@
         --text-display-md: 32px;
         --text-display-lg: 48px;
 
-        /* Light mode — DERIVED from the Hosting Growth hues */
+        /* Light mode — DERIVED from the SAAS Growth hues */
         --background: <?php echo e($cssVal('--background', '#ffffff', $lightOverrides)); ?>;
         --foreground: <?php echo e($cssVal('--foreground', '#0a1616', $lightOverrides)); ?>; /* text.secondary */
         --card: <?php echo e($cssVal('--card', 'rgba(255, 255, 255, 0.6)', $lightOverrides)); ?>;

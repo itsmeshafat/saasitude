@@ -1,6 +1,6 @@
 <style>
     /* ============================================================
-       DESIGN SYSTEM — "HOSTING GROWTH" (adopted 2026-11-06)
+       DESIGN SYSTEM — "SAAS GROWTH" (adopted 2026-11-06)
        Auth-pages token layer. Mirrors the dashboard shadcn-theme.
        Dark = DEFAULT theme (brief values verbatim). Light = derived
        (deviations logged in design-system/saas-boilerplate/MASTER.md).
@@ -22,7 +22,7 @@
         --duration-fast: 200ms;
         --duration-normal: 300ms;
 
-        /* Light mode — DERIVED from the Hosting Growth hues */
+        /* Light mode — DERIVED from the SAAS Growth hues */
         --background: #ffffff;
         --foreground: #0a1616;
         --card: rgba(255, 255, 255, 0.6);

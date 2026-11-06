@@ -1,122 +1,240 @@
 {
   "schema_version": "mimosa-task-review/v2",
-  "run_id": "20261106T221958418Z-46712-cc60fd0371f0",
-  "run_status": "completed",
-  "errors": [],
+  "run_id": "20261106T224129866Z-44296-d43bc4ccbdf5",
+  "run_status": "inconclusive",
+  "errors": [
+    {
+      "stage": "baseline-read",
+      "target": "storage/framework/views/92fd0f8a6cb3d98e88430189da944e6b.php",
+      "reason": "baseline_snapshot_unreadable: file is missing from task baseline"
+    }
+  ],
   "coverage": {
     "schema_version": "mimosa-hook-coverage/v1",
-    "status": "complete",
+    "status": "partial",
     "scope": "hook_observed_diff",
     "baseline": {
       "complete": true,
-      "captured_files": 520,
+      "captured_files": 496,
       "candidate_limit": 5000,
       "truncated": false,
       "enumeration_error_count": 0,
       "snapshot_error_count": 0,
-      "compensated_target_count": 4
+      "compensated_target_count": 5
     },
     "change_tracking": {
-      "touched_observed": 4,
-      "touched_retained": 4,
+      "touched_observed": 1,
+      "touched_retained": 1,
       "truncated": false,
       "bash_mutation": true,
-      "bash_discovered": 2,
+      "bash_discovered": 5,
       "bash_discovery_limit": 80,
       "bash_discovery_truncated": false
     },
     "candidates": {
-      "eligible_files": 4,
-      "selected_files": 4,
+      "eligible_files": 6,
+      "selected_files": 6,
       "limit": 20,
       "truncated": false
     },
     "scanning": {
-      "required_files": 4,
-      "scanned_files": 4,
+      "required_files": 6,
+      "scanned_files": 6,
       "skipped_files": 0,
       "failed_files": 0,
       "project_checks_required": 0,
       "project_checks_completed": 0
     },
     "notification": {
-      "eligible_findings": 0,
+      "eligible_findings": 7,
       "detailed_findings": 0,
       "detail_limit": 3,
-      "truncated": false
+      "truncated": true
     },
-    "reason_counts": {},
-    "reasons": [],
+    "reason_counts": {
+      "baseline_snapshot_unreadable": 1,
+      "project_check_failed": 1
+    },
+    "reasons": [
+      {
+        "code": "baseline_snapshot_unreadable",
+        "stage": "baseline-read",
+        "target": "storage/framework/views/92fd0f8a6cb3d98e88430189da944e6b.php",
+        "detail": "file is missing from task baseline",
+        "affects_completion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "baseline-read",
+        "target": "storage/framework/views/92fd0f8a6cb3d98e88430189da944e6b.php",
+        "detail": "baseline_snapshot_unreadable: file is missing from task baseline",
+        "affects_completion": true
+      }
+    ],
     "reasons_truncated": false
   },
-  "generated_at": "2026-11-06T22:19:58.418Z",
+  "generated_at": "2026-11-06T22:41:29.866Z",
   "session_id": "sess_099766c9-a2c1-4371-9a97-8d50eff811dc",
   "target": ".",
-  "revision": "bd755bd1e645c5d74ad3c97681620e08d6f39eb2",
+  "revision": "153945266fb4d0a6263600426fcadb9a5b31534f",
   "rules_version": "unavailable",
-  "diff_hash": "ea9fb06db70ccf60b2cb9aa2a2f30eede38c0d311367bed916884e57ed3a9322",
+  "diff_hash": "d6eb534dcf26c901610512d86a13544635a595b2131646c0e7f20f83ee8c4a91",
   "diff": {
     "algorithm": "sha256",
-    "changed_file_count": 4,
+    "changed_file_count": 6,
     "changed_files": [
       {
-        "file": "app/Http/Controllers/Admin/TyroLoginExtraSettingsController.php",
+        "file": "resources/views/vendor/tyro-login/partials/shadcn-theme.blade.php",
+        "ranges": [
+          {
+            "start": 2,
+            "end": 9
+          },
+          {
+            "start": 11,
+            "end": 56
+          },
+          {
+            "start": 58,
+            "end": 70
+          },
+          {
+            "start": 73,
+            "end": 73
+          },
+          {
+            "start": 75,
+            "end": 108
+          },
+          {
+            "start": 110,
+            "end": 119
+          }
+        ],
+        "before_hash": "8e3762dc8475c4cc34c8559deda512cfc6bf04ae91da2a7a3987a5319526244d",
+        "after_hash": "3d2fd6d1419edec7507c4ea96abf1eeca3605a694a000cb9f49a4498818ec601"
+      },
+      {
+        "file": "storage/framework/views/2ab078eb7e9a19bea3c3a267e6a0543d.php",
+        "ranges": [
+          {
+            "start": 2,
+            "end": 9
+          },
+          {
+            "start": 11,
+            "end": 56
+          },
+          {
+            "start": 58,
+            "end": 70
+          },
+          {
+            "start": 73,
+            "end": 73
+          },
+          {
+            "start": 75,
+            "end": 108
+          },
+          {
+            "start": 110,
+            "end": 119
+          }
+        ],
+        "before_hash": "dc9e18741fc61f7395ab59203af7060cf5c0b7d3d7ab01c73395016c68faa7e1",
+        "after_hash": "c6a3725edce271fd7eb8a18addd1defbc84d0fdf8f82c40e4bbd7c3a12dec425"
+      },
+      {
+        "file": "storage/framework/views/4552424f2e0b1aec44773bc45e4a7566.php",
+        "ranges": [
+          {
+            "start": 2,
+            "end": 2
+          },
+          {
+            "start": 12,
+            "end": 12
+          },
+          {
+            "start": 14,
+            "end": 23
+          },
+          {
+            "start": 45,
+            "end": 45
+          }
+        ],
+        "before_hash": "9d4669db6e314f62a30a1e6ba8c9bf688481113045a6ffd76e85b7507c46d111",
+        "after_hash": "5961746cb4c265d8f1d45c7ff794f6e1aba55ea0d44236093e1889b1ae37fd3b"
+      },
+      {
+        "file": "storage/framework/views/5680eb4b6388f8c955790a2bd17339ef.php",
+        "ranges": [
+          {
+            "start": 14,
+            "end": 14
+          },
+          {
+            "start": 16,
+            "end": 17
+          },
+          {
+            "start": 23,
+            "end": 39
+          },
+          {
+            "start": 132,
+            "end": 138
+          },
+          {
+            "start": 225,
+            "end": 226
+          },
+          {
+            "start": 228,
+            "end": 228
+          },
+          {
+            "start": 256,
+            "end": 287
+          }
+        ],
+        "before_hash": "7ab4a903c9acadcda182cbda28cdcbf55443cbe5cf453615c09f3aa23d25e5bf",
+        "after_hash": "6cc550b1bb19d9159f78500c890ac6f9274db292883f5e1fe23624e10e925633"
+      },
+      {
+        "file": "storage/framework/views/7fd4221c00cc0b90b47949496f9c7ac4.php",
+        "ranges": [
+          {
+            "start": 65,
+            "end": 65
+          },
+          {
+            "start": 72,
+            "end": 72
+          }
+        ],
+        "before_hash": "a6c0e0d833cc121849356c22c0be241aa3be34fe3b5281e8b468d54c32253381",
+        "after_hash": "d97cbd2fd32d5a64f81cd7f782e0fc867e8327beba47e8d9d51bfabd8edfe6c1"
+      },
+      {
+        "file": "storage/framework/views/92fd0f8a6cb3d98e88430189da944e6b.php",
         "ranges": [
           {
             "start": 1,
-            "end": 105
+            "end": 179
           }
         ],
         "before_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-        "after_hash": "680cc10c898807578af916be5e4c21123eb5b75bd41c47b75dc0b4daa940cf07"
-      },
-      {
-        "file": "resources/views/vendor/tyro-dashboard/settings/partials/_tab-tyro-login-extra.blade.php",
-        "ranges": [
-          {
-            "start": 1,
-            "end": 158
-          }
-        ],
-        "before_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-        "after_hash": "03f704500374fdec34de20c97de581efb1ad9101723c689a348aace7746fbcb8"
-      },
-      {
-        "file": "resources/views/vendor/tyro-dashboard/settings/system.blade.php",
-        "ranges": [
-          {
-            "start": 64,
-            "end": 66
-          },
-          {
-            "start": 125,
-            "end": 125
-          }
-        ],
-        "before_hash": "7e97d154f773e99a88ed04a1e9693431da4f845ca9b16128fbfbde6202318ff5",
-        "after_hash": "64490250fa54bdcf23f33e5df45ed70ffed2832131d55f964c2cc74d4436e6e5"
-      },
-      {
-        "file": "routes/web.php",
-        "ranges": [
-          {
-            "start": 13,
-            "end": 13
-          },
-          {
-            "start": 148,
-            "end": 148
-          }
-        ],
-        "before_hash": "4f35798c10717a7db27060d1ee39db68bc339f0fb3708e6ed38e45f795507778",
-        "after_hash": "4eaa7639c7ace6838f73406e3f86823a8b9ee3b5094ef4eb2784ce0ed0e6b15b"
+        "after_hash": "c6380b8c7404df790da68d04f0e99c981d2896351f4bf3398a173da7726016fe"
       }
     ]
   },
   "timing": {
-    "started_at": "2026-11-06T22:19:55.544Z",
-    "completed_at": "2026-11-06T22:19:58.418Z",
-    "duration_ms": 2874,
+    "started_at": "2026-11-06T22:41:26.692Z",
+    "completed_at": "2026-11-06T22:41:29.866Z",
+    "duration_ms": 3174,
     "measurement": "hook_wall_clock"
   },
   "tokens": {
@@ -130,11 +248,11 @@
     "schemaVersion": "mimosa-gate-telemetry/v1",
     "profile": "gate",
     "operation": "Stop",
-    "outcome": "complete",
-    "latencyMs": 2874,
-    "peakMemoryBytes": 146796544,
+    "outcome": "partial/INCONCLUSIVE",
+    "latencyMs": 3174,
+    "peakMemoryBytes": 146554880,
     "memoryMeasurement": "max-observed-process-rss",
-    "scannedFiles": 4,
+    "scannedFiles": 6,
     "cache": {
       "hits": 0,
       "misses": 0,
@@ -149,18 +267,328 @@
       "measurement": "known-zero"
     }
   },
-  "finding_count": 0,
+  "finding_count": 7,
   "rewake_finding_count": 0,
   "evidence_boundary": {
     "scan": "candidate",
     "static_fix_verification": "observed_static_only",
     "runtime_verification": "not_performed"
   },
-  "finding_events": [],
-  "findings": [],
+  "finding_events": [
+    {
+      "finding_id": "mimosa-8f22810f823180158a755ee7",
+      "file": "storage/framework/views/92fd0f8a6cb3d98e88430189da944e6b.php",
+      "line": 112,
+      "severity": "high",
+      "category": "弱随机数",
+      "status": "candidate",
+      "decision": "observe",
+      "at": "2026-11-06T22:41:29.866Z",
+      "evidence": {
+        "kind": "static_scan",
+        "boundary": "candidate",
+        "producer": "deterministic",
+        "source": "semgrep",
+        "evidence_hash": "3a7d369294775ad58992e1d5516194299f6511db2ac37140b07493df4aeccac8",
+        "runtime_oracle": false
+      }
+    },
+    {
+      "finding_id": "mimosa-342c233c1602a070b0028d6c",
+      "file": "storage/framework/views/92fd0f8a6cb3d98e88430189da944e6b.php",
+      "line": 113,
+      "severity": "high",
+      "category": "弱随机数",
+      "status": "candidate",
+      "decision": "observe",
+      "at": "2026-11-06T22:41:29.866Z",
+      "evidence": {
+        "kind": "static_scan",
+        "boundary": "candidate",
+        "producer": "deterministic",
+        "source": "semgrep",
+        "evidence_hash": "fa1d7c4cbf09092cb3e06250669f0b5de61308af021ab5031567936eb6f01975",
+        "runtime_oracle": false
+      }
+    },
+    {
+      "finding_id": "mimosa-1af038160c948ab9f89ea711",
+      "file": "storage/framework/views/92fd0f8a6cb3d98e88430189da944e6b.php",
+      "line": 114,
+      "severity": "high",
+      "category": "弱随机数",
+      "status": "candidate",
+      "decision": "observe",
+      "at": "2026-11-06T22:41:29.866Z",
+      "evidence": {
+        "kind": "static_scan",
+        "boundary": "candidate",
+        "producer": "deterministic",
+        "source": "semgrep",
+        "evidence_hash": "06adea097dadfff09f082fbaa3dd224537a858954d90a6aa4e651a750268cd79",
+        "runtime_oracle": false
+      }
+    },
+    {
+      "finding_id": "mimosa-84167e0aa684e24ed4823726",
+      "file": "storage/framework/views/92fd0f8a6cb3d98e88430189da944e6b.php",
+      "line": 115,
+      "severity": "high",
+      "category": "弱随机数",
+      "status": "candidate",
+      "decision": "observe",
+      "at": "2026-11-06T22:41:29.866Z",
+      "evidence": {
+        "kind": "static_scan",
+        "boundary": "candidate",
+        "producer": "deterministic",
+        "source": "semgrep",
+        "evidence_hash": "9189e3e8099db4623985f5921def923fac62ba075626858e0d142d85f6535aae",
+        "runtime_oracle": false
+      }
+    },
+    {
+      "finding_id": "mimosa-7dc97b79301fb4cfc93cbcee",
+      "file": "storage/framework/views/92fd0f8a6cb3d98e88430189da944e6b.php",
+      "line": 116,
+      "severity": "high",
+      "category": "弱随机数",
+      "status": "candidate",
+      "decision": "observe",
+      "at": "2026-11-06T22:41:29.866Z",
+      "evidence": {
+        "kind": "static_scan",
+        "boundary": "candidate",
+        "producer": "deterministic",
+        "source": "semgrep",
+        "evidence_hash": "f7b3e183860fb70543d841fbad2164322f0e7d2b63c927cffb9ba19166583f24",
+        "runtime_oracle": false
+      }
+    },
+    {
+      "finding_id": "mimosa-b31f617d8ccf802ed15fd212",
+      "file": "storage/framework/views/92fd0f8a6cb3d98e88430189da944e6b.php",
+      "line": 117,
+      "severity": "high",
+      "category": "弱随机数",
+      "status": "candidate",
+      "decision": "observe",
+      "at": "2026-11-06T22:41:29.866Z",
+      "evidence": {
+        "kind": "static_scan",
+        "boundary": "candidate",
+        "producer": "deterministic",
+        "source": "semgrep",
+        "evidence_hash": "aee450fff4288d93cf8210e20b35817e539570021e9492a43de8a36b2317902b",
+        "runtime_oracle": false
+      }
+    },
+    {
+      "finding_id": "mimosa-3da8d519d804958135e7448d",
+      "file": "storage/framework/views/92fd0f8a6cb3d98e88430189da944e6b.php",
+      "line": 118,
+      "severity": "high",
+      "category": "弱随机数",
+      "status": "candidate",
+      "decision": "observe",
+      "at": "2026-11-06T22:41:29.866Z",
+      "evidence": {
+        "kind": "static_scan",
+        "boundary": "candidate",
+        "producer": "deterministic",
+        "source": "semgrep",
+        "evidence_hash": "c73319620e70a41e9eea9114c04b717482795b39d25a70a6c4a4889fbf469d83",
+        "runtime_oracle": false
+      }
+    }
+  ],
+  "findings": [
+    {
+      "finding_id": "mimosa-8f22810f823180158a755ee7",
+      "file": "storage/framework/views/92fd0f8a6cb3d98e88430189da944e6b.php",
+      "line": 112,
+      "end_line": 112,
+      "severity": "high",
+      "category": "弱随机数",
+      "kind": "semgrep",
+      "advisory": true,
+      "status": "candidate",
+      "evidence_boundary": "candidate",
+      "evidence": [
+        {
+          "kind": "static_scan",
+          "boundary": "candidate",
+          "producer": "deterministic",
+          "source": "semgrep",
+          "file": "storage/framework/views/92fd0f8a6cb3d98e88430189da944e6b.php",
+          "line": 112,
+          "evidence_hash": "3a7d369294775ad58992e1d5516194299f6511db2ac37140b07493df4aeccac8",
+          "runtime_oracle": false
+        }
+      ],
+      "already_reported_to_agent": false,
+      "selected_for_rewake": false
+    },
+    {
+      "finding_id": "mimosa-342c233c1602a070b0028d6c",
+      "file": "storage/framework/views/92fd0f8a6cb3d98e88430189da944e6b.php",
+      "line": 113,
+      "end_line": 113,
+      "severity": "high",
+      "category": "弱随机数",
+      "kind": "semgrep",
+      "advisory": true,
+      "status": "candidate",
+      "evidence_boundary": "candidate",
+      "evidence": [
+        {
+          "kind": "static_scan",
+          "boundary": "candidate",
+          "producer": "deterministic",
+          "source": "semgrep",
+          "file": "storage/framework/views/92fd0f8a6cb3d98e88430189da944e6b.php",
+          "line": 113,
+          "evidence_hash": "fa1d7c4cbf09092cb3e06250669f0b5de61308af021ab5031567936eb6f01975",
+          "runtime_oracle": false
+        }
+      ],
+      "already_reported_to_agent": false,
+      "selected_for_rewake": false
+    },
+    {
+      "finding_id": "mimosa-1af038160c948ab9f89ea711",
+      "file": "storage/framework/views/92fd0f8a6cb3d98e88430189da944e6b.php",
+      "line": 114,
+      "end_line": 114,
+      "severity": "high",
+      "category": "弱随机数",
+      "kind": "semgrep",
+      "advisory": true,
+      "status": "candidate",
+      "evidence_boundary": "candidate",
+      "evidence": [
+        {
+          "kind": "static_scan",
+          "boundary": "candidate",
+          "producer": "deterministic",
+          "source": "semgrep",
+          "file": "storage/framework/views/92fd0f8a6cb3d98e88430189da944e6b.php",
+          "line": 114,
+          "evidence_hash": "06adea097dadfff09f082fbaa3dd224537a858954d90a6aa4e651a750268cd79",
+          "runtime_oracle": false
+        }
+      ],
+      "already_reported_to_agent": false,
+      "selected_for_rewake": false
+    },
+    {
+      "finding_id": "mimosa-84167e0aa684e24ed4823726",
+      "file": "storage/framework/views/92fd0f8a6cb3d98e88430189da944e6b.php",
+      "line": 115,
+      "end_line": 115,
+      "severity": "high",
+      "category": "弱随机数",
+      "kind": "semgrep",
+      "advisory": true,
+      "status": "candidate",
+      "evidence_boundary": "candidate",
+      "evidence": [
+        {
+          "kind": "static_scan",
+          "boundary": "candidate",
+          "producer": "deterministic",
+          "source": "semgrep",
+          "file": "storage/framework/views/92fd0f8a6cb3d98e88430189da944e6b.php",
+          "line": 115,
+          "evidence_hash": "9189e3e8099db4623985f5921def923fac62ba075626858e0d142d85f6535aae",
+          "runtime_oracle": false
+        }
+      ],
+      "already_reported_to_agent": false,
+      "selected_for_rewake": false
+    },
+    {
+      "finding_id": "mimosa-7dc97b79301fb4cfc93cbcee",
+      "file": "storage/framework/views/92fd0f8a6cb3d98e88430189da944e6b.php",
+      "line": 116,
+      "end_line": 116,
+      "severity": "high",
+      "category": "弱随机数",
+      "kind": "semgrep",
+      "advisory": true,
+      "status": "candidate",
+      "evidence_boundary": "candidate",
+      "evidence": [
+        {
+          "kind": "static_scan",
+          "boundary": "candidate",
+          "producer": "deterministic",
+          "source": "semgrep",
+          "file": "storage/framework/views/92fd0f8a6cb3d98e88430189da944e6b.php",
+          "line": 116,
+          "evidence_hash": "f7b3e183860fb70543d841fbad2164322f0e7d2b63c927cffb9ba19166583f24",
+          "runtime_oracle": false
+        }
+      ],
+      "already_reported_to_agent": false,
+      "selected_for_rewake": false
+    },
+    {
+      "finding_id": "mimosa-b31f617d8ccf802ed15fd212",
+      "file": "storage/framework/views/92fd0f8a6cb3d98e88430189da944e6b.php",
+      "line": 117,
+      "end_line": 117,
+      "severity": "high",
+      "category": "弱随机数",
+      "kind": "semgrep",
+      "advisory": true,
+      "status": "candidate",
+      "evidence_boundary": "candidate",
+      "evidence": [
+        {
+          "kind": "static_scan",
+          "boundary": "candidate",
+          "producer": "deterministic",
+          "source": "semgrep",
+          "file": "storage/framework/views/92fd0f8a6cb3d98e88430189da944e6b.php",
+          "line": 117,
+          "evidence_hash": "aee450fff4288d93cf8210e20b35817e539570021e9492a43de8a36b2317902b",
+          "runtime_oracle": false
+        }
+      ],
+      "already_reported_to_agent": false,
+      "selected_for_rewake": false
+    },
+    {
+      "finding_id": "mimosa-3da8d519d804958135e7448d",
+      "file": "storage/framework/views/92fd0f8a6cb3d98e88430189da944e6b.php",
+      "line": 118,
+      "end_line": 118,
+      "severity": "high",
+      "category": "弱随机数",
+      "kind": "semgrep",
+      "advisory": true,
+      "status": "candidate",
+      "evidence_boundary": "candidate",
+      "evidence": [
+        {
+          "kind": "static_scan",
+          "boundary": "candidate",
+          "producer": "deterministic",
+          "source": "semgrep",
+          "file": "storage/framework/views/92fd0f8a6cb3d98e88430189da944e6b.php",
+          "line": 118,
+          "evidence_hash": "c73319620e70a41e9eea9114c04b717482795b39d25a70a6c4a4889fbf469d83",
+          "runtime_oracle": false
+        }
+      ],
+      "already_reported_to_agent": false,
+      "selected_for_rewake": false
+    }
+  ],
   "artifacts": {
-    "immutable_report": ".mimosa/reports/task-review-sess_099766c9-a2c1-4371-9a97-8d50eff811dc-20261106T221958418Z-46712-cc60fd0371f0.json",
+    "immutable_report": ".mimosa/reports/task-review-sess_099766c9-a2c1-4371-9a97-8d50eff811dc-20261106T224129866Z-44296-d43bc4ccbdf5.json",
     "latest_report": ".mimosa/reports/task-review-sess_099766c9-a2c1-4371-9a97-8d50eff811dc.json",
-    "history_summary": ".mimosa/history/run-20261106T221958418Z-46712-cc60fd0371f0.json"
+    "history_summary": ".mimosa/history/run-20261106T224129866Z-44296-d43bc4ccbdf5.json"
   }
 }

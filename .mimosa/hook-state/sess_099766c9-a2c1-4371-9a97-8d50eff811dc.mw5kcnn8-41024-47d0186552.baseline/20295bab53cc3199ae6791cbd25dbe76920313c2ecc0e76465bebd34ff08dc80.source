@@ -67,7 +67,7 @@ return [
         'favicon' => env('TYRO_DASHBOARD_FAVICON', null),
 
         // Sidebar colors (supports any CSS color value: hex, rgb, hsl, etc.)
-        'sidebar_bg' => env('TYRO_DASHBOARD_SIDEBAR_BG', '#082615'), // Hosting Growth: surface.muted // Background color for sidebar
+        'sidebar_bg' => env('TYRO_DASHBOARD_SIDEBAR_BG', '#082615'), // SAAS Growth: surface.muted // Background color for sidebar
         'sidebar_text' => env('TYRO_DASHBOARD_SIDEBAR_TEXT', '#ffffff'), // Text color for sidebar
         'sidebar_primary' => env('TYRO_DASHBOARD_SIDEBAR_PRIMARY', '#c6fb4b'), // active item bg = primary // Highlight color for sidebar
         'sidebar_accent' => env('TYRO_DASHBOARD_SIDEBAR_ACCENT', '#132c1e'), // hover tint (lime 12% over muted) // Hover color for sidebar

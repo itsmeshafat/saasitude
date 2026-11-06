@@ -15,7 +15,7 @@
 
 <style>
     /* ============================================================
-       DESIGN SYSTEM — "HOSTING GROWTH" (adopted 2026-11-06)
+       DESIGN SYSTEM — "SAAS GROWTH" (adopted 2026-11-06)
        Canonical token source. Mirrored in resources/css/app.css.
        Dark = brief values verbatim (default theme).
        Light = derived from the same hues (deviations logged in
@@ -66,7 +66,7 @@
         --text-display-md: 32px;
         --text-display-lg: 48px;
 
-        /* Light mode — DERIVED from the Hosting Growth hues */
+        /* Light mode — DERIVED from the SAAS Growth hues */
         --background: {{ $cssVal('--background', '#ffffff', $lightOverrides) }};
         --foreground: {{ $cssVal('--foreground', '#0a1616', $lightOverrides) }}; /* text.secondary */
         --card: {{ $cssVal('--card', 'rgba(255, 255, 255, 0.6)', $lightOverrides) }};
@@ -131,7 +131,7 @@
 
     /* Dark mode — DEFAULT THEME, brief values verbatim */
     .dark {
-        --background: {{ $cssVal('--background', '#000000', $darkOverrides) }}; /* surface.base */
+        --background: rgba(0, 0, 0, 0.72); /* surface.base as frost — html provides solid #000 beneath */
         --foreground: {{ $cssVal('--foreground', '#ffffff', $darkOverrides) }}; /* text.tertiary */
         --card: {{ $cssVal('--card', 'rgba(8, 38, 21, 0.55)', $darkOverrides) }}; /* surface.muted */
         --card-foreground: {{ $cssVal('--card-foreground', '#ffffff', $darkOverrides) }};

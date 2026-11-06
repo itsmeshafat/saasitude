@@ -1,6 +1,6 @@
-# Design System Master — Hosting Growth
+# Design System Master — SAAS Growth
 
-**Direction: "Web Hosting Built to Grow With You" token system — adopted 2026-11-07.**
+**Direction: "Web SAAS Built to Grow With You" token system — adopted 2026-11-07.**
 Dark default (black + lime), glassmorphism retained (recolored), derived light mode.
 **Implementation rule: content never changed — tokens, components, docs did.**
 
@@ -162,7 +162,7 @@ confident, implementation-focused. Buttons are verb phrases ≤ 3 words ("Save S
 
 ---
 
-## 7. Migration notes (Cobalt Glass → Hosting Growth)
+## 7. Migration notes (Cobalt Glass → SAAS Growth)
 
 - Token NAMES unchanged (`--primary`, `--glass*`, `--mesh`…) — only values swapped; no markup churn.
 - Glassmorphism retained: glass surfaces now surface.muted frost; mesh recolored lime/green.

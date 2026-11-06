@@ -23,7 +23,7 @@
         transition: background-color var(--duration-fast, 200ms) ease, color var(--duration-fast, 200ms) ease;
     }
 
-    /* Glass system vars ( Hosting Growth ) */
+    /* Glass system vars ( SAAS Growth ) */
     :root {
         --glass: rgba(255, 255, 255, 0.6);
         --glass-strong: rgba(255, 255, 255, 0.78);

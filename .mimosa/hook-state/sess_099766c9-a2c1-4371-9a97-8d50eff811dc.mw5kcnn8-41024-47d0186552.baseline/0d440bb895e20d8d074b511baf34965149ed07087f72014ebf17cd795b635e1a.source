@@ -62,14 +62,14 @@ $showLoginField = !$disablePassword || $magicLinksEnabled;
 
             <!-- Success Message -->
             <?php if(session('success')): ?>
-            <div class="alert alert-success" style="padding: 0.875rem 1rem; margin-bottom: 1.5rem; background-color: #d1fae5; border: 1px solid #6ee7b7; border-radius: 0.5rem; color: #065f46; font-size: 0.9375rem;">
+            <div class="alert alert-success">
                 <?php echo e(session('success')); ?>
 
             </div>
             <?php endif; ?>
 
             <?php if($errors->any()): ?>
-            <div class="alert alert-error" style="padding: 0.875rem 1rem; margin-bottom: 1.5rem; background-color: #fef2f2; border: 1px solid #fca5a5; border-radius: 0.5rem; color: #991b1b; font-size: 0.9375rem;">
+            <div class="alert alert-error">
                 <?php echo e($errors->first()); ?>
 
             </div>

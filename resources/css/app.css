@@ -7,7 +7,7 @@
 @source '../../storage/framework/views/*.php';
 
 /* ============================================================
-   DESIGN SYSTEM — "HOSTING GROWTH" (adopted 2026-11-06)
+   DESIGN SYSTEM — "SAAS GROWTH" (adopted 2026-11-06)
    Public-page token layer. Mirrors shadcn-theme.blade.php values.
    Canonical spec: design-system/saas-boilerplate/MASTER.md
    Components MUST consume tokens — never raw hex.
@@ -122,10 +122,12 @@
     }
 
     /* Dark — DEFAULT THEME, brief values verbatim */
+    html.dark { background-color: #000000; }
+
     .dark {
         --primary: #c6fb4b;
         --primary-foreground: #0a1616;
-        --background: #000000;
+        --background: rgba(0, 0, 0, 0.72);
         --foreground: #ffffff;
         --card: rgba(8, 38, 21, 0.55);
         --card-foreground: #ffffff;

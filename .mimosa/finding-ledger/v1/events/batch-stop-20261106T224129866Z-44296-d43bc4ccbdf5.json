@@ -1,0 +1,246 @@
+{
+  "schemaVersion": "mimosa-finding-ledger-batch/v1",
+  "batchId": "stop-20261106T224129866Z-44296-d43bc4ccbdf5",
+  "runId": "20261106T224129866Z-44296-d43bc4ccbdf5",
+  "runStatus": "inconclusive",
+  "coverage": {
+    "status": "partial",
+    "reasons": [
+      {
+        "code": "baseline_snapshot_unreadable",
+        "stage": "baseline-read",
+        "target": "storage/framework/views/92fd0f8a6cb3d98e88430189da944e6b.php",
+        "detail": "file is missing from task baseline",
+        "affectsCompletion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "baseline-read",
+        "target": "storage/framework/views/92fd0f8a6cb3d98e88430189da944e6b.php",
+        "detail": "baseline_snapshot_unreadable: file is missing from task baseline",
+        "affectsCompletion": true
+      }
+    ]
+  },
+  "source": {
+    "component": "zcode-hook",
+    "operationId": "Stop"
+  },
+  "revision": "153945266fb4d0a6263600426fcadb9a5b31534f",
+  "diffHash": "d6eb534dcf26c901610512d86a13544635a595b2131646c0e7f20f83ee8c4a91",
+  "rulesVersion": "unavailable",
+  "sessionHash": "f3ada869c86656b16895682b030512bfad02103280be676ea79ad71d62f6803b",
+  "reportRef": ".mimosa/reports/task-review-sess_099766c9-a2c1-4371-9a97-8d50eff811dc-20261106T224129866Z-44296-d43bc4ccbdf5.json",
+  "events": [
+    {
+      "eventId": "hook-3c398c84da05c1a24a5e8d21227893f0",
+      "findingId": "mimosa-8f22810f823180158a755ee7",
+      "type": "finding_observed",
+      "at": "2026-11-06T22:41:29.866Z",
+      "identity": {
+        "projectRelativeFile": "storage/framework/views/92fd0f8a6cb3d98e88430189da944e6b.php",
+        "ruleId": "security",
+        "codeEvidenceHash": "3a7d369294775ad58992e1d5516194299f6511db2ac37140b07493df4aeccac8",
+        "confidence": "stable"
+      },
+      "scope": "direct",
+      "line": 112,
+      "endLine": 112,
+      "reasonCode": "observe",
+      "reportedToAgent": false,
+      "evidence": {
+        "kind": "source",
+        "boundary": "candidate",
+        "producer": "deterministic",
+        "evidenceHash": "3a7d369294775ad58992e1d5516194299f6511db2ac37140b07493df4aeccac8"
+      },
+      "sequence": 0
+    },
+    {
+      "eventId": "hook-d0f2ee5790bde04cedbbc0e592d1d20f",
+      "findingId": "mimosa-342c233c1602a070b0028d6c",
+      "type": "finding_observed",
+      "at": "2026-11-06T22:41:29.866Z",
+      "identity": {
+        "projectRelativeFile": "storage/framework/views/92fd0f8a6cb3d98e88430189da944e6b.php",
+        "ruleId": "security",
+        "codeEvidenceHash": "fa1d7c4cbf09092cb3e06250669f0b5de61308af021ab5031567936eb6f01975",
+        "confidence": "stable"
+      },
+      "scope": "direct",
+      "line": 113,
+      "endLine": 113,
+      "reasonCode": "observe",
+      "reportedToAgent": false,
+      "evidence": {
+        "kind": "source",
+        "boundary": "candidate",
+        "producer": "deterministic",
+        "evidenceHash": "fa1d7c4cbf09092cb3e06250669f0b5de61308af021ab5031567936eb6f01975"
+      },
+      "sequence": 1
+    },
+    {
+      "eventId": "hook-3b26920deae77bcc9a868d2197b4779e",
+      "findingId": "mimosa-1af038160c948ab9f89ea711",
+      "type": "finding_observed",
+      "at": "2026-11-06T22:41:29.866Z",
+      "identity": {
+        "projectRelativeFile": "storage/framework/views/92fd0f8a6cb3d98e88430189da944e6b.php",
+        "ruleId": "security",
+        "codeEvidenceHash": "06adea097dadfff09f082fbaa3dd224537a858954d90a6aa4e651a750268cd79",
+        "confidence": "stable"
+      },
+      "scope": "direct",
+      "line": 114,
+      "endLine": 114,
+      "reasonCode": "observe",
+      "reportedToAgent": false,
+      "evidence": {
+        "kind": "source",
+        "boundary": "candidate",
+        "producer": "deterministic",
+        "evidenceHash": "06adea097dadfff09f082fbaa3dd224537a858954d90a6aa4e651a750268cd79"
+      },
+      "sequence": 2
+    },
+    {
+      "eventId": "hook-57f17bbe27c191d0dee926c1b8e67c5a",
+      "findingId": "mimosa-84167e0aa684e24ed4823726",
+      "type": "finding_observed",
+      "at": "2026-11-06T22:41:29.866Z",
+      "identity": {
+        "projectRelativeFile": "storage/framework/views/92fd0f8a6cb3d98e88430189da944e6b.php",
+        "ruleId": "security",
+        "codeEvidenceHash": "9189e3e8099db4623985f5921def923fac62ba075626858e0d142d85f6535aae",
+        "confidence": "stable"
+      },
+      "scope": "direct",
+      "line": 115,
+      "endLine": 115,
+      "reasonCode": "observe",
+      "reportedToAgent": false,
+      "evidence": {
+        "kind": "source",
+        "boundary": "candidate",
+        "producer": "deterministic",
+        "evidenceHash": "9189e3e8099db4623985f5921def923fac62ba075626858e0d142d85f6535aae"
+      },
+      "sequence": 3
+    },
+    {
+      "eventId": "hook-28a07071e09e8f387ccae6739c214698",
+      "findingId": "mimosa-7dc97b79301fb4cfc93cbcee",
+      "type": "finding_observed",
+      "at": "2026-11-06T22:41:29.866Z",
+      "identity": {
+        "projectRelativeFile": "storage/framework/views/92fd0f8a6cb3d98e88430189da944e6b.php",
+        "ruleId": "security",
+        "codeEvidenceHash": "f7b3e183860fb70543d841fbad2164322f0e7d2b63c927cffb9ba19166583f24",
+        "confidence": "stable"
+      },
+      "scope": "direct",
+      "line": 116,
+      "endLine": 116,
+      "reasonCode": "observe",
+      "reportedToAgent": false,
+      "evidence": {
+        "kind": "source",
+        "boundary": "candidate",
+        "producer": "deterministic",
+        "evidenceHash": "f7b3e183860fb70543d841fbad2164322f0e7d2b63c927cffb9ba19166583f24"
+      },
+      "sequence": 4
+    },
+    {
+      "eventId": "hook-13896ec5a3bdedf8a269606319766238",
+      "findingId": "mimosa-b31f617d8ccf802ed15fd212",
+      "type": "finding_observed",
+      "at": "2026-11-06T22:41:29.866Z",
+      "identity": {
+        "projectRelativeFile": "storage/framework/views/92fd0f8a6cb3d98e88430189da944e6b.php",
+        "ruleId": "security",
+        "codeEvidenceHash": "aee450fff4288d93cf8210e20b35817e539570021e9492a43de8a36b2317902b",
+        "confidence": "stable"
+      },
+      "scope": "direct",
+      "line": 117,
+      "endLine": 117,
+      "reasonCode": "observe",
+      "reportedToAgent": false,
+      "evidence": {
+        "kind": "source",
+        "boundary": "candidate",
+        "producer": "deterministic",
+        "evidenceHash": "aee450fff4288d93cf8210e20b35817e539570021e9492a43de8a36b2317902b"
+      },
+      "sequence": 5
+    },
+    {
+      "eventId": "hook-3daf37e9b5ea764232f4f50ab7b571d8",
+      "findingId": "mimosa-3da8d519d804958135e7448d",
+      "type": "finding_observed",
+      "at": "2026-11-06T22:41:29.866Z",
+      "identity": {
+        "projectRelativeFile": "storage/framework/views/92fd0f8a6cb3d98e88430189da944e6b.php",
+        "ruleId": "security",
+        "codeEvidenceHash": "c73319620e70a41e9eea9114c04b717482795b39d25a70a6c4a4889fbf469d83",
+        "confidence": "stable"
+      },
+      "scope": "direct",
+      "line": 118,
+      "endLine": 118,
+      "reasonCode": "observe",
+      "reportedToAgent": false,
+      "evidence": {
+        "kind": "source",
+        "boundary": "candidate",
+        "producer": "deterministic",
+        "evidenceHash": "c73319620e70a41e9eea9114c04b717482795b39d25a70a6c4a4889fbf469d83"
+      },
+      "sequence": 6
+    }
+  ],
+  "observedFindingIds": [
+    "mimosa-8f22810f823180158a755ee7",
+    "mimosa-342c233c1602a070b0028d6c",
+    "mimosa-1af038160c948ab9f89ea711",
+    "mimosa-84167e0aa684e24ed4823726",
+    "mimosa-7dc97b79301fb4cfc93cbcee",
+    "mimosa-b31f617d8ccf802ed15fd212",
+    "mimosa-3da8d519d804958135e7448d"
+  ],
+  "verifiedFiles": [
+    {
+      "file": "resources/views/vendor/tyro-login/partials/shadcn-theme.blade.php",
+      "direct": "complete",
+      "projectContext": "partial"
+    },
+    {
+      "file": "storage/framework/views/2ab078eb7e9a19bea3c3a267e6a0543d.php",
+      "direct": "complete",
+      "projectContext": "partial"
+    },
+    {
+      "file": "storage/framework/views/4552424f2e0b1aec44773bc45e4a7566.php",
+      "direct": "complete",
+      "projectContext": "partial"
+    },
+    {
+      "file": "storage/framework/views/5680eb4b6388f8c955790a2bd17339ef.php",
+      "direct": "complete",
+      "projectContext": "partial"
+    },
+    {
+      "file": "storage/framework/views/7fd4221c00cc0b90b47949496f9c7ac4.php",
+      "direct": "complete",
+      "projectContext": "partial"
+    },
+    {
+      "file": "storage/framework/views/92fd0f8a6cb3d98e88430189da944e6b.php",
+      "direct": "complete",
+      "projectContext": "partial"
+    }
+  ],
+  "recordedAt": "2026-11-06T22:41:30.693Z"
+}

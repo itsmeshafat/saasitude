@@ -40,6 +40,10 @@
          A reset here would be unlayered CSS, which beats every layered Tailwind
          utility (mb-*, p-*, ...) — that broke all spacing utilities app-wide. --}}
 
+    html.dark {
+        background-color: #000000;
+    }
+
     html {
         scrollbar-width: thin;
         scrollbar-color: var(--border) var(--background);
@@ -2352,7 +2356,7 @@
 
     .settings-nav-item.active {
         color: var(--foreground);
-        background-color: var(--background);
+        background-color: var(--accent);
         box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
     }
 
