@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Billing Report — <?php echo e($monthLabel); ?></title>
+<style>
+    /* PDF-only stylesheet (dompdf) — hex values are required here, CSS vars unsupported */
+    body { font-family: -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; color: #111827; font-size: 12px; }
+    h1 { font-size: 20px; margin: 0 0 4px 0; }
+    .sub { color: #6b7280; margin-bottom: 20px; }
+    .stats { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+    .stats td { border: 1px solid #e5e7eb; padding: 10px 12px; }
+    .stats .k { color: #6b7280; font-size: 10px; text-transform: uppercase; letter-spacing: 0.05em; }
+    .stats .v { font-size: 17px; font-weight: 700; }
+    h2 { font-size: 14px; margin: 20px 0 8px 0; border-bottom: 1px solid #e5e7eb; padding-bottom: 4px; }
+    table.list { width: 100%; border-collapse: collapse; }
+    table.list th { text-align: left; background: #f3f4f6; padding: 6px 8px; font-size: 10px; text-transform: uppercase; letter-spacing: 0.05em; color: #374151; }
+    table.list td { border-bottom: 1px solid #f3f4f6; padding: 6px 8px; }
+    .right { text-align: right; }
+    .footer { margin-top: 28px; color: #9ca3af; font-size: 10px; }
+</style>
+</head>
+<body>
+<h1>Billing Report — <?php echo e($monthLabel); ?></h1>
+<div class="sub">Generated <?php echo e(now()->format('M j, Y H:i')); ?> · <?php echo e(config('app.name')); ?></div>
+
+<table class="stats">
+    <tr>
+        <td><div class="k">Revenue (succeeded)</div><div class="v">$<?php echo e(number_format($revenue / 100, 2)); ?></div></td>
+        <td><div class="k">Refunded</div><div class="v">$<?php echo e(number_format($refunded / 100, 2)); ?></div></td>
+        <td><div class="k">Failed payments</div><div class="v"><?php echo e($failedCount); ?></div></td>
+        <td><div class="k">New subscriptions</div><div class="v"><?php echo e($newSubs); ?></div></td>
+    </tr>
+    <tr>
+        <td><div class="k">Canceled this month</div><div class="v"><?php echo e($canceledSubs); ?></div></td>
+        <td><div class="k">Active subscriptions</div><div class="v"><?php echo e($activeSubs); ?></div></td>
+        <td><div class="k">Workspaces</div><div class="v"><?php echo e($workspaceCount); ?></div></td>
+        <td></td>
+    </tr>
+</table>
+
+<h2>Revenue by gateway</h2>
+<table class="list">
+    <thead><tr><th>Gateway</th><th class="right">Payments</th><th class="right">Amount</th></tr></thead>
+    <tbody>
+        <?php $__empty_1 = true; $__currentLoopData = $gatewaySplit; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $row): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+            <tr>
+                <td><?php echo e(ucfirst($row->gateway)); ?></td>
+                <td class="right"><?php echo e($row->count); ?></td>
+                <td class="right">$<?php echo e(number_format($row->total / 100, 2)); ?></td>
+            </tr>
+        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+            <tr><td colspan="3">No succeeded payments this month.</td></tr>
+        <?php endif; ?>
+    </tbody>
+</table>
+
+<h2>Recent payments (latest 20)</h2>
+<table class="list">
+    <thead><tr><th>Date</th><th>Workspace</th><th>Gateway</th><th class="right">Amount</th><th>Status</th></tr></thead>
+    <tbody>
+        <?php $__empty_1 = true; $__currentLoopData = $recentPayments; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $payment): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+            <tr>
+                <td><?php echo e($payment->created_at?->format('M j')); ?></td>
+                <td><?php echo e($payment->workspace?->name ?? '—'); ?></td>
+                <td><?php echo e(ucfirst($payment->gateway)); ?></td>
+                <td class="right">$<?php echo e(number_format($payment->amount / 100, 2)); ?> <?php echo e(strtoupper($payment->currency)); ?></td>
+                <td><?php echo e(ucfirst($payment->status)); ?></td>
+            </tr>
+        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+            <tr><td colspan="5">No payments this month.</td></tr>
+        <?php endif; ?>
+    </tbody>
+</table>
+
+<div class="footer">Amounts are nominal; minor-unit values converted at /100. This report is generated automatically from the payments and subscriptions tables.</div>
+</body>
+</html>
+<?php /**PATH C:\laragon\www\saas\resources\views/admin/reports/monthly.blade.php ENDPATH**/ ?>

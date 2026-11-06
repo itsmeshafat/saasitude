@@ -23,7 +23,7 @@
     </div>
 </div>
 
-<div class="card mb-6">
+<div class="card mb-4">
     <div class="card-header"><h3 class="card-title">Members ({{ $members->count() }})</h3></div>
     <div class="table-container">
         <table class="table">
@@ -70,7 +70,7 @@
 </div>
 
 @if($canManage)
-<div class="grid grid-cols-1 xl:grid-cols-2 gap-6">
+<div class="grid grid-cols-1 xl:grid-cols-2 gap-4">
     <div class="card">
         <div class="card-header"><h3 class="card-title">Invite a member</h3></div>
         <div class="card-body">

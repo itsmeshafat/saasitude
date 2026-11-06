@@ -169,6 +169,25 @@
             if (!dropdown.hidden) poll();
         });
 
+        // Keyboard support (design system: navigation must be keyboard-complete)
+        document.addEventListener('keydown', function (e) {
+            if (dropdown.hidden) return;
+
+            var items = itemsEl ? [...itemsEl.querySelectorAll('.notif-item')] : [];
+            if (e.key === 'Escape') {
+                dropdown.hidden = true;
+                btn.focus();
+            } else if (e.key === 'ArrowDown' && items.length) {
+                e.preventDefault();
+                items[0].focus();
+            } else if ((e.key === 'ArrowUp' || e.key === 'ArrowDown') && document.activeElement.classList.contains('notif-item')) {
+                e.preventDefault();
+                var idx = items.indexOf(document.activeElement);
+                var next = e.key === 'ArrowDown' ? idx + 1 : idx - 1;
+                (items[next] ?? btn).focus();
+            }
+        });
+
         document.addEventListener('click', function (e) {
             if (!document.getElementById('notifBell').contains(e.target)) {
                 dropdown.hidden = true;

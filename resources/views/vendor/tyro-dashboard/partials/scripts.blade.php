@@ -4,7 +4,8 @@
         if (localStorage.getItem('tyro-dashboard-theme')) {
             return localStorage.getItem('tyro-dashboard-theme');
         }
-        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        // Dark is the design-system default theme.
+        return 'dark';
     }
 
     function setTheme(theme) {

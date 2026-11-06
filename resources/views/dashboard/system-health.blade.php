@@ -43,7 +43,7 @@
     </div>
 </div>
 
-<div class="card mb-6">
+<div class="card mb-4">
     <div class="card-header"><h3 class="card-title">Disk usage</h3></div>
     <div class="card-body">
         <div class="flex justify-between text-sm mb-2">
@@ -57,7 +57,7 @@
     </div>
 </div>
 
-<div class="card mb-6">
+<div class="card mb-4">
     <div class="card-header"><h3 class="card-title">Checks</h3></div>
     <div class="card-body">
         @forelse($checks as $check)

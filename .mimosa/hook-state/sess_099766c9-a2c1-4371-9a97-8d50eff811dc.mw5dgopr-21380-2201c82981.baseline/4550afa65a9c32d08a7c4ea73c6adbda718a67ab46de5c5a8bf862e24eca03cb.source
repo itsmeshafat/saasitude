@@ -1,0 +1,89 @@
+<?php $attributes ??= new \Illuminate\View\ComponentAttributeBag;
+
+$__newAttributes = [];
+$__propNames = \Illuminate\View\ComponentAttributeBag::extractPropNames(([
+    'values' => [],
+    'labels' => [],
+    'size' => 130,
+    'stroke' => 14,
+    'colors' => ['var(--primary)', 'var(--chart-2)', 'var(--chart-3)', 'var(--chart-4)', 'var(--chart-5)'],
+]));
+
+foreach ($attributes->all() as $__key => $__value) {
+    if (in_array($__key, $__propNames)) {
+        $$__key = $$__key ?? $__value;
+    } else {
+        $__newAttributes[$__key] = $__value;
+    }
+}
+
+$attributes = new \Illuminate\View\ComponentAttributeBag($__newAttributes);
+
+unset($__propNames);
+unset($__newAttributes);
+
+foreach (array_filter(([
+    'values' => [],
+    'labels' => [],
+    'size' => 130,
+    'stroke' => 14,
+    'colors' => ['var(--primary)', 'var(--chart-2)', 'var(--chart-3)', 'var(--chart-4)', 'var(--chart-5)'],
+]), 'is_string', ARRAY_FILTER_USE_KEY) as $__key => $__value) {
+    $$__key = $$__key ?? $__value;
+}
+
+$__defined_vars = get_defined_vars();
+
+foreach ($attributes->all() as $__key => $__value) {
+    if (array_key_exists($__key, $__defined_vars)) unset($$__key);
+}
+
+unset($__defined_vars, $__key, $__value); ?>
+
+<?php
+    $segments = \App\Support\SvgChart::donutSegments(array_values($values));
+    $radius = 40;
+    $total = array_sum($values);
+?>
+
+<div class="chart-donut" <?php echo e($attributes); ?>>
+    <?php if($segments !== []): ?>
+        
+        <div class="grid items-center gap-5" style="grid-template-columns: <?php echo e($size); ?>px 1fr;">
+            <svg viewBox="0 0 100 100" style="width: <?php echo e($size); ?>px; height: <?php echo e($size); ?>px; display: block; margin: 0 auto;"
+                 role="img" aria-label="<?php echo e($labels ? implode(', ', $labels) : 'Donut chart'); ?>">
+                <circle cx="50" cy="50" r="<?php echo e($radius); ?>" fill="none" stroke="var(--muted)" stroke-width="<?php echo e($stroke); ?>" />
+                <?php $__currentLoopData = $segments; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $i => $segment): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <circle cx="50" cy="50" r="<?php echo e($radius); ?>" fill="none"
+                            stroke="<?php echo e($colors[$i % count($colors)]); ?>"
+                            stroke-width="<?php echo e($stroke); ?>"
+                            stroke-dasharray="<?php echo e($segment['dash']); ?> <?php echo e(2 * M_PI * $radius - $segment['dash']); ?>"
+                            stroke-dashoffset="<?php echo e(-$segment['offset']); ?>"
+                            transform="rotate(-90 50 50)"
+                            stroke-linecap="butt" />
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+            </svg>
+            <?php if($labels): ?>
+                <div class="text-sm">
+                    <?php $__currentLoopData = $labels; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $i => $label): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <div class="flex items-center justify-between gap-3 py-1">
+                            <span class="flex items-center gap-2">
+                                <span class="inline-block w-2.5 h-2.5 rounded-full shrink-0" style="background: <?php echo e($colors[$i % count($colors)]); ?>"></span>
+                                <span><?php echo e($label); ?></span>
+                            </span>
+                            <span class="text-[var(--muted-foreground)]"><?php echo e($segments[$i]['pct'] ?? 0); ?>%</span>
+                        </div>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                    <div class="flex items-center justify-between gap-3 pt-2 mt-1 border-t" style="border-color: var(--border);">
+                        <span class="font-medium">Total</span>
+                        <span class="font-semibold"><?php echo e(number_format($total)); ?></span>
+                    </div>
+                </div>
+            <?php endif; ?>
+        </div>
+    <?php else: ?>
+        <div class="rounded-[10px] border p-4 text-sm text-[var(--muted-foreground)] text-center"
+             style="border-color: var(--border); background: var(--muted);">No data yet</div>
+    <?php endif; ?>
+</div>
+<?php /**PATH C:\laragon\www\saas\resources\views\components\chart\donut.blade.php ENDPATH**/ ?>

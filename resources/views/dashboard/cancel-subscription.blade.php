@@ -26,7 +26,7 @@
 
 
 @if($downgradeOptions->isNotEmpty())
-<div class="card mb-6">
+<div class="card mb-4">
     <div class="card-header"><h3 class="card-title">Before you go — consider a cheaper plan</h3></div>
     <div class="card-body">
         <p class="text-sm text-[var(--muted-foreground)] mb-3">
@@ -47,7 +47,7 @@
         <form method="POST" action="{{ route('dashboard.cancel-subscription.cancel') }}"
               id="cancel-form" x-data>
             @csrf
-            <fieldset class="space-y-3 mb-6">
+            <fieldset class="space-y-3 mb-4">
                 <legend class="text-sm font-medium mb-2">Tell us why (required):</legend>
                 @php $reasons = [
                     'too_expensive' => 'Too expensive',

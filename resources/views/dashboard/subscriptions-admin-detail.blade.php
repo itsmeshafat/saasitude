@@ -27,7 +27,7 @@
     </div>
 </div>
 
-<div class="grid grid-cols-1 xl:grid-cols-2 gap-6">
+<div class="grid grid-cols-1 xl:grid-cols-2 gap-4">
     <div class="card">
         <div class="card-header"><h3 class="card-title">State timeline</h3></div>
         @if($timeline->isEmpty())

@@ -1,0 +1,101 @@
+<?php $attributes ??= new \Illuminate\View\ComponentAttributeBag;
+
+$__newAttributes = [];
+$__propNames = \Illuminate\View\ComponentAttributeBag::extractPropNames(([
+    'user' => null,
+    'size' => 'md',
+    'alt' => null,
+]));
+
+foreach ($attributes->all() as $__key => $__value) {
+    if (in_array($__key, $__propNames)) {
+        $$__key = $$__key ?? $__value;
+    } else {
+        $__newAttributes[$__key] = $__value;
+    }
+}
+
+$attributes = new \Illuminate\View\ComponentAttributeBag($__newAttributes);
+
+unset($__propNames);
+unset($__newAttributes);
+
+foreach (array_filter(([
+    'user' => null,
+    'size' => 'md',
+    'alt' => null,
+]), 'is_string', ARRAY_FILTER_USE_KEY) as $__key => $__value) {
+    $$__key = $$__key ?? $__value;
+}
+
+$__defined_vars = get_defined_vars();
+
+foreach ($attributes->all() as $__key => $__value) {
+    if (array_key_exists($__key, $__defined_vars)) unset($$__key);
+}
+
+unset($__defined_vars, $__key, $__value); ?>
+
+<?php
+    $sizeStyle = '';
+    $sizeKey = strtolower((string) $size);
+    $presetSizes = ['sm' => 32, 'md' => 36, 'lg' => 48];
+    if (isset($presetSizes[$sizeKey])) {
+        if ($sizeKey !== 'md') {
+            $px = $presetSizes[$sizeKey];
+            $sizeStyle = 'width:'.$px.'px; height:'.$px.'px; font-size:'.(int) round($px * 0.375).'px;';
+        }
+    } else {
+        $raw = (string) $size;
+        if (preg_match('/^(\d+(?:\.\d+)?)/', $raw, $m)) {
+            $num = (float) $m[1];
+            $sizeStyle = 'width:'.$num.'px; height:'.$num.'px; font-size:'.(int) round($num * 0.375).'px;';
+        } elseif (trim($raw) !== '') {
+            $sizeStyle = 'width:'.$raw.'; height:'.$raw.';';
+        }
+    }
+
+    $userModel = config('tyro-dashboard.user_model', 'App\\Models\\User');
+    if (is_object($user)) {
+        $resolvedUser = $user;
+    } else {
+        $resolvedUser = null;
+        if (filled($user)) {
+            $resolvedUser = $userModel::find($user);
+        }
+    }
+
+    if ($resolvedUser) {
+        $photoEnabled = (bool) config('tyro-dashboard.features.profile_photo_upload', false);
+        $gravatarEnabled = (bool) config('tyro-dashboard.features.gravatar', false);
+        $hasPhoto = $photoEnabled && filled($resolvedUser->profile_photo_path ?? null);
+        $useGravatar = $gravatarEnabled && filled($resolvedUser->use_gravatar ?? null) && filled($resolvedUser->email ?? null);
+        $hasImage = $hasPhoto || $useGravatar;
+        $altText = filled($alt) ? $alt : ($resolvedUser->name ?? null);
+        $initial = strtoupper(mb_substr((string) ($resolvedUser->name ?? ''), 0, 1));
+        if ($initial === '') {
+            $initial = '?';
+        }
+    } else {
+        $hasImage = false;
+        $altText = filled($alt) ? $alt : null;
+        $initial = '?';
+    }
+
+    $innerContent = trim((string) $slot);
+    $userStyle = (string) ($attributes->get('style') ?? '');
+    $finalStyle = trim($sizeStyle.($hasImage ? ' background:none; padding:0;' : '').($userStyle !== '' ? ' '.$userStyle : ''));
+?>
+
+<div <?php echo e($attributes->except('style')->merge(['class' => 'user-avatar'])); ?><?php if($finalStyle !== ''): ?> style="<?php echo e($finalStyle); ?>"<?php endif; ?>>
+    <?php if($innerContent !== ''): ?>
+        <?php echo $slot; ?>
+
+    <?php elseif($hasImage): ?>
+        <img src="<?php echo e($resolvedUser->profile_photo_url); ?>" alt="<?php echo e($altText); ?>" loading="lazy" decoding="async" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+    <?php else: ?>
+        <?php echo e($initial); ?>
+
+    <?php endif; ?>
+</div>
+<?php /**PATH C:\laragon\www\saas\vendor\hasinhayder\tyro-dashboard\resources\views\components\avatar.blade.php ENDPATH**/ ?>

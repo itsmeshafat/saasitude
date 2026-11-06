@@ -1,0 +1,55 @@
+<?php $attributes ??= new \Illuminate\View\ComponentAttributeBag;
+
+$__newAttributes = [];
+$__propNames = \Illuminate\View\ComponentAttributeBag::extractPropNames((['label' => null, 'error' => null, 'hint' => null, 'options' => [], 'placeholder' => null]));
+
+foreach ($attributes->all() as $__key => $__value) {
+    if (in_array($__key, $__propNames)) {
+        $$__key = $$__key ?? $__value;
+    } else {
+        $__newAttributes[$__key] = $__value;
+    }
+}
+
+$attributes = new \Illuminate\View\ComponentAttributeBag($__newAttributes);
+
+unset($__propNames);
+unset($__newAttributes);
+
+foreach (array_filter((['label' => null, 'error' => null, 'hint' => null, 'options' => [], 'placeholder' => null]), 'is_string', ARRAY_FILTER_USE_KEY) as $__key => $__value) {
+    $$__key = $$__key ?? $__value;
+}
+
+$__defined_vars = get_defined_vars();
+
+foreach ($attributes->all() as $__key => $__value) {
+    if (array_key_exists($__key, $__defined_vars)) unset($$__key);
+}
+
+unset($__defined_vars, $__key, $__value); ?>
+
+<div class="form-group !mb-0 flex flex-col gap-1.5">
+    <?php if($label): ?>
+        <label class="form-label" for="<?php echo e($attributes->get('id')); ?>"><?php echo e($label); ?></label>
+    <?php endif; ?>
+    <select <?php echo e($attributes->merge(['class' => 'form-select'])); ?>>
+        <?php if(isset($placeholder)): ?>
+            <option value=""><?php echo e($placeholder); ?></option>
+        <?php endif; ?>
+        <?php $__currentLoopData = $options; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $value => $optionLabel): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+            <option value="<?php echo e(is_array($optionLabel) ? $value : $optionLabel); ?>"
+                    <?php if((string) $attributes->get('value') === (string) $value): echo 'selected'; endif; ?>>
+                <?php echo e(is_array($optionLabel) ? ($optionLabel['label'] ?? $value) : $optionLabel); ?>
+
+            </option>
+        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+        <?php echo e($slot); ?>
+
+    </select>
+    <?php if($error): ?>
+        <p class="form-error"><?php echo e($error); ?></p>
+    <?php elseif($hint): ?>
+        <p class="form-hint"><?php echo e($hint); ?></p>
+    <?php endif; ?>
+</div>
+<?php /**PATH C:\laragon\www\saas\resources\views\components\ui\select.blade.php ENDPATH**/ ?>

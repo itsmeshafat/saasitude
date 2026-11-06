@@ -1,0 +1,67 @@
+<?php $attributes ??= new \Illuminate\View\ComponentAttributeBag;
+
+$__newAttributes = [];
+$__propNames = \Illuminate\View\ComponentAttributeBag::extractPropNames(([
+    'title' => null,
+]));
+
+foreach ($attributes->all() as $__key => $__value) {
+    if (in_array($__key, $__propNames)) {
+        $$__key = $$__key ?? $__value;
+    } else {
+        $__newAttributes[$__key] = $__value;
+    }
+}
+
+$attributes = new \Illuminate\View\ComponentAttributeBag($__newAttributes);
+
+unset($__propNames);
+unset($__newAttributes);
+
+foreach (array_filter(([
+    'title' => null,
+]), 'is_string', ARRAY_FILTER_USE_KEY) as $__key => $__value) {
+    $$__key = $$__key ?? $__value;
+}
+
+$__defined_vars = get_defined_vars();
+
+foreach ($attributes->all() as $__key => $__value) {
+    if (array_key_exists($__key, $__defined_vars)) unset($$__key);
+}
+
+unset($__defined_vars, $__key, $__value); ?>
+
+<?php
+    $titleValue = $title instanceof \Illuminate\View\ComponentSlot ? trim((string) $title) : (string) ($title ?? '');
+    $hasDescription = isset($description) && trim((string) $description) !== '';
+    $hasActions = isset($actions) && trim((string) $actions) !== '';
+    $hasFooter = isset($footer) && trim((string) $footer) !== '';
+    $body = trim((string) $slot);
+    $showHeader = $titleValue !== '' || $hasDescription || $hasActions;
+?>
+
+<div <?php echo e($attributes->merge(['class' => 'card'])); ?>>
+    <?php if($showHeader): ?>
+        <div class="card-header">
+            <div style="min-width:0;">
+                <?php if($titleValue !== ''): ?>
+                    <h3 class="card-title" style="margin:0;"><?php echo e($titleValue); ?></h3>
+                <?php endif; ?>
+                <?php if($hasDescription): ?>
+                    <p class="page-description" style="margin-top:<?php echo e($titleValue !== '' ? '0.25rem' : '0'); ?>;"><?php echo $description; ?></p>
+                <?php endif; ?>
+            </div>
+            <?php if($hasActions): ?>
+                <div style="display:flex; align-items:center; gap:0.5rem; flex-wrap:wrap;"><?php echo $actions; ?></div>
+            <?php endif; ?>
+        </div>
+    <?php endif; ?>
+    <?php if($body !== ''): ?>
+        <div class="card-body"><?php echo $slot; ?></div>
+    <?php endif; ?>
+    <?php if($hasFooter): ?>
+        <div class="card-footer"><?php echo $footer; ?></div>
+    <?php endif; ?>
+</div>
+<?php /**PATH C:\laragon\www\saas\vendor\hasinhayder\tyro-dashboard\resources\views\components\card.blade.php ENDPATH**/ ?>

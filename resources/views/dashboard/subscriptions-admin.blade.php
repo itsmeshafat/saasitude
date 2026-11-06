@@ -18,7 +18,7 @@
     </div>
 </div>
 
-<div class="card mb-6">
+<div class="card mb-4">
     <div class="card-body">
         <div class="flex flex-wrap gap-x-8 gap-y-2">
             @foreach(['trialing' => 'success', 'active' => 'success', 'past_due' => 'warning', 'canceled' => 'muted', 'expired' => 'muted'] as $status => $variant)

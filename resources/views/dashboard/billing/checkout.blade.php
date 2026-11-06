@@ -30,9 +30,9 @@
 <form method="POST" action="{{ route('dashboard.billing.checkout.start') }}">
     @csrf
 
-    <div class="grid grid-cols-1 xl:grid-cols-3 gap-6">
+    <div class="grid grid-cols-1 xl:grid-cols-3 gap-4">
         <div class="xl:col-span-2">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                 @foreach($prices->groupBy('plan_id') as $planId => $planPrices)
                     @php $plan = $planPrices->first()->plan @endphp
                     @foreach($planPrices as $price)
@@ -106,7 +106,7 @@
 </form>
 
 @if(in_array('portal', $gateway->capabilities()))
-    <div class="mt-6 text-sm text-[var(--muted-foreground)]">
+    <div class="mt-4 text-sm text-[var(--muted-foreground)]">
         Already subscribed? <a href="{{ route('dashboard.billing.portal') }}" class="underline">Manage billing</a>
     </div>
 @endif

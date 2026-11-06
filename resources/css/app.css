@@ -6,103 +6,164 @@
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
 
+/* ============================================================
+   DESIGN SYSTEM — "HOSTING GROWTH" (adopted 2026-11-06)
+   Public-page token layer. Mirrors shadcn-theme.blade.php values.
+   Canonical spec: design-system/saas-boilerplate/MASTER.md
+   Components MUST consume tokens — never raw hex.
+============================================================ */
+
 @theme {
-    --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
+    /* Type — brief font tokens verbatim (Aeonik licensed-optional; stack degrades cleanly) */
+    --font-sans: 'Aeonik', 'Segoe UI', 'Helvetica Neue', Arial, 'Noto Sans', 'Liberation Sans',
+        sans-serif, system-ui;
 
-    /* Cobalt Pro — semantic color tokens */
-    --color-primary: oklch(0.546 0.237 258);
-    --color-primary-foreground: oklch(0.985 0 0);
-    --color-background: oklch(0.985 0.003 258);
-    --color-foreground: oklch(0.144 0.022 254);
-    --color-card: oklch(1 0 0);
-    --color-card-foreground: oklch(0.144 0.022 254);
-    --color-muted: oklch(0.962 0.008 258);
-    --color-muted-foreground: oklch(0.556 0.015 254);
-    --color-accent: oklch(0.925 0.045 258);
-    --color-accent-foreground: oklch(0.144 0.022 254);
-    --color-secondary: oklch(0.962 0.008 258);
-    --color-secondary-foreground: oklch(0.144 0.022 254);
-    --color-border: oklch(0.898 0.010 258);
-    --color-input: oklch(0.898 0.010 258);
-    --color-ring: oklch(0.546 0.237 258);
-    --color-destructive: oklch(0.577 0.245 27.325);
-    --color-destructive-foreground: oklch(1 0 0);
-    --color-success: oklch(0.627 0.194 149);
-    --color-warning: oklch(0.769 0.188 70);
-    --color-info: oklch(0.546 0.237 258);
+    /* Semantic color tokens (light values; dark via .dark below) */
+    --color-primary: #c6fb4b;
+    --color-primary-foreground: #0a1616;
+    --color-background: #ffffff;
+    --color-foreground: #0a1616;
+    --color-card: rgba(255, 255, 255, 0.6);
+    --color-card-foreground: #0a1616;
+    --color-muted: rgba(8, 38, 21, 0.05);
+    --color-muted-foreground: #52645c;
+    --color-accent: rgba(198, 251, 75, 0.16);
+    --color-accent-foreground: #0a1616;
+    --color-secondary: rgba(8, 38, 21, 0.06);
+    --color-secondary-foreground: #0a1616;
+    --color-border: #e5e7eb;
+    --color-input: #e5e7eb;
+    --color-ring: rgba(59, 130, 246, 0.5);
+    --color-destructive: #dc2626;
+    --color-destructive-foreground: #ffffff;
+    --color-success: #c6fb4b;
+    --color-warning: #b45309;
+    --color-info: #3b82f6;
 
-    /* Shape */
-    --radius: 0.5rem;
-    --radius-sm: 0.25rem;
-    --radius-lg: 0.75rem;
+    /* Radius scale */
+    --radius-xs: 2px;
+    --radius-sm: 8px;
+    --radius: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 9999px;
+
+    /* Type scale */
+    --text-xs: 10px;
+    --text-sm: 11px;
+    --text-md: 13.01px;
+    --text-lg: 14px;
+    --text-xl: 15px;
+    --text-2xl: 16px;
+    --text-3xl: 18px;
+    --text-4xl: 20px;
+    --text-display-sm: 24px;
+    --text-display-md: 32px;
+    --text-display-lg: 48px;
+
+    /* Motion */
+    --duration-instant: 150ms;
+    --duration-fast: 200ms;
+    --duration-normal: 300ms;
 }
 
-/* CSS vars for components that reference var(--primary) etc. on public pages */
+/* Runtime vars for components that reference var(--primary) etc. on public pages */
 @layer base {
     :root {
-        --primary: oklch(0.546 0.237 258);
-        --primary-foreground: oklch(0.985 0 0);
-        --background: oklch(0.965 0.012 258);
-        --foreground: oklch(0.144 0.022 254);
-        --card: oklch(1 0 0 / 0.55);
-        --card-foreground: oklch(0.144 0.022 254);
-        --muted: oklch(0.962 0.008 258 / 0.6);
-        --muted-foreground: oklch(0.42 0.025 254);
-        --accent: oklch(0.925 0.045 258 / 0.7);
-        --accent-foreground: oklch(0.144 0.022 254);
-        --secondary: oklch(0.962 0.008 258 / 0.7);
-        --secondary-foreground: oklch(0.144 0.022 254);
-        --border: oklch(0.546 0.237 258 / 0.18);
-        --input: oklch(0.546 0.237 258 / 0.22);
-        --ring: oklch(0.546 0.237 258);
-        --destructive: oklch(0.577 0.245 27.325);
-        --destructive-foreground: oklch(1 0 0);
-        --success: oklch(0.627 0.194 149);
-        --warning: oklch(0.769 0.188 70);
-        --info: oklch(0.546 0.237 258);
-        --radius: 0.75rem;
+        --primary: #c6fb4b;
+        --primary-foreground: #0a1616;
+        --background: #ffffff;
+        --foreground: #0a1616;
+        --card: rgba(255, 255, 255, 0.6);
+        --card-foreground: #0a1616;
+        --popover: rgba(255, 255, 255, 0.92);
+        --popover-foreground: #0a1616;
+        --muted: rgba(8, 38, 21, 0.05);
+        --muted-foreground: #52645c;
+        --accent: rgba(198, 251, 75, 0.16);
+        --accent-foreground: #0a1616;
+        --secondary: rgba(8, 38, 21, 0.06);
+        --secondary-foreground: #0a1616;
+        --border: #e5e7eb;
+        --input: #e5e7eb;
+        --ring: rgba(59, 130, 246, 0.5);
+        --destructive: #dc2626;
+        --destructive-foreground: #ffffff;
+        --success: #c6fb4b;
+        --success-foreground: #0a1616;
+        --warning: #b45309;
+        --warning-foreground: #ffffff;
+        --info: #3b82f6;
+        --info-foreground: #ffffff;
+        --radius: 12px;
 
-        /* Cobalt Glass system (mirrors the dashboard shadcn-theme) */
-        --glass: oklch(1 0 0 / 0.55);
-        --glass-strong: oklch(1 0 0 / 0.72);
-        --glass-border: oklch(1 0 0 / 0.65);
-        --glass-blur: blur(18px) saturate(1.5);
-        --glass-highlight: inset 0 1px 0 oklch(1 0 0 / 0.6);
+        /* Ring shadows + spacing scale (mode-independent) */
+        --shadow-1: 0 0 0 1px rgba(10, 22, 22, 0.35);
+        --shadow-2: 0 0 0 1px #ffffff;
+        --shadow-3: 0 0 0 0px rgba(59, 130, 246, 0.5);
+        --duration-instant: 150ms;
+        --duration-fast: 200ms;
+        --duration-normal: 300ms;
+        --space-1: 3px; --space-2: 4px; --space-3: 5px; --space-4: 6px;
+        --space-5: 8px; --space-6: 10px; --space-7: 12px; --space-8: 16px;
+
+        /* Glass system — light */
+        --glass: rgba(255, 255, 255, 0.6);
+        --glass-strong: rgba(255, 255, 255, 0.78);
+        --glass-border: rgba(229, 231, 235, 0.9);
+        --glass-blur: blur(18px) saturate(1.4);
+        --glass-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.7);
         --mesh:
-            radial-gradient(600px 420px at 12% -6%, oklch(0.72 0.16 250 / 0.42), transparent 65%),
-            radial-gradient(760px 520px at 96% 12%, oklch(0.78 0.14 300 / 0.34), transparent 62%),
-            radial-gradient(680px 540px at 42% 108%, oklch(0.8 0.13 190 / 0.32), transparent 60%);
+            radial-gradient(600px 420px at 12% -6%, rgba(198, 251, 75, 0.16), transparent 65%),
+            radial-gradient(760px 520px at 96% 12%, rgba(8, 38, 21, 0.07), transparent 62%),
+            radial-gradient(680px 540px at 42% 108%, rgba(45, 90, 63, 0.10), transparent 60%);
+
+        --card-shadow: 0 0 0 1px rgba(10, 22, 22, 0.08), var(--glass-highlight);
+        --card-shadow-hover: 0 0 0 1px rgba(10, 22, 22, 0.14), var(--glass-highlight);
     }
 
+    /* Dark — DEFAULT THEME, brief values verbatim */
     .dark {
-        --primary: oklch(0.546 0.237 258);
-        --primary-foreground: oklch(0.985 0 0);
-        --background: oklch(0.13 0.02 254);
-        --foreground: oklch(0.97 0.005 254);
-        --card: oklch(0.21 0.028 254 / 0.55);
-        --card-foreground: oklch(0.97 0.005 254);
-        --muted: oklch(0.28 0.02 254 / 0.6);
-        --muted-foreground: oklch(0.8 0.015 254);
-        --accent: oklch(0.3 0.04 258 / 0.6);
-        --accent-foreground: oklch(0.97 0.005 254);
-        --secondary: oklch(0.28 0.02 254 / 0.7);
-        --secondary-foreground: oklch(0.97 0.005 254);
-        --border: oklch(1 0 0 / 18%);
-        --input: oklch(1 0 0 / 22%);
-        --ring: oklch(0.62 0.2 258);
-        --destructive: oklch(0.704 0.191 22.216);
-        --destructive-foreground: oklch(0.985 0 0);
+        --primary: #c6fb4b;
+        --primary-foreground: #0a1616;
+        --background: #000000;
+        --foreground: #ffffff;
+        --card: rgba(8, 38, 21, 0.55);
+        --card-foreground: #ffffff;
+        --popover: rgba(8, 38, 21, 0.92);
+        --popover-foreground: #ffffff;
+        --muted: rgba(8, 38, 21, 0.5);
+        --muted-foreground: #9ba5a1;
+        --accent: rgba(198, 251, 75, 0.1);
+        --accent-foreground: #ffffff;
+        --secondary: rgba(8, 38, 21, 0.6);
+        --secondary-foreground: #ffffff;
+        --border: rgba(229, 231, 235, 0.15);
+        --input: rgba(229, 231, 235, 0.18);
+        --ring: rgba(59, 130, 246, 0.5);
+        --destructive: #f87171;
+        --destructive-foreground: #0a1616;
+        --success: #c6fb4b;
+        --success-foreground: #0a1616;
+        --warning: #fbbf24;
+        --warning-foreground: #0a1616;
+        --info: #3b82f6;
+        --info-foreground: #ffffff;
 
-        /* Cobalt Glass — smoked */
-        --glass: oklch(0.21 0.028 254 / 0.55);
-        --glass-strong: oklch(0.24 0.03 254 / 0.75);
-        --glass-border: oklch(1 0 0 / 0.2);
-        --glass-blur: blur(18px) saturate(1.4);
-        --glass-highlight: inset 0 1px 0 oklch(1 0 0 / 0.1);
+        --shadow-1: 0 0 0 1px #082615;
+        --shadow-2: 0 0 0 1px #ffffff;
+
+        /* Glass — dark green frost, lime-tinted mesh */
+        --glass: rgba(8, 38, 21, 0.55);
+        --glass-strong: rgba(8, 38, 21, 0.78);
+        --glass-border: rgba(229, 231, 235, 0.2);
+        --glass-blur: blur(18px) saturate(1.3);
+        --glass-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.08);
         --mesh:
-            radial-gradient(600px 420px at 12% -6%, oklch(0.35 0.14 258 / 0.5), transparent 65%),
-            radial-gradient(760px 520px at 96% 12%, oklch(0.35 0.12 310 / 0.4), transparent 62%),
-            radial-gradient(680px 540px at 42% 108%, oklch(0.33 0.1 200 / 0.4), transparent 60%);
+            radial-gradient(600px 420px at 12% -6%, rgba(198, 251, 75, 0.1), transparent 65%),
+            radial-gradient(760px 520px at 96% 12%, rgba(8, 38, 21, 0.55), transparent 62%),
+            radial-gradient(680px 540px at 42% 108%, rgba(45, 90, 63, 0.35), transparent 60%);
+
+        --card-shadow: 0 0 0 1px rgba(8, 38, 21, 0.9), var(--glass-highlight);
+        --card-shadow-hover: 0 0 0 1px rgba(229, 231, 235, 0.25), var(--glass-highlight);
     }
 }

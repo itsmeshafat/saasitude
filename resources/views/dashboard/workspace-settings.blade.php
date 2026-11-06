@@ -18,7 +18,7 @@
     </div>
 </div>
 
-<div class="grid grid-cols-1 xl:grid-cols-2 gap-6">
+<div class="grid grid-cols-1 xl:grid-cols-2 gap-4">
     <div class="card">
         <div class="card-header"><h3 class="card-title">General</h3></div>
         <div class="card-body">
@@ -58,7 +58,7 @@
 
 @php($members = $workspace->workspaceMembers()->with('user')->get())
 @if($members->count() > 1)
-<div class="card mt-6 border-[var(--destructive)]/40">
+<div class="card mt-4 border-[var(--destructive)]/40">
     <div class="card-header">
         <div>
             <h3 class="card-title text-[var(--destructive)]">Danger zone</h3>

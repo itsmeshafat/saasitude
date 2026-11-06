@@ -1,0 +1,219 @@
+<?php $__env->startSection('content'); ?>
+<div class="auth-container <?php echo e($layout); ?>" <?php if($layout==='fullscreen' ): ?> style="background-image: url('<?php echo e($backgroundImage); ?>');" <?php endif; ?> <?php if($layout==='youtube-video'): ?> id="tyro-youtube-container" <?php endif; ?>>
+    <?php if(in_array($layout, ['split-left', 'split-right'])): ?>
+    <div class="background-panel" style="background-image: url('<?php echo e($backgroundImage); ?>');">
+        <div class="background-panel-content">
+            <h1><?php echo e(config('tyro-login.two_factor.setup_title', 'Two Factor Authentication')); ?></h1>
+            <p><?php echo e(config('tyro-login.two_factor.setup_subtitle', 'Scan the QR code with your authenticator app.')); ?></p>
+        </div>
+    </div>
+    <?php endif; ?>
+
+    <div class="form-panel">
+        <div class="form-card">
+            <!-- Header -->
+            <div class="form-header">
+                <h2><?php echo e(config('tyro-login.two_factor.setup_title', 'Two Factor Authentication')); ?></h2>
+                <p><?php echo e(config('tyro-login.two_factor.setup_subtitle', 'Scan the QR code with your authenticator app.')); ?></p>
+            </div>
+
+            <div class="qr-container text-center mb-6">
+                <?php echo $qrCodeSvg; ?>
+
+                <div class="secret-key mt-4">
+                    <p class="text-sm text-gray-500">Or enter this code manually:</p>
+                    <code class="block font-mono bg-gray-100 p-2 rounded mt-1"><?php echo e($secretKey); ?></code>
+                </div>
+            </div>
+
+            <!-- OTP Form -->
+            <form method="POST" action="<?php echo e(route('tyro-login.two-factor.confirm')); ?>">
+                <?php echo csrf_field(); ?>
+
+                <!-- OTP Input -->
+                <div class="form-group">
+                    <label for="code" class="form-label text-center">Enter the code from your app</label>
+                    <div class="otp-input-container">
+                        <?php for($i = 0; $i < 6; $i++): ?> <input type="text" class="otp-digit <?php $__errorArgs = ['code'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" maxlength="1" inputmode="numeric" pattern="[0-9]" autocomplete="one-time-code" data-index="<?php echo e($i); ?>" required>
+                            <?php endfor; ?>
+                    </div>
+                    <input type="hidden" name="code" id="otp-hidden" value="">
+                    <?php $__errorArgs = ['code'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                    <span class="error-message text-center"><?php echo e($message); ?></span>
+                    <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" class="btn btn-primary">
+                    Verify & Enable
+                </button>
+            </form>
+
+            <?php if(config('tyro-login.two_factor.allow_skip', false) && empty($forcedSetup)): ?>
+            <div class="skip-actions mt-4">
+                <form method="POST" action="<?php echo e(route('tyro-login.two-factor.skip')); ?>" class="skip-inline-form">
+                    <?php echo csrf_field(); ?>
+                    <button type="submit" class="skip-link">Skip this time</button>
+                </form>
+                <span class="skip-separator">|</span>
+                <form method="POST" action="<?php echo e(route('tyro-login.two-factor.ignore')); ?>" class="skip-inline-form">
+                    <?php echo csrf_field(); ?>
+                    <button type="submit" class="skip-link">Skip and ignore</button>
+                </form>
+            </div>
+            <?php endif; ?>
+        </div>
+    </div>
+</div>
+
+<?php echo $__env->make('tyro-login::partials.backgrounds', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+
+<style>
+    .qr-container svg {
+        margin: 0 auto;
+        max-width: 200px;
+        height: auto;
+    }
+    .text-center {
+        text-align: center;
+        width: 100%;
+    }
+    .mt-4 { margin-top: 1rem; }
+    .mb-6 { margin-bottom: 1.5rem; }
+    .text-sm { font-size: 0.875rem; }
+    .text-gray-500 { color: var(--muted-foreground); }
+    .hover\:text-gray-700:hover { color: var(--foreground); }
+    .font-medium { font-weight: 500; }
+    .block { display: block; }
+    .font-mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
+    .bg-gray-100 { background-color: var(--muted); }
+    .p-2 { padding: 0.5rem; }
+    .rounded { border-radius: 0.375rem; }
+    .w-full { width: 100%; }
+    
+    .skip-actions {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+    }
+    .skip-inline-form { display: inline; }
+    .skip-link {
+        background: none;
+        border: none;
+        padding: 0;
+        cursor: pointer;
+        font-size: 0.875rem;
+        color: var(--muted-foreground);
+        text-decoration: none;
+        text-underline-offset: 3px;
+    }
+    .skip-link:hover { color: var(--foreground); }
+    .skip-separator {
+        font-size: 0.7rem;
+        color: var(--muted-foreground);
+        opacity: 0.5;
+    }
+    
+    .otp-input-container {
+        display: flex;
+        gap: 0.5rem;
+        justify-content: center;
+    }
+
+    .otp-digit {
+        width: 3rem;
+        height: 3.5rem;
+        text-align: center;
+        font-size: 1.5rem;
+        font-weight: 600;
+        border: 1px solid var(--input);
+        border-radius: 0.375rem;
+        background-color: var(--background);
+        color: var(--foreground);
+        transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .otp-digit:focus {
+        outline: none;
+        border-color: var(--ring);
+        box-shadow: 0 0 0 1px var(--ring);
+    }
+
+    .otp-digit.is-invalid {
+        border-color: var(--destructive);
+    }
+
+    .otp-digit.filled {
+        border-color: var(--ring);
+        background-color: var(--muted);
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const digits = document.querySelectorAll('.otp-digit');
+        const hiddenInput = document.getElementById('otp-hidden');
+
+        function updateHiddenInput() {
+            let otp = '';
+            digits.forEach(digit => {
+                otp += digit.value;
+            });
+            hiddenInput.value = otp;
+        }
+
+        digits.forEach((digit, index) => {
+            digit.addEventListener('input', function (e) {
+                this.value = this.value.replace(/[^0-9]/g, '');
+                if (this.value && index < digits.length - 1) {
+                    digits[index + 1].focus();
+                }
+                updateHiddenInput();
+                if (hiddenInput.value.length === digits.length) {
+                    this.closest('form').requestSubmit();
+                }
+            });
+
+            digit.addEventListener('keydown', function (e) {
+                if (e.key === 'Backspace' && !this.value && index > 0) {
+                    digits[index - 1].focus();
+                }
+            });
+            
+             digit.addEventListener('paste', function (e) {
+                e.preventDefault();
+                const pastedData = (e.clipboardData || window.clipboardData).getData('text');
+                const numbers = pastedData.replace(/[^0-9]/g, '').split('').slice(0, digits.length);
+
+                numbers.forEach((num, i) => {
+                    if (digits[i]) {
+                        digits[i].value = num;
+                    }
+                });
+                
+                updateHiddenInput();
+                if (hiddenInput.value.length === digits.length) {
+                    this.closest('form').requestSubmit();
+                }
+            });
+        });
+    });
+</script>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('tyro-login::layouts.auth', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH C:\laragon\www\saas\vendor\hasinhayder\tyro-login\resources\views\two-factor-setup.blade.php ENDPATH**/ ?>

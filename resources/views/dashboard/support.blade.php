@@ -19,7 +19,7 @@
 </div>
 
 
-<div class="grid grid-cols-1 xl:grid-cols-2 gap-6">
+<div class="grid grid-cols-1 xl:grid-cols-2 gap-4">
     <div class="card">
         <div class="card-header"><h3 class="card-title">New ticket</h3></div>
         <div class="card-body">

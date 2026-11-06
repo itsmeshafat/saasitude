@@ -38,18 +38,19 @@ class ExportController extends Controller
         $filename = $type.'-'.now()->format('Ymd-His').'.csv';
 
         return response()->streamDownload(function () use ($query, $type): void {
-            $out = fopen('php://output', 'w');
-
-            fputcsv($out, match ($type) {
+            // echo-based streaming (no stream wrappers): rows are CSV-escaped
+            // via the local csvLine() helper (RFC 4180 quoting).
+            $headers = match ($type) {
                 'payments' => ['id', 'workspace', 'gateway', 'gateway_payment_id', 'amount', 'currency', 'status', 'created_at'],
                 'invoices' => ['number', 'workspace', 'amount', 'currency', 'status', 'issued_at'],
                 'subscriptions' => ['id', 'workspace', 'plan', 'gateway', 'status', 'created_at', 'current_period_end'],
                 'workspaces' => ['id', 'name', 'owner_email', 'members', 'plan', 'status', 'created_at'],
-            });
+            };
+            echo $this->csvLine($headers);
 
-            $query->chunk(500, function ($rows) use ($out, $type): void {
+            $query->chunk(500, function ($rows) use ($type): void {
                 foreach ($rows as $row) {
-                    fputcsv($out, match ($type) {
+                    echo $this->csvLine(match ($type) {
                         'payments' => [$row->id, $row->workspace?->name, $row->gateway, $row->gateway_payment_id, $row->amount, $row->currency, $row->status, $row->created_at?->toIso8601String()],
                         'invoices' => [$row->number, $row->workspace?->name, $row->amount, $row->currency, $row->status, $row->issued_at?->toIso8601String() ?? $row->created_at?->toIso8601String()],
                         'subscriptions' => [$row->id, $row->workspace?->name, $row->plan?->name, $row->gateway, $row->status, $row->created_at?->toIso8601String(), $row->current_period_end?->toIso8601String()],
@@ -57,8 +58,6 @@ class ExportController extends Controller
                     });
                 }
             });
-
-            fclose($out);
         }, $filename, [
             'Content-Type' => 'text/csv; charset=UTF-8',
         ]);
@@ -143,5 +142,19 @@ class ExportController extends Controller
                 });
             })
             ->latest();
+    }
+
+    /** RFC 4180 CSV line: quote fields containing delimiters, quotes or newlines. */
+    private function csvLine(array $fields): string
+    {
+        return implode(',', array_map(function ($field): string {
+            $field = (string) ($field ?? '');
+
+            if (preg_match('/[",\r\n]/', $field)) {
+                return '"'.str_replace('"', '""', $field).'"';
+            }
+
+            return $field;
+        }, $fields))."\r\n";
     }
 }

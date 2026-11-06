@@ -1,0 +1,228 @@
+<?php
+    $isEdit = $model instanceof \Illuminate\Database\Eloquent\Model;
+    $formMethod = strtoupper($method);
+    $htmlMethod = in_array($formMethod, ['GET', 'HEAD'], true) ? 'GET' : 'POST';
+    $needsMethodSpoof = ! in_array($formMethod, ['GET', 'HEAD', 'POST'], true);
+    $needsCsrf = ! in_array($formMethod, ['GET', 'HEAD'], true);
+    $formAction = $action ?? request()->url();
+    $columnCount = max(1, (int) count($columns));
+?>
+
+<form <?php echo e($attributes->merge(['method' => $htmlMethod, 'action' => $formAction])); ?>>
+    <?php if($needsCsrf): ?>
+        <?php echo csrf_field(); ?>
+    <?php endif; ?>
+
+    <?php if($needsMethodSpoof): ?>
+        <?php echo method_field($formMethod); ?>
+    <?php endif; ?>
+
+    <?php if($header): ?>
+        <div class="form-header" style="margin-bottom: 1rem;">
+            <h3 class="card-title" style="margin: 0;"><?php echo e($header); ?></h3>
+        </div>
+    <?php endif; ?>
+
+    <div class="model-form-grid <?php if($columnCount === 2): ?> model-form-two-columns <?php endif; ?>" style="display: grid; grid-template-columns: repeat(<?php echo e($columnCount); ?>, minmax(0, 1fr)); gap: 0 1.5rem;">
+        <?php $__currentLoopData = $columns; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $columnFields): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+        <div class="model-form-column">
+            <?php $__currentLoopData = $columnFields; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+            <?php
+                $field = $fields[$key];
+                $type = $field['type'] ?? 'text';
+                $label = $field['label'] ?? \Illuminate\Support\Str::headline($key);
+                $fieldValue = old($key, $isEdit && $model->offsetExists($key) ? $model->{$key} : ($field['default'] ?? null));
+
+                if ($fieldValue instanceof \Illuminate\Database\Eloquent\Model) {
+                    $fieldValue = $fieldValue->getKey();
+                }
+
+                $multipleValues = $fieldValue instanceof \Illuminate\Support\Collection
+                    ? $fieldValue->all()
+                    : (is_array($fieldValue) ? $fieldValue : []);
+                $selectedValues = array_map('strval', (array) old($key, $multipleValues));
+
+                $attributeHtml = '';
+                foreach (($field['attributes'] ?? []) as $attrName => $attrValue) {
+                    $attributeHtml .= ' '.e($attrName).'="'.e($attrValue).'"';
+                }
+
+                $isMultiple = (($type === 'select' || $type === 'multiselect') && ($field['multiple'] ?? false)) || $type === 'multiselect';
+                $isOptionField = in_array($type, ['select', 'multiselect', 'radio', 'checkbox'], true);
+                $selectOptions = null;
+
+                if ($isOptionField) {
+                    $selectOptions = \HasinHayder\TyroDashboard\Support\ModelFormFieldResolver::resolveSelectOptions($model, $key, $field);
+
+                    if ($selectOptions === null) {
+                        $type = ($type === 'select' && ! $isMultiple) ? 'number' : 'text';
+                        $isOptionField = false;
+                    }
+                }
+
+                $hideLabel = in_array($type, ['boolean', 'media', 'radio', 'checkbox'], true);
+            ?>
+
+            <?php if($type === 'hidden'): ?>
+            <input type="hidden" name="<?php echo e($key); ?>" value="<?php echo e($fieldValue); ?>">
+            <?php continue; ?>
+            <?php endif; ?>
+
+            <div class="form-group" style="margin-bottom: 1rem;">
+                <?php if(! $hideLabel): ?>
+                <label for="<?php echo e($key); ?>" class="form-label"><?php echo e($label); ?></label>
+                <?php endif; ?>
+
+                <?php if($type === 'media'): ?>
+                <?php if (isset($component)) { $__componentOriginal27f07884c9bee0691eaac76df0de8b1c = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal27f07884c9bee0691eaac76df0de8b1c = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'tyro-dashboard::components.media-picker','data' => ['name' => $key,'value' => $fieldValue,'label' => $label,'preview' => true]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('tyro-dashboard::media-picker'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['name' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($key),'value' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($fieldValue),'label' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($label),'preview' => true]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal27f07884c9bee0691eaac76df0de8b1c)): ?>
+<?php $attributes = $__attributesOriginal27f07884c9bee0691eaac76df0de8b1c; ?>
+<?php unset($__attributesOriginal27f07884c9bee0691eaac76df0de8b1c); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal27f07884c9bee0691eaac76df0de8b1c)): ?>
+<?php $component = $__componentOriginal27f07884c9bee0691eaac76df0de8b1c; ?>
+<?php unset($__componentOriginal27f07884c9bee0691eaac76df0de8b1c); ?>
+<?php endif; ?>
+
+                <?php elseif($type === 'file'): ?>
+                <input type="file" name="<?php echo e($key); ?>" id="<?php echo e($key); ?>" class="form-input <?php $__errorArgs = [$key];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" <?php echo $attributeHtml; ?>>
+
+                <?php elseif($type === 'textarea' || $type === 'markdown'): ?>
+                <textarea name="<?php echo e($key); ?>" id="<?php echo e($key); ?>" class="form-input <?php $__errorArgs = [$key];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" rows="5" placeholder="<?php echo e($field['placeholder'] ?? ''); ?>" <?php echo e(($field['readonly'] ?? false) ? 'readonly' : ''); ?><?php echo $attributeHtml; ?>><?php echo e($fieldValue); ?></textarea>
+
+                <?php elseif($type === 'richtext'): ?>
+                <div class="richtext-wrapper">
+                    <div id="editor-<?php echo e($key); ?>" style="height: 200px; background: #fff;"></div>
+                    <textarea name="<?php echo e($key); ?>" id="<?php echo e($key); ?>" style="display:none"><?php echo e($fieldValue); ?></textarea>
+                </div>
+
+                <?php elseif($isOptionField && $type === 'radio'): ?>
+                <div class="radio-group">
+                    <?php $__currentLoopData = $selectOptions; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $optionValue => $optionLabel): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <div class="form-check">
+                        <input type="radio" name="<?php echo e($key); ?>" id="<?php echo e($key); ?>_<?php echo e($optionValue); ?>" value="<?php echo e($optionValue); ?>" <?php echo e(in_array((string) $optionValue, $selectedValues, true) ? 'checked' : ''); ?>>
+                        <label for="<?php echo e($key); ?>_<?php echo e($optionValue); ?>"><?php echo e($optionLabel); ?></label>
+                    </div>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                </div>
+
+                <?php elseif($isOptionField && $type === 'checkbox'): ?>
+                <div class="checkbox-group">
+                    <?php $__currentLoopData = $selectOptions; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $optionValue => $optionLabel): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <div class="form-check">
+                        <input type="checkbox" name="<?php echo e($key); ?>[]" id="<?php echo e($key); ?>_<?php echo e($optionValue); ?>" value="<?php echo e($optionValue); ?>" <?php echo e(in_array((string) $optionValue, $selectedValues, true) ? 'checked' : ''); ?>>
+                        <label for="<?php echo e($key); ?>_<?php echo e($optionValue); ?>"><?php echo e($optionLabel); ?></label>
+                    </div>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                </div>
+
+                <?php elseif($isOptionField && $isMultiple): ?>
+                <select name="<?php echo e($key); ?>[]" id="<?php echo e($key); ?>" class="form-select <?php $__errorArgs = [$key];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" multiple <?php echo $attributeHtml; ?>>
+                    <?php $__currentLoopData = $selectOptions; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $optionValue => $optionLabel): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <option value="<?php echo e($optionValue); ?>" <?php echo e(in_array((string) $optionValue, $selectedValues, true) ? 'selected' : ''); ?>><?php echo e($optionLabel); ?></option>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                </select>
+
+                <?php elseif($isOptionField): ?>
+                <select name="<?php echo e($key); ?>" id="<?php echo e($key); ?>" class="form-select <?php $__errorArgs = [$key];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" <?php echo $attributeHtml; ?>>
+                    <option value="">Select <?php echo e($label); ?></option>
+                    <?php $__currentLoopData = $selectOptions; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $optionValue => $optionLabel): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <option value="<?php echo e($optionValue); ?>" <?php echo e((string) $optionValue === (string) old($key, is_array($fieldValue) ? '' : $fieldValue) ? 'selected' : ''); ?>><?php echo e($optionLabel); ?></option>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                </select>
+
+                <?php elseif($type === 'boolean'): ?>
+                <div class="form-check">
+                    <input type="checkbox" name="<?php echo e($key); ?>" id="<?php echo e($key); ?>" value="1" <?php echo e(old($key, $fieldValue) ? 'checked' : ''); ?> <?php echo $attributeHtml; ?>>
+                    <label for="<?php echo e($key); ?>"><?php echo e($label); ?></label>
+                </div>
+
+                <?php elseif($type === 'password'): ?>
+                <input type="password" name="<?php echo e($key); ?>" id="<?php echo e($key); ?>" class="form-input <?php $__errorArgs = [$key];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" placeholder="<?php echo e($isEdit ? 'Leave blank to keep current' : ($field['placeholder'] ?? '')); ?>" autocomplete="new-password" <?php echo e(($field['readonly'] ?? false) ? 'readonly' : ''); ?> <?php echo $attributeHtml; ?>>
+
+                <?php else: ?>
+                <input type="<?php echo e($type); ?>" name="<?php echo e($key); ?>" id="<?php echo e($key); ?>" class="form-input <?php $__errorArgs = [$key];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" value="<?php echo e(is_array($fieldValue) ? '' : $fieldValue); ?>" placeholder="<?php echo e($field['placeholder'] ?? ''); ?>" <?php echo e(($field['readonly'] ?? false) ? 'readonly' : ''); ?> <?php echo $attributeHtml; ?>>
+                <?php endif; ?>
+
+                <?php if(isset($field['help_text'])): ?>
+                <div class="form-help-text" style="color: var(--text-secondary); font-size: 0.875rem; margin-top: 0.25rem;"><?php echo e($field['help_text']); ?></div>
+                <?php endif; ?>
+
+                <?php $__errorArgs = [$key];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                <?php if(config('tyro-dashboard.resource_ui.show_field_errors', true)): ?>
+                <div class="form-error" style="color: var(--danger); font-size: 0.875rem; margin-top: 0.25rem;"><?php echo e($message); ?></div>
+                <?php endif; ?>
+                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+            </div>
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+        </div>
+        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+    </div>
+
+    <?php if($submit): ?>
+    <div class="form-actions" style="margin-top: 1.5rem;">
+        <button type="submit" class="btn btn-primary"><?php echo e($submitLabel); ?></button>
+    </div>
+    <?php endif; ?>
+</form>
+<?php /**PATH C:\laragon\www\saas\vendor\hasinhayder\tyro-dashboard\resources\views\forms\model-form.blade.php ENDPATH**/ ?>

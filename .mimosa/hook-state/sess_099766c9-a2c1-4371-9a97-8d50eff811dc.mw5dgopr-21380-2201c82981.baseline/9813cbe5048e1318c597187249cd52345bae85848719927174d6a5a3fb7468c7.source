@@ -1,0 +1,4 @@
+<p>Hi <?php echo e($subscription->workspace->users()->first()?->name); ?>,</p>
+<p>Your <strong><?php echo e($subscription->plan->name); ?></strong> subscription for <strong><?php echo e($subscription->workspace->name); ?></strong> renews in <strong><?php echo e($daysUntilRenewal); ?> day(s)</strong> on <?php echo e($subscription->current_period_end->format('F j, Y')); ?>.</p>
+<p>To continue your service, please ensure your payment method is up to date.</p>
+<?php /**PATH C:\laragon\www\saas\resources\views\emails\billing\renewal-reminder.blade.php ENDPATH**/ ?>

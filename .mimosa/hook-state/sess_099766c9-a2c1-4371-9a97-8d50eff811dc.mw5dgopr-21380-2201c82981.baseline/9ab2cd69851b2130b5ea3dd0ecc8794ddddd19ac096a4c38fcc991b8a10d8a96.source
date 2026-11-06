@@ -1,0 +1,21 @@
+
+<div class="stats-grid">
+    <?php $__currentLoopData = $kpis; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $kpi): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+        <div class="stat-card">
+            <div class="stat-icon <?php echo e($kpi['icon_class']); ?>">
+                <?php echo $kpi['icon']; ?>
+
+            </div>
+            <div class="stat-content">
+                <div class="stat-label" style="font-size: 0.9375rem;"><?php echo e($kpi['label']); ?></div>
+                <div class="stat-value"><?php echo e($kpi['value']); ?></div>
+                <div class="stat-change <?php echo e($kpi['change_class']); ?>">
+                    <?php echo $kpi['change_icon']; ?>
+
+                    <span><?php echo e($kpi['change_text']); ?></span>
+                </div>
+            </div>
+        </div>
+    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+</div>
+<?php /**PATH C:\laragon\www\saas\vendor\hasinhayder\tyro-dashboard\resources\views\examples\partials\components\kpi-stats.blade.php ENDPATH**/ ?>

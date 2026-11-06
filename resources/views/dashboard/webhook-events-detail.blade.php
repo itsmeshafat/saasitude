@@ -40,7 +40,7 @@
     <div class="alert alert-error mb-4">{{ $event->error_message }}</div>
 @endif
 
-<div class="grid grid-cols-1 xl:grid-cols-3 gap-6">
+<div class="grid grid-cols-1 xl:grid-cols-3 gap-4">
     <div class="card xl:col-span-1">
         <div class="card-header"><h3 class="card-title">Metadata</h3></div>
         <div class="card-body">

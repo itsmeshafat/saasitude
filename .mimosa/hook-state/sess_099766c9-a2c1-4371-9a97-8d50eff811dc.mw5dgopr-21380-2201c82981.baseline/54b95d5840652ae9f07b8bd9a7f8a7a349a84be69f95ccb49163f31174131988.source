@@ -1,0 +1,244 @@
+<?php $__env->startSection('title', 'Overview'); ?>
+
+<?php $__env->startSection('breadcrumb'); ?>
+<a href="<?php echo e(route($dashboardRoute::name('index'))); ?>">Dashboard</a>
+<span class="breadcrumb-separator">/</span>
+<span>Overview</span>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+<div class="page-header">
+    <div class="page-header-row">
+        <div>
+            <h1 class="page-title">Overview</h1>
+            <p class="page-description">Billing metrics for <?php echo e(now()->format('F Y')); ?>.</p>
+        </div>
+        <?php if (isset($component)) { $__componentOriginala8bb031a483a05f647cb99ed3a469847 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginala8bb031a483a05f647cb99ed3a469847 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.ui.button','data' => ['href' => ''.e(route('admin.exports.report')).'','variant' => 'primary']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('ui.button'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['href' => ''.e(route('admin.exports.report')).'','variant' => 'primary']); ?>Download monthly report (PDF) <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginala8bb031a483a05f647cb99ed3a469847)): ?>
+<?php $attributes = $__attributesOriginala8bb031a483a05f647cb99ed3a469847; ?>
+<?php unset($__attributesOriginala8bb031a483a05f647cb99ed3a469847); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginala8bb031a483a05f647cb99ed3a469847)): ?>
+<?php $component = $__componentOriginala8bb031a483a05f647cb99ed3a469847; ?>
+<?php unset($__componentOriginala8bb031a483a05f647cb99ed3a469847); ?>
+<?php endif; ?>
+    </div>
+</div>
+
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+    <div class="stat-card">
+        <div class="stat-icon stat-icon-primary">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+        </div>
+        <div class="stat-label">Revenue this month</div>
+        <div class="stat-value">$<?php echo e(number_format($revenueThisMonth / 100, 2)); ?></div>
+        <span class="stat-change <?php echo e(($revenueDeltaPct ?? 0) >= 0 ? 'stat-change-up' : 'stat-change-down'); ?>">
+            <?php echo e(($revenueDeltaPct ?? 0) >= 0 ? '▲' : '▼'); ?> <?php echo e($revenueDeltaPct !== null ? abs($revenueDeltaPct).'%' : '—'); ?> <span class="opacity-70">vs last month</span>
+        </span>
+    </div>
+    <div class="stat-card">
+        <div class="stat-icon stat-icon-info">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" /></svg>
+        </div>
+        <div class="stat-label">MRR (active plans)</div>
+        <div class="stat-value">$<?php echo e(number_format($mrrMinor / 100, 2)); ?></div>
+        <span class="stat-change stat-change-up">ARR $<?php echo e(number_format($arrMinor / 100, 0)); ?></span>
+    </div>
+    <div class="stat-card">
+        <div class="stat-icon stat-icon-warning">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 13l-5 5m0 0l-5-5m5 5V6" /></svg>
+        </div>
+        <div class="stat-label">Churn rate</div>
+        <div class="stat-value"><?php echo e($churnRate); ?>%</div>
+        <span class="stat-change stat-change-down">canceled / active at start</span>
+    </div>
+    <div class="stat-card">
+        <div class="stat-icon stat-icon-success">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+        </div>
+        <div class="stat-label">Trial conversion</div>
+        <div class="stat-value"><?php echo e($trialConversionRate); ?>%</div>
+        <span class="stat-change stat-change-up">activated / started</span>
+    </div>
+</div>
+
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+    <div class="stat-card">
+        <div class="stat-icon stat-icon-primary">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" /></svg>
+        </div>
+        <div class="stat-label">Active subscriptions</div>
+        <div class="stat-value"><?php echo e($activeCount); ?></div>
+        <span class="stat-change"><?php echo e($trialCount); ?> trialing</span>
+    </div>
+    <div class="stat-card">
+        <div class="stat-icon stat-icon-success">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+        </div>
+        <div class="stat-label">Trials in progress</div>
+        <div class="stat-value"><?php echo e($trialCount); ?></div>
+        <span class="stat-change">currently trialing</span>
+    </div>
+    <div class="stat-card">
+        <div class="stat-icon <?php echo e($failedPayments > 0 ? 'stat-icon-danger' : 'stat-icon-success'); ?>">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
+        </div>
+        <div class="stat-label">Failed payments</div>
+        <div class="stat-value"><?php echo e($failedPayments); ?></div>
+        <span class="stat-change">this month</span>
+    </div>
+    <div class="stat-card">
+        <div class="stat-icon stat-icon-info">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" /></svg>
+        </div>
+        <div class="stat-label">Workspaces</div>
+        <div class="stat-value"><?php echo e($workspaceCount); ?></div>
+        <a href="<?php echo e(route('admin.workspaces.index')); ?>" class="stat-change underline">Manage →</a>
+    </div>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+    <div class="card md:col-span-2">
+        <div class="card-header"><h3 class="card-title">Revenue — last 12 months</h3></div>
+        <div class="card-body">
+            <?php if (isset($component)) { $__componentOriginalf29654dbbe25959c8c5dcc71c3f21c72 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginalf29654dbbe25959c8c5dcc71c3f21c72 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.chart.line','data' => ['values' => $revenueByMonth,'labels' => $monthLabels,'height' => 200]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('chart.line'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['values' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($revenueByMonth),'labels' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($monthLabels),'height' => 200]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginalf29654dbbe25959c8c5dcc71c3f21c72)): ?>
+<?php $attributes = $__attributesOriginalf29654dbbe25959c8c5dcc71c3f21c72; ?>
+<?php unset($__attributesOriginalf29654dbbe25959c8c5dcc71c3f21c72); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginalf29654dbbe25959c8c5dcc71c3f21c72)): ?>
+<?php $component = $__componentOriginalf29654dbbe25959c8c5dcc71c3f21c72; ?>
+<?php unset($__componentOriginalf29654dbbe25959c8c5dcc71c3f21c72); ?>
+<?php endif; ?>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header"><h3 class="card-title">Payments by gateway</h3></div>
+        <div class="card-body">
+            <?php if (isset($component)) { $__componentOriginal498d6c972580f3fd108dead01694975b = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal498d6c972580f3fd108dead01694975b = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.chart.donut','data' => ['values' => $gatewayMix->values()->all(),'labels' => $gatewayMix->keys()->map(fn ($g) => ucfirst($g))->all(),'size' => 130]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('chart.donut'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['values' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($gatewayMix->values()->all()),'labels' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($gatewayMix->keys()->map(fn ($g) => ucfirst($g))->all()),'size' => 130]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal498d6c972580f3fd108dead01694975b)): ?>
+<?php $attributes = $__attributesOriginal498d6c972580f3fd108dead01694975b; ?>
+<?php unset($__attributesOriginal498d6c972580f3fd108dead01694975b); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal498d6c972580f3fd108dead01694975b)): ?>
+<?php $component = $__componentOriginal498d6c972580f3fd108dead01694975b; ?>
+<?php unset($__componentOriginal498d6c972580f3fd108dead01694975b); ?>
+<?php endif; ?>
+        </div>
+    </div>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+    <div class="card md:col-span-2">
+        <div class="card-header"><h3 class="card-title">New subscriptions — last 12 months</h3></div>
+        <div class="card-body">
+            <?php if (isset($component)) { $__componentOriginal5e8c60eb80a1adc9670038950567fbad = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal5e8c60eb80a1adc9670038950567fbad = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.chart.bars','data' => ['values' => $newSubsByMonth,'labels' => $monthLabels,'height' => 150]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('chart.bars'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['values' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($newSubsByMonth),'labels' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($monthLabels),'height' => 150]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal5e8c60eb80a1adc9670038950567fbad)): ?>
+<?php $attributes = $__attributesOriginal5e8c60eb80a1adc9670038950567fbad; ?>
+<?php unset($__attributesOriginal5e8c60eb80a1adc9670038950567fbad); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal5e8c60eb80a1adc9670038950567fbad)): ?>
+<?php $component = $__componentOriginal5e8c60eb80a1adc9670038950567fbad; ?>
+<?php unset($__componentOriginal5e8c60eb80a1adc9670038950567fbad); ?>
+<?php endif; ?>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header"><h3 class="card-title">Active subscriptions by gateway</h3></div>
+        <div class="card-body">
+            <?php $__empty_1 = true; $__currentLoopData = $byGateway; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $gateway => $count): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                <div class="flex items-center justify-between py-2 border-b border-[var(--border)] last:border-0">
+                    <?php if (isset($component)) { $__componentOriginalab7baa01105b3dfe1e0cf1dfc58879b4 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginalab7baa01105b3dfe1e0cf1dfc58879b4 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.ui.badge','data' => ['variant' => 'info']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('ui.badge'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['variant' => 'info']); ?><?php echo e(ucfirst($gateway)); ?> <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginalab7baa01105b3dfe1e0cf1dfc58879b4)): ?>
+<?php $attributes = $__attributesOriginalab7baa01105b3dfe1e0cf1dfc58879b4; ?>
+<?php unset($__attributesOriginalab7baa01105b3dfe1e0cf1dfc58879b4); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginalab7baa01105b3dfe1e0cf1dfc58879b4)): ?>
+<?php $component = $__componentOriginalab7baa01105b3dfe1e0cf1dfc58879b4; ?>
+<?php unset($__componentOriginalab7baa01105b3dfe1e0cf1dfc58879b4); ?>
+<?php endif; ?>
+                    <span class="font-semibold"><?php echo e($count); ?></span>
+                </div>
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+                <?php if (isset($component)) { $__componentOriginal3607a477fdef7402bc742abad5df9c51 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal3607a477fdef7402bc742abad5df9c51 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.ui.empty-state','data' => ['title' => 'No subscriptions yet','description' => 'Active and trialing subscriptions will appear here.']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('ui.empty-state'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['title' => 'No subscriptions yet','description' => 'Active and trialing subscriptions will appear here.']); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal3607a477fdef7402bc742abad5df9c51)): ?>
+<?php $attributes = $__attributesOriginal3607a477fdef7402bc742abad5df9c51; ?>
+<?php unset($__attributesOriginal3607a477fdef7402bc742abad5df9c51); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal3607a477fdef7402bc742abad5df9c51)): ?>
+<?php $component = $__componentOriginal3607a477fdef7402bc742abad5df9c51; ?>
+<?php unset($__componentOriginal3607a477fdef7402bc742abad5df9c51); ?>
+<?php endif; ?>
+            <?php endif; ?>
+        </div>
+    </div>
+</div>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('tyro-dashboard::layouts.admin', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH C:\laragon\www\saas\resources\views\dashboard\overview.blade.php ENDPATH**/ ?>

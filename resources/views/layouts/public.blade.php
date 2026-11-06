@@ -4,10 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script>
-    // Theme before first paint: saved preference, else OS preference.
+    // Theme before first paint: saved preference, else dark (design-system default).
     (function () {
         var saved = localStorage.getItem('theme');
-        var dark = saved ? saved === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+        var dark = saved ? saved === 'dark' : true;
         document.documentElement.classList.toggle('dark', dark);
     })();
 </script>

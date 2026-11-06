@@ -1,0 +1,4 @@
+
+<?php echo $__env->make('tyro-dashboard::settings.partials._tab-access', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+<?php echo $__env->make('tyro-dashboard::settings.partials._tab-access-caching', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+<?php /**PATH C:\laragon\www\saas\vendor\hasinhayder\tyro-dashboard\resources\views\settings\partials\_tab-rbac.blade.php ENDPATH**/ ?>

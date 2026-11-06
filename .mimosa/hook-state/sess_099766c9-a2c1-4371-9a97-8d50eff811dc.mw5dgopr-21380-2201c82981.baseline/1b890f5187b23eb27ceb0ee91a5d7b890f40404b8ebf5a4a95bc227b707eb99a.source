@@ -1,0 +1,34 @@
+<?php $__env->startSection('title', $heading); ?>
+<?php $__env->startSection('meta_description', $heading.' for '.config('app.name').'.'); ?>
+
+<?php $__env->startSection('content'); ?>
+
+
+<section class="legal">
+    <h1><?php echo e($heading); ?></h1>
+    <span class="flag">⚠ Placeholder content — lawyer review required before launch</span>
+
+    <div class="legal-body glass">
+        <?php if($page === 'terms'): ?>
+            <h2>1. Acceptance</h2>
+            <p>By accessing <?php echo e(config('app.name')); ?> you agree to these terms. [LAWYER REVIEW REQUIRED]</p>
+            <h2>2. Subscriptions and billing</h2>
+            <p>Plans are billed monthly or annually through our payment providers (Stripe, Paddle, SSLCommerz). Prices exclude applicable taxes. [LAWYER REVIEW REQUIRED]</p>
+            <h2>3. Acceptable use</h2>
+            <ul><li>No unlawful or abusive use of the service.</li><li>You are responsible for your workspace members' actions.</li></ul>
+        <?php elseif($page === 'privacy'): ?>
+            <h2>Data we collect</h2>
+            <p>Account data (name, email), workspace data, billing records and usage metrics. [LAWYER REVIEW REQUIRED — GDPR/PBDT compliance]</p>
+            <h2>Your rights</h2>
+            <p>You can export or delete your data from your dashboard at any time. [LAWYER REVIEW REQUIRED]</p>
+        <?php else: ?>
+            <h2>Refund window</h2>
+            <p>[LAWYER REVIEW REQUIRED — define refund window, gateway-specific rules, and BDT/USD differences]</p>
+            <h2>How to request</h2>
+            <p>Contact support from your dashboard; approved refunds return to the original payment method within 5–10 business days.</p>
+        <?php endif; ?>
+    </div>
+</section>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.public', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH C:\laragon\www\saas\resources\views/public/legal.blade.php ENDPATH**/ ?>

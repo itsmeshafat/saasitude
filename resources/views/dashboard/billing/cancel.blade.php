@@ -25,7 +25,7 @@
                 </p>
             </div>
         </div>
-        <div class="mt-6 flex flex-wrap gap-2">
+        <div class="mt-4 flex flex-wrap gap-2">
             <x-ui.button href="{{ route('dashboard.billing.checkout') }}" variant="primary">Retry checkout</x-ui.button>
             <x-ui.button href="{{ route('dashboard.plans') }}" variant="outline">Compare plans</x-ui.button>
             <x-ui.button href="{{ route('dashboard.billing') }}" variant="ghost">Back to billing</x-ui.button>

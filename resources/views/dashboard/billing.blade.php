@@ -20,7 +20,7 @@
 
 
 @if($subscription)
-<div class="card mb-6">
+<div class="card mb-4">
     <div class="card-header flex flex-wrap items-center justify-between gap-3">
         <h3 class="card-title">Current plan</h3>
         <div class="flex items-center gap-2">
@@ -51,7 +51,7 @@
             @endif
         </div>
 
-        <div class="flex flex-wrap gap-2 mt-6">
+        <div class="flex flex-wrap gap-2 mt-4">
             <x-ui.button href="{{ route('dashboard.plans') }}" variant="primary">Change plan</x-ui.button>
             @if($hasPortal)
                 <x-ui.button href="{{ route('dashboard.billing.portal') }}" variant="outline">Manage billing portal</x-ui.button>
@@ -65,7 +65,7 @@
 </div>
 
 @if($meters->isNotEmpty())
-<div class="card mb-6">
+<div class="card mb-4">
     <div class="card-header"><h3 class="card-title">Usage this period</h3></div>
     <div class="card-body space-y-4">
         @foreach($meters as $meter)

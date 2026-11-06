@@ -31,7 +31,7 @@
 </div>
 
 
-<div class="card mb-6">
+<div class="card mb-4">
     @if($notifications->isEmpty())
         <div class="card-body">
             <x-ui.empty-state title="No notifications" description="Billing and team activity will appear here." />

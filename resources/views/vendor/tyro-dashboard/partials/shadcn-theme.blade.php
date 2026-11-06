@@ -14,142 +14,182 @@
 @endphp
 
 <style>
-    /* ============================================
-       SHADCN UI THEME VARIABLES
-       Customize these variables to match your brand
-       Compatible with shadcn/ui theming
-    ============================================ */
+    /* ============================================================
+       DESIGN SYSTEM — "HOSTING GROWTH" (adopted 2026-11-06)
+       Canonical token source. Mirrored in resources/css/app.css.
+       Dark = brief values verbatim (default theme).
+       Light = derived from the same hues (deviations logged in
+       design-system/saas-boilerplate/MASTER.md).
+       Components MUST consume tokens — never raw hex.
+    ============================================================= */
 
     :root {
-        /* Base radius — Cobalt Glass: 12px */
-        --radius: 0.75rem;
+        /* Radius scale — radius.xs/sm/md/lg/xl */
+        --radius-xs: 2px;
+        --radius-sm: 8px;
+        --radius: 12px;   /* radius.md — base */
+        --radius-lg: 16px;
+        --radius-xl: 9999px;
 
-        /* Light mode colors — Cobalt Glass (frosted surfaces over a gradient mesh) */
-        --background: {{ $cssVal('--background', 'oklch(0.965 0.012 258)', $lightOverrides) }};
-        --foreground: {{ $cssVal('--foreground', 'oklch(0.144 0.022 254)', $lightOverrides) }};
-        --card: {{ $cssVal('--card', 'oklch(1 0 0 / 0.55)', $lightOverrides) }};
-        --card-foreground: {{ $cssVal('--card-foreground', 'oklch(0.144 0.022 254)', $lightOverrides) }};
-        --popover: {{ $cssVal('--popover', 'oklch(1 0 0 / 0.85)', $lightOverrides) }};
-        --popover-foreground: {{ $cssVal('--popover-foreground', 'oklch(0.144 0.022 254)', $lightOverrides) }};
-        --primary: {{ $cssVal('--primary', 'oklch(0.546 0.237 258)', $lightOverrides) }};
-        --primary-foreground: {{ $cssVal('--primary-foreground', 'oklch(0.985 0 0)', $lightOverrides) }};
-        --secondary: {{ $cssVal('--secondary', 'oklch(0.962 0.008 258 / 0.7)', $lightOverrides) }};
-        --secondary-foreground: {{ $cssVal('--secondary-foreground', 'oklch(0.144 0.022 254)', $lightOverrides) }};
-        --muted: {{ $cssVal('--muted', 'oklch(0.962 0.008 258 / 0.6)', $lightOverrides) }};
-        --muted-foreground: {{ $cssVal('--muted-foreground', 'oklch(0.42 0.025 254)', $lightOverrides) }};
-        --accent: {{ $cssVal('--accent', 'oklch(0.925 0.045 258 / 0.7)', $lightOverrides) }};
-        --accent-foreground: {{ $cssVal('--accent-foreground', 'oklch(0.144 0.022 254)', $lightOverrides) }};
-        --destructive: {{ $cssVal('--destructive', 'oklch(0.577 0.245 27.325)', $lightOverrides) }};
-        --destructive-foreground: {{ $cssVal('--destructive-foreground', 'oklch(1 0 0)', $lightOverrides) }};
-        --border: {{ $cssVal('--border', 'oklch(0.546 0.237 258 / 0.18)', $lightOverrides) }};
-        --input: {{ $cssVal('--input', 'oklch(0.546 0.237 258 / 0.22)', $lightOverrides) }};
-        --ring: {{ $cssVal('--ring', 'oklch(0.546 0.237 258)', $lightOverrides) }};
+        /* Ring shadows (brief shadow.1/2/3 — rings, not elevation) */
+        --shadow-1: 0 0 0 1px #082615;   /* surface.muted ring — cards on dark */
+        --shadow-2: 0 0 0 1px #ffffff;   /* white ring — elevated surfaces */
+        --shadow-3: 0 0 0 0px rgba(59, 130, 246, 0.5); /* blue focus ring base */
 
-        /* Glass system — Cobalt Glass */
-        --glass: oklch(1 0 0 / 0.55);
-        --glass-strong: oklch(1 0 0 / 0.72);
-        --glass-border: oklch(1 0 0 / 0.65);
-        --glass-blur: blur(18px) saturate(1.5);
-        --glass-highlight: inset 0 1px 0 oklch(1 0 0 / 0.6);
-        /* Mesh backdrop blobs (rendered behind frosted surfaces) */
+        /* Motion tokens — instant/fast/normal */
+        --duration-instant: 150ms;
+        --duration-fast: 200ms;
+        --duration-normal: 300ms;
+
+        /* Spacing scale — space.1..8 (3/4/5/6/8/10/12/16) */
+        --space-1: 3px;
+        --space-2: 4px;
+        --space-3: 5px;
+        --space-4: 6px;
+        --space-5: 8px;
+        --space-6: 10px;
+        --space-7: 12px;
+        --space-8: 16px;
+
+        /* Typography scale — xs..4xl (base 16px/24px, weight 400) */
+        --text-xs: 10px;
+        --text-sm: 11px;
+        --text-md: 13.01px;
+        --text-lg: 14px;
+        --text-xl: 15px;
+        --text-2xl: 16px;
+        --text-3xl: 18px;
+        --text-4xl: 20px;
+        /* Display steps — DERIVED (doubling pattern) for marketing heroes;
+           scale caps at 4xl=20. See MASTER.md "Deviations". */
+        --text-display-sm: 24px;
+        --text-display-md: 32px;
+        --text-display-lg: 48px;
+
+        /* Light mode — DERIVED from the Hosting Growth hues */
+        --background: {{ $cssVal('--background', '#ffffff', $lightOverrides) }};
+        --foreground: {{ $cssVal('--foreground', '#0a1616', $lightOverrides) }}; /* text.secondary */
+        --card: {{ $cssVal('--card', 'rgba(255, 255, 255, 0.6)', $lightOverrides) }};
+        --card-foreground: {{ $cssVal('--card-foreground', '#0a1616', $lightOverrides) }};
+        --popover: {{ $cssVal('--popover', 'rgba(255, 255, 255, 0.92)', $lightOverrides) }};
+        --popover-foreground: {{ $cssVal('--popover-foreground', '#0a1616', $lightOverrides) }};
+        --primary: {{ $cssVal('--primary', '#c6fb4b', $lightOverrides) }}; /* surface.strong */
+        --primary-foreground: {{ $cssVal('--primary-foreground', '#0a1616', $lightOverrides) }};
+        --secondary: {{ $cssVal('--secondary', 'rgba(8, 38, 21, 0.06)', $lightOverrides) }};
+        --secondary-foreground: {{ $cssVal('--secondary-foreground', '#0a1616', $lightOverrides) }};
+        --muted: {{ $cssVal('--muted', 'rgba(8, 38, 21, 0.05)', $lightOverrides) }};
+        --muted-foreground: {{ $cssVal('--muted-foreground', '#52645c', $lightOverrides) }}; /* DERIVED: brief #9ba5a1 fails AA on white */
+        --accent: {{ $cssVal('--accent', 'rgba(198, 251, 75, 0.16)', $lightOverrides) }};
+        --accent-foreground: {{ $cssVal('--accent-foreground', '#0a1616', $lightOverrides) }};
+        --destructive: {{ $cssVal('--destructive', '#dc2626', $lightOverrides) }}; /* extension */
+        --destructive-foreground: {{ $cssVal('--destructive-foreground', '#ffffff', $lightOverrides) }};
+        --border: {{ $cssVal('--border', '#e5e7eb', $lightOverrides) }}; /* border.default */
+        --input: {{ $cssVal('--input', '#e5e7eb', $lightOverrides) }};
+        --ring: {{ $cssVal('--ring', 'rgba(59, 130, 246, 0.5)', $lightOverrides) }}; /* shadow.3 */
+
+        /* Glass system — light: white frost over lime-tinted mesh */
+        --glass: rgba(255, 255, 255, 0.6);
+        --glass-strong: rgba(255, 255, 255, 0.78);
+        --glass-border: rgba(229, 231, 235, 0.9);
+        --glass-blur: blur(18px) saturate(1.4);
+        --glass-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.7);
         --mesh:
-            radial-gradient(600px 420px at 12% -6%, oklch(0.72 0.16 250 / 0.42), transparent 65%),
-            radial-gradient(760px 520px at 96% 12%, oklch(0.78 0.14 300 / 0.34), transparent 62%),
-            radial-gradient(680px 540px at 42% 108%, oklch(0.8 0.13 190 / 0.32), transparent 60%);
+            radial-gradient(600px 420px at 12% -6%, rgba(198, 251, 75, 0.16), transparent 65%),
+            radial-gradient(760px 520px at 96% 12%, rgba(8, 38, 21, 0.07), transparent 62%),
+            radial-gradient(680px 540px at 42% 108%, rgba(45, 90, 63, 0.10), transparent 60%);
 
-        /* Chart colors — Cobalt Pro palette */
-        --chart-1: oklch(0.546 0.237 258);
-        --chart-2: oklch(0.627 0.194 149);
-        --chart-3: oklch(0.769 0.188 70);
-        --chart-4: oklch(0.577 0.245 27);
-        --chart-5: oklch(0.620 0.148 310);
+        /* Chart colors — from the palette */
+        --chart-1: #c6fb4b;
+        --chart-2: #0a1616;
+        --chart-3: #52645c;
+        --chart-4: #2d5a3f;
+        --chart-5: #3b82f6;
 
-        /* Sidebar colors — frosted light glass */
-        --sidebar: oklch(1 0 0 / 0.6);
-        --sidebar-foreground: oklch(0.144 0.022 254);
-        --sidebar-primary: oklch(0.546 0.237 258);
-        --sidebar-primary-foreground: oklch(0.985 0 0);
-        --sidebar-accent: oklch(0.925 0.045 258 / 0.7);
-        --sidebar-accent-foreground: oklch(0.144 0.022 254);
-        --sidebar-border: oklch(0.546 0.237 258 / 0.15);
-        --sidebar-ring: oklch(0.546 0.237 258);
+        /* Sidebar — light */
+        --sidebar: rgba(255, 255, 255, 0.66);
+        --sidebar-foreground: #0a1616;
+        --sidebar-primary: #c6fb4b;
+        --sidebar-primary-foreground: #0a1616;
+        --sidebar-accent: rgba(198, 251, 75, 0.18);
+        --sidebar-accent-foreground: #0a1616;
+        --sidebar-border: rgba(10, 22, 22, 0.1);
+        --sidebar-ring: rgba(59, 130, 246, 0.5);
 
-        /* Extended semantic colors */
-        --success: {{ $cssVal('--success', 'oklch(0.627 0.194 149)', $lightOverrides) }};
-        --success-foreground: {{ $cssVal('--success-foreground', 'oklch(1 0 0)', $lightOverrides) }};
-        --warning: {{ $cssVal('--warning', 'oklch(0.769 0.188 70)', $lightOverrides) }};
-        --warning-foreground: {{ $cssVal('--warning-foreground', 'oklch(0.144 0.022 254)', $lightOverrides) }};
-        --info: {{ $cssVal('--info', 'oklch(0.546 0.237 258)', $lightOverrides) }};
-        --info-foreground: {{ $cssVal('--info-foreground', 'oklch(1 0 0)', $lightOverrides) }};
-        --danger: {{ $cssVal('--danger', 'oklch(0.577 0.245 27.325)', $lightOverrides) }};
+        /* Extended semantic (brief-silent extensions, logged) */
+        --success: {{ $cssVal('--success', '#c6fb4b', $lightOverrides) }};
+        --success-foreground: {{ $cssVal('--success-foreground', '#0a1616', $lightOverrides) }};
+        --warning: {{ $cssVal('--warning', '#b45309', $lightOverrides) }};
+        --warning-foreground: {{ $cssVal('--warning-foreground', '#ffffff', $lightOverrides) }};
+        --info: {{ $cssVal('--info', '#3b82f6', $lightOverrides) }};
+        --info-foreground: {{ $cssVal('--info-foreground', '#ffffff', $lightOverrides) }};
+        --danger: {{ $cssVal('--danger', '#dc2626', $lightOverrides) }};
 
-        /* Card shadows — glass depth */
-        --card-shadow: 0 8px 32px -12px oklch(0.4 0.1 255 / 0.25), var(--glass-highlight);
-        --card-shadow-hover: 0 16px 40px -12px oklch(0.4 0.1 255 / 0.35), var(--glass-highlight);
+        /* Card shadows — ring treatment */
+        --card-shadow: 0 0 0 1px rgba(10, 22, 22, 0.08), var(--glass-highlight);
+        --card-shadow-hover: 0 0 0 1px rgba(10, 22, 22, 0.14), var(--glass-highlight);
     }
 
-    /* Dark mode colors - using .dark class — Cobalt Glass dark: smoked glass over deep mesh */
+    /* Dark mode — DEFAULT THEME, brief values verbatim */
     .dark {
-        --background: {{ $cssVal('--background', 'oklch(0.13 0.02 254)', $darkOverrides) }};
-        --foreground: {{ $cssVal('--foreground', 'oklch(0.97 0.005 254)', $darkOverrides) }};
-        --card: {{ $cssVal('--card', 'oklch(0.21 0.028 254 / 0.55)', $darkOverrides) }};
-        --card-foreground: {{ $cssVal('--card-foreground', 'oklch(0.97 0.005 254)', $darkOverrides) }};
-        --popover: {{ $cssVal('--popover', 'oklch(0.19 0.025 254 / 0.9)', $darkOverrides) }};
-        --popover-foreground: {{ $cssVal('--popover-foreground', 'oklch(0.97 0.005 254)', $darkOverrides) }};
-        --primary: {{ $cssVal('--primary', 'oklch(0.62 0.2 258)', $darkOverrides) }};
-        --primary-foreground: {{ $cssVal('--primary-foreground', 'oklch(0.13 0.02 254)', $darkOverrides) }};
-        --secondary: {{ $cssVal('--secondary', 'oklch(0.28 0.02 254 / 0.7)', $darkOverrides) }};
-        --secondary-foreground: {{ $cssVal('--secondary-foreground', 'oklch(0.97 0.005 254)', $darkOverrides) }};
-        --muted: {{ $cssVal('--muted', 'oklch(0.28 0.02 254 / 0.6)', $darkOverrides) }};
-        --muted-foreground: {{ $cssVal('--muted-foreground', 'oklch(0.8 0.015 254)', $darkOverrides) }};
-        --accent: {{ $cssVal('--accent', 'oklch(0.3 0.04 258 / 0.6)', $darkOverrides) }};
-        --accent-foreground: {{ $cssVal('--accent-foreground', 'oklch(0.97 0.005 254)', $darkOverrides) }};
-        --destructive: {{ $cssVal('--destructive', 'oklch(0.704 0.191 22.216)', $darkOverrides) }};
-        --destructive-foreground: {{ $cssVal('--destructive-foreground', 'oklch(0.985 0 0)', $darkOverrides) }};
-        --border: {{ $cssVal('--border', 'oklch(1 0 0 / 18%)', $darkOverrides) }};
-        --input: {{ $cssVal('--input', 'oklch(1 0 0 / 22%)', $darkOverrides) }};
-        --ring: {{ $cssVal('--ring', 'oklch(0.62 0.2 258)', $darkOverrides) }};
+        --background: {{ $cssVal('--background', '#000000', $darkOverrides) }}; /* surface.base */
+        --foreground: {{ $cssVal('--foreground', '#ffffff', $darkOverrides) }}; /* text.tertiary */
+        --card: {{ $cssVal('--card', 'rgba(8, 38, 21, 0.55)', $darkOverrides) }}; /* surface.muted */
+        --card-foreground: {{ $cssVal('--card-foreground', '#ffffff', $darkOverrides) }};
+        --popover: {{ $cssVal('--popover', 'rgba(8, 38, 21, 0.92)', $darkOverrides) }};
+        --popover-foreground: {{ $cssVal('--popover-foreground', '#ffffff', $darkOverrides) }};
+        --primary: {{ $cssVal('--primary', '#c6fb4b', $darkOverrides) }}; /* surface.strong */
+        --primary-foreground: {{ $cssVal('--primary-foreground', '#0a1616', $darkOverrides) }}; /* dark text on lime (AA ≈13:1) */
+        --secondary: {{ $cssVal('--secondary', 'rgba(8, 38, 21, 0.6)', $darkOverrides) }};
+        --secondary-foreground: {{ $cssVal('--secondary-foreground', '#ffffff', $darkOverrides) }};
+        --muted: {{ $cssVal('--muted', 'rgba(8, 38, 21, 0.5)', $darkOverrides) }};
+        --muted-foreground: {{ $cssVal('--muted-foreground', '#9ba5a1', $darkOverrides) }}; /* text.inverse (≈7:1 on black) */
+        --accent: {{ $cssVal('--accent', 'rgba(198, 251, 75, 0.1)', $darkOverrides) }};
+        --accent-foreground: {{ $cssVal('--accent-foreground', '#ffffff', $darkOverrides) }};
+        --destructive: {{ $cssVal('--destructive', '#f87171', $darkOverrides) }}; /* extension */
+        --destructive-foreground: {{ $cssVal('--destructive-foreground', '#0a1616', $darkOverrides) }};
+        --border: {{ $cssVal('--border', 'rgba(229, 231, 235, 0.15)', $darkOverrides) }}; /* border.default @15% */
+        --input: {{ $cssVal('--input', 'rgba(229, 231, 235, 0.18)', $darkOverrides) }};
+        --ring: {{ $cssVal('--ring', 'rgba(59, 130, 246, 0.5)', $darkOverrides) }}; /* shadow.3 */
 
-        /* Glass system — dark smoked glass */
-        --glass: oklch(0.21 0.028 254 / 0.55);
-        --glass-strong: oklch(0.24 0.03 254 / 0.75);
-        --glass-border: oklch(1 0 0 / 0.2);
-        --glass-blur: blur(18px) saturate(1.4);
-        --glass-highlight: inset 0 1px 0 oklch(1 0 0 / 0.1);
+        /* Glass system — dark: green frost over lime-tinted mesh on black */
+        --glass: rgba(8, 38, 21, 0.55);
+        --glass-strong: rgba(8, 38, 21, 0.78);
+        --glass-border: rgba(229, 231, 235, 0.2);
+        --glass-blur: blur(18px) saturate(1.3);
+        --glass-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.08);
         --mesh:
-            radial-gradient(600px 420px at 12% -6%, oklch(0.35 0.14 258 / 0.5), transparent 65%),
-            radial-gradient(760px 520px at 96% 12%, oklch(0.35 0.12 310 / 0.4), transparent 62%),
-            radial-gradient(680px 540px at 42% 108%, oklch(0.33 0.1 200 / 0.4), transparent 60%);
+            radial-gradient(600px 420px at 12% -6%, rgba(198, 251, 75, 0.1), transparent 65%),
+            radial-gradient(760px 520px at 96% 12%, rgba(8, 38, 21, 0.55), transparent 62%),
+            radial-gradient(680px 540px at 42% 108%, rgba(45, 90, 63, 0.35), transparent 60%);
 
-        /* Chart colors (dark mode) — Cobalt Pro */
-        --chart-1: oklch(0.620 0.237 258);
-        --chart-2: oklch(0.696 0.170 162);
-        --chart-3: oklch(0.769 0.188 70);
-        --chart-4: oklch(0.645 0.246 16);
-        --chart-5: oklch(0.627 0.265 304);
+        /* Chart colors (dark) — from the palette */
+        --chart-1: #c6fb4b;
+        --chart-2: #ffffff;
+        --chart-3: #9ba5a1;
+        --chart-4: #2d5a3f;
+        --chart-5: #3b82f6;
 
-        /* Sidebar colors (dark mode) — smoked glass */
-        --sidebar: oklch(0.16 0.022 254 / 0.6);
-        --sidebar-foreground: oklch(0.97 0.005 254);
-        --sidebar-primary: oklch(0.62 0.2 258);
-        --sidebar-primary-foreground: oklch(0.13 0.02 254);
-        --sidebar-accent: oklch(0.3 0.04 258 / 0.6);
-        --sidebar-accent-foreground: oklch(0.97 0.005 254);
-        --sidebar-border: oklch(1 0 0 / 10%);
-        --sidebar-ring: oklch(0.62 0.2 258);
+        /* Sidebar — dark green frost */
+        --sidebar: rgba(8, 38, 21, 0.6);
+        --sidebar-foreground: #ffffff;
+        --sidebar-primary: #c6fb4b;
+        --sidebar-primary-foreground: #0a1616;
+        --sidebar-accent: rgba(198, 251, 75, 0.12);
+        --sidebar-accent-foreground: #ffffff;
+        --sidebar-border: rgba(229, 231, 235, 0.12);
+        --sidebar-ring: rgba(59, 130, 246, 0.5);
 
-        --danger: {{ $cssVal('--danger', 'oklch(0.704 0.191 22.216)', $darkOverrides) }};
+        /* Extensions */
+        --danger: {{ $cssVal('--danger', '#f87171', $darkOverrides) }};
+        --success: {{ $cssVal('--success', '#c6fb4b', $darkOverrides) }};
+        --success-foreground: {{ $cssVal('--success-foreground', '#0a1616', $darkOverrides) }};
+        --warning: {{ $cssVal('--warning', '#fbbf24', $darkOverrides) }};
+        --warning-foreground: {{ $cssVal('--warning-foreground', '#0a1616', $darkOverrides) }};
+        --info: {{ $cssVal('--info', '#3b82f6', $darkOverrides) }};
+        --info-foreground: {{ $cssVal('--info-foreground', '#ffffff', $darkOverrides) }};
 
-        /* Extended semantic colors (dark mode) */
-        --success: {{ $cssVal('--success', 'oklch(0.696 0.170 162)', $darkOverrides) }};
-        --success-foreground: {{ $cssVal('--success-foreground', 'oklch(0.144 0.022 254)', $darkOverrides) }};
-        --warning: {{ $cssVal('--warning', 'oklch(0.769 0.188 70)', $darkOverrides) }};
-        --warning-foreground: {{ $cssVal('--warning-foreground', 'oklch(0.144 0.022 254)', $darkOverrides) }};
-        --info: {{ $cssVal('--info', 'oklch(0.62 0.2 258)', $darkOverrides) }};
-        --info-foreground: {{ $cssVal('--info-foreground', 'oklch(0.985 0 0)', $darkOverrides) }};
-
-        /* Card shadows (dark mode) — glass depth */
-        --card-shadow: 0 8px 32px -12px oklch(0 0 0 / 0.5), var(--glass-highlight);
-        --card-shadow-hover: 0 16px 40px -12px oklch(0 0 0 / 0.6), var(--glass-highlight);
+        /* Card shadows — ring treatment (shadow.1) */
+        --card-shadow: 0 0 0 1px rgba(8, 38, 21, 0.9), var(--glass-highlight);
+        --card-shadow-hover: 0 0 0 1px rgba(229, 231, 235, 0.25), var(--glass-highlight);
     }
 </style>

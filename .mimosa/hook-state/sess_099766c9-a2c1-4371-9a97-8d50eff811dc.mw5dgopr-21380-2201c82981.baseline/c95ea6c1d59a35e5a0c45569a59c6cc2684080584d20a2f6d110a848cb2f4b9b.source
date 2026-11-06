@@ -1,0 +1,123 @@
+<?php $__env->startSection('title', 'Payment Methods'); ?>
+
+<?php $__env->startSection('breadcrumb'); ?>
+<a href="<?php echo e(route($dashboardRoute::name('index'))); ?>">Dashboard</a>
+<span class="breadcrumb-separator">/</span>
+<a href="<?php echo e(route('dashboard.billing')); ?>">Billing</a>
+<span class="breadcrumb-separator">/</span>
+<span>Payment Methods</span>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+<div class="page-header">
+    <div class="page-header-row">
+        <div>
+            <h1 class="page-title">Payment Methods</h1>
+            <p class="page-description">Manage how <?php echo e($workspace->name); ?> pays for its subscription.</p>
+        </div>
+        <?php if($subscription): ?>
+            <?php if (isset($component)) { $__componentOriginalab7baa01105b3dfe1e0cf1dfc58879b4 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginalab7baa01105b3dfe1e0cf1dfc58879b4 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.ui.badge','data' => ['variant' => 'info']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('ui.badge'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['variant' => 'info']); ?><?php echo e(ucfirst($subscription->gateway)); ?> <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginalab7baa01105b3dfe1e0cf1dfc58879b4)): ?>
+<?php $attributes = $__attributesOriginalab7baa01105b3dfe1e0cf1dfc58879b4; ?>
+<?php unset($__attributesOriginalab7baa01105b3dfe1e0cf1dfc58879b4); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginalab7baa01105b3dfe1e0cf1dfc58879b4)): ?>
+<?php $component = $__componentOriginalab7baa01105b3dfe1e0cf1dfc58879b4; ?>
+<?php unset($__componentOriginalab7baa01105b3dfe1e0cf1dfc58879b4); ?>
+<?php endif; ?>
+        <?php endif; ?>
+    </div>
+</div>
+
+
+<?php if(in_array('portal', $gateway->capabilities())): ?>
+<div class="card">
+    <div class="card-header"><h3 class="card-title">Billing portal</h3></div>
+    <div class="card-body">
+        <p class="text-sm text-[var(--muted-foreground)] mb-4">
+            Cards and payment methods for <?php echo e(ucfirst($gateway->key())); ?> are managed securely in the
+            billing portal. Updating a card there applies to future renewals automatically.
+        </p>
+        <?php if (isset($component)) { $__componentOriginala8bb031a483a05f647cb99ed3a469847 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginala8bb031a483a05f647cb99ed3a469847 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.ui.button','data' => ['href' => ''.e(route('dashboard.billing.portal')).'','variant' => 'primary']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('ui.button'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['href' => ''.e(route('dashboard.billing.portal')).'','variant' => 'primary']); ?>Open <?php echo e(ucfirst($gateway->key())); ?> billing portal <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginala8bb031a483a05f647cb99ed3a469847)): ?>
+<?php $attributes = $__attributesOriginala8bb031a483a05f647cb99ed3a469847; ?>
+<?php unset($__attributesOriginala8bb031a483a05f647cb99ed3a469847); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginala8bb031a483a05f647cb99ed3a469847)): ?>
+<?php $component = $__componentOriginala8bb031a483a05f647cb99ed3a469847; ?>
+<?php unset($__componentOriginala8bb031a483a05f647cb99ed3a469847); ?>
+<?php endif; ?>
+    </div>
+</div>
+<?php elseif($lastPayment): ?>
+<div class="card">
+    <div class="card-header"><h3 class="card-title">Last payment</h3></div>
+    <div class="card-body">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div>
+                <div class="text-sm text-[var(--muted-foreground)]">Amount</div>
+                <div class="font-semibold"><?php echo e(strtoupper($lastPayment->currency)); ?> <?php echo e(number_format($lastPayment->amount / 100, 2)); ?></div>
+            </div>
+            <div>
+                <div class="text-sm text-[var(--muted-foreground)]">Date</div>
+                <div class="font-semibold"><?php echo e(optional($lastPayment->created_at)->format('M j, Y')); ?></div>
+            </div>
+            <div>
+                <div class="text-sm text-[var(--muted-foreground)]">Status</div>
+                <div class="font-semibold"><?php echo e(ucfirst($lastPayment->status)); ?></div>
+            </div>
+        </div>
+        <p class="text-sm text-[var(--muted-foreground)] mt-4">
+            SSLCommerz payments are made per-invoice — card details are never stored on our servers.
+        </p>
+    </div>
+</div>
+<?php else: ?>
+<div class="card">
+    <div class="card-body">
+        <?php if (isset($component)) { $__componentOriginal3607a477fdef7402bc742abad5df9c51 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal3607a477fdef7402bc742abad5df9c51 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.ui.empty-state','data' => ['title' => 'No payment method yet','description' => 'Subscribe to a plan to make your first payment.']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('ui.empty-state'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['title' => 'No payment method yet','description' => 'Subscribe to a plan to make your first payment.']); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal3607a477fdef7402bc742abad5df9c51)): ?>
+<?php $attributes = $__attributesOriginal3607a477fdef7402bc742abad5df9c51; ?>
+<?php unset($__attributesOriginal3607a477fdef7402bc742abad5df9c51); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal3607a477fdef7402bc742abad5df9c51)): ?>
+<?php $component = $__componentOriginal3607a477fdef7402bc742abad5df9c51; ?>
+<?php unset($__componentOriginal3607a477fdef7402bc742abad5df9c51); ?>
+<?php endif; ?>
+    </div>
+</div>
+<?php endif; ?>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('tyro-dashboard::layouts.user', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH C:\laragon\www\saas\resources\views\dashboard\payment-methods.blade.php ENDPATH**/ ?>

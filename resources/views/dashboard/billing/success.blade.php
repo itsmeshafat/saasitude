@@ -27,7 +27,7 @@
             </div>
         </div>
 
-        <div class="mt-6 rounded-lg p-4 text-sm" style="background: var(--muted);">
+        <div class="mt-4 rounded-lg p-4 text-sm" style="background: var(--muted);">
             <strong>Do not refresh or resubmit</strong> — the verification is automatic. If your plan
             hasn't activated after a few minutes, check Billing; the status there is always current.
         </div>

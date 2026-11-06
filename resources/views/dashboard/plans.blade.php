@@ -27,7 +27,7 @@
     </div>
 </div>
 
-<div class="mb-6 flex justify-center">
+<div class="mb-4 flex justify-center">
     <div class="inline-flex gap-1 p-1 rounded-[var(--radius)] border" style="border-color: var(--border); background: var(--muted);" id="interval-toggle">
         <button type="button" data-interval="month"
                 class="btn btn-sm {{ request()->query('interval', 'month') !== 'year' ? 'btn-primary' : 'btn-ghost-btn' }}">Monthly</button>
@@ -37,7 +37,7 @@
 </div>
 
 
-<div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="plan-cards">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4" id="plan-cards">
     @foreach($plans as $plan)
         @php
             $price = $plan->prices->firstWhere('currency', $currency);

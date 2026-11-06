@@ -1,210 +1,182 @@
-# Design System Master — Cobalt Glass
+# Design System Master — Hosting Growth
 
-**Direction: A (Cobalt Classic SaaS) + glassmorphism — chosen 2026-11-06**
+**Direction: "Web Hosting Built to Grow With You" token system — adopted 2026-11-07.**
+Dark default (black + lime), glassmorphism retained (recolored), derived light mode.
+**Implementation rule: content never changed — tokens, components, docs did.**
 
-Cobalt Pro's palette on frosted surfaces: translucent oklch fills + `backdrop-blur(18px) saturate(1.5)`
-over a fixed gradient mesh (blue/violet/teal blobs). Applied to dashboards and the public site.
+---
 
-## Glass tokens (defined in shadcn-theme.blade.php, light + dark)
+## 1. Context and goals
 
-| Token | Light | Dark |
+Design intent: a **clean, functional, implementation-oriented** billing SaaS on a token-driven
+foundation optimized for consistency, WCAG 2.2 AA accessibility, keyboard-first interaction,
+and fast delivery across the dashboard and marketing site.
+
+Goals: semantic-token-only styling; every component carries the 8 mandatory states
+(default, hover, focus-visible, active, disabled, loading, error, + responsive); every
+accessibility rule testable; zero one-off spacing/typography exceptions.
+
+Component density in this codebase: links (83), cards (31), buttons (28), lists (20),
+navigation (3 — sidebar, topbar, tabs), inputs (2 + `.form-*` family).
+
+---
+
+## 2. Design tokens and foundations
+
+### 2.1 Color — dark (DEFAULT, brief values verbatim)
+
+| Token | Value | Role |
 |---|---|---|
-| `--glass` | `oklch(1 0 0 / 0.55)` | `oklch(0.21 0.028 254 / 0.55)` |
-| `--glass-strong` | `oklch(1 0 0 / 0.72)` | `oklch(0.24 0.03 254 / 0.75)` |
-| `--glass-border` | `oklch(1 0 0 / 0.65)` | `oklch(1 0 0 / 0.14)` |
-| `--glass-blur` | `blur(18px) saturate(1.5)` | `blur(18px) saturate(1.4)` |
-| `--glass-highlight` | `inset 0 1px 0 oklch(1 0 0 / 0.6)` | `inset 0 1px 0 oklch(1 0 0 / 0.1)` |
-| `--mesh` | 3 radial gradients (light) | 3 radial gradients (deep) |
+| `--background` | `#000000` | surface.base |
+| `--foreground` | `#ffffff` | text.tertiary |
+| `--card` / `--glass` | `rgba(8,38,21,.55)` | surface.muted (frosted) |
+| `--glass-strong` / `--popover` | `rgba(8,38,21,.78/.92)` | elevated surface.muted |
+| `--primary` | `#c6fb4b` | surface.strong (accent) |
+| `--primary-foreground` | `#0a1616` | dark text on lime |
+| `--muted-foreground` | `#9ba5a1` | text.inverse |
+| `--border` / `--input` | `rgba(229,231,235,.15/.18)` | border.default adapted |
+| `--ring` | `rgba(59,130,246,.5)` | shadow.3 (focus) |
+| `--chart-1..5` | `#c6fb4b #ffffff #9ba5a1 #2d5a3f #3b82f6` | palette-derived |
 
-## Rules
+### 2.2 Color — light (DERIVED; deviations logged)
 
-- Glass on large surfaces only (`.card`, `.topbar`, `.sidebar`, modals); small controls use
-  translucent fills without blur for performance.
-- `--card`/`--popover`/`--muted`/`--secondary` are translucent versions of the base colors —
-  components that don't set backdrop-filter still read as glass-tinted.
-- The mesh lives on `body` (`background-image: var(--mesh); background-attachment: fixed`);
-  `.page-content` is transparent so it shows through.
-- Sidebar branding env vars (`TYRO_DASHBOARD_SIDEBAR_*`) override the glass sidebar ONLY when
-  explicitly set in .env.
-- Radius: `0.75rem`. Contrast: foreground tokens unchanged from Cobalt Pro (WCAG-safe on the
-  55%-white/55%-black surfaces).
+`--background #ffffff` · `--foreground #0a1616` (text.secondary) · glass = white 60–78% ·
+`--border #e5e7eb` (border.default solid) · primary/lime unchanged.
 
----
+**Logged deviations (brief is silent or fails AA):**
+- Light `--muted-foreground: #52645c` — derived from text.inverse; brief's `#9ba5a1` fails AA on white.
+- `--destructive` (red) / `--warning` (amber) retained — required for payment/health states; brief has no equivalents.
+- Display type steps (24/32/48px) — derived by doubling the type scale; the brief's scale caps at 4xl=20 and cannot cover marketing heroes.
 
-## Palette (OKLCH)
+### 2.3 Typography (font tokens verbatim)
 
-### Light Mode
+- **Stack**: `Aeonik, 'Segoe UI', 'Helvetica Neue', Arial, 'Noto Sans', 'Liberation Sans', sans-serif, system-ui`. Aeonik is commercial — if licensed, it activates automatically; otherwise Segoe UI leads the fallbacks. Inter/bunny links removed from all layouts.
+- **Scale**: xs 10 · sm 11 · md 13.01 · lg 14 · xl 15 · 2xl 16 · 3xl 18 · 4xl 20 (base 16/24, weight 400). Tokens `--text-xs…4xl`.
+- **Applied to** (enforced in `styles.blade.php` / `public.css`):
 
-| Token                 | OKLCH                      | Approx hex | Contrast (on bg) |
-|-----------------------|----------------------------|------------|-----------------|
-| `--primary`           | oklch(0.546 0.237 258)     | #2563eb    | 4.82:1 on white ✓ AA |
-| `--primary-foreground`| oklch(0.985 0 0)           | #fafafa    | on --primary |
-| `--background`        | oklch(0.985 0.003 258)     | #f8f9fb    | — |
-| `--foreground`        | oklch(0.144 0.022 254)     | #0f172a    | 17.5:1 ✓ AAA |
-| `--card`              | oklch(1 0 0)               | #ffffff    | — |
-| `--card-foreground`   | oklch(0.144 0.022 254)     | #0f172a    | 21:1 ✓ AAA |
-| `--muted`             | oklch(0.962 0.008 258)     | #f1f5f9    | — |
-| `--muted-foreground`  | oklch(0.556 0.015 254)     | #64748b    | 4.53:1 ✓ AA |
-| `--accent`            | oklch(0.925 0.045 258)     | #dbeafe    | — |
-| `--accent-foreground` | oklch(0.144 0.022 254)     | #0f172a    | ✓ |
-| `--border`            | oklch(0.898 0.010 258)     | #e2e8f0    | — |
-| `--input`             | oklch(0.898 0.010 258)     | #e2e8f0    | — |
-| `--ring`              | oklch(0.546 0.237 258)     | #2563eb    | focus ring = primary |
-| `--secondary`         | oklch(0.962 0.008 258)     | #f1f5f9    | — |
-| `--secondary-foreground` | oklch(0.144 0.022 254) | #0f172a    | ✓ |
-| `--destructive`       | oklch(0.577 0.245 27.325)  | #ef4444    | 4.63:1 ✓ AA |
-| `--success`           | oklch(0.627 0.194 149)     | #16a34a    | 4.56:1 ✓ AA |
-| `--warning`           | oklch(0.769 0.188 70)      | #ca8a04    | 4.74:1 ✓ AA |
-| `--info`              | oklch(0.546 0.237 258)     | #2563eb    | same as primary |
+| Surface | Token |
+|---|---|
+| body | base 16/24 |
+| `.page-title`, `.stat-value`, public h1 (display-lg 48, derived) | 4xl |
+| `.card-title` | 3xl 18 |
+| `.btn`, `.tab-link` | xl 15 / lg 14 |
+| `.table` body, `.stat-change` | md 13.01 |
+| `.form-label` (uppercase, +0.05em), `.filter-label`, `.form-hint` | sm 11 |
+| `.badge`, timestamps, `.notif-item-time` | xs 10 |
 
-### Dark Mode
+### 2.4 Spacing scale (space.1..8 = 3/4/5/6/8/10/12/16px)
 
-| Token                 | OKLCH                      |
-|-----------------------|----------------------------|
-| `--background`        | oklch(0.144 0.022 254)     |
-| `--foreground`        | oklch(0.980 0.005 258)     |
-| `--card`              | oklch(0.198 0.020 254)     |
-| `--card-foreground`   | oklch(0.980 0.005 258)     |
-| `--primary`           | oklch(0.546 0.237 258)     |
-| `--primary-foreground`| oklch(0.985 0 0)           |
-| `--secondary`         | oklch(0.265 0.015 254)     |
-| `--secondary-foreground` | oklch(0.980 0.005 258) |
-| `--muted`             | oklch(0.265 0.015 254)     |
-| `--muted-foreground`  | oklch(0.698 0.010 254)     |
-| `--accent`            | oklch(0.265 0.015 254)     |
-| `--accent-foreground` | oklch(0.980 0.005 258)     |
-| `--border`            | oklch(1 0 0 / 10%)         |
-| `--input`             | oklch(1 0 0 / 15%)         |
-| `--ring`              | oklch(0.546 0.237 258)     |
-| `--destructive`       | oklch(0.704 0.191 22.216)  |
+Mapped to the app: `.card-body` padding **16 (space-8)** · `.card-header` **12/16** ·
+`.stats-grid` gap **12 (space-7)** · `.form-group` margin **16** · `.page-content` padding
+**16** · card stacks **mb-4/16** · in-card groups **gap-3/12 or space-y-3**.
+Tailwind normalization: card stacks `mb-4` (not mb-6), grids `gap-4`, in-card `gap-3`.
+**Off-scale spacing is prohibited** in new code.
+
+### 2.5 Radius / Shadows / Motion
+
+- Radius: `xs 2` · `sm 8` · `md 12` (base `--radius`) · `lg 16` · `xl 9999` (pills/badges).
+- Shadows are **rings**, not elevation: `--shadow-1` (`#082615` 1px — cards on dark), `--shadow-2` (white 1px — elevated), `--shadow-3` (blue 50% — focus). `.card` uses a soft ring variant of shadow-1; glass-highlight retained.
+- Motion: instant 150ms (buttons/links/hover), fast 200ms, normal 300ms (sidebar/layout) — tokens `--duration-*` wired into `.btn`, `.card`, `.sidebar`, dropdowns; `prefers-reduced-motion` honored (spinners/transitions clamped).
+
+### 2.6 Glassmorphism (retained, recolored)
+
+`--glass/--glass-strong` = surface.muted frosted (dark: green 55–78%; light: white 60–78%) ·
+`--glass-border` border.default @ 20% (dark) / solid (light) · `--mesh` lime `.10` + deep-green
+blobs on black (light: lime `.16` + subtle green). Same blur (18px).
 
 ---
 
-## Spacing & Shape
+## 3. Component rules (anatomy · variants · states · responsive)
 
-| Property          | Value           |
-|-------------------|-----------------|
-| `--radius`        | 0.5rem (8px)    |
-| Input height      | 2.75rem (44px)  |
-| Base grid         | 4px (0.25rem)   |
-| Card padding      | 1.5rem          |
-| Table row min-h   | 3rem (48px)     |
+**Mandatory states for every interactive component**: default, hover, focus-visible, active,
+disabled, loading, error (loading/error N/A → documented).
 
-## Typography
+### Buttons (28 → `x-ui.button`, `.btn*` classes)
+- Variants: primary (lime, the ONLY choice for the main action), secondary (bordered), outline, ghost, danger (destructive-only), link. Sizes: sm/md/lg (`btn-sm/btn-lg`).
+- **States**: hover (token transition 150ms), focus-visible (2px ring, offset 2px — global), active (pressed via `.btn` CSS), disabled (50% + no pointer), **loading** (`loading` prop → spinner + `aria-busy` + disabled), error (`.btn-error` hook).
+- Keyboard: Enter/Space submit; Tab reachable. Pointer/touch: min-height 36–44px.
+- Long labels: `white-space:nowrap` inside flex; labels must stay ≤ 3 words (tone rule).
+- MUST NOT: two primary buttons in one view section; buttons without variant.
 
-| Property     | Value                                     |
-|--------------|-------------------------------------------|
-| `--font-sans`| Inter, ui-sans-serif, system-ui           |
-| Base size    | 1rem / 1.5 line-height                    |
-| Heading      | 600 semi-bold                             |
-| Body         | 400 regular                               |
-| Small text   | 0.875rem                                  |
+### Links (83 → sidebar-link, tab-link, breadcrumbs, table links, btn-link-btn)
+- Hover: color swap (muted→foreground) or accent bg; focus-visible ring; active = current route (`routeIs` wildcard); underline on hover only.
+- Truncation: sidebar/table link labels truncate with ellipsis; full text via `title` attr.
 
----
+### Cards (31 → `.card`, stat-card, plan-card, chart panels)
+- Anatomy: `.card-header` (12/16) + `.card-body` (16). Ring shadow-1 + glass. Radius md.
+- States: hover ring-2 (card-shadow-hover); loading = `.skeleton` shimmer blocks; empty = `x-ui.empty-state`; error = inline `.alert-error`.
+- Overflow: long numbers use tabular figures; content scrolls in `.table-container` only.
 
-## Sidebar Tokens
+### Lists/tables (20 → `.table` in `.table-container`)
+- Header: xs 10, uppercase, tracked. Rows: md 13.01. Zebra optional (`table-striped`).
+- Long content: truncate + `title`; empty: `x-ui.empty-state`; loading: 3× `.skeleton` rows; actions right-aligned (`.action-buttons`).
 
-### Light
-| Token                        | OKLCH                      |
-|------------------------------|----------------------------|
-| `--sidebar`                  | oklch(0.978 0.006 258)     |
-| `--sidebar-foreground`       | oklch(0.144 0.022 254)     |
-| `--sidebar-primary`          | oklch(0.546 0.237 258)     |
-| `--sidebar-primary-foreground` | oklch(0.985 0 0)         |
-| `--sidebar-accent`           | oklch(0.925 0.045 258)     |
-| `--sidebar-accent-foreground`| oklch(0.144 0.022 254)     |
-| `--sidebar-border`           | oklch(0.898 0.010 258)     |
-| `--sidebar-ring`             | oklch(0.546 0.237 258)     |
+### Navigation (3 → sidebar, topbar+bell, tabs)
+- Active: routeIs wildcard; hover: accent; focus-visible ring. Mobile: sidebar collapses, topbar wraps.
+- Bell: polls 30s; Esc closes, ArrowUp/Down traverse items, Enter opens; badge caps at 99+.
 
-### Dark
-| Token                        | OKLCH                      |
-|------------------------------|----------------------------|
-| `--sidebar`                  | oklch(0.108 0.018 254)     |
-| `--sidebar-foreground`       | oklch(0.980 0.005 258)     |
-| `--sidebar-primary`          | oklch(0.546 0.237 258)     |
-| `--sidebar-primary-foreground` | oklch(0.985 0 0)         |
-| `--sidebar-accent`           | oklch(0.198 0.020 254)     |
-| `--sidebar-accent-foreground`| oklch(0.980 0.005 258)     |
-| `--sidebar-border`           | oklch(1 0 0 / 10%)         |
-| `--sidebar-ring`             | oklch(0.546 0.237 258)     |
+### Inputs (2 → `x-ui.input`/`x-ui.select` + `.form-*` family)
+- `.form-label` sm 11 uppercase; `.form-input/.form-select` glass; `.form-error` destructive; disabled 50%.
+- All inputs: Tab reachable, labels associated (`for`/`id`), autocomplete where applicable.
+
+### Extras (specified beyond the brief's count)
+Badges (`.badge*` — xs 10, pill), status-pill (auto-maps subscription status), usage-meter (amber 70% / red 90% thresholds), charts (lime `--chart-1` stroke, donut legend space-between, bars per-cell value+label), pagination (`.pagination`), modals/`showDanger` (destructive-only, always confirm), toasts, `.alert-error` (never `alert-danger`).
 
 ---
 
-## Chart Colors
+## 4. Accessibility — testable acceptance criteria
 
-### Light
-- chart-1: oklch(0.546 0.237 258) — cobalt primary
-- chart-2: oklch(0.627 0.194 149) — emerald
-- chart-3: oklch(0.769 0.188 70)  — amber
-- chart-4: oklch(0.577 0.245 27)  — red
-- chart-5: oklch(0.620 0.148 310) — violet
-
-### Dark
-- chart-1: oklch(0.620 0.237 258) — lighter cobalt
-- chart-2: oklch(0.696 0.170 162) — green
-- chart-3: oklch(0.769 0.188 70)  — amber
-- chart-4: oklch(0.645 0.246 16)  — red
-- chart-5: oklch(0.627 0.265 304) — purple
+| # | Criterion | Pass condition |
+|---|---|---|
+| A1 | Body contrast (dark) | `#fff`/`#000` = 21:1 ≥ 4.5 ✓ |
+| A2 | Primary pair (dark) | `#0a1616`/`#c6fb4b` ≈ 13:1 ≥ 4.5 ✓ |
+| A3 | Muted text (dark) | `#9ba5a1`/`#000` ≈ 7:1 ≥ 4.5 ✓ |
+| A4 | Muted text (light) | `#52645c`/`#fff` ≈ 6.3:1 ≥ 4.5 ✓ |
+| A5 | Focus visibility | 100% of interactive elements show ring on `:focus-visible` (keyboard tab pass) |
+| A6 | Keyboard completeness | Every flow (billing, settings, support) operable with keyboard only |
+| A7 | Reduced motion | `prefers-reduced-motion` clamps transitions/spinners |
+| A8 | Label association | Every input has `for`/`id` or aria-label |
 
 ---
 
-## Page Overrides
+## 5. Content and tone standards
 
-### Pricing page
-- Plan cards on `oklch(0.985 0.003 258)` background
-- Featured plan: inverted — `--primary` bg, `--primary-foreground` text
-- CTA button: `variant="primary"`
-
-### Checkout
-- Full-bleed white card, no sidebar chrome
-- Subtle background: `oklch(0.985 0.003 258)`
-
-### Admin overview
-- Tighter row density (40px), chart tokens for metric widgets
-- Tables use `--muted` alternating rows via `even:bg-[var(--muted)]`
+Content (pages, copy, features) is unchanged by this adoption. For future copy: concise,
+confident, implementation-focused. Buttons are verb phrases ≤ 3 words ("Save Stripe",
+"Retry checkout", "View plans"); empty states offer exactly one CTA; errors state the fix.
 
 ---
 
-## Component Density
+## 6. Anti-patterns and prohibited implementations
 
-| Component    | Height  | Padding    |
-|--------------|---------|------------|
-| Button (md)  | 44px    | px-4       |
-| Button (sm)  | 32px    | px-3       |
-| Input        | 44px    | px-3       |
-| Select       | 44px    | px-3       |
-| Table row    | 48px    | px-4       |
-| Card body    | —       | p-6        |
+- MUST NOT use raw hex/oklch in component markup — tokens only.
+- MUST NOT use off-scale spacing (e.g. `mb-6`) or one-off type sizes — the scale is exclusive.
+- MUST NOT hide or remove focus indicators.
+- MUST NOT ship a component state without default/hover/focus-visible/disabled at minimum.
+- MUST NOT use `.alert-danger` (undefined) — `.alert-error`.
+- MUST NOT introduce local visual exceptions over system consistency.
 
 ---
 
-## Status Pill Map
+## 7. Migration notes (Cobalt Glass → Hosting Growth)
 
-| Subscription status | Badge variant | Label     |
-|---------------------|---------------|-----------|
-| active              | success       | Active    |
-| trialing            | info          | Trial     |
-| past_due            | warning       | Past Due  |
-| canceled            | danger        | Canceled  |
-| paused              | muted         | Paused    |
-| incomplete          | warning       | Incomplete|
+- Token NAMES unchanged (`--primary`, `--glass*`, `--mesh`…) — only values swapped; no markup churn.
+- Glassmorphism retained: glass surfaces now surface.muted frost; mesh recolored lime/green.
+- Dark became the default theme; the toggle still switches; light mode is derived (see deviations).
+- Inter/bunny font links removed; Aeonik stack is system-first. If the Aeonik license is purchased, serve it via `@font-face` in `app.css` and the stack activates.
+- Charts/badges/buttons auto-retheme via tokens — no per-component changes were needed for color.
 
 ---
 
-## Component usage rules (2026-11-06)
+## 8. QA checklist (run before shipping UI work)
 
-Every dashboard view extending `tyro-dashboard::layouts.*` MUST:
-
-- **Flash feedback**: rely on the layout's `partials/flash-messages` (controllers `with('success'|'error')`). Never hand-roll `@if(session(...))` alert blocks.
-- **Alerts**: Tyro CSS defines `.alert-success/-error/-warning/-info` — there is **no** `.alert-danger`.
-- **Stats/KPIs**: `.stats-grid` + `.stat-card`/`.stat-label`/`.stat-value`/`.stat-icon` (+ `-primary/-success/-warning/-danger/-info` variants). Never bare `.card` tiles.
-- **Lists**: `.table` inside `.table-container` (mobile horizontal scroll), `.table-compact` for detail/inline tables. Status columns use `x-ui.status-pill`; category/gateway tags use `x-ui.badge`.
-- **Filter/search forms**: `.filters-bar` + `.filter-group` + `.filter-label` + `.search-box` in the card header.
-- **Pagination**: automatic — `Paginator::defaultView('pagination::tyro')` renders Tyro `.pagination` markup for every `->links()` call.
-- **Destructive actions**: `showDanger(title, msg, cb)`; confirmations `showConfirm`. Never bare forms.
-- **Empty results**: `x-ui.empty-state`.
-- **No inline `<style>` blocks** in dashboard or public views (emails and PDF excepted — different medium).
-
-`x-ui.*` catalogue (`resources/views/components/ui/`): `badge`, `button` (variant/size), `card` (header/footer slots), `empty-state` (icon/title/description/action), `input` (label/error/hint), `plan-card` (plan/price/featured/current, `.plan-card-price` span), `status-pill`, `usage-meter`.
-
-Public site: styles live in `resources/css/public.css` (imported by `app.css`, Vite-bundled) — one glass component set (`.glass`, `.pub-nav`, `.btn`, `.pill`) built on the same tokens. Tyro's dashboard CSS is not loaded on public pages by design.
+- [ ] Dark default renders: bg `#000`, primary `#c6fb4b`, glass green-frosted
+- [ ] Light mode derived correctly (toggle works, muted ≥4.5:1)
+- [ ] All buttons single-line, correct variant, loading/disabled states where applicable
+- [ ] Keyboard: tab through every flow; ring visible; bell Esc/arrow navigation
+- [ ] Contrast: run A1–A4 ratios on any new token pair
+- [ ] Spacing: no off-scale values; card stacks `mb-4`; grids `gap-4`
+- [ ] Typography: no non-scale font sizes in new code
+- [ ] Empty/loading/error states present on every data surface
+- [ ] `prefers-reduced-motion` honored
+- [ ] Suite green; `npm run build`; `view:cache`; Pint clean

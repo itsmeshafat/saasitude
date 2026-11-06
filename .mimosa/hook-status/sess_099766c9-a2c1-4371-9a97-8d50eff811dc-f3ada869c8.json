@@ -1,0 +1,14 @@
+{
+  "schemaVersion": "mimosa-hook-status/v1",
+  "recordedAt": "2026-11-06T19:44:06.388Z",
+  "sessionId": "sess_099766c9-a2c1-4371-9a97-8d50eff811dc",
+  "event": "PostToolUse",
+  "toolName": "Write",
+  "file": "C:\\Users\\Shafat Mahmud Khan\\AppData\\Local\\Temp\\ds-export-refactor.py",
+  "outcome": "inconclusive",
+  "coverage": "partial",
+  "findingCount": 0,
+  "durationMs": 12,
+  "hostState": "hook_complete",
+  "reportHint": ".mimosa/reports/"
+}

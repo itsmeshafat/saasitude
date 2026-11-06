@@ -1,0 +1,45 @@
+
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title" style="font-size: 1.0625rem;">Recent Activity</h3>
+        <span class="badge badge-secondary">Table + badges</span>
+    </div>
+    <div class="card-body" style="padding: 0;">
+        <div class="table-container">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Event</th>
+                        <th>Actor</th>
+                        <th>Status</th>
+                        <th style="text-align:right;">When</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php $__currentLoopData = $activity; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $row): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <tr>
+                            <td>
+                                <div style="font-weight: 600;"><?php echo e($row['title']); ?></div>
+                                <div style="font-size: 0.8125rem; color: var(--muted-foreground);"><?php echo e($row['subtitle']); ?></div>
+                            </td>
+                            <td>
+                                <div class="user-cell" style="gap: 0.625rem; text-decoration: none;">
+                                    <div class="user-cell-avatar"><?php echo e(strtoupper(substr($row['actor'], 0, 1))); ?></div>
+                                    <div class="user-cell-info">
+                                        <div class="user-cell-name" style="font-size: 0.9375rem;"><?php echo e($row['actor']); ?></div>
+                                        <div class="user-cell-email" style="font-size: 0.8125rem;"><?php echo e($row['actor_meta']); ?></div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <span class="badge <?php echo e($row['status_badge_class']); ?>"><?php echo e($row['status']); ?></span>
+                            </td>
+                            <td style="text-align:right; color: var(--muted-foreground);"><?php echo e($row['when']); ?></td>
+                        </tr>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<?php /**PATH C:\laragon\www\saas\vendor\hasinhayder\tyro-dashboard\resources\views\examples\partials\components\recent-activity-table.blade.php ENDPATH**/ ?>

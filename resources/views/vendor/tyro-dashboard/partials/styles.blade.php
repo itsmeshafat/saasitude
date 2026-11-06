@@ -64,7 +64,7 @@
     }
 
     body {
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        font-family: 'Aeonik', 'Segoe UI', 'Helvetica Neue', Arial, 'Noto Sans', 'Liberation Sans', sans-serif, system-ui;
         background-color: var(--background);
         /* Cobalt Glass: gradient mesh rendered behind the frosted surfaces */
         background-image: var(--mesh);
@@ -179,7 +179,7 @@
         display: flex !important;
         align-items: center;
         justify-content: center;
-        transition: all 0.15s ease;
+        transition: all var(--duration-instant, 150ms) ease;
         flex-shrink: 0;
         margin-left: auto;
     }
@@ -208,7 +208,7 @@
         border-radius: 6px;
         align-items: center;
         justify-content: center;
-        transition: all 0.15s ease;
+        transition: all var(--duration-instant, 150ms) ease;
         z-index: 10;
         width: 36px;
         height: 36px;
@@ -356,7 +356,7 @@
         text-decoration: none;
         font-size: 0.9375rem;
         font-weight: 500;
-        transition: all 0.15s ease;
+        transition: all var(--duration-instant, 150ms) ease;
         margin-bottom: 2px;
     }
 
@@ -480,7 +480,7 @@
         color: var(--muted-foreground);
         cursor: pointer;
         border-radius: 6px;
-        transition: all 0.15s ease;
+        transition: all var(--duration-instant, 150ms) ease;
     }
 
     .topbar-btn:hover {
@@ -616,7 +616,7 @@
         background: var(--background);
         border-radius: 6px;
         cursor: pointer;
-        transition: all 0.15s ease;
+        transition: all var(--duration-instant, 150ms) ease;
     }
 
     .user-dropdown-btn:hover {
@@ -671,7 +671,7 @@
         opacity: 0;
         visibility: hidden;
         transform: translateY(-4px);
-        transition: all 0.15s ease;
+        transition: all var(--duration-instant, 150ms) ease;
         z-index: 100;
         padding: 0.25rem;
     }
@@ -691,7 +691,7 @@
         text-decoration: none;
         font-size: 0.8125rem;
         border-radius: 4px;
-        transition: all 0.15s ease;
+        transition: all var(--duration-instant, 150ms) ease;
     }
 
     .dropdown-item:hover {
@@ -811,7 +811,7 @@
 
     /* Page Content — transparent so the mesh backdrop shows through the glass */
     .page-content {
-        padding: 2rem;
+        padding: var(--space-8, 16px);
         flex: 1;
         min-width: 0; /* break min-content propagation from cards/tables */
         background-color: transparent;
@@ -832,7 +832,8 @@
     }
 
     .page-title {
-        font-size: 1.875rem;
+        font-size: var(--text-4xl, 20px);
+        letter-spacing: -0.01em;
         font-weight: 600;
         color: var(--foreground);
         letter-spacing: -0.025em;
@@ -856,7 +857,7 @@
     }
 
     .card-header {
-        padding: 1.25rem 1.5rem;
+        padding: var(--space-7, 12px) var(--space-8, 16px);
         border-bottom: 1px solid var(--border);
         display: flex;
         align-items: center;
@@ -864,13 +865,13 @@
     }
 
     .card-title {
-        font-size: 1rem;
+        font-size: var(--text-3xl, 18px);
         font-weight: 600;
         color: var(--foreground);
     }
 
     .card-body {
-        padding: 1.5rem;
+        padding: var(--space-8, 16px);
     }
 
     .card-footer {
@@ -884,8 +885,8 @@
     .stats-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 1rem;
-        margin-bottom: 1.5rem;
+        gap: var(--space-7, 12px);
+        margin-bottom: var(--space-8, 16px);
     }
 
     .stat-card {
@@ -893,7 +894,7 @@
         border: 1px solid var(--border);
         border-radius: 10px;
         padding: 1.5rem;
-        transition: all 0.15s ease;
+        transition: all var(--duration-instant, 150ms) ease;
     }
 
     .stat-card:hover {
@@ -941,14 +942,14 @@
     }
 
     .stat-label {
-        font-size: 0.875rem;
+        font-size: var(--text-sm, 11px);
         font-weight: 500;
         color: var(--muted-foreground);
         margin-bottom: 0.375rem;
     }
 
     .stat-value {
-        font-size: 2rem;
+        font-size: var(--text-4xl, 20px);
         font-weight: 700;
         color: var(--foreground);
         line-height: 1;
@@ -990,14 +991,16 @@
     }
 
     .table th {
-        font-size: 0.875rem;
+        font-size: var(--text-xs, 10px);
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
         font-weight: 500;
         color: var(--muted-foreground);
         background-color: var(--muted);
     }
 
     .table td {
-        font-size: 0.9375rem;
+        font-size: var(--text-md, 13.01px);
         color: var(--foreground);
     }
 
@@ -1067,7 +1070,7 @@
         border-radius: 8px;
         border: none;
         cursor: pointer;
-        transition: all 0.15s ease;
+        transition: all var(--duration-instant, 150ms) ease;
         text-decoration: none;
         white-space: nowrap;
         line-height: 1.25;
@@ -1163,12 +1166,14 @@
 
     /* Form Elements - shadcn style */
     .form-group {
-        margin-bottom: 1.25rem;
+        margin-bottom: var(--space-8, 16px);
     }
 
     .form-label {
         display: block;
-        font-size: 0.9375rem;
+        font-size: var(--text-sm, 11px);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
         font-weight: 500;
         color: var(--foreground);
         margin-bottom: 0.5rem;
@@ -1552,7 +1557,7 @@
         cursor: pointer;
         appearance: none;
         -webkit-appearance: none;
-        transition: all 0.15s ease;
+        transition: all var(--duration-instant, 150ms) ease;
         position: relative;
         flex-shrink: 0;
     }
@@ -1858,7 +1863,7 @@
         font-weight: 500;
         border-radius: 6px;
         text-decoration: none;
-        transition: all 0.15s ease;
+        transition: all var(--duration-instant, 150ms) ease;
     }
 
     .pagination a {
@@ -1927,7 +1932,7 @@
         background-color: var(--background);
         color: var(--foreground);
         text-decoration: none;
-        transition: all 0.15s ease;
+        transition: all var(--duration-instant, 150ms) ease;
         box-shadow: var(--card-shadow);
     }
 
@@ -2068,7 +2073,7 @@
         color: var(--muted-foreground);
         cursor: pointer;
         border-radius: 6px;
-        transition: all 0.15s ease;
+        transition: all var(--duration-instant, 150ms) ease;
     }
 
     .modal-close:hover {
@@ -2218,7 +2223,7 @@
         color: var(--muted-foreground);
         cursor: pointer;
         border-radius: 6px;
-        transition: all 0.15s ease;
+        transition: all var(--duration-instant, 150ms) ease;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -2338,7 +2343,7 @@
         color: var(--muted-foreground);
         text-decoration: none;
         border-radius: 6px;
-        transition: all 0.15s ease;
+        transition: all var(--duration-instant, 150ms) ease;
     }
 
     .settings-nav-item:hover {
@@ -2391,7 +2396,7 @@
         background-color: var(--muted);
         border-radius: 8px;
         text-decoration: none;
-        transition: all 0.15s ease;
+        transition: all var(--duration-instant, 150ms) ease;
         border: 1px solid transparent;
     }
 
@@ -2544,7 +2549,7 @@
         text-decoration: none;
         border-bottom: 2px solid transparent;
         margin-bottom: -1px;
-        transition: all 0.15s ease;
+        transition: all var(--duration-instant, 150ms) ease;
     }
 
     .tab-link:hover {
@@ -3117,7 +3122,7 @@
         color: #8b8b9e;
         cursor: pointer;
         border-radius: 4px;
-        transition: all 0.15s ease;
+        transition: all var(--duration-instant, 150ms) ease;
         margin-top: -0.25rem;
         margin-right: -0.25rem;
     }
@@ -3212,3 +3217,53 @@
         }
     }
 </style>
+
+    /* ============================================================
+       ACCESSIBILITY — keyboard-first (design system non-negotiable)
+       Focus MUST be visible on every interactive element.
+    ============================================================= */
+    :focus-visible {
+        outline: 2px solid var(--ring);
+        outline-offset: 2px;
+        border-radius: var(--radius-xs, 2px);
+    }
+
+
+    /* Skeleton loading utility (table rows / card content) */
+    .skeleton {
+        background: linear-gradient(90deg, var(--muted) 25%, var(--accent) 50%, var(--muted) 75%);
+        background-size: 200% 100%;
+        animation: skeleton-shimmer 1.4s ease-in-out infinite;
+        border-radius: var(--radius-sm, 8px);
+        min-height: 12px;
+    }
+
+    @keyframes skeleton-shimmer {
+        0% { background-position: 200% 0; }
+        100% { background-position: -200% 0; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .skeleton { animation: none; }
+        *, *::before, *::after { transition-duration: 1ms !important; }
+    }
+
+    /* Button loading state (design-system: 8 mandatory states) */
+    .btn-spinner {
+        width: 14px;
+        height: 14px;
+        border: 2px solid currentColor;
+        border-right-color: transparent;
+        border-radius: var(--radius-xl, 9999px);
+        display: inline-block;
+        animation: btn-spin 600ms linear infinite;
+        flex-shrink: 0;
+    }
+
+    @keyframes btn-spin {
+        to { transform: rotate(360deg); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .btn-spinner { animation-duration: 2s; }
+    }

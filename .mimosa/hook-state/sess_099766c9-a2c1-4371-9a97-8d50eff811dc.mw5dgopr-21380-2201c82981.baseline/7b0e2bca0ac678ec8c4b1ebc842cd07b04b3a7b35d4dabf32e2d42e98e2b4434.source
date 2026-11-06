@@ -1,0 +1,130 @@
+<?php $__env->startSection('title', 'Subscription'); ?>
+
+<?php $__env->startSection('breadcrumb'); ?>
+<a href="<?php echo e(route($dashboardRoute::name('index'))); ?>">Dashboard</a>
+<span class="breadcrumb-separator">/</span>
+<a href="<?php echo e(route('admin.subscriptions.index')); ?>">Subscriptions</a>
+<span class="breadcrumb-separator">/</span>
+<span><?php echo e($subscription->workspace->name); ?></span>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+<div class="page-header">
+    <div class="page-header-row">
+        <div>
+            <h1 class="page-title"><?php echo e($subscription->plan->name); ?> — <?php echo e($subscription->workspace->name); ?></h1>
+            <p class="page-description">
+                <?php echo e($subscription->workspace->owner->email); ?>
+
+                · gateway <?php echo e(ucfirst($subscription->gateway)); ?>
+
+                <?php if($subscription->gateway_subscription_id): ?> · ref <?php echo e($subscription->gateway_subscription_id); ?> <?php endif; ?>
+            </p>
+        </div>
+        <div class="flex items-center gap-2">
+            <?php if (isset($component)) { $__componentOriginald271113ca69d52f8dbc84ae4f8468e44 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginald271113ca69d52f8dbc84ae4f8468e44 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.ui.status-pill','data' => ['status' => $subscription->status]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('ui.status-pill'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['status' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($subscription->status)]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginald271113ca69d52f8dbc84ae4f8468e44)): ?>
+<?php $attributes = $__attributesOriginald271113ca69d52f8dbc84ae4f8468e44; ?>
+<?php unset($__attributesOriginald271113ca69d52f8dbc84ae4f8468e44); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginald271113ca69d52f8dbc84ae4f8468e44)): ?>
+<?php $component = $__componentOriginald271113ca69d52f8dbc84ae4f8468e44; ?>
+<?php unset($__componentOriginald271113ca69d52f8dbc84ae4f8468e44); ?>
+<?php endif; ?>
+        </div>
+    </div>
+</div>
+
+<div class="grid grid-cols-1 xl:grid-cols-2 gap-6">
+    <div class="card">
+        <div class="card-header"><h3 class="card-title">State timeline</h3></div>
+        <?php if($timeline->isEmpty()): ?>
+            <div class="card-body"><?php if (isset($component)) { $__componentOriginal3607a477fdef7402bc742abad5df9c51 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal3607a477fdef7402bc742abad5df9c51 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.ui.empty-state','data' => ['title' => 'No events recorded']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('ui.empty-state'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['title' => 'No events recorded']); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal3607a477fdef7402bc742abad5df9c51)): ?>
+<?php $attributes = $__attributesOriginal3607a477fdef7402bc742abad5df9c51; ?>
+<?php unset($__attributesOriginal3607a477fdef7402bc742abad5df9c51); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal3607a477fdef7402bc742abad5df9c51)): ?>
+<?php $component = $__componentOriginal3607a477fdef7402bc742abad5df9c51; ?>
+<?php unset($__componentOriginal3607a477fdef7402bc742abad5df9c51); ?>
+<?php endif; ?></div>
+        <?php else: ?>
+            <div class="table-container">
+                <table class="table table-compact">
+                    <tbody>
+                        <?php $__currentLoopData = $timeline; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $entry): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <tr>
+                                <td class="font-medium"><?php echo e($entry['event']); ?><?php if($entry['detail']): ?> <span class="text-[var(--muted-foreground)]">(<?php echo e($entry['detail']); ?>)</span><?php endif; ?></td>
+                                <td class="text-right"><?php echo e(optional($entry['at'])->format('M j, Y H:i')); ?></td>
+                            </tr>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                    </tbody>
+                </table>
+            </div>
+        <?php endif; ?>
+    </div>
+
+    <div class="card">
+        <div class="card-header"><h3 class="card-title">Details</h3></div>
+        <div class="card-body">
+            <div class="table-container">
+                <table class="table table-compact">
+                    <tbody>
+                        <tr><td>Status</td><td class="text-right"><?php if (isset($component)) { $__componentOriginald271113ca69d52f8dbc84ae4f8468e44 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginald271113ca69d52f8dbc84ae4f8468e44 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.ui.status-pill','data' => ['status' => $subscription->status]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('ui.status-pill'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['status' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($subscription->status)]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginald271113ca69d52f8dbc84ae4f8468e44)): ?>
+<?php $attributes = $__attributesOriginald271113ca69d52f8dbc84ae4f8468e44; ?>
+<?php unset($__attributesOriginald271113ca69d52f8dbc84ae4f8468e44); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginald271113ca69d52f8dbc84ae4f8468e44)): ?>
+<?php $component = $__componentOriginald271113ca69d52f8dbc84ae4f8468e44; ?>
+<?php unset($__componentOriginald271113ca69d52f8dbc84ae4f8468e44); ?>
+<?php endif; ?></td></tr>
+                        <tr><td>Trial ends</td><td class="text-right"><?php echo e(optional($subscription->trial_ends_at)->format('M j, Y') ?? '—'); ?></td></tr>
+                        <tr><td>Current period</td><td class="text-right"><?php echo e(optional($subscription->current_period_start)->format('M j')); ?> → <?php echo e(optional($subscription->current_period_end)->format('M j, Y')); ?></td></tr>
+                        <tr><td>Cancels at period end</td><td class="text-right"><?php echo e($subscription->cancel_at_period_end ? 'Yes' : 'No'); ?></td></tr>
+                        <tr><td>App-driven renewal</td><td class="text-right"><?php echo e($subscription->app_driven_renewal ? 'Yes' : 'No'); ?></td></tr>
+                        <?php if($subscription->metadata['cancellation_reason'] ?? null): ?>
+                            <tr><td>Cancel reason</td><td class="text-right"><?php echo e($subscription->metadata['cancellation_reason']); ?></td></tr>
+                        <?php endif; ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('tyro-dashboard::layouts.admin', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH C:\laragon\www\saas\resources\views\dashboard\subscriptions-admin-detail.blade.php ENDPATH**/ ?>

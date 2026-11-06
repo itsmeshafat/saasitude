@@ -1,0 +1,170 @@
+<?php $__env->startSection('title', 'Notifications'); ?>
+
+<?php $__env->startSection('breadcrumb'); ?>
+<a href="<?php echo e(route($dashboardRoute::name('index'))); ?>">Dashboard</a>
+<span class="breadcrumb-separator">/</span>
+<span>Notifications</span>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+<div class="page-header">
+    <div class="page-header-row">
+        <div>
+            <h1 class="page-title">Notifications</h1>
+            <p class="page-description"><?php echo e($unreadCount); ?> unread.</p>
+        </div>
+        <?php if($unreadCount > 0): ?>
+            <form method="POST" action="<?php echo e(route('dashboard.notifications.read-all')); ?>">
+                <?php echo csrf_field(); ?>
+                <?php if (isset($component)) { $__componentOriginala8bb031a483a05f647cb99ed3a469847 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginala8bb031a483a05f647cb99ed3a469847 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.ui.button','data' => ['variant' => 'outline','type' => 'submit']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('ui.button'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['variant' => 'outline','type' => 'submit']); ?>Mark all as read <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginala8bb031a483a05f647cb99ed3a469847)): ?>
+<?php $attributes = $__attributesOriginala8bb031a483a05f647cb99ed3a469847; ?>
+<?php unset($__attributesOriginala8bb031a483a05f647cb99ed3a469847); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginala8bb031a483a05f647cb99ed3a469847)): ?>
+<?php $component = $__componentOriginala8bb031a483a05f647cb99ed3a469847; ?>
+<?php unset($__componentOriginala8bb031a483a05f647cb99ed3a469847); ?>
+<?php endif; ?>
+            </form>
+        <?php endif; ?>
+    </div>
+</div>
+
+<div class="tabs">
+    <a href="<?php echo e(route('dashboard.notifications')); ?>" class="tab-link <?php echo e($filter === 'all' ? 'active' : ''); ?>">All (<?php echo e($totalCount); ?>)</a>
+    <a href="<?php echo e(route('dashboard.notifications', ['filter' => 'unread'])); ?>" class="tab-link <?php echo e($filter === 'unread' ? 'active' : ''); ?>">Unread (<?php echo e($unreadCount); ?>)</a>
+    <a href="<?php echo e(route('dashboard.notifications', ['filter' => 'read'])); ?>" class="tab-link <?php echo e($filter === 'read' ? 'active' : ''); ?>">Read (<?php echo e($totalCount - $unreadCount); ?>)</a>
+</div>
+
+
+<div class="card mb-6">
+    <?php if($notifications->isEmpty()): ?>
+        <div class="card-body">
+            <?php if (isset($component)) { $__componentOriginal3607a477fdef7402bc742abad5df9c51 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal3607a477fdef7402bc742abad5df9c51 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.ui.empty-state','data' => ['title' => 'No notifications','description' => 'Billing and team activity will appear here.']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('ui.empty-state'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['title' => 'No notifications','description' => 'Billing and team activity will appear here.']); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal3607a477fdef7402bc742abad5df9c51)): ?>
+<?php $attributes = $__attributesOriginal3607a477fdef7402bc742abad5df9c51; ?>
+<?php unset($__attributesOriginal3607a477fdef7402bc742abad5df9c51); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal3607a477fdef7402bc742abad5df9c51)): ?>
+<?php $component = $__componentOriginal3607a477fdef7402bc742abad5df9c51; ?>
+<?php unset($__componentOriginal3607a477fdef7402bc742abad5df9c51); ?>
+<?php endif; ?>
+        </div>
+    <?php else: ?>
+        <div class="table-container">
+            <table class="table <?php echo e($notifications->first()->read_at ? '' : ''); ?>">
+                <tbody>
+                    <?php $__currentLoopData = $notifications; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $notification): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <tr class="<?php echo e($notification->read_at ? 'table-no-hover opacity-70' : 'font-medium'); ?>">
+                            <td>
+                                <?php echo e($notification->title); ?>
+
+                                <?php if (! ($notification->read_at)): ?>
+                                    <?php if (isset($component)) { $__componentOriginalab7baa01105b3dfe1e0cf1dfc58879b4 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginalab7baa01105b3dfe1e0cf1dfc58879b4 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.ui.badge','data' => ['variant' => 'info']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('ui.badge'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['variant' => 'info']); ?>New <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginalab7baa01105b3dfe1e0cf1dfc58879b4)): ?>
+<?php $attributes = $__attributesOriginalab7baa01105b3dfe1e0cf1dfc58879b4; ?>
+<?php unset($__attributesOriginalab7baa01105b3dfe1e0cf1dfc58879b4); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginalab7baa01105b3dfe1e0cf1dfc58879b4)): ?>
+<?php $component = $__componentOriginalab7baa01105b3dfe1e0cf1dfc58879b4; ?>
+<?php unset($__componentOriginalab7baa01105b3dfe1e0cf1dfc58879b4); ?>
+<?php endif; ?>
+                                <?php endif; ?>
+                                <?php if($notification->body): ?>
+                                    <div class="text-sm text-[var(--muted-foreground)]"><?php echo e($notification->body); ?></div>
+                                <?php endif; ?>
+                                <div class="text-xs text-[var(--muted-foreground)]"><?php echo e($notification->created_at?->diffForHumans()); ?></div>
+                            </td>
+                            <td class="text-right">
+                                <div class="action-buttons">
+                                    <?php if($notification->action_url): ?>
+                                        <?php if (isset($component)) { $__componentOriginala8bb031a483a05f647cb99ed3a469847 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginala8bb031a483a05f647cb99ed3a469847 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.ui.button','data' => ['href' => ''.e($notification->action_url).'','variant' => 'outline','size' => 'sm']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('ui.button'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['href' => ''.e($notification->action_url).'','variant' => 'outline','size' => 'sm']); ?>View <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginala8bb031a483a05f647cb99ed3a469847)): ?>
+<?php $attributes = $__attributesOriginala8bb031a483a05f647cb99ed3a469847; ?>
+<?php unset($__attributesOriginala8bb031a483a05f647cb99ed3a469847); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginala8bb031a483a05f647cb99ed3a469847)): ?>
+<?php $component = $__componentOriginala8bb031a483a05f647cb99ed3a469847; ?>
+<?php unset($__componentOriginala8bb031a483a05f647cb99ed3a469847); ?>
+<?php endif; ?>
+                                    <?php endif; ?>
+                                    <?php if (! ($notification->read_at)): ?>
+                                        <form method="POST" action="<?php echo e(route('dashboard.notifications.read', $notification->id)); ?>">
+                                            <?php echo csrf_field(); ?>
+                                            <?php if (isset($component)) { $__componentOriginala8bb031a483a05f647cb99ed3a469847 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginala8bb031a483a05f647cb99ed3a469847 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.ui.button','data' => ['variant' => 'ghost','size' => 'sm','type' => 'submit']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('ui.button'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['variant' => 'ghost','size' => 'sm','type' => 'submit']); ?>Mark read <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginala8bb031a483a05f647cb99ed3a469847)): ?>
+<?php $attributes = $__attributesOriginala8bb031a483a05f647cb99ed3a469847; ?>
+<?php unset($__attributesOriginala8bb031a483a05f647cb99ed3a469847); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginala8bb031a483a05f647cb99ed3a469847)): ?>
+<?php $component = $__componentOriginala8bb031a483a05f647cb99ed3a469847; ?>
+<?php unset($__componentOriginala8bb031a483a05f647cb99ed3a469847); ?>
+<?php endif; ?>
+                                        </form>
+                                    <?php endif; ?>
+                                </div>
+                            </td>
+                        </tr>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                </tbody>
+            </table>
+        </div>
+    <?php endif; ?>
+</div>
+
+<?php echo e($notifications->links()); ?>
+
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('tyro-dashboard::layouts.user', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH C:\laragon\www\saas\resources\views\dashboard\notifications.blade.php ENDPATH**/ ?>
