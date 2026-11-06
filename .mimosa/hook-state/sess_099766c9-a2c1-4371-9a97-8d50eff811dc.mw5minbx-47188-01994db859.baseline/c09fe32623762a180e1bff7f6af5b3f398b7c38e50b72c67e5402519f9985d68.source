@@ -906,6 +906,14 @@
         margin-bottom: var(--space-8, 16px);
     }
 
+    /* A card containing an OPEN dropdown (column filter etc.) must paint
+       above sibling cards — backdrop-filter on cards creates stacking
+       contexts, so the dropdown's z-index is otherwise trapped. */
+    .card:has(.dropdown-menu[style*="block"]) {
+        position: relative;
+        z-index: 1050;
+    }
+
     .stat-card {
         background: var(--glass);
         backdrop-filter: var(--glass-blur);

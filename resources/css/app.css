@@ -108,7 +108,7 @@
 
         /* Glass system — light */
         --glass: rgba(255, 255, 255, 0.6);
-        --glass-strong: rgba(255, 255, 255, 0.78);
+        --glass-strong: rgba(255, 255, 255, 0.95);
         --glass-border: rgba(229, 231, 235, 0.9);
         --glass-blur: blur(18px) saturate(1.4);
         --glass-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.7);

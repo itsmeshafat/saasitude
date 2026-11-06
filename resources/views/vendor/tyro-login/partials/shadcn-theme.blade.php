@@ -60,7 +60,7 @@
 
         /* Glass system — light: white frost over lime-tinted mesh */
         --glass: rgba(255, 255, 255, 0.6);
-        --glass-strong: rgba(255, 255, 255, 0.78);
+        --glass-strong: rgba(255, 255, 255, 0.95);
         --glass-border: rgba(229, 231, 235, 0.9);
         --glass-blur: blur(18px) saturate(1.4);
         --glass-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.7);
@@ -109,7 +109,7 @@
 
         /* Glass system — dark: green frost over lime-tinted mesh on black */
         --glass: rgba(8, 38, 21, 0.55);
-        --glass-strong: rgba(8, 38, 21, 0.78);
+        --glass-strong: rgba(8, 38, 21, 0.95);
         --glass-border: rgba(229, 231, 235, 0.2);
         --glass-blur: blur(18px) saturate(1.3);
         --glass-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.08);

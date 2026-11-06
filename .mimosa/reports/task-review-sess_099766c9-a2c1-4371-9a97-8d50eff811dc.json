@@ -1,77 +1,41 @@
 {
   "schema_version": "mimosa-task-review/v2",
-  "run_id": "20261106T234238946Z-47416-33947dbf5941",
-  "run_status": "inconclusive",
-  "errors": [
-    {
-      "stage": "baseline-read",
-      "target": "storage/framework/views/cb0b293f90587b7ddac9d682b2a5e795.php",
-      "reason": "baseline_snapshot_unreadable: file is missing from task baseline"
-    },
-    {
-      "stage": "baseline-read",
-      "target": "storage/framework/views/e64affda7c86738f94380769be4ca1af.php",
-      "reason": "baseline_snapshot_unreadable: file is missing from task baseline"
-    },
-    {
-      "stage": "scan",
-      "target": "resources/views/vendor/tyro-dashboard/settings/partials/_tab-sidebar-colors.blade.php",
-      "reason": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT"
-    },
-    {
-      "stage": "scan",
-      "target": "resources/views/vendor/tyro-dashboard/settings/system.blade.php",
-      "reason": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT"
-    },
-    {
-      "stage": "scan",
-      "target": "storage/framework/views/73cb7aba6393b29c2f2a74a56cbeb511.php",
-      "reason": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT"
-    },
-    {
-      "stage": "scan",
-      "target": "storage/framework/views/cb0b293f90587b7ddac9d682b2a5e795.php",
-      "reason": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT"
-    },
-    {
-      "stage": "scan",
-      "target": "storage/framework/views/e64affda7c86738f94380769be4ca1af.php",
-      "reason": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT"
-    }
-  ],
+  "run_id": "20261106T234631437Z-24656-fffcf375f997",
+  "run_status": "completed",
+  "errors": [],
   "coverage": {
     "schema_version": "mimosa-hook-coverage/v1",
-    "status": "partial",
+    "status": "complete",
     "scope": "hook_observed_diff",
     "baseline": {
       "complete": true,
-      "captured_files": 521,
+      "captured_files": 517,
       "candidate_limit": 5000,
       "truncated": false,
       "enumeration_error_count": 0,
       "snapshot_error_count": 0,
-      "compensated_target_count": 3
+      "compensated_target_count": 2
     },
     "change_tracking": {
-      "touched_observed": 2,
-      "touched_retained": 2,
+      "touched_observed": 0,
+      "touched_retained": 0,
       "truncated": false,
       "bash_mutation": true,
-      "bash_discovered": 3,
+      "bash_discovered": 2,
       "bash_discovery_limit": 80,
       "bash_discovery_truncated": false
     },
     "candidates": {
-      "eligible_files": 5,
-      "selected_files": 5,
+      "eligible_files": 2,
+      "selected_files": 2,
       "limit": 20,
       "truncated": false
     },
     "scanning": {
-      "required_files": 5,
-      "scanned_files": 0,
+      "required_files": 2,
+      "scanned_files": 2,
       "skipped_files": 0,
-      "failed_files": 5,
+      "failed_files": 0,
       "project_checks_required": 0,
       "project_checks_completed": 0
     },
@@ -81,188 +45,52 @@
       "detail_limit": 3,
       "truncated": false
     },
-    "reason_counts": {
-      "baseline_snapshot_unreadable": 2,
-      "scanner_failed": 5,
-      "project_check_failed": 7
-    },
-    "reasons": [
-      {
-        "code": "baseline_snapshot_unreadable",
-        "stage": "baseline-read",
-        "target": "storage/framework/views/cb0b293f90587b7ddac9d682b2a5e795.php",
-        "detail": "file is missing from task baseline",
-        "affects_completion": true
-      },
-      {
-        "code": "baseline_snapshot_unreadable",
-        "stage": "baseline-read",
-        "target": "storage/framework/views/e64affda7c86738f94380769be4ca1af.php",
-        "detail": "file is missing from task baseline",
-        "affects_completion": true
-      },
-      {
-        "code": "scanner_failed",
-        "stage": "scan",
-        "target": "resources/views/vendor/tyro-dashboard/settings/partials/_tab-sidebar-colors.blade.php",
-        "detail": "spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
-        "affects_completion": true
-      },
-      {
-        "code": "scanner_failed",
-        "stage": "scan",
-        "target": "resources/views/vendor/tyro-dashboard/settings/system.blade.php",
-        "detail": "spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
-        "affects_completion": true
-      },
-      {
-        "code": "scanner_failed",
-        "stage": "scan",
-        "target": "storage/framework/views/73cb7aba6393b29c2f2a74a56cbeb511.php",
-        "detail": "spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
-        "affects_completion": true
-      },
-      {
-        "code": "scanner_failed",
-        "stage": "scan",
-        "target": "storage/framework/views/cb0b293f90587b7ddac9d682b2a5e795.php",
-        "detail": "spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
-        "affects_completion": true
-      },
-      {
-        "code": "scanner_failed",
-        "stage": "scan",
-        "target": "storage/framework/views/e64affda7c86738f94380769be4ca1af.php",
-        "detail": "spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
-        "affects_completion": true
-      },
-      {
-        "code": "project_check_failed",
-        "stage": "baseline-read",
-        "target": "storage/framework/views/cb0b293f90587b7ddac9d682b2a5e795.php",
-        "detail": "baseline_snapshot_unreadable: file is missing from task baseline",
-        "affects_completion": true
-      },
-      {
-        "code": "project_check_failed",
-        "stage": "baseline-read",
-        "target": "storage/framework/views/e64affda7c86738f94380769be4ca1af.php",
-        "detail": "baseline_snapshot_unreadable: file is missing from task baseline",
-        "affects_completion": true
-      },
-      {
-        "code": "project_check_failed",
-        "stage": "scan",
-        "target": "resources/views/vendor/tyro-dashboard/settings/partials/_tab-sidebar-colors.blade.php",
-        "detail": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
-        "affects_completion": true
-      },
-      {
-        "code": "project_check_failed",
-        "stage": "scan",
-        "target": "resources/views/vendor/tyro-dashboard/settings/system.blade.php",
-        "detail": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
-        "affects_completion": true
-      },
-      {
-        "code": "project_check_failed",
-        "stage": "scan",
-        "target": "storage/framework/views/73cb7aba6393b29c2f2a74a56cbeb511.php",
-        "detail": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
-        "affects_completion": true
-      },
-      {
-        "code": "project_check_failed",
-        "stage": "scan",
-        "target": "storage/framework/views/cb0b293f90587b7ddac9d682b2a5e795.php",
-        "detail": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
-        "affects_completion": true
-      },
-      {
-        "code": "project_check_failed",
-        "stage": "scan",
-        "target": "storage/framework/views/e64affda7c86738f94380769be4ca1af.php",
-        "detail": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
-        "affects_completion": true
-      }
-    ],
+    "reason_counts": {},
+    "reasons": [],
     "reasons_truncated": false
   },
-  "generated_at": "2026-11-06T23:42:38.946Z",
+  "generated_at": "2026-11-06T23:46:31.437Z",
   "session_id": "sess_099766c9-a2c1-4371-9a97-8d50eff811dc",
   "target": ".",
-  "revision": "9c597cf36ce19a796be2a15fc7797d50e75249ad",
+  "revision": "6d14df5c3e0180c91479eda565a3b8b5faf3d789",
   "rules_version": "unavailable",
-  "diff_hash": "6b43933a56782e7720330dbeb9c89d3a54fcd6fa8e288ef522780e606f979c4d",
+  "diff_hash": "85a6db2505ce86a56f6935040f7f714916d3c87a22bbcfbe6a419d143a3822d6",
   "diff": {
     "algorithm": "sha256",
-    "changed_file_count": 5,
+    "changed_file_count": 2,
     "changed_files": [
       {
-        "file": "resources/views/vendor/tyro-dashboard/settings/partials/_tab-sidebar-colors.blade.php",
+        "file": "storage/framework/views/1f9c7e08c63df6ecaf32d1bc0545fe2a.php",
         "ranges": [
           {
-            "start": 274,
-            "end": 343
+            "start": 909,
+            "end": 916
           }
         ],
-        "before_hash": "d9754db76038d0629a50f09ea2323459c3259bef2441576fe9916dc24ab8fd3b",
-        "after_hash": "2531340b3085ced59699357a3d1168b286755a4fc466b401d2a0807c05dc3a8b"
+        "before_hash": "9ff4d4e9f78c83cceb0aa83160fcf6c002d0a81307c09c2477918ab457b0f700",
+        "after_hash": "1c15b01ddb761080bcd871bdafbdbba7b2d5a5ad983be99c0b6515635e1a48d5"
       },
       {
-        "file": "resources/views/vendor/tyro-dashboard/settings/system.blade.php",
+        "file": "storage/framework/views/7bef15525394493605ced53d56b0f4cb.php",
         "ranges": [
           {
-            "start": 106,
-            "end": 106
-          }
-        ],
-        "before_hash": "64490250fa54bdcf23f33e5df45ed70ffed2832131d55f964c2cc74d4436e6e5",
-        "after_hash": "30392468e978f291ba5cb15eadca8182dc378091b66e6edb74dd012e579befca"
-      },
-      {
-        "file": "storage/framework/views/73cb7aba6393b29c2f2a74a56cbeb511.php",
-        "ranges": [
-          {
-            "start": 105,
-            "end": 105
+            "start": 51,
+            "end": 51
           },
           {
-            "start": 137,
-            "end": 137
+            "start": 54,
+            "end": 54
           }
         ],
-        "before_hash": "d0133e15b8ea5325bc39d70f8f431bab1466eca43ced0c2f03d5e2d98477fb41",
-        "after_hash": "4fd09760b8e04ea89e3c4b563fcdf54e24f7bd3ce99efdcf9a8b94959605d7b6"
-      },
-      {
-        "file": "storage/framework/views/cb0b293f90587b7ddac9d682b2a5e795.php",
-        "ranges": [
-          {
-            "start": 1,
-            "end": 170
-          }
-        ],
-        "before_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-        "after_hash": "88f5f516221cb73696eb87895be9e911009930532e38a6e0de8458ca29d59940"
-      },
-      {
-        "file": "storage/framework/views/e64affda7c86738f94380769be4ca1af.php",
-        "ranges": [
-          {
-            "start": 1,
-            "end": 350
-          }
-        ],
-        "before_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-        "after_hash": "8880162d79e7e48cb417da182dcd9553a561ec9db15df427ec0bdabf4b445137"
+        "before_hash": "e18db696e7d61e8d47be2223302a6e08dd9c6f7d8a9a247ca1319887b3b8def4",
+        "after_hash": "84b7a4e4c018255cadfefad8955bc8a3bff482f13c375e999760a46ff847b4ce"
       }
     ]
   },
   "timing": {
-    "started_at": "2026-11-06T23:42:35.916Z",
-    "completed_at": "2026-11-06T23:42:38.946Z",
-    "duration_ms": 3030,
+    "started_at": "2026-11-06T23:46:29.221Z",
+    "completed_at": "2026-11-06T23:46:31.437Z",
+    "duration_ms": 2216,
     "measurement": "hook_wall_clock"
   },
   "tokens": {
@@ -276,11 +104,11 @@
     "schemaVersion": "mimosa-gate-telemetry/v1",
     "profile": "gate",
     "operation": "Stop",
-    "outcome": "partial/INCONCLUSIVE",
-    "latencyMs": 3030,
-    "peakMemoryBytes": 97312768,
+    "outcome": "complete",
+    "latencyMs": 2216,
+    "peakMemoryBytes": 146661376,
     "memoryMeasurement": "max-observed-process-rss",
-    "scannedFiles": 0,
+    "scannedFiles": 2,
     "cache": {
       "hits": 0,
       "misses": 0,
@@ -305,8 +133,8 @@
   "finding_events": [],
   "findings": [],
   "artifacts": {
-    "immutable_report": ".mimosa/reports/task-review-sess_099766c9-a2c1-4371-9a97-8d50eff811dc-20261106T234238946Z-47416-33947dbf5941.json",
+    "immutable_report": ".mimosa/reports/task-review-sess_099766c9-a2c1-4371-9a97-8d50eff811dc-20261106T234631437Z-24656-fffcf375f997.json",
     "latest_report": ".mimosa/reports/task-review-sess_099766c9-a2c1-4371-9a97-8d50eff811dc.json",
-    "history_summary": ".mimosa/history/run-20261106T234238946Z-47416-33947dbf5941.json"
+    "history_summary": ".mimosa/history/run-20261106T234631437Z-24656-fffcf375f997.json"
   }
 }
