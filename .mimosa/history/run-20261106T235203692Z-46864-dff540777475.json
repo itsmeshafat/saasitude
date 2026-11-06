@@ -1,0 +1,39 @@
+{
+  "schemaVersion": "mimosa-finding-history/v1",
+  "runId": "20261106T235203692Z-46864-dff540777475",
+  "runStatus": "inconclusive",
+  "errors": [
+    "scan:storage/framework/views/1f9c7e08c63df6ecaf32d1bc0545fe2a.php: scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT"
+  ],
+  "target": ".",
+  "revision": "86774ada36fd217ff9af8e18d1236d277a83859d",
+  "diffHash": "2ad18893104f37b0b2cd308ed48d8c4b1b39c0df7c6e5b9c570c60d9552c7cf4",
+  "rulesVersion": "unavailable",
+  "recordedAt": "2026-11-06T23:52:03.692Z",
+  "timing": {
+    "startedAt": "2026-11-06T23:52:00.357Z",
+    "completedAt": "2026-11-06T23:52:03.692Z",
+    "durationMs": 3335
+  },
+  "tokens": {
+    "input": 0,
+    "output": 0,
+    "total": 0,
+    "modelCalls": 0,
+    "measurement": "known-zero"
+  },
+  "findings": {
+    "total": 0,
+    "bySeverity": {},
+    "byStatus": {}
+  },
+  "coverage": {
+    "status": "partial",
+    "reasonCounts": {
+      "scanner_failed": 1,
+      "project_check_failed": 1
+    }
+  },
+  "evidenceBoundary": "static_only",
+  "immutableReport": ".mimosa/reports/task-review-sess_099766c9-a2c1-4371-9a97-8d50eff811dc-20261106T235203692Z-46864-dff540777475.json"
+}

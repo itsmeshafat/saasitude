@@ -3299,5 +3299,111 @@
     @media (prefers-reduced-motion: reduce) {
         .btn-spinner { animation-duration: 2s; }
     }
+
+    /* ============================================================
+       Compatibility aliases — classes the resource views use that the
+       stylesheet never defined. All token-based + theme-aware.
+    ============================================================= */
+    .btn-ghost,
+    .btn-ghost:hover {
+        background-color: transparent;
+    }
+
+    .btn-ghost {
+        color: var(--foreground);
+    }
+
+    .btn-ghost:hover {
+        background-color: var(--accent);
+        color: var(--accent-foreground);
+    }
+
+    .btn-ghost.text-danger:hover {
+        background-color: color-mix(in srgb, var(--destructive), transparent 85%);
+        color: var(--destructive);
+    }
+
+    .btn-icon {
+        padding: 0.5rem;
+        border-radius: var(--radius-sm, 8px);
+    }
+
+    .btn-icon svg {
+        width: 16px;
+        height: 16px;
+    }
+
+    .btn-danger {
+        background-color: var(--destructive);
+        color: var(--destructive-foreground);
+    }
+
+    .btn-danger:hover {
+        opacity: 0.9;
+    }
+
+    .btn-outline {
+        background-color: transparent;
+        border: 1px solid var(--input);
+        color: var(--foreground);
+    }
+
+    .btn-outline:hover {
+        background-color: var(--accent);
+        color: var(--accent-foreground);
+    }
+
+    .btn-outline-warning {
+        background-color: transparent;
+        border: 1px solid var(--warning);
+        color: var(--warning);
+    }
+
+    .btn-outline-warning:hover {
+        background-color: color-mix(in srgb, var(--warning), transparent 85%);
+    }
+
+    .text-danger {
+        color: var(--destructive);
+    }
+
+    .btn-group {
+        display: inline-flex;
+        gap: var(--space-2, 4px);
+    }
+
+    .btn-group .btn {
+        border-radius: var(--radius-sm, 8px);
+    }
+
+    .btn-modal-cancel {
+        background-color: var(--secondary);
+        color: var(--secondary-foreground);
+    }
+
+    .btn-modal-confirm {
+        background-color: var(--primary);
+        color: var(--primary-foreground);
+    }
+
+    .btn-modal-danger {
+        background-color: var(--destructive);
+        color: var(--destructive-foreground);
+    }
+
+    .btn-save-preset {
+        background-color: var(--primary);
+        color: var(--primary-foreground);
+    }
+
+    .btn--active {
+        background-color: var(--primary);
+        color: var(--primary-foreground);
+    }
+
+    .btn--disabled {
+        opacity: 0.5;
+        pointer-events: none;
+    }
 </style>
 <?php /**PATH C:\laragon\www\saas\resources\views\vendor\tyro-dashboard/partials/styles.blade.php ENDPATH**/ ?>

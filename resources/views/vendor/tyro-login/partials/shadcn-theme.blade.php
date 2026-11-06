@@ -8,6 +8,8 @@
     ============================================================= */
 
     :root {
+        color-scheme: light;
+
         /* Radius scale */
         --radius-xs: 2px;
         --radius-sm: 8px;

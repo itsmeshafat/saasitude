@@ -1089,3 +1089,10 @@
         }
     }
 </style>
+
+    /* Native select popup items — theme-aware */
+    select option,
+    select optgroup {
+        background-color: var(--popover);
+        color: var(--popover-foreground);
+    }

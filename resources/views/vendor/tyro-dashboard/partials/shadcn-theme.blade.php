@@ -24,6 +24,8 @@
     ============================================================= */
 
     :root {
+        color-scheme: light; /* native widgets (select popups) follow the theme */
+
         /* Radius scale — radius.xs/sm/md/lg/xl */
         --radius-xs: 2px;
         --radius-sm: 8px;
@@ -131,6 +133,7 @@
 
     /* Dark mode — DEFAULT THEME, brief values verbatim */
     .dark {
+        color-scheme: dark; /* native select popups render dark */
         --background: rgba(0, 0, 0, 0.72); /* surface.base as frost — html provides solid #000 beneath */
         --foreground: {{ $cssVal('--foreground', '#ffffff', $darkOverrides) }}; /* text.tertiary */
         --card: {{ $cssVal('--card', 'rgba(8, 38, 21, 0.55)', $darkOverrides) }}; /* surface.muted */

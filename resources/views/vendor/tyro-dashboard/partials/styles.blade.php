@@ -1236,6 +1236,13 @@
         line-height: 1.5;
     }
 
+    /* Native select popup items — theme-aware on Windows/Linux Chrome */
+    select option,
+    select optgroup {
+        background-color: var(--popover);
+        color: var(--popover-foreground);
+    }
+
     .form-input::placeholder,
     .form-textarea::placeholder {
         color: var(--muted-foreground);

@@ -1,41 +1,47 @@
 {
   "schema_version": "mimosa-task-review/v2",
-  "run_id": "20261106T234631437Z-24656-fffcf375f997",
-  "run_status": "completed",
-  "errors": [],
+  "run_id": "20261106T235203692Z-46864-dff540777475",
+  "run_status": "inconclusive",
+  "errors": [
+    {
+      "stage": "scan",
+      "target": "storage/framework/views/1f9c7e08c63df6ecaf32d1bc0545fe2a.php",
+      "reason": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT"
+    }
+  ],
   "coverage": {
     "schema_version": "mimosa-hook-coverage/v1",
-    "status": "complete",
+    "status": "partial",
     "scope": "hook_observed_diff",
     "baseline": {
       "complete": true,
-      "captured_files": 517,
+      "captured_files": 493,
       "candidate_limit": 5000,
       "truncated": false,
       "enumeration_error_count": 0,
       "snapshot_error_count": 0,
-      "compensated_target_count": 2
+      "compensated_target_count": 1
     },
     "change_tracking": {
       "touched_observed": 0,
       "touched_retained": 0,
       "truncated": false,
       "bash_mutation": true,
-      "bash_discovered": 2,
+      "bash_discovered": 1,
       "bash_discovery_limit": 80,
       "bash_discovery_truncated": false
     },
     "candidates": {
-      "eligible_files": 2,
-      "selected_files": 2,
+      "eligible_files": 1,
+      "selected_files": 1,
       "limit": 20,
       "truncated": false
     },
     "scanning": {
-      "required_files": 2,
-      "scanned_files": 2,
+      "required_files": 1,
+      "scanned_files": 0,
       "skipped_files": 0,
-      "failed_files": 0,
+      "failed_files": 1,
       "project_checks_required": 0,
       "project_checks_completed": 0
     },
@@ -45,52 +51,55 @@
       "detail_limit": 3,
       "truncated": false
     },
-    "reason_counts": {},
-    "reasons": [],
+    "reason_counts": {
+      "scanner_failed": 1,
+      "project_check_failed": 1
+    },
+    "reasons": [
+      {
+        "code": "scanner_failed",
+        "stage": "scan",
+        "target": "storage/framework/views/1f9c7e08c63df6ecaf32d1bc0545fe2a.php",
+        "detail": "spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+        "affects_completion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "scan",
+        "target": "storage/framework/views/1f9c7e08c63df6ecaf32d1bc0545fe2a.php",
+        "detail": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+        "affects_completion": true
+      }
+    ],
     "reasons_truncated": false
   },
-  "generated_at": "2026-11-06T23:46:31.437Z",
+  "generated_at": "2026-11-06T23:52:03.692Z",
   "session_id": "sess_099766c9-a2c1-4371-9a97-8d50eff811dc",
   "target": ".",
-  "revision": "6d14df5c3e0180c91479eda565a3b8b5faf3d789",
+  "revision": "86774ada36fd217ff9af8e18d1236d277a83859d",
   "rules_version": "unavailable",
-  "diff_hash": "85a6db2505ce86a56f6935040f7f714916d3c87a22bbcfbe6a419d143a3822d6",
+  "diff_hash": "2ad18893104f37b0b2cd308ed48d8c4b1b39c0df7c6e5b9c570c60d9552c7cf4",
   "diff": {
     "algorithm": "sha256",
-    "changed_file_count": 2,
+    "changed_file_count": 1,
     "changed_files": [
       {
         "file": "storage/framework/views/1f9c7e08c63df6ecaf32d1bc0545fe2a.php",
         "ranges": [
           {
-            "start": 909,
-            "end": 916
+            "start": 3302,
+            "end": 3407
           }
         ],
-        "before_hash": "9ff4d4e9f78c83cceb0aa83160fcf6c002d0a81307c09c2477918ab457b0f700",
-        "after_hash": "1c15b01ddb761080bcd871bdafbdbba7b2d5a5ad983be99c0b6515635e1a48d5"
-      },
-      {
-        "file": "storage/framework/views/7bef15525394493605ced53d56b0f4cb.php",
-        "ranges": [
-          {
-            "start": 51,
-            "end": 51
-          },
-          {
-            "start": 54,
-            "end": 54
-          }
-        ],
-        "before_hash": "e18db696e7d61e8d47be2223302a6e08dd9c6f7d8a9a247ca1319887b3b8def4",
-        "after_hash": "84b7a4e4c018255cadfefad8955bc8a3bff482f13c375e999760a46ff847b4ce"
+        "before_hash": "1c15b01ddb761080bcd871bdafbdbba7b2d5a5ad983be99c0b6515635e1a48d5",
+        "after_hash": "739a1223237aedd46b345b030fb50f8f07d068138cd36c0c21be195418939480"
       }
     ]
   },
   "timing": {
-    "started_at": "2026-11-06T23:46:29.221Z",
-    "completed_at": "2026-11-06T23:46:31.437Z",
-    "duration_ms": 2216,
+    "started_at": "2026-11-06T23:52:00.357Z",
+    "completed_at": "2026-11-06T23:52:03.692Z",
+    "duration_ms": 3335,
     "measurement": "hook_wall_clock"
   },
   "tokens": {
@@ -104,11 +113,11 @@
     "schemaVersion": "mimosa-gate-telemetry/v1",
     "profile": "gate",
     "operation": "Stop",
-    "outcome": "complete",
-    "latencyMs": 2216,
-    "peakMemoryBytes": 146661376,
+    "outcome": "partial/INCONCLUSIVE",
+    "latencyMs": 3335,
+    "peakMemoryBytes": 97275904,
     "memoryMeasurement": "max-observed-process-rss",
-    "scannedFiles": 2,
+    "scannedFiles": 0,
     "cache": {
       "hits": 0,
       "misses": 0,
@@ -133,8 +142,8 @@
   "finding_events": [],
   "findings": [],
   "artifacts": {
-    "immutable_report": ".mimosa/reports/task-review-sess_099766c9-a2c1-4371-9a97-8d50eff811dc-20261106T234631437Z-24656-fffcf375f997.json",
+    "immutable_report": ".mimosa/reports/task-review-sess_099766c9-a2c1-4371-9a97-8d50eff811dc-20261106T235203692Z-46864-dff540777475.json",
     "latest_report": ".mimosa/reports/task-review-sess_099766c9-a2c1-4371-9a97-8d50eff811dc.json",
-    "history_summary": ".mimosa/history/run-20261106T234631437Z-24656-fffcf375f997.json"
+    "history_summary": ".mimosa/history/run-20261106T235203692Z-46864-dff540777475.json"
   }
 }
