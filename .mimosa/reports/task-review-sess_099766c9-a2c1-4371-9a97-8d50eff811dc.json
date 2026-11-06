@@ -1,112 +1,41 @@
 {
   "schema_version": "mimosa-task-review/v2",
-  "run_id": "20261106T215210138Z-46744-b1407c69139d",
-  "run_status": "inconclusive",
-  "errors": [
-    {
-      "stage": "candidate-select",
-      "target": "tests/Feature/ScratchDeleteDebugTest.php",
-      "reason": "changed_file_unreadable: observed changed file no longer exists or cannot be read"
-    },
-    {
-      "stage": "baseline-read",
-      "target": "storage/framework/views/dd119ab75790c429dfafe83909717651.php",
-      "reason": "baseline_snapshot_unreadable: file is missing from task baseline"
-    },
-    {
-      "stage": "scan",
-      "target": "database/migrations/2026_11_07_000001_create_data_exports_table.php",
-      "reason": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT"
-    },
-    {
-      "stage": "scan",
-      "target": "app/Models/DataExport.php",
-      "reason": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT"
-    },
-    {
-      "stage": "scan",
-      "target": "app/Jobs/ProcessDataExport.php",
-      "reason": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT"
-    },
-    {
-      "stage": "scan",
-      "target": "app/Actions/DeleteUserAccount.php",
-      "reason": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT"
-    },
-    {
-      "stage": "scan",
-      "target": "app/Http/Controllers/DataPrivacyController.php",
-      "reason": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT"
-    },
-    {
-      "stage": "scan",
-      "target": "resources/views/dashboard/data-privacy.blade.php",
-      "reason": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT"
-    },
-    {
-      "stage": "scan",
-      "target": "routes/web.php",
-      "reason": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT"
-    },
-    {
-      "stage": "scan",
-      "target": "app/Models/User.php",
-      "reason": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT"
-    },
-    {
-      "stage": "scan",
-      "target": "app/Http/Controllers/Api/V1/DataRightsApiController.php",
-      "reason": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT"
-    },
-    {
-      "stage": "scan",
-      "target": "routes/api.php",
-      "reason": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT"
-    },
-    {
-      "stage": "scan",
-      "target": "tests/Feature/DataPrivacyTest.php",
-      "reason": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT"
-    },
-    {
-      "stage": "scan",
-      "target": "storage/framework/views/dd119ab75790c429dfafe83909717651.php",
-      "reason": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT"
-    }
-  ],
+  "run_id": "20261106T221958418Z-46712-cc60fd0371f0",
+  "run_status": "completed",
+  "errors": [],
   "coverage": {
     "schema_version": "mimosa-hook-coverage/v1",
-    "status": "partial",
+    "status": "complete",
     "scope": "hook_observed_diff",
     "baseline": {
       "complete": true,
-      "captured_files": 517,
+      "captured_files": 520,
       "candidate_limit": 5000,
       "truncated": false,
       "enumeration_error_count": 0,
       "snapshot_error_count": 0,
-      "compensated_target_count": 11
+      "compensated_target_count": 4
     },
     "change_tracking": {
-      "touched_observed": 12,
-      "touched_retained": 12,
+      "touched_observed": 4,
+      "touched_retained": 4,
       "truncated": false,
       "bash_mutation": true,
-      "bash_discovered": 12,
+      "bash_discovered": 2,
       "bash_discovery_limit": 80,
       "bash_discovery_truncated": false
     },
     "candidates": {
-      "eligible_files": 12,
-      "selected_files": 12,
+      "eligible_files": 4,
+      "selected_files": 4,
       "limit": 20,
       "truncated": false
     },
     "scanning": {
-      "required_files": 12,
-      "scanned_files": 0,
+      "required_files": 4,
+      "scanned_files": 4,
       "skipped_files": 0,
-      "failed_files": 12,
+      "failed_files": 0,
       "project_checks_required": 0,
       "project_checks_completed": 0
     },
@@ -116,400 +45,78 @@
       "detail_limit": 3,
       "truncated": false
     },
-    "reason_counts": {
-      "changed_file_unreadable": 1,
-      "baseline_snapshot_unreadable": 1,
-      "scanner_failed": 12,
-      "project_check_failed": 14
-    },
-    "reasons": [
-      {
-        "code": "changed_file_unreadable",
-        "stage": "candidate-select",
-        "target": "tests/Feature/ScratchDeleteDebugTest.php",
-        "detail": "observed changed file no longer exists or cannot be read",
-        "affects_completion": true
-      },
-      {
-        "code": "baseline_snapshot_unreadable",
-        "stage": "baseline-read",
-        "target": "storage/framework/views/dd119ab75790c429dfafe83909717651.php",
-        "detail": "file is missing from task baseline",
-        "affects_completion": true
-      },
-      {
-        "code": "scanner_failed",
-        "stage": "scan",
-        "target": "database/migrations/2026_11_07_000001_create_data_exports_table.php",
-        "detail": "spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
-        "affects_completion": true
-      },
-      {
-        "code": "scanner_failed",
-        "stage": "scan",
-        "target": "app/Models/DataExport.php",
-        "detail": "spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
-        "affects_completion": true
-      },
-      {
-        "code": "scanner_failed",
-        "stage": "scan",
-        "target": "app/Jobs/ProcessDataExport.php",
-        "detail": "spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
-        "affects_completion": true
-      },
-      {
-        "code": "scanner_failed",
-        "stage": "scan",
-        "target": "app/Actions/DeleteUserAccount.php",
-        "detail": "spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
-        "affects_completion": true
-      },
-      {
-        "code": "scanner_failed",
-        "stage": "scan",
-        "target": "app/Http/Controllers/DataPrivacyController.php",
-        "detail": "spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
-        "affects_completion": true
-      },
-      {
-        "code": "scanner_failed",
-        "stage": "scan",
-        "target": "resources/views/dashboard/data-privacy.blade.php",
-        "detail": "spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
-        "affects_completion": true
-      },
-      {
-        "code": "scanner_failed",
-        "stage": "scan",
-        "target": "routes/web.php",
-        "detail": "spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
-        "affects_completion": true
-      },
-      {
-        "code": "scanner_failed",
-        "stage": "scan",
-        "target": "app/Models/User.php",
-        "detail": "spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
-        "affects_completion": true
-      },
-      {
-        "code": "scanner_failed",
-        "stage": "scan",
-        "target": "app/Http/Controllers/Api/V1/DataRightsApiController.php",
-        "detail": "spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
-        "affects_completion": true
-      },
-      {
-        "code": "scanner_failed",
-        "stage": "scan",
-        "target": "routes/api.php",
-        "detail": "spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
-        "affects_completion": true
-      },
-      {
-        "code": "scanner_failed",
-        "stage": "scan",
-        "target": "tests/Feature/DataPrivacyTest.php",
-        "detail": "spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
-        "affects_completion": true
-      },
-      {
-        "code": "scanner_failed",
-        "stage": "scan",
-        "target": "storage/framework/views/dd119ab75790c429dfafe83909717651.php",
-        "detail": "spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
-        "affects_completion": true
-      },
-      {
-        "code": "project_check_failed",
-        "stage": "candidate-select",
-        "target": "tests/Feature/ScratchDeleteDebugTest.php",
-        "detail": "changed_file_unreadable: observed changed file no longer exists or cannot be read",
-        "affects_completion": true
-      },
-      {
-        "code": "project_check_failed",
-        "stage": "baseline-read",
-        "target": "storage/framework/views/dd119ab75790c429dfafe83909717651.php",
-        "detail": "baseline_snapshot_unreadable: file is missing from task baseline",
-        "affects_completion": true
-      },
-      {
-        "code": "project_check_failed",
-        "stage": "scan",
-        "target": "database/migrations/2026_11_07_000001_create_data_exports_table.php",
-        "detail": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
-        "affects_completion": true
-      },
-      {
-        "code": "project_check_failed",
-        "stage": "scan",
-        "target": "app/Models/DataExport.php",
-        "detail": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
-        "affects_completion": true
-      },
-      {
-        "code": "project_check_failed",
-        "stage": "scan",
-        "target": "app/Jobs/ProcessDataExport.php",
-        "detail": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
-        "affects_completion": true
-      },
-      {
-        "code": "project_check_failed",
-        "stage": "scan",
-        "target": "app/Actions/DeleteUserAccount.php",
-        "detail": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
-        "affects_completion": true
-      },
-      {
-        "code": "project_check_failed",
-        "stage": "scan",
-        "target": "app/Http/Controllers/DataPrivacyController.php",
-        "detail": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
-        "affects_completion": true
-      },
-      {
-        "code": "project_check_failed",
-        "stage": "scan",
-        "target": "resources/views/dashboard/data-privacy.blade.php",
-        "detail": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
-        "affects_completion": true
-      },
-      {
-        "code": "project_check_failed",
-        "stage": "scan",
-        "target": "routes/web.php",
-        "detail": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
-        "affects_completion": true
-      },
-      {
-        "code": "project_check_failed",
-        "stage": "scan",
-        "target": "app/Models/User.php",
-        "detail": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
-        "affects_completion": true
-      },
-      {
-        "code": "project_check_failed",
-        "stage": "scan",
-        "target": "app/Http/Controllers/Api/V1/DataRightsApiController.php",
-        "detail": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
-        "affects_completion": true
-      },
-      {
-        "code": "project_check_failed",
-        "stage": "scan",
-        "target": "routes/api.php",
-        "detail": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
-        "affects_completion": true
-      },
-      {
-        "code": "project_check_failed",
-        "stage": "scan",
-        "target": "tests/Feature/DataPrivacyTest.php",
-        "detail": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
-        "affects_completion": true
-      },
-      {
-        "code": "project_check_failed",
-        "stage": "scan",
-        "target": "storage/framework/views/dd119ab75790c429dfafe83909717651.php",
-        "detail": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
-        "affects_completion": true
-      }
-    ],
+    "reason_counts": {},
+    "reasons": [],
     "reasons_truncated": false
   },
-  "generated_at": "2026-11-06T21:52:10.138Z",
+  "generated_at": "2026-11-06T22:19:58.418Z",
   "session_id": "sess_099766c9-a2c1-4371-9a97-8d50eff811dc",
   "target": ".",
-  "revision": "d32fc7fdbf2f58a94f2eb4231b38f5cb9a5cd636",
+  "revision": "bd755bd1e645c5d74ad3c97681620e08d6f39eb2",
   "rules_version": "unavailable",
-  "diff_hash": "00875e030c3b650d04de82507f1b8546a9eba7780884edffeb2d34ca0118705e",
+  "diff_hash": "ea9fb06db70ccf60b2cb9aa2a2f30eede38c0d311367bed916884e57ed3a9322",
   "diff": {
     "algorithm": "sha256",
-    "changed_file_count": 12,
+    "changed_file_count": 4,
     "changed_files": [
       {
-        "file": "app/Actions/DeleteUserAccount.php",
+        "file": "app/Http/Controllers/Admin/TyroLoginExtraSettingsController.php",
         "ranges": [
           {
             "start": 1,
-            "end": 50
+            "end": 105
           }
         ],
         "before_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-        "after_hash": "ac647729ad38728caaff4b225c8afff1e73887d1f1d0d7e8cc042263cfdd8fc4"
+        "after_hash": "680cc10c898807578af916be5e4c21123eb5b75bd41c47b75dc0b4daa940cf07"
       },
       {
-        "file": "app/Http/Controllers/Api/V1/DataRightsApiController.php",
+        "file": "resources/views/vendor/tyro-dashboard/settings/partials/_tab-tyro-login-extra.blade.php",
         "ranges": [
           {
             "start": 1,
-            "end": 60
+            "end": 158
           }
         ],
         "before_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-        "after_hash": "39f0ace2732181b21577df76481f54f62ffd68268a8d6a2a0808b9f5ce2fab8c"
+        "after_hash": "03f704500374fdec34de20c97de581efb1ad9101723c689a348aace7746fbcb8"
       },
       {
-        "file": "app/Http/Controllers/DataPrivacyController.php",
+        "file": "resources/views/vendor/tyro-dashboard/settings/system.blade.php",
         "ranges": [
           {
-            "start": 1,
+            "start": 64,
             "end": 66
+          },
+          {
+            "start": 125,
+            "end": 125
           }
         ],
-        "before_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-        "after_hash": "3eed2ac5752f1f5b52cc002646c6cfedbf3940445b4d10ee360cb27f4c804375"
-      },
-      {
-        "file": "app/Jobs/ProcessDataExport.php",
-        "ranges": [
-          {
-            "start": 5,
-            "end": 10
-          },
-          {
-            "start": 12,
-            "end": 12
-          },
-          {
-            "start": 14,
-            "end": 17
-          },
-          {
-            "start": 21,
-            "end": 21
-          },
-          {
-            "start": 23,
-            "end": 25
-          },
-          {
-            "start": 27,
-            "end": 54
-          },
-          {
-            "start": 57,
-            "end": 58
-          },
-          {
-            "start": 60,
-            "end": 80
-          }
-        ],
-        "before_hash": "95ea3ad6d3de467f89d7f17afbdacfa8eb9472c0e2d136e5b0685f8917fec19a",
-        "after_hash": "fd13f9b41f59c77cdef915a975fb5fceff9bdac7f4cf46b60936e48c1f3393d5"
-      },
-      {
-        "file": "app/Models/DataExport.php",
-        "ranges": [
-          {
-            "start": 6,
-            "end": 6
-          },
-          {
-            "start": 10,
-            "end": 30
-          }
-        ],
-        "before_hash": "43cc323d55852445aba669f8eafe4b04c50e149763a495bbdb31b1b87d8046dc",
-        "after_hash": "8dbd6bdf9fce2d9a2c2d67152079942716eb88aec2c6cdefb55d1540a2886469"
-      },
-      {
-        "file": "app/Models/User.php",
-        "ranges": [
-          {
-            "start": 56,
-            "end": 60
-          }
-        ],
-        "before_hash": "89fc8b6dd416d09b6a369c1c2bf3f69e265447f0f7f0a273caf51f875d95a789",
-        "after_hash": "ba6ef6f98ab057e779313b21b0fe3991c845d7456b905ea46dbea31cae593b9f"
-      },
-      {
-        "file": "database/migrations/2026_11_07_000001_create_data_exports_table.php",
-        "ranges": [
-          {
-            "start": 1,
-            "end": 26
-          }
-        ],
-        "before_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-        "after_hash": "08c2585e3e083bfa7d723eddb2de8717a5698d27b56be8fc32ec1ecece368e1f"
-      },
-      {
-        "file": "resources/views/dashboard/data-privacy.blade.php",
-        "ranges": [
-          {
-            "start": 1,
-            "end": 100
-          }
-        ],
-        "before_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-        "after_hash": "a43f49fa8b6c70bb2b5e71858d272dd11611938d01adf3eb90988d6097724871"
-      },
-      {
-        "file": "routes/api.php",
-        "ranges": [
-          {
-            "start": 4,
-            "end": 4
-          },
-          {
-            "start": 55,
-            "end": 60
-          }
-        ],
-        "before_hash": "8d5f99e96ca40815324e4acff3c790891c64e97bf4c674d930433f202d42e06d",
-        "after_hash": "2d89f19dbbb105eb6c3bb2ecb1bca440552f1f6a3c437df2885a42508120562b"
+        "before_hash": "7e97d154f773e99a88ed04a1e9693431da4f845ca9b16128fbfbde6202318ff5",
+        "after_hash": "64490250fa54bdcf23f33e5df45ed70ffed2832131d55f964c2cc74d4436e6e5"
       },
       {
         "file": "routes/web.php",
         "ranges": [
           {
-            "start": 18,
-            "end": 18
+            "start": 13,
+            "end": 13
           },
           {
-            "start": 116,
-            "end": 121
+            "start": 148,
+            "end": 148
           }
         ],
-        "before_hash": "4866d33ba274fed7decf96163d3812ca0cdc5b9fb3ee4748e861090db2a2c874",
-        "after_hash": "4f35798c10717a7db27060d1ee39db68bc339f0fb3708e6ed38e45f795507778"
-      },
-      {
-        "file": "storage/framework/views/dd119ab75790c429dfafe83909717651.php",
-        "ranges": [
-          {
-            "start": 1,
-            "end": 215
-          }
-        ],
-        "before_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-        "after_hash": "610fa0766d32ea0528b1aeec557bf040891310f73483d182485501f29c958dc5"
-      },
-      {
-        "file": "tests/Feature/DataPrivacyTest.php",
-        "ranges": [
-          {
-            "start": 1,
-            "end": 182
-          }
-        ],
-        "before_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-        "after_hash": "20282ece846da3e0c2fda993c611bd539c384cb20ad518ea682d99f0fb8d0046"
+        "before_hash": "4f35798c10717a7db27060d1ee39db68bc339f0fb3708e6ed38e45f795507778",
+        "after_hash": "4eaa7639c7ace6838f73406e3f86823a8b9ee3b5094ef4eb2784ce0ed0e6b15b"
       }
     ]
   },
   "timing": {
-    "started_at": "2026-11-06T21:52:06.798Z",
-    "completed_at": "2026-11-06T21:52:10.138Z",
-    "duration_ms": 3340,
+    "started_at": "2026-11-06T22:19:55.544Z",
+    "completed_at": "2026-11-06T22:19:58.418Z",
+    "duration_ms": 2874,
     "measurement": "hook_wall_clock"
   },
   "tokens": {
@@ -523,11 +130,11 @@
     "schemaVersion": "mimosa-gate-telemetry/v1",
     "profile": "gate",
     "operation": "Stop",
-    "outcome": "partial/INCONCLUSIVE",
-    "latencyMs": 3340,
-    "peakMemoryBytes": 99086336,
+    "outcome": "complete",
+    "latencyMs": 2874,
+    "peakMemoryBytes": 146796544,
     "memoryMeasurement": "max-observed-process-rss",
-    "scannedFiles": 0,
+    "scannedFiles": 4,
     "cache": {
       "hits": 0,
       "misses": 0,
@@ -552,8 +159,8 @@
   "finding_events": [],
   "findings": [],
   "artifacts": {
-    "immutable_report": ".mimosa/reports/task-review-sess_099766c9-a2c1-4371-9a97-8d50eff811dc-20261106T215210138Z-46744-b1407c69139d.json",
+    "immutable_report": ".mimosa/reports/task-review-sess_099766c9-a2c1-4371-9a97-8d50eff811dc-20261106T221958418Z-46712-cc60fd0371f0.json",
     "latest_report": ".mimosa/reports/task-review-sess_099766c9-a2c1-4371-9a97-8d50eff811dc.json",
-    "history_summary": ".mimosa/history/run-20261106T215210138Z-46744-b1407c69139d.json"
+    "history_summary": ".mimosa/history/run-20261106T221958418Z-46712-cc60fd0371f0.json"
   }
 }

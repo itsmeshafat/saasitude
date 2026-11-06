@@ -1,0 +1,44 @@
+{
+  "schemaVersion": "mimosa-finding-ledger-batch/v1",
+  "batchId": "stop-20261106T221958418Z-46712-cc60fd0371f0",
+  "runId": "20261106T221958418Z-46712-cc60fd0371f0",
+  "runStatus": "completed",
+  "coverage": {
+    "status": "complete",
+    "reasons": []
+  },
+  "source": {
+    "component": "zcode-hook",
+    "operationId": "Stop"
+  },
+  "revision": "bd755bd1e645c5d74ad3c97681620e08d6f39eb2",
+  "diffHash": "ea9fb06db70ccf60b2cb9aa2a2f30eede38c0d311367bed916884e57ed3a9322",
+  "rulesVersion": "unavailable",
+  "sessionHash": "f3ada869c86656b16895682b030512bfad02103280be676ea79ad71d62f6803b",
+  "reportRef": ".mimosa/reports/task-review-sess_099766c9-a2c1-4371-9a97-8d50eff811dc-20261106T221958418Z-46712-cc60fd0371f0.json",
+  "events": [],
+  "observedFindingIds": [],
+  "verifiedFiles": [
+    {
+      "file": "app/Http/Controllers/Admin/TyroLoginExtraSettingsController.php",
+      "direct": "complete",
+      "projectContext": "partial"
+    },
+    {
+      "file": "resources/views/vendor/tyro-dashboard/settings/partials/_tab-tyro-login-extra.blade.php",
+      "direct": "complete",
+      "projectContext": "partial"
+    },
+    {
+      "file": "resources/views/vendor/tyro-dashboard/settings/system.blade.php",
+      "direct": "complete",
+      "projectContext": "partial"
+    },
+    {
+      "file": "routes/web.php",
+      "direct": "complete",
+      "projectContext": "partial"
+    }
+  ],
+  "recordedAt": "2026-11-06T22:19:59.427Z"
+}
