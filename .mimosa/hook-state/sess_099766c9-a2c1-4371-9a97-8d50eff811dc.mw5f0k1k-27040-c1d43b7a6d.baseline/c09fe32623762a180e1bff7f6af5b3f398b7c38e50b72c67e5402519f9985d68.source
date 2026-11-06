@@ -3214,7 +3214,7 @@
             }
         }
     }
-</style>
+
 
     /* ============================================================
        ACCESSIBILITY — keyboard-first (design system non-negotiable)
@@ -3265,4 +3265,5 @@
     @media (prefers-reduced-motion: reduce) {
         .btn-spinner { animation-duration: 2s; }
     }
+</style>
 <?php /**PATH C:\laragon\www\saas\resources\views\vendor\tyro-dashboard/partials/styles.blade.php ENDPATH**/ ?>
