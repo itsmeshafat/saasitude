@@ -25,7 +25,7 @@ class SubscriptionRenewalReminderJob implements ShouldQueue
             return;
         }
 
-        $owner = $subscription->workspace->users()->first();
+        $owner = $subscription->workspace->owner;
 
         if (! $owner) {
             return;

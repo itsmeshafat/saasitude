@@ -1,0 +1,58 @@
+{
+  "schemaVersion": "mimosa-finding-history/v1",
+  "runId": "20261106T230015863Z-46772-405124fcf3a6",
+  "runStatus": "inconclusive",
+  "errors": [
+    "bash-discovery:storage/framework/views/950364cc3b79dc2004779f0836819165.php: bash_discovery_truncated: changed-file discovery exceeded 80 files",
+    "candidate-select:storage/framework/views/19fb01bad38bcf796ec676b18d7c5883_dd48984736ad25b40e8f818b79a427fd.php: candidate_limit_exceeded: 64 changed reviewable file(s) were not scanned because the limit is 20",
+    "baseline-read:storage/framework/views/0284fd267b6018d69094557c10c2716f.php: baseline_snapshot_unreadable: file is missing from task baseline",
+    "baseline-read:storage/framework/views/03b7ad76e2e656e5b74523d442da847b.php: baseline_snapshot_unreadable: file is missing from task baseline",
+    "baseline-read:storage/framework/views/044eed5c877cb9c2b92909571caccd1e.php: baseline_snapshot_unreadable: file is missing from task baseline",
+    "baseline-read:storage/framework/views/0488f6e3b1b5d752108a64eff0ed73a1.php: baseline_snapshot_unreadable: file is missing from task baseline",
+    "baseline-read:storage/framework/views/05e4d4bac7c87e6ee819878dc4ef930b.php: baseline_snapshot_unreadable: file is missing from task baseline",
+    "baseline-read:storage/framework/views/063324d9131729d88647be1558075bdc.php: baseline_snapshot_unreadable: file is missing from task baseline",
+    "baseline-read:storage/framework/views/06ef796525ad21ef6659fe401636b9e0.php: baseline_snapshot_unreadable: file is missing from task baseline",
+    "baseline-read:storage/framework/views/077007ffda9f11b81f451dea8b351d9f.php: baseline_snapshot_unreadable: file is missing from task baseline",
+    "baseline-read:storage/framework/views/10910659b2edf07dcf77afa955029619.php: baseline_snapshot_unreadable: file is missing from task baseline",
+    "baseline-read:storage/framework/views/109448d4a1e05d640ccb8ee0291cb231.php: baseline_snapshot_unreadable: file is missing from task baseline",
+    "baseline-read:storage/framework/views/110c6d66e69cda538025e1ad04e32d96.php: baseline_snapshot_unreadable: file is missing from task baseline",
+    "baseline-read:storage/framework/views/12e2d950b8f49e3975a4d2c8bc28b200.php: baseline_snapshot_unreadable: file is missing from task baseline",
+    "baseline-read:storage/framework/views/16218232f9bbcebe2ff23a8a99b640cc.php: baseline_snapshot_unreadable: file is missing from task baseline",
+    "baseline-read:storage/framework/views/18e338d08d7cde809eafcad720582d0c.php: baseline_snapshot_unreadable: file is missing from task baseline",
+    "baseline-read:storage/framework/views/18e79e045642f961251962771e753f3a.php: baseline_snapshot_unreadable: file is missing from task baseline",
+    "baseline-read:storage/framework/views/19233b7934ed2f9a436d9557716fed05.php: baseline_snapshot_unreadable: file is missing from task baseline"
+  ],
+  "target": ".",
+  "revision": "692988680985d182eb2ac29589ba5cc9ab813d7c",
+  "diffHash": "f9d0bbc9fe13e80a7e9689f405bf0f353848e189b0326bb99b82d06f05d4a252",
+  "rulesVersion": "unavailable",
+  "recordedAt": "2026-11-06T23:00:15.863Z",
+  "timing": {
+    "startedAt": "2026-11-06T23:00:13.123Z",
+    "completedAt": "2026-11-06T23:00:15.863Z",
+    "durationMs": 2740
+  },
+  "tokens": {
+    "input": 0,
+    "output": 0,
+    "total": 0,
+    "modelCalls": 0,
+    "measurement": "known-zero"
+  },
+  "findings": {
+    "total": 0,
+    "bySeverity": {},
+    "byStatus": {}
+  },
+  "coverage": {
+    "status": "partial",
+    "reasonCounts": {
+      "bash_discovery_truncated": 1,
+      "candidate_limit_exceeded": 1,
+      "baseline_snapshot_unreadable": 16,
+      "project_check_failed": 18
+    }
+  },
+  "evidenceBoundary": "static_only",
+  "immutableReport": ".mimosa/reports/task-review-sess_099766c9-a2c1-4371-9a97-8d50eff811dc-20261106T230015863Z-46772-405124fcf3a6.json"
+}

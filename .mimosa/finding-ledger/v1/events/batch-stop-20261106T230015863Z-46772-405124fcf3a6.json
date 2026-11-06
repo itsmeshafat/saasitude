@@ -1,0 +1,377 @@
+{
+  "schemaVersion": "mimosa-finding-ledger-batch/v1",
+  "batchId": "stop-20261106T230015863Z-46772-405124fcf3a6",
+  "runId": "20261106T230015863Z-46772-405124fcf3a6",
+  "runStatus": "inconclusive",
+  "coverage": {
+    "status": "partial",
+    "reasons": [
+      {
+        "code": "bash_discovery_truncated",
+        "stage": "bash-discovery",
+        "target": "storage/framework/views/950364cc3b79dc2004779f0836819165.php",
+        "detail": "changed-file discovery exceeded 80 files",
+        "affectsCompletion": true
+      },
+      {
+        "code": "candidate_limit_exceeded",
+        "stage": "candidate-select",
+        "target": "storage/framework/views/19fb01bad38bcf796ec676b18d7c5883_dd48984736ad25b40e8f818b79a427fd.php",
+        "detail": "64 changed reviewable file(s) were not scanned because the limit is 20",
+        "affectsCompletion": true
+      },
+      {
+        "code": "baseline_snapshot_unreadable",
+        "stage": "baseline-read",
+        "target": "storage/framework/views/0284fd267b6018d69094557c10c2716f.php",
+        "detail": "file is missing from task baseline",
+        "affectsCompletion": true
+      },
+      {
+        "code": "baseline_snapshot_unreadable",
+        "stage": "baseline-read",
+        "target": "storage/framework/views/03b7ad76e2e656e5b74523d442da847b.php",
+        "detail": "file is missing from task baseline",
+        "affectsCompletion": true
+      },
+      {
+        "code": "baseline_snapshot_unreadable",
+        "stage": "baseline-read",
+        "target": "storage/framework/views/044eed5c877cb9c2b92909571caccd1e.php",
+        "detail": "file is missing from task baseline",
+        "affectsCompletion": true
+      },
+      {
+        "code": "baseline_snapshot_unreadable",
+        "stage": "baseline-read",
+        "target": "storage/framework/views/0488f6e3b1b5d752108a64eff0ed73a1.php",
+        "detail": "file is missing from task baseline",
+        "affectsCompletion": true
+      },
+      {
+        "code": "baseline_snapshot_unreadable",
+        "stage": "baseline-read",
+        "target": "storage/framework/views/05e4d4bac7c87e6ee819878dc4ef930b.php",
+        "detail": "file is missing from task baseline",
+        "affectsCompletion": true
+      },
+      {
+        "code": "baseline_snapshot_unreadable",
+        "stage": "baseline-read",
+        "target": "storage/framework/views/063324d9131729d88647be1558075bdc.php",
+        "detail": "file is missing from task baseline",
+        "affectsCompletion": true
+      },
+      {
+        "code": "baseline_snapshot_unreadable",
+        "stage": "baseline-read",
+        "target": "storage/framework/views/06ef796525ad21ef6659fe401636b9e0.php",
+        "detail": "file is missing from task baseline",
+        "affectsCompletion": true
+      },
+      {
+        "code": "baseline_snapshot_unreadable",
+        "stage": "baseline-read",
+        "target": "storage/framework/views/077007ffda9f11b81f451dea8b351d9f.php",
+        "detail": "file is missing from task baseline",
+        "affectsCompletion": true
+      },
+      {
+        "code": "baseline_snapshot_unreadable",
+        "stage": "baseline-read",
+        "target": "storage/framework/views/10910659b2edf07dcf77afa955029619.php",
+        "detail": "file is missing from task baseline",
+        "affectsCompletion": true
+      },
+      {
+        "code": "baseline_snapshot_unreadable",
+        "stage": "baseline-read",
+        "target": "storage/framework/views/109448d4a1e05d640ccb8ee0291cb231.php",
+        "detail": "file is missing from task baseline",
+        "affectsCompletion": true
+      },
+      {
+        "code": "baseline_snapshot_unreadable",
+        "stage": "baseline-read",
+        "target": "storage/framework/views/110c6d66e69cda538025e1ad04e32d96.php",
+        "detail": "file is missing from task baseline",
+        "affectsCompletion": true
+      },
+      {
+        "code": "baseline_snapshot_unreadable",
+        "stage": "baseline-read",
+        "target": "storage/framework/views/12e2d950b8f49e3975a4d2c8bc28b200.php",
+        "detail": "file is missing from task baseline",
+        "affectsCompletion": true
+      },
+      {
+        "code": "baseline_snapshot_unreadable",
+        "stage": "baseline-read",
+        "target": "storage/framework/views/16218232f9bbcebe2ff23a8a99b640cc.php",
+        "detail": "file is missing from task baseline",
+        "affectsCompletion": true
+      },
+      {
+        "code": "baseline_snapshot_unreadable",
+        "stage": "baseline-read",
+        "target": "storage/framework/views/18e338d08d7cde809eafcad720582d0c.php",
+        "detail": "file is missing from task baseline",
+        "affectsCompletion": true
+      },
+      {
+        "code": "baseline_snapshot_unreadable",
+        "stage": "baseline-read",
+        "target": "storage/framework/views/18e79e045642f961251962771e753f3a.php",
+        "detail": "file is missing from task baseline",
+        "affectsCompletion": true
+      },
+      {
+        "code": "baseline_snapshot_unreadable",
+        "stage": "baseline-read",
+        "target": "storage/framework/views/19233b7934ed2f9a436d9557716fed05.php",
+        "detail": "file is missing from task baseline",
+        "affectsCompletion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "bash-discovery",
+        "target": "storage/framework/views/950364cc3b79dc2004779f0836819165.php",
+        "detail": "bash_discovery_truncated: changed-file discovery exceeded 80 files",
+        "affectsCompletion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "candidate-select",
+        "target": "storage/framework/views/19fb01bad38bcf796ec676b18d7c5883_dd48984736ad25b40e8f818b79a427fd.php",
+        "detail": "candidate_limit_exceeded: 64 changed reviewable file(s) were not scanned because the limit is 20",
+        "affectsCompletion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "baseline-read",
+        "target": "storage/framework/views/0284fd267b6018d69094557c10c2716f.php",
+        "detail": "baseline_snapshot_unreadable: file is missing from task baseline",
+        "affectsCompletion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "baseline-read",
+        "target": "storage/framework/views/03b7ad76e2e656e5b74523d442da847b.php",
+        "detail": "baseline_snapshot_unreadable: file is missing from task baseline",
+        "affectsCompletion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "baseline-read",
+        "target": "storage/framework/views/044eed5c877cb9c2b92909571caccd1e.php",
+        "detail": "baseline_snapshot_unreadable: file is missing from task baseline",
+        "affectsCompletion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "baseline-read",
+        "target": "storage/framework/views/0488f6e3b1b5d752108a64eff0ed73a1.php",
+        "detail": "baseline_snapshot_unreadable: file is missing from task baseline",
+        "affectsCompletion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "baseline-read",
+        "target": "storage/framework/views/05e4d4bac7c87e6ee819878dc4ef930b.php",
+        "detail": "baseline_snapshot_unreadable: file is missing from task baseline",
+        "affectsCompletion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "baseline-read",
+        "target": "storage/framework/views/063324d9131729d88647be1558075bdc.php",
+        "detail": "baseline_snapshot_unreadable: file is missing from task baseline",
+        "affectsCompletion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "baseline-read",
+        "target": "storage/framework/views/06ef796525ad21ef6659fe401636b9e0.php",
+        "detail": "baseline_snapshot_unreadable: file is missing from task baseline",
+        "affectsCompletion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "baseline-read",
+        "target": "storage/framework/views/077007ffda9f11b81f451dea8b351d9f.php",
+        "detail": "baseline_snapshot_unreadable: file is missing from task baseline",
+        "affectsCompletion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "baseline-read",
+        "target": "storage/framework/views/10910659b2edf07dcf77afa955029619.php",
+        "detail": "baseline_snapshot_unreadable: file is missing from task baseline",
+        "affectsCompletion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "baseline-read",
+        "target": "storage/framework/views/109448d4a1e05d640ccb8ee0291cb231.php",
+        "detail": "baseline_snapshot_unreadable: file is missing from task baseline",
+        "affectsCompletion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "baseline-read",
+        "target": "storage/framework/views/110c6d66e69cda538025e1ad04e32d96.php",
+        "detail": "baseline_snapshot_unreadable: file is missing from task baseline",
+        "affectsCompletion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "baseline-read",
+        "target": "storage/framework/views/12e2d950b8f49e3975a4d2c8bc28b200.php",
+        "detail": "baseline_snapshot_unreadable: file is missing from task baseline",
+        "affectsCompletion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "baseline-read",
+        "target": "storage/framework/views/16218232f9bbcebe2ff23a8a99b640cc.php",
+        "detail": "baseline_snapshot_unreadable: file is missing from task baseline",
+        "affectsCompletion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "baseline-read",
+        "target": "storage/framework/views/18e338d08d7cde809eafcad720582d0c.php",
+        "detail": "baseline_snapshot_unreadable: file is missing from task baseline",
+        "affectsCompletion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "baseline-read",
+        "target": "storage/framework/views/18e79e045642f961251962771e753f3a.php",
+        "detail": "baseline_snapshot_unreadable: file is missing from task baseline",
+        "affectsCompletion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "baseline-read",
+        "target": "storage/framework/views/19233b7934ed2f9a436d9557716fed05.php",
+        "detail": "baseline_snapshot_unreadable: file is missing from task baseline",
+        "affectsCompletion": true
+      }
+    ]
+  },
+  "source": {
+    "component": "zcode-hook",
+    "operationId": "Stop"
+  },
+  "revision": "692988680985d182eb2ac29589ba5cc9ab813d7c",
+  "diffHash": "f9d0bbc9fe13e80a7e9689f405bf0f353848e189b0326bb99b82d06f05d4a252",
+  "rulesVersion": "unavailable",
+  "sessionHash": "f3ada869c86656b16895682b030512bfad02103280be676ea79ad71d62f6803b",
+  "reportRef": ".mimosa/reports/task-review-sess_099766c9-a2c1-4371-9a97-8d50eff811dc-20261106T230015863Z-46772-405124fcf3a6.json",
+  "events": [],
+  "observedFindingIds": [],
+  "verifiedFiles": [
+    {
+      "file": "resources/views/emails/billing/renewal-reminder.blade.php",
+      "direct": "complete",
+      "projectContext": "partial"
+    },
+    {
+      "file": "app/Gateways/PaddleGateway.php",
+      "direct": "complete",
+      "projectContext": "partial"
+    },
+    {
+      "file": "app/Gateways/SSLCommerzGateway.php",
+      "direct": "complete",
+      "projectContext": "partial"
+    },
+    {
+      "file": "app/Jobs/SubscriptionRenewalReminderJob.php",
+      "direct": "complete",
+      "projectContext": "partial"
+    },
+    {
+      "file": "storage/framework/views/0284fd267b6018d69094557c10c2716f.php",
+      "direct": "complete",
+      "projectContext": "partial"
+    },
+    {
+      "file": "storage/framework/views/03b7ad76e2e656e5b74523d442da847b.php",
+      "direct": "complete",
+      "projectContext": "partial"
+    },
+    {
+      "file": "storage/framework/views/044eed5c877cb9c2b92909571caccd1e.php",
+      "direct": "complete",
+      "projectContext": "partial"
+    },
+    {
+      "file": "storage/framework/views/0488f6e3b1b5d752108a64eff0ed73a1.php",
+      "direct": "complete",
+      "projectContext": "partial"
+    },
+    {
+      "file": "storage/framework/views/05e4d4bac7c87e6ee819878dc4ef930b.php",
+      "direct": "complete",
+      "projectContext": "partial"
+    },
+    {
+      "file": "storage/framework/views/063324d9131729d88647be1558075bdc.php",
+      "direct": "complete",
+      "projectContext": "partial"
+    },
+    {
+      "file": "storage/framework/views/06ef796525ad21ef6659fe401636b9e0.php",
+      "direct": "complete",
+      "projectContext": "partial"
+    },
+    {
+      "file": "storage/framework/views/077007ffda9f11b81f451dea8b351d9f.php",
+      "direct": "complete",
+      "projectContext": "partial"
+    },
+    {
+      "file": "storage/framework/views/10910659b2edf07dcf77afa955029619.php",
+      "direct": "complete",
+      "projectContext": "partial"
+    },
+    {
+      "file": "storage/framework/views/109448d4a1e05d640ccb8ee0291cb231.php",
+      "direct": "complete",
+      "projectContext": "partial"
+    },
+    {
+      "file": "storage/framework/views/110c6d66e69cda538025e1ad04e32d96.php",
+      "direct": "complete",
+      "projectContext": "partial"
+    },
+    {
+      "file": "storage/framework/views/12e2d950b8f49e3975a4d2c8bc28b200.php",
+      "direct": "complete",
+      "projectContext": "partial"
+    },
+    {
+      "file": "storage/framework/views/16218232f9bbcebe2ff23a8a99b640cc.php",
+      "direct": "complete",
+      "projectContext": "partial"
+    },
+    {
+      "file": "storage/framework/views/18e338d08d7cde809eafcad720582d0c.php",
+      "direct": "complete",
+      "projectContext": "partial"
+    },
+    {
+      "file": "storage/framework/views/18e79e045642f961251962771e753f3a.php",
+      "direct": "complete",
+      "projectContext": "partial"
+    },
+    {
+      "file": "storage/framework/views/19233b7934ed2f9a436d9557716fed05.php",
+      "direct": "complete",
+      "projectContext": "partial"
+    }
+  ],
+  "recordedAt": "2026-11-06T23:00:16.522Z"
+}

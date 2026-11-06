@@ -42,15 +42,16 @@
     <div class="card">
         <div class="card-header"><h3 class="card-title">Subscription</h3></div>
         <div class="card-body">
-            @if($workspace->activeSubscription)
+            @php($subscription = $workspace->activeSubscription())
+            @if($subscription)
                 <div class="flex items-center gap-2 mb-3">
-                    <span class="font-semibold">{{ $workspace->activeSubscription->plan->name }}</span>
-                    <x-ui.status-pill :status="$workspace->activeSubscription->status" />
-                    <x-ui.badge variant="info">{{ ucfirst($workspace->activeSubscription->gateway) }}</x-ui.badge>
+                    <span class="font-semibold">{{ $subscription->plan->name }}</span>
+                    <x-ui.status-pill :status="$subscription->status" />
+                    <x-ui.badge variant="info">{{ ucfirst($subscription->gateway) }}</x-ui.badge>
                 </div>
                 <div class="text-sm text-[var(--muted-foreground)]">
-                    Period: {{ optional($workspace->activeSubscription->current_period_start)->format('M j') }}
-                    → {{ optional($workspace->activeSubscription->current_period_end)->format('M j, Y') }}
+                    Period: {{ optional($subscription->current_period_start)->format('M j') }}
+                    → {{ optional($subscription->current_period_end)->format('M j, Y') }}
                 </div>
             @else
                 <p class="text-sm text-[var(--muted-foreground)]">No active subscription.</p>

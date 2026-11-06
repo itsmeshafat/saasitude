@@ -1,39 +1,130 @@
 {
   "schema_version": "mimosa-task-review/v2",
-  "run_id": "20261106T225356216Z-43792-44f5c44e373b",
-  "run_status": "completed",
-  "errors": [],
+  "run_id": "20261106T230015863Z-46772-405124fcf3a6",
+  "run_status": "inconclusive",
+  "errors": [
+    {
+      "stage": "bash-discovery",
+      "target": "storage/framework/views/950364cc3b79dc2004779f0836819165.php",
+      "reason": "bash_discovery_truncated: changed-file discovery exceeded 80 files"
+    },
+    {
+      "stage": "candidate-select",
+      "target": "storage/framework/views/19fb01bad38bcf796ec676b18d7c5883_dd48984736ad25b40e8f818b79a427fd.php",
+      "reason": "candidate_limit_exceeded: 64 changed reviewable file(s) were not scanned because the limit is 20"
+    },
+    {
+      "stage": "baseline-read",
+      "target": "storage/framework/views/0284fd267b6018d69094557c10c2716f.php",
+      "reason": "baseline_snapshot_unreadable: file is missing from task baseline"
+    },
+    {
+      "stage": "baseline-read",
+      "target": "storage/framework/views/03b7ad76e2e656e5b74523d442da847b.php",
+      "reason": "baseline_snapshot_unreadable: file is missing from task baseline"
+    },
+    {
+      "stage": "baseline-read",
+      "target": "storage/framework/views/044eed5c877cb9c2b92909571caccd1e.php",
+      "reason": "baseline_snapshot_unreadable: file is missing from task baseline"
+    },
+    {
+      "stage": "baseline-read",
+      "target": "storage/framework/views/0488f6e3b1b5d752108a64eff0ed73a1.php",
+      "reason": "baseline_snapshot_unreadable: file is missing from task baseline"
+    },
+    {
+      "stage": "baseline-read",
+      "target": "storage/framework/views/05e4d4bac7c87e6ee819878dc4ef930b.php",
+      "reason": "baseline_snapshot_unreadable: file is missing from task baseline"
+    },
+    {
+      "stage": "baseline-read",
+      "target": "storage/framework/views/063324d9131729d88647be1558075bdc.php",
+      "reason": "baseline_snapshot_unreadable: file is missing from task baseline"
+    },
+    {
+      "stage": "baseline-read",
+      "target": "storage/framework/views/06ef796525ad21ef6659fe401636b9e0.php",
+      "reason": "baseline_snapshot_unreadable: file is missing from task baseline"
+    },
+    {
+      "stage": "baseline-read",
+      "target": "storage/framework/views/077007ffda9f11b81f451dea8b351d9f.php",
+      "reason": "baseline_snapshot_unreadable: file is missing from task baseline"
+    },
+    {
+      "stage": "baseline-read",
+      "target": "storage/framework/views/10910659b2edf07dcf77afa955029619.php",
+      "reason": "baseline_snapshot_unreadable: file is missing from task baseline"
+    },
+    {
+      "stage": "baseline-read",
+      "target": "storage/framework/views/109448d4a1e05d640ccb8ee0291cb231.php",
+      "reason": "baseline_snapshot_unreadable: file is missing from task baseline"
+    },
+    {
+      "stage": "baseline-read",
+      "target": "storage/framework/views/110c6d66e69cda538025e1ad04e32d96.php",
+      "reason": "baseline_snapshot_unreadable: file is missing from task baseline"
+    },
+    {
+      "stage": "baseline-read",
+      "target": "storage/framework/views/12e2d950b8f49e3975a4d2c8bc28b200.php",
+      "reason": "baseline_snapshot_unreadable: file is missing from task baseline"
+    },
+    {
+      "stage": "baseline-read",
+      "target": "storage/framework/views/16218232f9bbcebe2ff23a8a99b640cc.php",
+      "reason": "baseline_snapshot_unreadable: file is missing from task baseline"
+    },
+    {
+      "stage": "baseline-read",
+      "target": "storage/framework/views/18e338d08d7cde809eafcad720582d0c.php",
+      "reason": "baseline_snapshot_unreadable: file is missing from task baseline"
+    },
+    {
+      "stage": "baseline-read",
+      "target": "storage/framework/views/18e79e045642f961251962771e753f3a.php",
+      "reason": "baseline_snapshot_unreadable: file is missing from task baseline"
+    },
+    {
+      "stage": "baseline-read",
+      "target": "storage/framework/views/19233b7934ed2f9a436d9557716fed05.php",
+      "reason": "baseline_snapshot_unreadable: file is missing from task baseline"
+    }
+  ],
   "coverage": {
     "schema_version": "mimosa-hook-coverage/v1",
-    "status": "complete",
+    "status": "partial",
     "scope": "hook_observed_diff",
     "baseline": {
       "complete": true,
-      "captured_files": 520,
+      "captured_files": 398,
       "candidate_limit": 5000,
       "truncated": false,
       "enumeration_error_count": 0,
       "snapshot_error_count": 0,
-      "compensated_target_count": 2
+      "compensated_target_count": 4
     },
     "change_tracking": {
-      "touched_observed": 0,
-      "touched_retained": 0,
+      "touched_observed": 4,
+      "touched_retained": 4,
       "truncated": false,
       "bash_mutation": true,
-      "bash_discovered": 2,
+      "bash_discovered": 80,
       "bash_discovery_limit": 80,
-      "bash_discovery_truncated": false
+      "bash_discovery_truncated": true
     },
     "candidates": {
-      "eligible_files": 2,
-      "selected_files": 2,
+      "eligible_files": 84,
+      "selected_files": 20,
       "limit": 20,
-      "truncated": false
+      "truncated": true
     },
     "scanning": {
-      "required_files": 2,
-      "scanned_files": 2,
+      "required_files": 20,
+      "scanned_files": 20,
       "skipped_files": 0,
       "failed_files": 0,
       "project_checks_required": 0,
@@ -45,48 +136,504 @@
       "detail_limit": 3,
       "truncated": false
     },
-    "reason_counts": {},
-    "reasons": [],
-    "reasons_truncated": false
-  },
-  "generated_at": "2026-11-06T22:53:56.216Z",
-  "session_id": "sess_099766c9-a2c1-4371-9a97-8d50eff811dc",
-  "target": ".",
-  "revision": "ff1555492c8171379daa8d47b5908bd821b42e8a",
-  "rules_version": "unavailable",
-  "diff_hash": "0471d166a7156ef908842e61d7a3634fe2876dc225f749752d7ee81310c741cb",
-  "diff": {
-    "algorithm": "sha256",
-    "changed_file_count": 2,
-    "changed_files": [
+    "reason_counts": {
+      "bash_discovery_truncated": 1,
+      "candidate_limit_exceeded": 1,
+      "baseline_snapshot_unreadable": 16,
+      "project_check_failed": 18
+    },
+    "reasons": [
       {
-        "file": "storage/framework/views/2ab078eb7e9a19bea3c3a267e6a0543d.php",
-        "ranges": [
-          {
-            "start": 75,
-            "end": 75
-          }
-        ],
-        "before_hash": "031b97f57733edf860a7203dc7519ee8cd1d19eb135871fd596355a290cb9c10",
-        "after_hash": "dadb25857589a86470e0bd2758336847fed50e4428838c84acbafb5393c0a758"
+        "code": "bash_discovery_truncated",
+        "stage": "bash-discovery",
+        "target": "storage/framework/views/950364cc3b79dc2004779f0836819165.php",
+        "detail": "changed-file discovery exceeded 80 files",
+        "affects_completion": true
       },
       {
-        "file": "storage/framework/views/4552424f2e0b1aec44773bc45e4a7566.php",
+        "code": "candidate_limit_exceeded",
+        "stage": "candidate-select",
+        "target": "storage/framework/views/19fb01bad38bcf796ec676b18d7c5883_dd48984736ad25b40e8f818b79a427fd.php",
+        "detail": "64 changed reviewable file(s) were not scanned because the limit is 20",
+        "affects_completion": true
+      },
+      {
+        "code": "baseline_snapshot_unreadable",
+        "stage": "baseline-read",
+        "target": "storage/framework/views/0284fd267b6018d69094557c10c2716f.php",
+        "detail": "file is missing from task baseline",
+        "affects_completion": true
+      },
+      {
+        "code": "baseline_snapshot_unreadable",
+        "stage": "baseline-read",
+        "target": "storage/framework/views/03b7ad76e2e656e5b74523d442da847b.php",
+        "detail": "file is missing from task baseline",
+        "affects_completion": true
+      },
+      {
+        "code": "baseline_snapshot_unreadable",
+        "stage": "baseline-read",
+        "target": "storage/framework/views/044eed5c877cb9c2b92909571caccd1e.php",
+        "detail": "file is missing from task baseline",
+        "affects_completion": true
+      },
+      {
+        "code": "baseline_snapshot_unreadable",
+        "stage": "baseline-read",
+        "target": "storage/framework/views/0488f6e3b1b5d752108a64eff0ed73a1.php",
+        "detail": "file is missing from task baseline",
+        "affects_completion": true
+      },
+      {
+        "code": "baseline_snapshot_unreadable",
+        "stage": "baseline-read",
+        "target": "storage/framework/views/05e4d4bac7c87e6ee819878dc4ef930b.php",
+        "detail": "file is missing from task baseline",
+        "affects_completion": true
+      },
+      {
+        "code": "baseline_snapshot_unreadable",
+        "stage": "baseline-read",
+        "target": "storage/framework/views/063324d9131729d88647be1558075bdc.php",
+        "detail": "file is missing from task baseline",
+        "affects_completion": true
+      },
+      {
+        "code": "baseline_snapshot_unreadable",
+        "stage": "baseline-read",
+        "target": "storage/framework/views/06ef796525ad21ef6659fe401636b9e0.php",
+        "detail": "file is missing from task baseline",
+        "affects_completion": true
+      },
+      {
+        "code": "baseline_snapshot_unreadable",
+        "stage": "baseline-read",
+        "target": "storage/framework/views/077007ffda9f11b81f451dea8b351d9f.php",
+        "detail": "file is missing from task baseline",
+        "affects_completion": true
+      },
+      {
+        "code": "baseline_snapshot_unreadable",
+        "stage": "baseline-read",
+        "target": "storage/framework/views/10910659b2edf07dcf77afa955029619.php",
+        "detail": "file is missing from task baseline",
+        "affects_completion": true
+      },
+      {
+        "code": "baseline_snapshot_unreadable",
+        "stage": "baseline-read",
+        "target": "storage/framework/views/109448d4a1e05d640ccb8ee0291cb231.php",
+        "detail": "file is missing from task baseline",
+        "affects_completion": true
+      },
+      {
+        "code": "baseline_snapshot_unreadable",
+        "stage": "baseline-read",
+        "target": "storage/framework/views/110c6d66e69cda538025e1ad04e32d96.php",
+        "detail": "file is missing from task baseline",
+        "affects_completion": true
+      },
+      {
+        "code": "baseline_snapshot_unreadable",
+        "stage": "baseline-read",
+        "target": "storage/framework/views/12e2d950b8f49e3975a4d2c8bc28b200.php",
+        "detail": "file is missing from task baseline",
+        "affects_completion": true
+      },
+      {
+        "code": "baseline_snapshot_unreadable",
+        "stage": "baseline-read",
+        "target": "storage/framework/views/16218232f9bbcebe2ff23a8a99b640cc.php",
+        "detail": "file is missing from task baseline",
+        "affects_completion": true
+      },
+      {
+        "code": "baseline_snapshot_unreadable",
+        "stage": "baseline-read",
+        "target": "storage/framework/views/18e338d08d7cde809eafcad720582d0c.php",
+        "detail": "file is missing from task baseline",
+        "affects_completion": true
+      },
+      {
+        "code": "baseline_snapshot_unreadable",
+        "stage": "baseline-read",
+        "target": "storage/framework/views/18e79e045642f961251962771e753f3a.php",
+        "detail": "file is missing from task baseline",
+        "affects_completion": true
+      },
+      {
+        "code": "baseline_snapshot_unreadable",
+        "stage": "baseline-read",
+        "target": "storage/framework/views/19233b7934ed2f9a436d9557716fed05.php",
+        "detail": "file is missing from task baseline",
+        "affects_completion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "bash-discovery",
+        "target": "storage/framework/views/950364cc3b79dc2004779f0836819165.php",
+        "detail": "bash_discovery_truncated: changed-file discovery exceeded 80 files",
+        "affects_completion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "candidate-select",
+        "target": "storage/framework/views/19fb01bad38bcf796ec676b18d7c5883_dd48984736ad25b40e8f818b79a427fd.php",
+        "detail": "candidate_limit_exceeded: 64 changed reviewable file(s) were not scanned because the limit is 20",
+        "affects_completion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "baseline-read",
+        "target": "storage/framework/views/0284fd267b6018d69094557c10c2716f.php",
+        "detail": "baseline_snapshot_unreadable: file is missing from task baseline",
+        "affects_completion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "baseline-read",
+        "target": "storage/framework/views/03b7ad76e2e656e5b74523d442da847b.php",
+        "detail": "baseline_snapshot_unreadable: file is missing from task baseline",
+        "affects_completion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "baseline-read",
+        "target": "storage/framework/views/044eed5c877cb9c2b92909571caccd1e.php",
+        "detail": "baseline_snapshot_unreadable: file is missing from task baseline",
+        "affects_completion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "baseline-read",
+        "target": "storage/framework/views/0488f6e3b1b5d752108a64eff0ed73a1.php",
+        "detail": "baseline_snapshot_unreadable: file is missing from task baseline",
+        "affects_completion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "baseline-read",
+        "target": "storage/framework/views/05e4d4bac7c87e6ee819878dc4ef930b.php",
+        "detail": "baseline_snapshot_unreadable: file is missing from task baseline",
+        "affects_completion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "baseline-read",
+        "target": "storage/framework/views/063324d9131729d88647be1558075bdc.php",
+        "detail": "baseline_snapshot_unreadable: file is missing from task baseline",
+        "affects_completion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "baseline-read",
+        "target": "storage/framework/views/06ef796525ad21ef6659fe401636b9e0.php",
+        "detail": "baseline_snapshot_unreadable: file is missing from task baseline",
+        "affects_completion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "baseline-read",
+        "target": "storage/framework/views/077007ffda9f11b81f451dea8b351d9f.php",
+        "detail": "baseline_snapshot_unreadable: file is missing from task baseline",
+        "affects_completion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "baseline-read",
+        "target": "storage/framework/views/10910659b2edf07dcf77afa955029619.php",
+        "detail": "baseline_snapshot_unreadable: file is missing from task baseline",
+        "affects_completion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "baseline-read",
+        "target": "storage/framework/views/109448d4a1e05d640ccb8ee0291cb231.php",
+        "detail": "baseline_snapshot_unreadable: file is missing from task baseline",
+        "affects_completion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "baseline-read",
+        "target": "storage/framework/views/110c6d66e69cda538025e1ad04e32d96.php",
+        "detail": "baseline_snapshot_unreadable: file is missing from task baseline",
+        "affects_completion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "baseline-read",
+        "target": "storage/framework/views/12e2d950b8f49e3975a4d2c8bc28b200.php",
+        "detail": "baseline_snapshot_unreadable: file is missing from task baseline",
+        "affects_completion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "baseline-read",
+        "target": "storage/framework/views/16218232f9bbcebe2ff23a8a99b640cc.php",
+        "detail": "baseline_snapshot_unreadable: file is missing from task baseline",
+        "affects_completion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "baseline-read",
+        "target": "storage/framework/views/18e338d08d7cde809eafcad720582d0c.php",
+        "detail": "baseline_snapshot_unreadable: file is missing from task baseline",
+        "affects_completion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "baseline-read",
+        "target": "storage/framework/views/18e79e045642f961251962771e753f3a.php",
+        "detail": "baseline_snapshot_unreadable: file is missing from task baseline",
+        "affects_completion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "baseline-read",
+        "target": "storage/framework/views/19233b7934ed2f9a436d9557716fed05.php",
+        "detail": "baseline_snapshot_unreadable: file is missing from task baseline",
+        "affects_completion": true
+      }
+    ],
+    "reasons_truncated": false
+  },
+  "generated_at": "2026-11-06T23:00:15.863Z",
+  "session_id": "sess_099766c9-a2c1-4371-9a97-8d50eff811dc",
+  "target": ".",
+  "revision": "692988680985d182eb2ac29589ba5cc9ab813d7c",
+  "rules_version": "unavailable",
+  "diff_hash": "f9d0bbc9fe13e80a7e9689f405bf0f353848e189b0326bb99b82d06f05d4a252",
+  "diff": {
+    "algorithm": "sha256",
+    "changed_file_count": 20,
+    "changed_files": [
+      {
+        "file": "app/Gateways/PaddleGateway.php",
         "ranges": [
           {
-            "start": 15,
-            "end": 15
+            "start": 65,
+            "end": 65
           }
         ],
-        "before_hash": "5961746cb4c265d8f1d45c7ff794f6e1aba55ea0d44236093e1889b1ae37fd3b",
-        "after_hash": "b32779e5ed202e087ee4cc709e6b4e437157e9b2248ec326ce7f82873085a060"
+        "before_hash": "6bd6409a959fb44045c1bad75d8f98baae21eb9b04b499ef28a31434e4c2e9aa",
+        "after_hash": "195b877b93656a2cc98bf3d4ba90322772a8f00414e30d6487da02661464e6b5"
+      },
+      {
+        "file": "app/Gateways/SSLCommerzGateway.php",
+        "ranges": [
+          {
+            "start": 51,
+            "end": 51
+          }
+        ],
+        "before_hash": "4b2a9769ba18aa4bef86f85cc2663f14a34349ee1d89af365248218148ec7b74",
+        "after_hash": "a914d16d1c9a8b101fa17a22dbb9a82917d1feec07b473b30ff0cedc42b6a704"
+      },
+      {
+        "file": "app/Jobs/SubscriptionRenewalReminderJob.php",
+        "ranges": [
+          {
+            "start": 28,
+            "end": 28
+          }
+        ],
+        "before_hash": "15fffa21981969bbf1bf330da7a4eb374d7a62d689a2aae8486466fcf164c94a",
+        "after_hash": "a859ef7c9140106784ec376dfb43e3f642d2d9839e14e0234dd98469e14460d2"
+      },
+      {
+        "file": "resources/views/emails/billing/renewal-reminder.blade.php",
+        "ranges": [
+          {
+            "start": 1,
+            "end": 1
+          }
+        ],
+        "before_hash": "05cb388799ca984e8131be541bc138197c866e398fffbef004e8c824bef01ca5",
+        "after_hash": "1905c926761e7662397d5f1052972eed44e0d5fa3a430aa5a40d3acb620bc9a3"
+      },
+      {
+        "file": "storage/framework/views/0284fd267b6018d69094557c10c2716f.php",
+        "ranges": [
+          {
+            "start": 1,
+            "end": 89
+          }
+        ],
+        "before_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "after_hash": "a46b7937c72e656691de967bf90c3f3c8858a74381cdfcf7f575c484c0407148"
+      },
+      {
+        "file": "storage/framework/views/03b7ad76e2e656e5b74523d442da847b.php",
+        "ranges": [
+          {
+            "start": 1,
+            "end": 64
+          }
+        ],
+        "before_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "after_hash": "ff5a53dffad9e07097013c13289abba25919d0c1e0f5a6e6be19e8e4aaaed2cc"
+      },
+      {
+        "file": "storage/framework/views/044eed5c877cb9c2b92909571caccd1e.php",
+        "ranges": [
+          {
+            "start": 1,
+            "end": 94
+          }
+        ],
+        "before_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "after_hash": "d07404f5c2b79cefb15fc8e4a877e8cb6cca35ab711957a2228b644763db528a"
+      },
+      {
+        "file": "storage/framework/views/0488f6e3b1b5d752108a64eff0ed73a1.php",
+        "ranges": [
+          {
+            "start": 1,
+            "end": 93
+          }
+        ],
+        "before_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "after_hash": "b009a7247f43c0d4bb95a675ebe722d9726e9d8a96d31d05206133ca098dfcd1"
+      },
+      {
+        "file": "storage/framework/views/05e4d4bac7c87e6ee819878dc4ef930b.php",
+        "ranges": [
+          {
+            "start": 1,
+            "end": 196
+          }
+        ],
+        "before_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "after_hash": "e5955fedf1400721a205b0030f457b11466cfba2f8f718f0ac51a03d0d746e83"
+      },
+      {
+        "file": "storage/framework/views/063324d9131729d88647be1558075bdc.php",
+        "ranges": [
+          {
+            "start": 1,
+            "end": 215
+          }
+        ],
+        "before_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "after_hash": "02804dd59471a9c6e5dc63e328be2d8687828ff858ee03d1614f13e0070258f7"
+      },
+      {
+        "file": "storage/framework/views/06ef796525ad21ef6659fe401636b9e0.php",
+        "ranges": [
+          {
+            "start": 1,
+            "end": 107
+          }
+        ],
+        "before_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "after_hash": "f9a02d994d516e03f481b0cead1d60b3ce36799a2606b76ca8e698363d92bb92"
+      },
+      {
+        "file": "storage/framework/views/077007ffda9f11b81f451dea8b351d9f.php",
+        "ranges": [
+          {
+            "start": 1,
+            "end": 203
+          }
+        ],
+        "before_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "after_hash": "0f9a8daf1132230652ef97c5c6f82e5b5d8a378dcf408a2ce30c55b31d2840a6"
+      },
+      {
+        "file": "storage/framework/views/10910659b2edf07dcf77afa955029619.php",
+        "ranges": [
+          {
+            "start": 1,
+            "end": 103
+          }
+        ],
+        "before_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "after_hash": "13c71b55a4b9b811888cbd70d558ccc4aca6e6a95e9560ab9ed0c50adb19d9cf"
+      },
+      {
+        "file": "storage/framework/views/109448d4a1e05d640ccb8ee0291cb231.php",
+        "ranges": [
+          {
+            "start": 1,
+            "end": 194
+          }
+        ],
+        "before_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "after_hash": "5eed3d2a329aa6f32fd50cc8b5e1f072cf8eb670fde363d3709b140439885ab6"
+      },
+      {
+        "file": "storage/framework/views/110c6d66e69cda538025e1ad04e32d96.php",
+        "ranges": [
+          {
+            "start": 1,
+            "end": 60
+          }
+        ],
+        "before_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "after_hash": "48752074503b2e22fca4b4248c35ad79df86a378cd7f7354060b38ba1bbf9dae"
+      },
+      {
+        "file": "storage/framework/views/12e2d950b8f49e3975a4d2c8bc28b200.php",
+        "ranges": [
+          {
+            "start": 1,
+            "end": 280
+          }
+        ],
+        "before_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "after_hash": "c15006b3edec6febb0331a68c1c1f96ab66f738b77fc71d5e239f44dde7105da"
+      },
+      {
+        "file": "storage/framework/views/16218232f9bbcebe2ff23a8a99b640cc.php",
+        "ranges": [
+          {
+            "start": 1,
+            "end": 79
+          }
+        ],
+        "before_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "after_hash": "d5597dd44af9963327c03f217f1d8fc2457c09d0bae4db797120681717f70d24"
+      },
+      {
+        "file": "storage/framework/views/18e338d08d7cde809eafcad720582d0c.php",
+        "ranges": [
+          {
+            "start": 1,
+            "end": 79
+          }
+        ],
+        "before_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "after_hash": "239d4d4af9ec353a3e2b4fed3bb2ad9566259f3d6dbfc2da5f3ebb6410594173"
+      },
+      {
+        "file": "storage/framework/views/18e79e045642f961251962771e753f3a.php",
+        "ranges": [
+          {
+            "start": 1,
+            "end": 77
+          }
+        ],
+        "before_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "after_hash": "fe02863893e5e30af367e124070a43fc7b8e57891f413bb826a4aff22e4d87a6"
+      },
+      {
+        "file": "storage/framework/views/19233b7934ed2f9a436d9557716fed05.php",
+        "ranges": [
+          {
+            "start": 1,
+            "end": 117
+          }
+        ],
+        "before_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "after_hash": "5f882642918d8c7155c2377121926860a2aa27b999137de027e39d774fc8e5f4"
       }
     ]
   },
   "timing": {
-    "started_at": "2026-11-06T22:53:53.692Z",
-    "completed_at": "2026-11-06T22:53:56.216Z",
-    "duration_ms": 2524,
+    "started_at": "2026-11-06T23:00:13.123Z",
+    "completed_at": "2026-11-06T23:00:15.863Z",
+    "duration_ms": 2740,
     "measurement": "hook_wall_clock"
   },
   "tokens": {
@@ -100,11 +647,11 @@
     "schemaVersion": "mimosa-gate-telemetry/v1",
     "profile": "gate",
     "operation": "Stop",
-    "outcome": "complete",
-    "latencyMs": 2524,
-    "peakMemoryBytes": 146710528,
+    "outcome": "partial/INCONCLUSIVE",
+    "latencyMs": 2740,
+    "peakMemoryBytes": 146583552,
     "memoryMeasurement": "max-observed-process-rss",
-    "scannedFiles": 2,
+    "scannedFiles": 20,
     "cache": {
       "hits": 0,
       "misses": 0,
@@ -129,8 +676,8 @@
   "finding_events": [],
   "findings": [],
   "artifacts": {
-    "immutable_report": ".mimosa/reports/task-review-sess_099766c9-a2c1-4371-9a97-8d50eff811dc-20261106T225356216Z-43792-44f5c44e373b.json",
+    "immutable_report": ".mimosa/reports/task-review-sess_099766c9-a2c1-4371-9a97-8d50eff811dc-20261106T230015863Z-46772-405124fcf3a6.json",
     "latest_report": ".mimosa/reports/task-review-sess_099766c9-a2c1-4371-9a97-8d50eff811dc.json",
-    "history_summary": ".mimosa/history/run-20261106T225356216Z-43792-44f5c44e373b.json"
+    "history_summary": ".mimosa/history/run-20261106T230015863Z-46772-405124fcf3a6.json"
   }
 }

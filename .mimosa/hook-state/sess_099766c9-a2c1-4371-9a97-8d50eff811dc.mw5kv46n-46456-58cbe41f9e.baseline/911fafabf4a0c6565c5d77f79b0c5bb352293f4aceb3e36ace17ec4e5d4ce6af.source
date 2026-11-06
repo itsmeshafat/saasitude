@@ -62,7 +62,7 @@ class PaddleGateway implements PaymentGateway
             return $existing;
         }
 
-        $owner = $workspace->users()->first();
+        $owner = $workspace->owner;
         $customer = $this->paddle()->customers->create(new CreateCustomer(
             email: $owner?->email ?? 'unknown@example.com',
             name: $workspace->name,
