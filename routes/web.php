@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\AdminWorkspacesController;
 use App\Http\Controllers\Admin\EmailTemplatesController;
 use App\Http\Controllers\Admin\ExportController;
 use App\Http\Controllers\Admin\GatewaySettingsController;
+use App\Http\Controllers\Admin\SidebarLightColorsController;
 use App\Http\Controllers\Admin\SystemHealthController;
 use App\Http\Controllers\Admin\TyroLoginExtraSettingsController;
 use App\Http\Controllers\Admin\WebhookEventsController;
@@ -146,6 +147,7 @@ Route::middleware(['auth', 'tyro-dashboard.admin'])->group(function (): void {
     Route::get('dashboard/gateway-settings', [GatewaySettingsController::class, 'show'])->name('admin.gateway-settings');
     Route::post('dashboard/gateway-settings', [GatewaySettingsController::class, 'update'])->name('admin.gateway-settings.update');
     Route::post('dashboard/settings/tyro-login-extra', [TyroLoginExtraSettingsController::class, 'update'])->name('admin.tyro-login-extra.update');
+    Route::post('dashboard/settings/sidebar-light-colors', [SidebarLightColorsController::class, 'update'])->name('admin.sidebar-light-colors.update');
     Route::get('dashboard/system-health', [SystemHealthController::class, 'show'])->name('admin.system-health');
 });
 

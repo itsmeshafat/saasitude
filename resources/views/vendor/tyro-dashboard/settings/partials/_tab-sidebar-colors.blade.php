@@ -271,6 +271,73 @@
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
+
+                    @php
+                        $sbLight = \App\Support\SidebarColors::load()['light'];
+                        $lightPalette = [
+                            ['TYRO_LOGIN_LIGHT_SIDEBAR', '--sidebar', 'Background', $sbLight['--sidebar'] ?? '#ffffff'],
+                            ['TYRO_LOGIN_LIGHT_SIDEBAR_TEXT', '--sidebar-foreground', 'Text', $sbLight['--sidebar-foreground'] ?? '#0a1616'],
+                            ['TYRO_LOGIN_LIGHT_SIDEBAR_PRIMARY', '--sidebar-primary', 'Active item', $sbLight['--sidebar-primary'] ?? '#4d7c0f'],
+                            ['TYRO_LOGIN_LIGHT_SIDEBAR_PRIMARY_TEXT', '--sidebar-primary-foreground', 'Active item text', $sbLight['--sidebar-primary-foreground'] ?? '#ffffff'],
+                            ['TYRO_LOGIN_LIGHT_SIDEBAR_ACCENT', '--sidebar-accent', 'Hover tint', $sbLight['--sidebar-accent'] ?? 'rgba(77, 124, 15, 0.12)'],
+                            ['TYRO_LOGIN_LIGHT_SIDEBAR_ACCENT_FG', '--sidebar-accent-foreground', 'Hover text', $sbLight['--sidebar-accent-foreground'] ?? '#0a1616'],
+                            ['TYRO_LOGIN_LIGHT_SIDEBAR_HEADER_BORDER', '--sidebar-header-border', 'Header border', $sbLight['--sidebar-header-border'] ?? 'rgba(10, 22, 22, 0.1)'],
+                        ];
+                    @endphp
+                    <div class="sys-settings-surface" style="margin-top:1.25rem;">
+                        <h4 class="sys-settings-surface-title">Light mode palette</h4>
+                        <p class="sys-settings-surface-description">
+                            Colors above apply to the <strong>dark</strong> sidebar. This palette styles the
+                            sidebar in <strong>light mode</strong> instead of the theme defaults.
+                            Saved to storage — not .env. Requires the <code>settings.manage</code> privilege.
+                        </p>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                            @foreach($lightPalette as [$hiddenName, $varName, $label, $current])
+                                <div class="form-group">
+                                    <label class="form-label" for="light{{ md5($varName) }}">{{ $label }} <span class="env-key">{{ $varName }}</span></label>
+                                    <input type="text" name="{{ $hiddenName }}" id="light{{ md5($varName) }}"
+                                           class="form-input" data-light-field maxlength="40"
+                                           value="{{ $current }}">
+                                </div>
+                            @endforeach
+                        </div>
+
+                        <button type="button" class="btn btn-primary btn-sm" id="sbLightSave"
+                                @unless(auth()->user()?->hasPrivilege('settings.manage')) disabled @endunless>
+                            Save light-mode sidebar palette
+                        </button>
+                        <span id="sbLightStatus" class="form-hint" style="margin-left:0.75rem;"></span>
+                    </div>
+
+<script>
+    (function () {
+        var saveBtn = document.getElementById('sbLightSave');
+        var status = document.getElementById('sbLightStatus');
+        if (!saveBtn) return;
+
+        saveBtn.addEventListener('click', function () {
+            var fields = document.querySelectorAll('[data-light-field]');
+            var data = {};
+            fields.forEach(function (f) { if (f.value.trim() !== '') data[f.name] = f.value.trim(); });
+
+            var token = document.querySelector('#systemSettingsForm input[name="_token"]')?.value
+                || document.querySelector('meta[name="csrf-token"]')?.content;
+
+            saveBtn.disabled = true;
+            status.textContent = 'Saving…';
+
+            fetch('{{ route('admin.sidebar-light-colors.update') }}', {
+                method: 'POST',
+                headers: { 'X-CSRF-TOKEN': token || '', 'X-Requested-With': 'XMLHttpRequest', 'Accept': 'application/json' },
+                body: new URLSearchParams(data),
+            }).then(function (r) { return r.json(); }).then(function (j) {
+                status.textContent = j.success ? 'Saved ✓ — switch themes to see it.' : 'Save failed.';
+                saveBtn.disabled = false;
+            }).catch(function () {
+                status.textContent = 'Save failed — retry.';
+                saveBtn.disabled = false;
+            });
+        });
+    })();
+</script>

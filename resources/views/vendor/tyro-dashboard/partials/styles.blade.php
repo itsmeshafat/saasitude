@@ -43,6 +43,18 @@
         @if($sbColorAccentFg)--sidebar-accent-foreground: {{ $sbColorAccentFg }} !important;@endif
     }
 
+    {{-- Light-mode sidebar overrides from the per-theme store
+         (Appearance > Sidebar > Light mode palette, saved to JSON — env is
+         single-theme and dark-scoped above). Empty = light tokens win. --}}
+    @php $sbLight = \App\Support\SidebarColors::load()['light']; @endphp
+    @if(! empty($sbLight))
+    html.light {
+        @foreach($sbLight as $var => $hex)
+            {{ $var }}: {{ $hex }} !important;
+        @endforeach
+    }
+    @endif
+
     {{-- The universal margin/padding reset lives in Tailwind's base layer (preflight).
          A reset here would be unlayered CSS, which beats every layered Tailwind
          utility (mb-*, p-*, ...) — that broke all spacing utilities app-wide. --}}

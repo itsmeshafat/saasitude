@@ -103,7 +103,7 @@
             </div>
             @include('settings.partials._tab-general')
             @include('settings.partials._tab-features')
-            @include('settings.partials._tab-sidebar-colors')
+            @include('tyro-dashboard::settings.partials._tab-sidebar-colors')
             @include('settings.partials._tab-admin-bar-colors')
             @include('settings.partials._tab-dashboard-colors')
             @include('settings.partials._tab-auth-signin')

@@ -1,6 +1,6 @@
 {
   "schema_version": "mimosa-task-review/v2",
-  "run_id": "20261106T232406520Z-26124-85a21296ace1",
+  "run_id": "20261106T232813181Z-46868-fc1c1ef323e7",
   "run_status": "completed",
   "errors": [],
   "coverage": {
@@ -9,31 +9,31 @@
     "scope": "hook_observed_diff",
     "baseline": {
       "complete": true,
-      "captured_files": 514,
+      "captured_files": 515,
       "candidate_limit": 5000,
       "truncated": false,
       "enumeration_error_count": 0,
       "snapshot_error_count": 0,
-      "compensated_target_count": 3
+      "compensated_target_count": 2
     },
     "change_tracking": {
-      "touched_observed": 2,
-      "touched_retained": 2,
+      "touched_observed": 1,
+      "touched_retained": 1,
       "truncated": false,
       "bash_mutation": true,
-      "bash_discovered": 3,
+      "bash_discovered": 1,
       "bash_discovery_limit": 80,
       "bash_discovery_truncated": false
     },
     "candidates": {
-      "eligible_files": 3,
-      "selected_files": 3,
+      "eligible_files": 2,
+      "selected_files": 2,
       "limit": 20,
       "truncated": false
     },
     "scanning": {
-      "required_files": 3,
-      "scanned_files": 3,
+      "required_files": 2,
+      "scanned_files": 2,
       "skipped_files": 0,
       "failed_files": 0,
       "project_checks_required": 0,
@@ -49,111 +49,52 @@
     "reasons": [],
     "reasons_truncated": false
   },
-  "generated_at": "2026-11-06T23:24:06.520Z",
+  "generated_at": "2026-11-06T23:28:13.181Z",
   "session_id": "sess_099766c9-a2c1-4371-9a97-8d50eff811dc",
   "target": ".",
-  "revision": "a21fd90cf957ab00f05d55f68d46575279745b7e",
+  "revision": "28c7aa3969865861c67f9c93026f50d9c88d58a0",
   "rules_version": "unavailable",
-  "diff_hash": "b885955168f89368e6c1abca85db79d1ec81b3713436ebed62ff2cfba4ee1baa",
+  "diff_hash": "981a80385143ade6d324fa8b04e9e8eaaf6a1a5502e919da5ee967195b220e42",
   "diff": {
     "algorithm": "sha256",
-    "changed_file_count": 3,
+    "changed_file_count": 2,
     "changed_files": [
       {
-        "file": "app/Support/EmailBrand.php",
+        "file": "resources/views/vendor/tyro-dashboard/partials/styles.blade.php",
         "ranges": [
           {
-            "start": 1,
-            "end": 65
+            "start": 12,
+            "end": 29
+          },
+          {
+            "start": 40,
+            "end": 40
           }
         ],
-        "before_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-        "after_hash": "694f3aab43736398cfbbdb1d22faaf704b25d1cf5feb6ca6fc6f6518713744c4"
+        "before_hash": "4ec9a8d3d97280466434390efdc7f5ab7b06a33beae7d4edb42f82b988357ad3",
+        "after_hash": "b858fa88136172f11c501b88f213877f241b30892f7452d6d0a82df611700b5b"
       },
       {
-        "file": "resources/views/emails/layouts/base.blade.php",
+        "file": "storage/framework/views/1f9c7e08c63df6ecaf32d1bc0545fe2a.php",
         "ranges": [
           {
-            "start": 1,
-            "end": 5
+            "start": 12,
+            "end": 25
           },
           {
-            "start": 23,
-            "end": 24
-          },
-          {
-            "start": 27,
-            "end": 39
-          },
-          {
-            "start": 42,
-            "end": 43
-          },
-          {
-            "start": 45,
-            "end": 45
-          },
-          {
-            "start": 50,
-            "end": 50
-          },
-          {
-            "start": 56,
-            "end": 57
-          },
-          {
-            "start": 69,
-            "end": 75
+            "start": 36,
+            "end": 36
           }
         ],
-        "before_hash": "29bc4c9446fcd71613b0ac5a5a7b1de46519af272210b04fb56be60ae1cdf9a7",
-        "after_hash": "8fcd255bed4c3019be875553ba11b6bc159210f35067ec21ea417b121ac14657"
-      },
-      {
-        "file": "storage/framework/views/5083b69eaee186acb3be9ab4bd545f63.php",
-        "ranges": [
-          {
-            "start": 1,
-            "end": 5
-          },
-          {
-            "start": 23,
-            "end": 24
-          },
-          {
-            "start": 27,
-            "end": 39
-          },
-          {
-            "start": 42,
-            "end": 43
-          },
-          {
-            "start": 46,
-            "end": 46
-          },
-          {
-            "start": 52,
-            "end": 52
-          },
-          {
-            "start": 58,
-            "end": 59
-          },
-          {
-            "start": 72,
-            "end": 78
-          }
-        ],
-        "before_hash": "394ee56678a652abdb81954d939a42475c3bfaf527db8d36d2196113845c9eb1",
-        "after_hash": "f0bcf8c2c5e080e611945e4c0140a80dc1c790c5168df735139fc7e6f40ece53"
+        "before_hash": "b17b6423b688b152b237fe7dee5f340385e5589e39c7cf1e80d8afb3a53e1a74",
+        "after_hash": "e24cafdbbcce959980ef7ad1c1bd9584f9f586c6acdd4ee404a89fd6833d2b14"
       }
     ]
   },
   "timing": {
-    "started_at": "2026-11-06T23:24:04.260Z",
-    "completed_at": "2026-11-06T23:24:06.520Z",
-    "duration_ms": 2260,
+    "started_at": "2026-11-06T23:28:10.188Z",
+    "completed_at": "2026-11-06T23:28:13.181Z",
+    "duration_ms": 2993,
     "measurement": "hook_wall_clock"
   },
   "tokens": {
@@ -168,10 +109,10 @@
     "profile": "gate",
     "operation": "Stop",
     "outcome": "complete",
-    "latencyMs": 2260,
-    "peakMemoryBytes": 146575360,
+    "latencyMs": 2993,
+    "peakMemoryBytes": 146628608,
     "memoryMeasurement": "max-observed-process-rss",
-    "scannedFiles": 3,
+    "scannedFiles": 2,
     "cache": {
       "hits": 0,
       "misses": 0,
@@ -196,8 +137,8 @@
   "finding_events": [],
   "findings": [],
   "artifacts": {
-    "immutable_report": ".mimosa/reports/task-review-sess_099766c9-a2c1-4371-9a97-8d50eff811dc-20261106T232406520Z-26124-85a21296ace1.json",
+    "immutable_report": ".mimosa/reports/task-review-sess_099766c9-a2c1-4371-9a97-8d50eff811dc-20261106T232813181Z-46868-fc1c1ef323e7.json",
     "latest_report": ".mimosa/reports/task-review-sess_099766c9-a2c1-4371-9a97-8d50eff811dc.json",
-    "history_summary": ".mimosa/history/run-20261106T232406520Z-26124-85a21296ace1.json"
+    "history_summary": ".mimosa/history/run-20261106T232813181Z-46868-fc1c1ef323e7.json"
   }
 }

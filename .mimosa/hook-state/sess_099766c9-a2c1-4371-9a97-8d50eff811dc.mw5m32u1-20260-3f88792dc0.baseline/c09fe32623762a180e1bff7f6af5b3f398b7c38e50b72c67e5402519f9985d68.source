@@ -1,5 +1,5 @@
-{{-- Include shadcn theme variables --}}
-@include('tyro-dashboard::partials.shadcn-theme')
+
+<?php echo $__env->make('tyro-dashboard::partials.shadcn-theme', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
 
 <style>
     /* Guard: hidden (visibility-only) dropdown menus must not create horizontal scroll on mobile */
@@ -8,37 +8,48 @@
     }
 
     :root {
-        @php
-            // Cobalt Glass: sidebar branding overrides apply ONLY when the env
-            // vars are explicitly set — otherwise the glass tokens win.
+        <?php
+            $sbLogoShape = config('tyro-dashboard.branding.sidebar_logo_shape', 'circle') === 'rectangle' ? 'rectangle' : 'circle';
+            $sbLogoRadius = trim((string) config('tyro-dashboard.branding.sidebar_logo_border_radius', '0'));
+            if ($sbLogoRadius === '') {
+                $sbLogoRadius = '0';
+            }
+        ?>
+        --sidebar-logo-radius: <?php echo e($sbLogoShape === 'rectangle' ? $sbLogoRadius : '50%'); ?>;
+        --sidebar-logo-width: <?php echo e($sbLogoShape === 'rectangle' ? 'auto' : '36px'); ?>;
+        --sidebar-logo-fit: <?php echo e($sbLogoShape === 'rectangle' ? 'contain' : 'cover'); ?>;
+    }
+
+    
+    html.dark {
+        <?php
             $sbColorBg = env('TYRO_DASHBOARD_SIDEBAR_BG');
             $sbColorText = env('TYRO_DASHBOARD_SIDEBAR_TEXT');
             $sbColorPrimary = env('TYRO_DASHBOARD_SIDEBAR_PRIMARY');
             $sbColorAccent = env('TYRO_DASHBOARD_SIDEBAR_ACCENT');
             $sbColorAccentFg = env('TYRO_DASHBOARD_SIDEBAR_ACCENT_FOREGROUND');
             $sbColorHeaderBorder = env('TYRO_DASHBOARD_SIDEBAR_HEADER_BORDER');
-        @endphp
-        @if($sbColorBg)--sidebar: {{ $sbColorBg }} !important;@endif
-        @if($sbColorText)--sidebar-foreground: {{ $sbColorText }} !important;@endif
-        @if($sbColorPrimary)--sidebar-primary: {{ $sbColorPrimary }} !important;@endif
-        @if($sbColorHeaderBorder)--sidebar-header-border: {{ $sbColorHeaderBorder }} !important;@endif
-        @if($sbColorAccent)--sidebar-accent: {{ $sbColorAccent }} !important;@endif
-        @if($sbColorAccentFg)--sidebar-accent-foreground: {{ $sbColorAccentFg }} !important;@endif
-        @php
-            $sbLogoShape = config('tyro-dashboard.branding.sidebar_logo_shape', 'circle') === 'rectangle' ? 'rectangle' : 'circle';
-            $sbLogoRadius = trim((string) config('tyro-dashboard.branding.sidebar_logo_border_radius', '0'));
-            if ($sbLogoRadius === '') {
-                $sbLogoRadius = '0';
-            }
-        @endphp
-        --sidebar-logo-radius: {{ $sbLogoShape === 'rectangle' ? $sbLogoRadius : '50%' }};
-        --sidebar-logo-width: {{ $sbLogoShape === 'rectangle' ? 'auto' : '36px' }};
-        --sidebar-logo-fit: {{ $sbLogoShape === 'rectangle' ? 'contain' : 'cover' }};
+        ?>
+        <?php if($sbColorBg): ?>--sidebar: <?php echo e($sbColorBg); ?> !important;<?php endif; ?>
+        <?php if($sbColorText): ?>--sidebar-foreground: <?php echo e($sbColorText); ?> !important;<?php endif; ?>
+        <?php if($sbColorPrimary): ?>--sidebar-primary: <?php echo e($sbColorPrimary); ?> !important;<?php endif; ?>
+        <?php if($sbColorPrimary): ?>--sidebar-primary-foreground: #0a1616 !important;<?php endif; ?>
+        <?php if($sbColorHeaderBorder): ?>--sidebar-header-border: <?php echo e($sbColorHeaderBorder); ?> !important;<?php endif; ?>
+        <?php if($sbColorAccent): ?>--sidebar-accent: <?php echo e($sbColorAccent); ?> !important;<?php endif; ?>
+        <?php if($sbColorAccentFg): ?>--sidebar-accent-foreground: <?php echo e($sbColorAccentFg); ?> !important;<?php endif; ?>
     }
 
-    {{-- The universal margin/padding reset lives in Tailwind's base layer (preflight).
-         A reset here would be unlayered CSS, which beats every layered Tailwind
-         utility (mb-*, p-*, ...) — that broke all spacing utilities app-wide. --}}
+    
+    <?php $sbLight = \App\Support\SidebarColors::load()['light']; ?>
+    <?php if(! empty($sbLight)): ?>
+    html.light {
+        <?php $__currentLoopData = $sbLight; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $var => $hex): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+            <?php echo e($var); ?>: <?php echo e($hex); ?> !important;
+        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+    }
+    <?php endif; ?>
+
+    
 
     html.dark {
         background-color: #000000;
@@ -262,7 +273,7 @@
         flex-shrink: 0;
     }
 
-    @if($sbLogoShape === 'rectangle')
+    <?php if($sbLogoShape === 'rectangle'): ?>
     /* Rectangle logos keep their aspect ratio; let the image yield space
        first so a wide wordmark never pushes the app name out of the sidebar. */
     .sidebar-logo-img {
@@ -273,7 +284,7 @@
     .sidebar-logo-text {
         flex-shrink: 0;
     }
-    @endif
+    <?php endif; ?>
 
     .sidebar-logo-text {
         font-size: 1rem;
@@ -3281,3 +3292,4 @@
         .btn-spinner { animation-duration: 2s; }
     }
 </style>
+<?php /**PATH C:\laragon\www\saas\resources\views\vendor\tyro-dashboard/partials/styles.blade.php ENDPATH**/ ?>

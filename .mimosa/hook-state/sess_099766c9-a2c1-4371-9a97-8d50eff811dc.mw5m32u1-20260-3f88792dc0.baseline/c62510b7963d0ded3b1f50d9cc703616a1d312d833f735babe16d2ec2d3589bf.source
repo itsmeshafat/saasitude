@@ -134,7 +134,7 @@
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startPush('scripts'); ?>
-  <?php if (! $__env->hasRenderedOnce('7cf364e0-3acb-4a65-bd0c-4116659c36a0')): $__env->markAsRenderedOnce('7cf364e0-3acb-4a65-bd0c-4116659c36a0'); ?>
+  <?php if (! $__env->hasRenderedOnce('51f2f15a-aad6-41ef-ac57-ede0ade46397')): $__env->markAsRenderedOnce('51f2f15a-aad6-41ef-ac57-ede0ade46397'); ?>
     <?php echo $__env->make('settings.partials._scripts', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
   <?php endif; ?>
 <?php $__env->stopPush(); ?>

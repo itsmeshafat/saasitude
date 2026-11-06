@@ -1,0 +1,357 @@
+<?php $__env->startSection('title', 'Edit ' . Str::singular($config['title'])); ?>
+
+<?php $__env->startSection('breadcrumb'); ?>
+<a href="<?php echo e(route($dashboardRoute::name('index'))); ?>">Dashboard</a>
+<span class="breadcrumb-separator">/</span>
+<a href="<?php echo e(route($dashboardRoute::name('resources.index'), $resource)); ?>"><?php echo e($config['title']); ?></a>
+<span class="breadcrumb-separator">/</span>
+<span>Edit</span>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startPush('styles'); ?>
+<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+<?php $__env->stopPush(); ?>
+
+<?php $__env->startPush('scripts'); ?>
+<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        <?php $__currentLoopData = $config['fields']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $field): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+        <?php if(($field['type'] ?? '') === 'richtext'): ?>
+            (function () {
+                var key = '<?php echo e($key); ?>';
+                if (document.getElementById('editor-' + key)) {
+                    var quill = new Quill('#editor-' + key, {
+                        theme: 'snow'
+                    });
+                    var textarea = document.getElementById(key);
+
+                    // Set initial content
+                    if (textarea.value) {
+                        quill.root.innerHTML = textarea.value;
+                    }
+
+                    quill.on('text-change', function () {
+                        textarea.value = quill.root.innerHTML;
+                    });
+                }
+            })();
+        <?php endif; ?>
+        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+    });
+</script>
+<?php $__env->stopPush(); ?>
+
+<?php $__env->startSection('content'); ?>
+<div class="page-header">
+    <div style="display: flex; align-items: center; gap: 1rem;">
+        <a href="<?php echo e(route($dashboardRoute::name('resources.index'), $resource)); ?>" class="btn btn-ghost" title="Back to <?php echo e($config['title']); ?>">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 20px; height: 20px;">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+            </svg>
+        </a>
+        <h1 class="page-title">Edit <?php echo e(Str::singular($config['title'])); ?></h1>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <form action="<?php echo e(route($dashboardRoute::name('resources.update'), [$resource, $item->id])); ?>" method="POST" enctype="multipart/form-data">
+            <?php echo csrf_field(); ?>
+            <?php echo method_field('PUT'); ?>
+
+            <?php $__currentLoopData = $config['fields']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $field): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+            <?php if(($field['hide_in_form'] ?? false) || ($field['hide_in_edit'] ?? false)): ?>
+            <?php continue; ?>
+            <?php endif; ?>
+
+            <?php if($field['type'] === 'hidden'): ?>
+            <input type="hidden" name="<?php echo e($key); ?>" value="<?php echo e(old($key, $item->$key)); ?>">
+            <?php continue; ?>
+            <?php endif; ?>
+
+            <?php if($field['type'] === 'password'): ?>
+            
+            <div class="form-group" style="margin-bottom: 1rem;">
+                <label for="<?php echo e($key); ?>" class="form-label"><?php echo e($field['label']); ?> <small>(Leave blank to keep current)</small></label>
+                <input type="password" name="<?php echo e($key); ?>" id="<?php echo e($key); ?>" class="form-input <?php $__errorArgs = [$key];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>">
+                <?php $__errorArgs = [$key];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                <?php if(config('tyro-dashboard.resource_ui.show_field_errors', true)): ?>
+                <div class="form-error" style="color: var(--danger); font-size: 0.875rem; margin-top: 0.25rem;"><?php echo e($message); ?></div>
+                <?php endif; ?>
+                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+            </div>
+            <?php continue; ?>
+            <?php endif; ?>
+
+            <div class="form-group" style="margin-bottom: 1rem;">
+                <label for="<?php echo e($key); ?>" class="form-label"><?php echo e($field['label']); ?></label>
+
+                <?php if($field['type'] === 'textarea'): ?>
+                <textarea name="<?php echo e($key); ?>" id="<?php echo e($key); ?>" class="form-input <?php $__errorArgs = [$key];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" rows="5" placeholder="<?php echo e($field['placeholder'] ?? ''); ?>" <?php echo e(($field['readonly'] ?? false) ? 'readonly' : ''); ?> <?php if(isset($field['attributes'])): ?> <?php $__currentLoopData = $field['attributes']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $attr => $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?> <?php echo e($attr); ?>="<?php echo e($value); ?>" <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?> <?php endif; ?>><?php echo e(old($key, $item->$key)); ?></textarea>
+
+                <?php elseif($field['type'] === 'richtext'): ?>
+                <div class="richtext-wrapper">
+                    <div id="editor-<?php echo e($key); ?>" style="height: 200px; background: #fff;"></div>
+                    <textarea name="<?php echo e($key); ?>" id="<?php echo e($key); ?>" style="display:none"><?php echo e(old($key, $item->$key)); ?></textarea>
+                </div>
+
+                <?php elseif($field['type'] === 'markdown'): ?>
+                <?php if (isset($component)) { $__componentOriginal8a8200d8aa1eaddde282448bcdac583b = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal8a8200d8aa1eaddde282448bcdac583b = $attributes; } ?>
+<?php $component = HasinHayder\TyroDashboard\View\Components\Editor::resolve(['name' => ''.e($key).'','id' => ''.e($key).'','value' => old($key, $item->$key),'placeholder' => ''.e($field['placeholder'] ?? '').'','label' => null,'showError' => false] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('tyro-dashboard-editor'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\HasinHayder\TyroDashboard\View\Components\Editor::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes([]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal8a8200d8aa1eaddde282448bcdac583b)): ?>
+<?php $attributes = $__attributesOriginal8a8200d8aa1eaddde282448bcdac583b; ?>
+<?php unset($__attributesOriginal8a8200d8aa1eaddde282448bcdac583b); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal8a8200d8aa1eaddde282448bcdac583b)): ?>
+<?php $component = $__componentOriginal8a8200d8aa1eaddde282448bcdac583b; ?>
+<?php unset($__componentOriginal8a8200d8aa1eaddde282448bcdac583b); ?>
+<?php endif; ?>
+
+                <?php elseif($field['type'] === 'select'): ?>
+                <?php if($field['multiple'] ?? false): ?>
+                <select name="<?php echo e($key); ?>[]" id="<?php echo e($key); ?>" class="form-select <?php $__errorArgs = [$key];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" multiple>
+                    <?php if(isset($options[$key])): ?>
+                    <?php $__currentLoopData = $options[$key]; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $option): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <option value="<?php echo e($option->id); ?>" <?php echo e(in_array($option->id, old($key, $selectedValues[$key] ?? [])) ? 'selected' : ''); ?>>
+                        <?php echo e($option->{$field['option_label'] ?? 'name'}); ?>
+
+                    </option>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                    <?php elseif(isset($field['options'])): ?>
+                    <?php $__currentLoopData = $field['options']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $value => $label): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <?php
+                    $optionValue = is_int($value) ? $label : $value;
+                    $optionLabel = $label;
+                    ?>
+                    <option value="<?php echo e($optionValue); ?>" <?php echo e(in_array($optionValue, old($key, $selectedValues[$key] ?? [])) ? 'selected' : ''); ?>>
+                        <?php echo e($optionLabel); ?>
+
+                    </option>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                    <?php endif; ?>
+                </select>
+                <?php else: ?>
+                <select name="<?php echo e($key); ?>" id="<?php echo e($key); ?>" class="form-select <?php $__errorArgs = [$key];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>">
+                    <option value="">Select <?php echo e($field['label']); ?></option>
+                    <?php if(isset($options[$key])): ?>
+                    <?php $__currentLoopData = $options[$key]; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $option): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <option value="<?php echo e($option->id); ?>" <?php echo e(old($key, $item->$key) == $option->id ? 'selected' : ''); ?>>
+                        <?php echo e($option->{$field['option_label'] ?? 'name'}); ?>
+
+                    </option>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                    <?php elseif(isset($field['options'])): ?>
+                    <?php $__currentLoopData = $field['options']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $value => $label): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <?php
+                    $optionValue = is_int($value) ? $label : $value;
+                    $optionLabel = $label;
+                    ?>
+                    <option value="<?php echo e($optionValue); ?>" <?php echo e(old($key, $item->$key) == $optionValue ? 'selected' : ''); ?>>
+                        <?php echo e($optionLabel); ?>
+
+                    </option>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                    <?php endif; ?>
+                </select>
+                <?php endif; ?>
+
+                <?php elseif($field['type'] === 'multiselect'): ?>
+                <select name="<?php echo e($key); ?>[]" id="<?php echo e($key); ?>" class="form-select <?php $__errorArgs = [$key];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" multiple>
+                    <?php if(isset($options[$key])): ?>
+                    <?php $__currentLoopData = $options[$key]; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $option): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <option value="<?php echo e($option->id); ?>" <?php echo e(in_array($option->id, old($key, $selectedValues[$key] ?? ($item->$key ?? []))) ? 'selected' : ''); ?>>
+                        <?php echo e($option->{$field['option_label'] ?? 'name'}); ?>
+
+                    </option>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                    <?php elseif(isset($field['options'])): ?>
+                    <?php $__currentLoopData = $field['options']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $value => $label): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <?php
+                    $optionValue = is_int($value) ? $label : $value;
+                    $optionLabel = $label;
+                    ?>
+                    <option value="<?php echo e($optionValue); ?>" <?php echo e(in_array($optionValue, old($key, $item->$key ?? [])) ? 'selected' : ''); ?>>
+                        <?php echo e($optionLabel); ?>
+
+                    </option>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                    <?php endif; ?>
+                </select>
+
+                <?php elseif($field['type'] === 'radio'): ?>
+                <div class="radio-group">
+                    <?php if(isset($options[$key])): ?>
+                    <?php $__currentLoopData = $options[$key]; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $option): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <div class="form-check">
+                        <input type="radio" name="<?php echo e($key); ?>" id="<?php echo e($key); ?>_<?php echo e($option->id); ?>" value="<?php echo e($option->id); ?>" <?php echo e(old($key, $item->$key) == $option->id ? 'checked' : ''); ?>>
+                        <label for="<?php echo e($key); ?>_<?php echo e($option->id); ?>"><?php echo e($option->{$field['option_label'] ?? 'name'}); ?></label>
+                    </div>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                    <?php elseif(isset($field['options'])): ?>
+                    <?php $__currentLoopData = $field['options']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $value => $label): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <?php
+                    $optionValue = is_int($value) ? $label : $value;
+                    $optionLabel = $label;
+                    ?>
+                    <div class="form-check">
+                        <input type="radio" name="<?php echo e($key); ?>" id="<?php echo e($key); ?>_<?php echo e($optionValue); ?>" value="<?php echo e($optionValue); ?>" <?php echo e(old($key, $item->$key) == $optionValue ? 'checked' : ''); ?>>
+                        <label for="<?php echo e($key); ?>_<?php echo e($optionValue); ?>"><?php echo e($optionLabel); ?></label>
+                    </div>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                    <?php endif; ?>
+                </div>
+
+                <?php elseif($field['type'] === 'checkbox' && (isset($options[$key]) || isset($field['options']))): ?>
+                <div class="checkbox-group">
+                    <?php if(isset($options[$key])): ?>
+                    <?php $__currentLoopData = $options[$key]; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $option): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <div class="form-check">
+                        <input type="checkbox" name="<?php echo e($key); ?>[]" id="<?php echo e($key); ?>_<?php echo e($option->id); ?>" value="<?php echo e($option->id); ?>" <?php echo e(in_array($option->id, old($key, $selectedValues[$key] ?? ($item->$key ?? []))) ? 'checked' : ''); ?>>
+                        <label for="<?php echo e($key); ?>_<?php echo e($option->id); ?>"><?php echo e($option->{$field['option_label'] ?? 'name'}); ?></label>
+                    </div>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                    <?php elseif(isset($field['options'])): ?>
+                    <?php $__currentLoopData = $field['options']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $value => $label): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <?php
+                    $optionValue = is_int($value) ? $label : $value;
+                    $optionLabel = $label;
+                    ?>
+                    <div class="form-check">
+                        <input type="checkbox" name="<?php echo e($key); ?>[]" id="<?php echo e($key); ?>_<?php echo e($optionValue); ?>" value="<?php echo e($optionValue); ?>" <?php echo e(in_array($optionValue, old($key, $item->$key ?? [])) ? 'checked' : ''); ?>>
+                        <label for="<?php echo e($key); ?>_<?php echo e($optionValue); ?>"><?php echo e($optionLabel); ?></label>
+                    </div>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                    <?php endif; ?>
+                </div>
+
+                <?php elseif($field['type'] === 'file'): ?>
+                <?php
+                    $displayImage = $field['display_image'] ?? false;
+                    $displayImagePosition = $field['display_image_position'] ?? 'top';
+                    $isImage = !empty($item->$key) && $displayImage && preg_match('/\.(jpg|jpeg|png|gif|webp|svg)$/i', $item->$key);
+                ?>
+                
+                <?php if($isImage && $displayImagePosition === 'top'): ?>
+                <div style="margin-bottom: 0.5rem;">
+                    <img src="<?php echo e(Storage::url($item->$key)); ?>" alt="Current image" style="width: 200px; height: auto; border: 1px solid var(--border); border-radius: 4px;">
+                </div>
+                <?php endif; ?>
+                
+                <input type="file" name="<?php echo e($key); ?>" id="<?php echo e($key); ?>" class="form-input <?php $__errorArgs = [$key];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" <?php echo e(($field['readonly'] ?? false) ? 'readonly' : ''); ?> <?php if(isset($field['attributes'])): ?> <?php $__currentLoopData = $field['attributes']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $attr => $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?> <?php echo e($attr); ?>="<?php echo e($value); ?>" <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?> <?php endif; ?>>
+                <?php if(!empty($item->$key)): ?>
+                <div style="margin-top: 0.5rem;">
+                    <small>Current file: <a href="<?php echo e(Storage::url($item->$key)); ?>" target="_blank"><?php echo e(basename($item->$key)); ?></a></small>
+                </div>
+                <?php endif; ?>
+                
+                <?php if($isImage && $displayImagePosition === 'bottom'): ?>
+                <div style="margin-top: 0.5rem;">
+                    <img src="<?php echo e(Storage::url($item->$key)); ?>" alt="Current image" style="width: 200px; height: auto; border: 1px solid var(--border); border-radius: 4px;">
+                </div>
+                <?php endif; ?>
+
+                <?php elseif($field['type'] === 'boolean'): ?>
+                <div class="form-check">
+                    <input type="checkbox" name="<?php echo e($key); ?>" id="<?php echo e($key); ?>" value="1" <?php echo e(old($key, $item->$key) ? 'checked' : ''); ?>>
+                    <label for="<?php echo e($key); ?>">Yes</label>
+                </div>
+
+                <?php else: ?>
+                <input type="<?php echo e($field['type']); ?>" name="<?php echo e($key); ?>" id="<?php echo e($key); ?>" class="form-input <?php $__errorArgs = [$key];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" value="<?php echo e(old($key, $item->$key)); ?>" placeholder="<?php echo e($field['placeholder'] ?? ''); ?>" <?php echo e(($field['readonly'] ?? false) ? 'readonly' : ''); ?> <?php if(isset($field['attributes'])): ?> <?php $__currentLoopData = $field['attributes']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $attr => $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?> <?php echo e($attr); ?>="<?php echo e($value); ?>" <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?> <?php endif; ?>>
+                <?php endif; ?>
+
+                <?php if(isset($field['help_text'])): ?>
+                <div class="form-help-text" style="color: var(--text-secondary); font-size: 0.875rem; margin-top: 0.25rem;"><?php echo e($field['help_text']); ?></div>
+                <?php endif; ?>
+
+                <?php $__errorArgs = [$key];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                <?php if(config('tyro-dashboard.resource_ui.show_field_errors', true)): ?>
+                <div class="form-error" style="color: var(--danger); font-size: 0.875rem; margin-top: 0.25rem;"><?php echo e($message); ?></div>
+                <?php endif; ?>
+                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+            </div>
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+
+            <div class="form-actions" style="margin-top: 1.5rem;">
+                <a href="<?php echo e(route($dashboardRoute::name('resources.index'), $resource)); ?>" class="btn btn-secondary">Cancel</a>
+                <button type="submit" class="btn btn-primary">Update <?php echo e(Str::singular($config['title'])); ?></button>
+            </div>
+        </form>
+    </div>
+</div>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('tyro-dashboard::layouts.app', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH C:\laragon\www\saas\resources\views\vendor\tyro-dashboard/resources/edit.blade.php ENDPATH**/ ?>
