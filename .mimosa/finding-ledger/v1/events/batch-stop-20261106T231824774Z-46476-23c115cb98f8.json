@@ -1,0 +1,39 @@
+{
+  "schemaVersion": "mimosa-finding-ledger-batch/v1",
+  "batchId": "stop-20261106T231824774Z-46476-23c115cb98f8",
+  "runId": "20261106T231824774Z-46476-23c115cb98f8",
+  "runStatus": "completed",
+  "coverage": {
+    "status": "complete",
+    "reasons": []
+  },
+  "source": {
+    "component": "zcode-hook",
+    "operationId": "Stop"
+  },
+  "revision": "e31eebeeeddba265ec61e3ee8827f6b8f6cd0d9d",
+  "diffHash": "4ac8738566a55a89e4ac729aed8b3c79cf28b4e894af3537b6de523baaf51e40",
+  "rulesVersion": "unavailable",
+  "sessionHash": "f3ada869c86656b16895682b030512bfad02103280be676ea79ad71d62f6803b",
+  "reportRef": ".mimosa/reports/task-review-sess_099766c9-a2c1-4371-9a97-8d50eff811dc-20261106T231824774Z-46476-23c115cb98f8.json",
+  "events": [],
+  "observedFindingIds": [],
+  "verifiedFiles": [
+    {
+      "file": "app/Mail/SubscriptionRenewalReminder.php",
+      "direct": "complete",
+      "projectContext": "partial"
+    },
+    {
+      "file": "storage/framework/views/1f9c7e08c63df6ecaf32d1bc0545fe2a.php",
+      "direct": "complete",
+      "projectContext": "partial"
+    },
+    {
+      "file": "storage/framework/views/73cb7aba6393b29c2f2a74a56cbeb511.php",
+      "direct": "complete",
+      "projectContext": "partial"
+    }
+  ],
+  "recordedAt": "2026-11-06T23:18:25.573Z"
+}
