@@ -73,8 +73,8 @@
         --card-foreground: <?php echo e($cssVal('--card-foreground', '#0a1616', $lightOverrides)); ?>;
         --popover: <?php echo e($cssVal('--popover', 'rgba(255, 255, 255, 0.92)', $lightOverrides)); ?>;
         --popover-foreground: <?php echo e($cssVal('--popover-foreground', '#0a1616', $lightOverrides)); ?>;
-        --primary: <?php echo e($cssVal('--primary', '#c6fb4b', $lightOverrides)); ?>; /* surface.strong */
-        --primary-foreground: <?php echo e($cssVal('--primary-foreground', '#0a1616', $lightOverrides)); ?>;
+        --primary: <?php echo e($cssVal('--primary', '#4d7c0f', $lightOverrides)); ?>; /* DERIVED dark-lime (AA 4.7:1 on white); brief lime kept for dark */
+        --primary-foreground: <?php echo e($cssVal('--primary-foreground', '#ffffff', $lightOverrides)); ?>;
         --secondary: <?php echo e($cssVal('--secondary', 'rgba(8, 38, 21, 0.06)', $lightOverrides)); ?>;
         --secondary-foreground: <?php echo e($cssVal('--secondary-foreground', '#0a1616', $lightOverrides)); ?>;
         --muted: <?php echo e($cssVal('--muted', 'rgba(8, 38, 21, 0.05)', $lightOverrides)); ?>;
@@ -85,7 +85,7 @@
         --destructive-foreground: <?php echo e($cssVal('--destructive-foreground', '#ffffff', $lightOverrides)); ?>;
         --border: <?php echo e($cssVal('--border', '#e5e7eb', $lightOverrides)); ?>; /* border.default */
         --input: <?php echo e($cssVal('--input', '#e5e7eb', $lightOverrides)); ?>;
-        --ring: <?php echo e($cssVal('--ring', 'rgba(59, 130, 246, 0.5)', $lightOverrides)); ?>; /* shadow.3 */
+        --ring: <?php echo e($cssVal('--ring', '#2563eb', $lightOverrides)); ?>; /* DERIVED solid (50% alpha invisible on white) */
 
         /* Glass system — light: white frost over lime-tinted mesh */
         --glass: rgba(255, 255, 255, 0.6);
@@ -99,7 +99,7 @@
             radial-gradient(680px 540px at 42% 108%, rgba(45, 90, 63, 0.10), transparent 60%);
 
         /* Chart colors — from the palette */
-        --chart-1: #c6fb4b;
+        --chart-1: #4d7c0f; /* DERIVED: lime stroke unreadable on white */
         --chart-2: #0a1616;
         --chart-3: #52645c;
         --chart-4: #2d5a3f;
@@ -116,11 +116,11 @@
         --sidebar-ring: rgba(59, 130, 246, 0.5);
 
         /* Extended semantic (brief-silent extensions, logged) */
-        --success: <?php echo e($cssVal('--success', '#c6fb4b', $lightOverrides)); ?>;
-        --success-foreground: <?php echo e($cssVal('--success-foreground', '#0a1616', $lightOverrides)); ?>;
+        --success: <?php echo e($cssVal('--success', '#4d7c0f', $lightOverrides)); ?>; /* DERIVED dark-lime for AA */
+        --success-foreground: <?php echo e($cssVal('--success-foreground', '#ffffff', $lightOverrides)); ?>;
         --warning: <?php echo e($cssVal('--warning', '#b45309', $lightOverrides)); ?>;
         --warning-foreground: <?php echo e($cssVal('--warning-foreground', '#ffffff', $lightOverrides)); ?>;
-        --info: <?php echo e($cssVal('--info', '#3b82f6', $lightOverrides)); ?>;
+        --info: <?php echo e($cssVal('--info', '#2563eb', $lightOverrides)); ?>; /* DERIVED: #3b82f6 is 3.68:1 on white — below AA */
         --info-foreground: <?php echo e($cssVal('--info-foreground', '#ffffff', $lightOverrides)); ?>;
         --danger: <?php echo e($cssVal('--danger', '#dc2626', $lightOverrides)); ?>;
 

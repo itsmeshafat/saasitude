@@ -3216,7 +3216,7 @@
             }
         }
     }
-</style>
+
 
     /* ============================================================
        ACCESSIBILITY — keyboard-first (design system non-negotiable)
@@ -3267,3 +3267,4 @@
     @media (prefers-reduced-motion: reduce) {
         .btn-spinner { animation-duration: 2s; }
     }
+</style>

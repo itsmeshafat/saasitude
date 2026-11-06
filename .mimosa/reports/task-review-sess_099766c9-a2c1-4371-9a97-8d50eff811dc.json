@@ -1,152 +1,41 @@
 {
   "schema_version": "mimosa-task-review/v2",
-  "run_id": "20261106T194753660Z-17124-a0a061bc471b",
-  "run_status": "inconclusive",
-  "errors": [
-    {
-      "stage": "candidate-select",
-      "target": "storage/framework/views/de860c5d8761a517fcc2425d7ee198fe.php",
-      "reason": "candidate_limit_exceeded: 23 changed reviewable file(s) were not scanned because the limit is 20"
-    },
-    {
-      "stage": "baseline",
-      "target": ".",
-      "reason": "baseline_partial: baseline capture had enumeration or snapshot errors"
-    },
-    {
-      "stage": "scan",
-      "target": "resources/views/vendor/tyro-dashboard/partials/scripts.blade.php",
-      "reason": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT"
-    },
-    {
-      "stage": "scan",
-      "target": "resources/views/layouts/public.blade.php",
-      "reason": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT"
-    },
-    {
-      "stage": "scan",
-      "target": "resources/views/components/ui/button.blade.php",
-      "reason": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT"
-    },
-    {
-      "stage": "scan",
-      "target": "resources/views/vendor/tyro-dashboard/partials/topbar.blade.php",
-      "reason": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT"
-    },
-    {
-      "stage": "scan",
-      "target": "storage/framework/views/05e4d4bac7c87e6ee819878dc4ef930b.php",
-      "reason": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT"
-    },
-    {
-      "stage": "scan",
-      "target": "storage/framework/views/077007ffda9f11b81f451dea8b351d9f.php",
-      "reason": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT"
-    },
-    {
-      "stage": "scan",
-      "target": "storage/framework/views/110c6d66e69cda538025e1ad04e32d96.php",
-      "reason": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT"
-    },
-    {
-      "stage": "scan",
-      "target": "storage/framework/views/1f9c7e08c63df6ecaf32d1bc0545fe2a.php",
-      "reason": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT"
-    },
-    {
-      "stage": "scan",
-      "target": "storage/framework/views/1fc1b30e9cf62b989b60f239b700222b.php",
-      "reason": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT"
-    },
-    {
-      "stage": "scan",
-      "target": "storage/framework/views/2e96bb9ff094e7c4c3f8f4b6e14610c7.php",
-      "reason": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT"
-    },
-    {
-      "stage": "scan",
-      "target": "storage/framework/views/31053ab14a3c5b15383208bd7d96ceba.php",
-      "reason": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT"
-    },
-    {
-      "stage": "scan",
-      "target": "storage/framework/views/3315204693b0fb39e45c2b7db8b6a07d.php",
-      "reason": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT"
-    },
-    {
-      "stage": "scan",
-      "target": "storage/framework/views/4085bb9757e4829c79d78dd88c191ef3.php",
-      "reason": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT"
-    },
-    {
-      "stage": "scan",
-      "target": "storage/framework/views/42aeee8812c416aba4fad1bd8a66fe62.php",
-      "reason": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT"
-    },
-    {
-      "stage": "scan",
-      "target": "storage/framework/views/810fcf6c3420e0944b55a1920eb53211.php",
-      "reason": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT"
-    },
-    {
-      "stage": "scan",
-      "target": "storage/framework/views/92ca2d3e9844d4f470495b1f9e70cf64.php",
-      "reason": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT"
-    },
-    {
-      "stage": "scan",
-      "target": "storage/framework/views/93631687d73504be1ea823cc9f733533.php",
-      "reason": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT"
-    },
-    {
-      "stage": "scan",
-      "target": "storage/framework/views/99ebbd16773543215394683559811f54.php",
-      "reason": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT"
-    },
-    {
-      "stage": "scan",
-      "target": "storage/framework/views/aa3649c85fb4e7500af91bdf9f93c09a.php",
-      "reason": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT"
-    },
-    {
-      "stage": "scan",
-      "target": "storage/framework/views/cf4ae1cbd7ab64050bbec882838606e7.php",
-      "reason": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT"
-    }
-  ],
+  "run_id": "20261106T200849641Z-21952-26e9bcae8981",
+  "run_status": "completed",
+  "errors": [],
   "coverage": {
     "schema_version": "mimosa-hook-coverage/v1",
-    "status": "partial",
+    "status": "complete",
     "scope": "hook_observed_diff",
     "baseline": {
-      "complete": false,
-      "captured_files": 786,
+      "complete": true,
+      "captured_files": 489,
       "candidate_limit": 5000,
       "truncated": false,
       "enumeration_error_count": 0,
-      "snapshot_error_count": 1,
-      "compensated_target_count": 43
+      "snapshot_error_count": 0,
+      "compensated_target_count": 1
     },
     "change_tracking": {
-      "touched_observed": 4,
-      "touched_retained": 4,
+      "touched_observed": 0,
+      "touched_retained": 0,
       "truncated": false,
       "bash_mutation": true,
-      "bash_discovered": 41,
+      "bash_discovered": 1,
       "bash_discovery_limit": 80,
       "bash_discovery_truncated": false
     },
     "candidates": {
-      "eligible_files": 43,
-      "selected_files": 20,
+      "eligible_files": 1,
+      "selected_files": 1,
       "limit": 20,
-      "truncated": true
+      "truncated": false
     },
     "scanning": {
-      "required_files": 20,
-      "scanned_files": 0,
+      "required_files": 1,
+      "scanned_files": 1,
       "skipped_files": 0,
-      "failed_files": 20,
+      "failed_files": 0,
       "project_checks_required": 0,
       "project_checks_completed": 0
     },
@@ -156,776 +45,53 @@
       "detail_limit": 3,
       "truncated": false
     },
-    "reason_counts": {
-      "candidate_limit_exceeded": 1,
-      "baseline_partial": 1,
-      "scanner_failed": 20,
-      "project_check_failed": 22
-    },
-    "reasons": [
-      {
-        "code": "candidate_limit_exceeded",
-        "stage": "candidate-select",
-        "target": "storage/framework/views/de860c5d8761a517fcc2425d7ee198fe.php",
-        "detail": "23 changed reviewable file(s) were not scanned because the limit is 20",
-        "affects_completion": true
-      },
-      {
-        "code": "baseline_partial",
-        "stage": "baseline",
-        "target": ".",
-        "detail": "baseline capture had enumeration or snapshot errors",
-        "affects_completion": true
-      },
-      {
-        "code": "scanner_failed",
-        "stage": "scan",
-        "target": "resources/views/vendor/tyro-dashboard/partials/scripts.blade.php",
-        "detail": "spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
-        "affects_completion": true
-      },
-      {
-        "code": "scanner_failed",
-        "stage": "scan",
-        "target": "resources/views/layouts/public.blade.php",
-        "detail": "spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
-        "affects_completion": true
-      },
-      {
-        "code": "scanner_failed",
-        "stage": "scan",
-        "target": "resources/views/components/ui/button.blade.php",
-        "detail": "spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
-        "affects_completion": true
-      },
-      {
-        "code": "scanner_failed",
-        "stage": "scan",
-        "target": "resources/views/vendor/tyro-dashboard/partials/topbar.blade.php",
-        "detail": "spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
-        "affects_completion": true
-      },
-      {
-        "code": "scanner_failed",
-        "stage": "scan",
-        "target": "storage/framework/views/05e4d4bac7c87e6ee819878dc4ef930b.php",
-        "detail": "spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
-        "affects_completion": true
-      },
-      {
-        "code": "scanner_failed",
-        "stage": "scan",
-        "target": "storage/framework/views/077007ffda9f11b81f451dea8b351d9f.php",
-        "detail": "spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
-        "affects_completion": true
-      },
-      {
-        "code": "scanner_failed",
-        "stage": "scan",
-        "target": "storage/framework/views/110c6d66e69cda538025e1ad04e32d96.php",
-        "detail": "spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
-        "affects_completion": true
-      },
-      {
-        "code": "scanner_failed",
-        "stage": "scan",
-        "target": "storage/framework/views/1f9c7e08c63df6ecaf32d1bc0545fe2a.php",
-        "detail": "spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
-        "affects_completion": true
-      },
-      {
-        "code": "scanner_failed",
-        "stage": "scan",
-        "target": "storage/framework/views/1fc1b30e9cf62b989b60f239b700222b.php",
-        "detail": "spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
-        "affects_completion": true
-      },
-      {
-        "code": "scanner_failed",
-        "stage": "scan",
-        "target": "storage/framework/views/2e96bb9ff094e7c4c3f8f4b6e14610c7.php",
-        "detail": "spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
-        "affects_completion": true
-      },
-      {
-        "code": "scanner_failed",
-        "stage": "scan",
-        "target": "storage/framework/views/31053ab14a3c5b15383208bd7d96ceba.php",
-        "detail": "spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
-        "affects_completion": true
-      },
-      {
-        "code": "scanner_failed",
-        "stage": "scan",
-        "target": "storage/framework/views/3315204693b0fb39e45c2b7db8b6a07d.php",
-        "detail": "spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
-        "affects_completion": true
-      },
-      {
-        "code": "scanner_failed",
-        "stage": "scan",
-        "target": "storage/framework/views/4085bb9757e4829c79d78dd88c191ef3.php",
-        "detail": "spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
-        "affects_completion": true
-      },
-      {
-        "code": "scanner_failed",
-        "stage": "scan",
-        "target": "storage/framework/views/42aeee8812c416aba4fad1bd8a66fe62.php",
-        "detail": "spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
-        "affects_completion": true
-      },
-      {
-        "code": "scanner_failed",
-        "stage": "scan",
-        "target": "storage/framework/views/810fcf6c3420e0944b55a1920eb53211.php",
-        "detail": "spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
-        "affects_completion": true
-      },
-      {
-        "code": "scanner_failed",
-        "stage": "scan",
-        "target": "storage/framework/views/92ca2d3e9844d4f470495b1f9e70cf64.php",
-        "detail": "spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
-        "affects_completion": true
-      },
-      {
-        "code": "scanner_failed",
-        "stage": "scan",
-        "target": "storage/framework/views/93631687d73504be1ea823cc9f733533.php",
-        "detail": "spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
-        "affects_completion": true
-      },
-      {
-        "code": "scanner_failed",
-        "stage": "scan",
-        "target": "storage/framework/views/99ebbd16773543215394683559811f54.php",
-        "detail": "spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
-        "affects_completion": true
-      },
-      {
-        "code": "scanner_failed",
-        "stage": "scan",
-        "target": "storage/framework/views/aa3649c85fb4e7500af91bdf9f93c09a.php",
-        "detail": "spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
-        "affects_completion": true
-      },
-      {
-        "code": "scanner_failed",
-        "stage": "scan",
-        "target": "storage/framework/views/cf4ae1cbd7ab64050bbec882838606e7.php",
-        "detail": "spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
-        "affects_completion": true
-      },
-      {
-        "code": "project_check_failed",
-        "stage": "candidate-select",
-        "target": "storage/framework/views/de860c5d8761a517fcc2425d7ee198fe.php",
-        "detail": "candidate_limit_exceeded: 23 changed reviewable file(s) were not scanned because the limit is 20",
-        "affects_completion": true
-      },
-      {
-        "code": "project_check_failed",
-        "stage": "baseline",
-        "target": ".",
-        "detail": "baseline_partial: baseline capture had enumeration or snapshot errors",
-        "affects_completion": true
-      },
-      {
-        "code": "project_check_failed",
-        "stage": "scan",
-        "target": "resources/views/vendor/tyro-dashboard/partials/scripts.blade.php",
-        "detail": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
-        "affects_completion": true
-      },
-      {
-        "code": "project_check_failed",
-        "stage": "scan",
-        "target": "resources/views/layouts/public.blade.php",
-        "detail": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
-        "affects_completion": true
-      },
-      {
-        "code": "project_check_failed",
-        "stage": "scan",
-        "target": "resources/views/components/ui/button.blade.php",
-        "detail": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
-        "affects_completion": true
-      },
-      {
-        "code": "project_check_failed",
-        "stage": "scan",
-        "target": "resources/views/vendor/tyro-dashboard/partials/topbar.blade.php",
-        "detail": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
-        "affects_completion": true
-      },
-      {
-        "code": "project_check_failed",
-        "stage": "scan",
-        "target": "storage/framework/views/05e4d4bac7c87e6ee819878dc4ef930b.php",
-        "detail": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
-        "affects_completion": true
-      },
-      {
-        "code": "project_check_failed",
-        "stage": "scan",
-        "target": "storage/framework/views/077007ffda9f11b81f451dea8b351d9f.php",
-        "detail": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
-        "affects_completion": true
-      },
-      {
-        "code": "project_check_failed",
-        "stage": "scan",
-        "target": "storage/framework/views/110c6d66e69cda538025e1ad04e32d96.php",
-        "detail": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
-        "affects_completion": true
-      },
-      {
-        "code": "project_check_failed",
-        "stage": "scan",
-        "target": "storage/framework/views/1f9c7e08c63df6ecaf32d1bc0545fe2a.php",
-        "detail": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
-        "affects_completion": true
-      },
-      {
-        "code": "project_check_failed",
-        "stage": "scan",
-        "target": "storage/framework/views/1fc1b30e9cf62b989b60f239b700222b.php",
-        "detail": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
-        "affects_completion": true
-      },
-      {
-        "code": "project_check_failed",
-        "stage": "scan",
-        "target": "storage/framework/views/2e96bb9ff094e7c4c3f8f4b6e14610c7.php",
-        "detail": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
-        "affects_completion": true
-      },
-      {
-        "code": "project_check_failed",
-        "stage": "scan",
-        "target": "storage/framework/views/31053ab14a3c5b15383208bd7d96ceba.php",
-        "detail": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
-        "affects_completion": true
-      },
-      {
-        "code": "project_check_failed",
-        "stage": "scan",
-        "target": "storage/framework/views/3315204693b0fb39e45c2b7db8b6a07d.php",
-        "detail": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
-        "affects_completion": true
-      },
-      {
-        "code": "project_check_failed",
-        "stage": "scan",
-        "target": "storage/framework/views/4085bb9757e4829c79d78dd88c191ef3.php",
-        "detail": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
-        "affects_completion": true
-      },
-      {
-        "code": "project_check_failed",
-        "stage": "scan",
-        "target": "storage/framework/views/42aeee8812c416aba4fad1bd8a66fe62.php",
-        "detail": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
-        "affects_completion": true
-      },
-      {
-        "code": "project_check_failed",
-        "stage": "scan",
-        "target": "storage/framework/views/810fcf6c3420e0944b55a1920eb53211.php",
-        "detail": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
-        "affects_completion": true
-      },
-      {
-        "code": "project_check_failed",
-        "stage": "scan",
-        "target": "storage/framework/views/92ca2d3e9844d4f470495b1f9e70cf64.php",
-        "detail": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
-        "affects_completion": true
-      },
-      {
-        "code": "project_check_failed",
-        "stage": "scan",
-        "target": "storage/framework/views/93631687d73504be1ea823cc9f733533.php",
-        "detail": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
-        "affects_completion": true
-      },
-      {
-        "code": "project_check_failed",
-        "stage": "scan",
-        "target": "storage/framework/views/99ebbd16773543215394683559811f54.php",
-        "detail": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
-        "affects_completion": true
-      },
-      {
-        "code": "project_check_failed",
-        "stage": "scan",
-        "target": "storage/framework/views/aa3649c85fb4e7500af91bdf9f93c09a.php",
-        "detail": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
-        "affects_completion": true
-      },
-      {
-        "code": "project_check_failed",
-        "stage": "scan",
-        "target": "storage/framework/views/cf4ae1cbd7ab64050bbec882838606e7.php",
-        "detail": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
-        "affects_completion": true
-      }
-    ],
+    "reason_counts": {},
+    "reasons": [],
     "reasons_truncated": false
   },
-  "generated_at": "2026-11-06T19:47:53.660Z",
+  "generated_at": "2026-11-06T20:08:49.641Z",
   "session_id": "sess_099766c9-a2c1-4371-9a97-8d50eff811dc",
   "target": ".",
-  "revision": "f012916dff5dc74bab776bb6397feddd956bb7af",
+  "revision": "270022cbdbab0a2a984d216936221cd6bc4d8e11",
   "rules_version": "unavailable",
-  "diff_hash": "895956a475f9b573cbe169c30fecb666e88269355c98fbec80a0eac060aa395d",
+  "diff_hash": "3bdef06cc8ffa464ec5465b5b8def4cd7beeee8e8d9c92bd488d77a2a76c2658",
   "diff": {
     "algorithm": "sha256",
-    "changed_file_count": 20,
+    "changed_file_count": 1,
     "changed_files": [
-      {
-        "file": "resources/views/components/ui/button.blade.php",
-        "ranges": [
-          {
-            "start": 7,
-            "end": 7
-          },
-          {
-            "start": 24,
-            "end": 25
-          },
-          {
-            "start": 28,
-            "end": 29
-          },
-          {
-            "start": 33,
-            "end": 39
-          },
-          {
-            "start": 41,
-            "end": 46
-          }
-        ],
-        "before_hash": "eb809fed503997e17e46f62363d3e09c4437781a9990d00f0f552a0e860f25a9",
-        "after_hash": "6a74b5bc87767a2173db1e3b9ee2e262f233b7104e8806753686c0ae9c940e32"
-      },
-      {
-        "file": "resources/views/layouts/public.blade.php",
-        "ranges": [
-          {
-            "start": 7,
-            "end": 7
-          },
-          {
-            "start": 10,
-            "end": 10
-          }
-        ],
-        "before_hash": "28d6ab0affb134cf7eda0b64cf9cf50400310bf7a575f8b87d200bfa7b308f16",
-        "after_hash": "0aab35effb5bbdf958cf2e6c0840f2e1e4d1f0525a735a9e55bcd709ff3f7cf7"
-      },
-      {
-        "file": "resources/views/vendor/tyro-dashboard/partials/scripts.blade.php",
-        "ranges": [
-          {
-            "start": 7,
-            "end": 8
-          }
-        ],
-        "before_hash": "f9b3a6b9a2aa0fdd604c7f8fb92d20961c79ddd0c6198fba829012a250946248",
-        "after_hash": "b8cd8aaf3865af849a0e3f05e0c7cd6baa2b6bc878cf9ab6334f3adb76934df7"
-      },
-      {
-        "file": "resources/views/vendor/tyro-dashboard/partials/topbar.blade.php",
-        "ranges": [
-          {
-            "start": 172,
-            "end": 190
-          }
-        ],
-        "before_hash": "6c5320b8153b5047388291c19dbd2ce88407cc1dfa0403e8d7a6ee6981e2d9b0",
-        "after_hash": "62b853fc734b95262e44fc28cc89bfc5dcca9a4145ef8449e5504ac1719043c8"
-      },
       {
         "file": "storage/framework/views/05e4d4bac7c87e6ee819878dc4ef930b.php",
         "ranges": [
           {
-            "start": 17,
-            "end": 24
-          },
-          {
-            "start": 27,
-            "end": 95
-          },
-          {
-            "start": 97,
-            "end": 129
-          },
-          {
-            "start": 132,
-            "end": 132
-          },
-          {
-            "start": 134,
-            "end": 159
-          },
-          {
-            "start": 161,
-            "end": 193
-          }
-        ],
-        "before_hash": "e7bba16d66c68e198fd4c0be97d767de374a1fec6ee48a9964b6f33a94974818",
-        "after_hash": "8ab5f9abdc3878468b24831b951b9a3e16ac4c86fd0dcc0eada79faac74d53b5"
-      },
-      {
-        "file": "storage/framework/views/077007ffda9f11b81f451dea8b351d9f.php",
-        "ranges": [
-          {
-            "start": 62,
-            "end": 62
-          },
-          {
             "start": 76,
-            "end": 76
+            "end": 77
+          },
+          {
+            "start": 88,
+            "end": 88
+          },
+          {
+            "start": 102,
+            "end": 102
+          },
+          {
+            "start": 119,
+            "end": 120
+          },
+          {
+            "start": 123,
+            "end": 123
           }
         ],
-        "before_hash": "211ddddf86773a0cf22ae21c8728e704e3e955c6a699925d127ecb80cdecd855",
-        "after_hash": "0f9a8daf1132230652ef97c5c6f82e5b5d8a378dcf408a2ce30c55b31d2840a6"
-      },
-      {
-        "file": "storage/framework/views/110c6d66e69cda538025e1ad04e32d96.php",
-        "ranges": [
-          {
-            "start": 16,
-            "end": 16
-          }
-        ],
-        "before_hash": "980b44da688a61072f8121edf8a698e34c316a20db10cc27689161d5f2438b82",
-        "after_hash": "48752074503b2e22fca4b4248c35ad79df86a378cd7f7354060b38ba1bbf9dae"
-      },
-      {
-        "file": "storage/framework/views/1f9c7e08c63df6ecaf32d1bc0545fe2a.php",
-        "ranges": [
-          {
-            "start": 65,
-            "end": 65
-          },
-          {
-            "start": 180,
-            "end": 180
-          },
-          {
-            "start": 209,
-            "end": 209
-          },
-          {
-            "start": 357,
-            "end": 357
-          },
-          {
-            "start": 481,
-            "end": 481
-          },
-          {
-            "start": 617,
-            "end": 617
-          },
-          {
-            "start": 672,
-            "end": 672
-          },
-          {
-            "start": 692,
-            "end": 692
-          },
-          {
-            "start": 812,
-            "end": 812
-          },
-          {
-            "start": 833,
-            "end": 834
-          },
-          {
-            "start": 858,
-            "end": 858
-          },
-          {
-            "start": 866,
-            "end": 866
-          },
-          {
-            "start": 872,
-            "end": 872
-          },
-          {
-            "start": 886,
-            "end": 887
-          },
-          {
-            "start": 895,
-            "end": 895
-          },
-          {
-            "start": 943,
-            "end": 943
-          },
-          {
-            "start": 950,
-            "end": 950
-          },
-          {
-            "start": 992,
-            "end": 994
-          },
-          {
-            "start": 1001,
-            "end": 1001
-          },
-          {
-            "start": 1071,
-            "end": 1071
-          },
-          {
-            "start": 1167,
-            "end": 1167
-          },
-          {
-            "start": 1172,
-            "end": 1174
-          },
-          {
-            "start": 1558,
-            "end": 1558
-          },
-          {
-            "start": 1864,
-            "end": 1864
-          },
-          {
-            "start": 1933,
-            "end": 1933
-          },
-          {
-            "start": 2074,
-            "end": 2074
-          },
-          {
-            "start": 2224,
-            "end": 2224
-          },
-          {
-            "start": 2344,
-            "end": 2344
-          },
-          {
-            "start": 2397,
-            "end": 2397
-          },
-          {
-            "start": 2550,
-            "end": 2550
-          },
-          {
-            "start": 3123,
-            "end": 3123
-          },
-          {
-            "start": 3218,
-            "end": 3267
-          }
-        ],
-        "before_hash": "7bc874be400c9eae2a7c4c9ab893a434e13320591dd5d58a3753b913d8e7ba8f",
-        "after_hash": "dbedd583ce349145192328fb3af26c547ea37628747befbca83838598a9bfa40"
-      },
-      {
-        "file": "storage/framework/views/1fc1b30e9cf62b989b60f239b700222b.php",
-        "ranges": [
-          {
-            "start": 44,
-            "end": 44
-          }
-        ],
-        "before_hash": "b5d3129d06d350c99a47cacb9b76fcf9dd8e243eea8ae4de87d1b8dda6831e28",
-        "after_hash": "fc917c0a7d36375ab068876f1095503567e4a582e3aeb1841f0abe2be744ab1a"
-      },
-      {
-        "file": "storage/framework/views/2e96bb9ff094e7c4c3f8f4b6e14610c7.php",
-        "ranges": [
-          {
-            "start": 16,
-            "end": 16
-          }
-        ],
-        "before_hash": "5e704152e3a543bac0b49609ab0c4d42bd9a6801c55e7208abd560a0985ce3cd",
-        "after_hash": "356b4fb9c6fd47f352b0627466253d2a447d28c96dbadbb2b0b5ef966fc54771"
-      },
-      {
-        "file": "storage/framework/views/31053ab14a3c5b15383208bd7d96ceba.php",
-        "ranges": [
-          {
-            "start": 16,
-            "end": 16
-          }
-        ],
-        "before_hash": "7b6319e1c6618d63f0968fee0cb32b3d18d289ce43239683f5c28807990200cf",
-        "after_hash": "4ecb9350994e66ccbdb0758635eec9a27f8a9fe5ae496b9c6787c5440426a998"
-      },
-      {
-        "file": "storage/framework/views/3315204693b0fb39e45c2b7db8b6a07d.php",
-        "ranges": [
-          {
-            "start": 24,
-            "end": 24
-          },
-          {
-            "start": 107,
-            "end": 107
-          }
-        ],
-        "before_hash": "57992eb131aa76e7eb8316ea6ea3e95f3379439e9ca9994a97a40e00f5ece537",
-        "after_hash": "716f3028af912f7988d9c2ec74e1831f14e186d5e33159537bcd55a74bd595da"
-      },
-      {
-        "file": "storage/framework/views/4085bb9757e4829c79d78dd88c191ef3.php",
-        "ranges": [
-          {
-            "start": 174,
-            "end": 192
-          }
-        ],
-        "before_hash": "2e96ba5eba20896f6137778471ffdba5a9c1670b2307e5dffdaacf65b181b76d",
-        "after_hash": "1166d4765aaba99241c8fed6bdc093bd78f24c51a9c122895dae83e47f6277bc"
-      },
-      {
-        "file": "storage/framework/views/42aeee8812c416aba4fad1bd8a66fe62.php",
-        "ranges": [
-          {
-            "start": 7,
-            "end": 8
-          }
-        ],
-        "before_hash": "a2d52d8823c4f4cd555c470181730cdd6d1124f5a501d59d8a9b3a92ab351d2a",
-        "after_hash": "0720c8a21a1146711227d182cd803ccece79ee7a5e5e5d73e778b473397eb972"
-      },
-      {
-        "file": "storage/framework/views/810fcf6c3420e0944b55a1920eb53211.php",
-        "ranges": [
-          {
-            "start": 44,
-            "end": 44
-          },
-          {
-            "start": 54,
-            "end": 54
-          }
-        ],
-        "before_hash": "c3b3c3cb80df7d3b936ccc380326d2f5f7b6d182be3002ededb55e8b0dc56a2f",
-        "after_hash": "3520c8f520b9075c3ff9ea41a124709fc7dbc68418cfacf75201c40bebdfe42d"
-      },
-      {
-        "file": "storage/framework/views/92ca2d3e9844d4f470495b1f9e70cf64.php",
-        "ranges": [
-          {
-            "start": 31,
-            "end": 31
-          },
-          {
-            "start": 33,
-            "end": 33
-          },
-          {
-            "start": 151,
-            "end": 151
-          }
-        ],
-        "before_hash": "cbcc10e2d6b53633814a85cb2df3f4542a4bb186eaa708e26a4b52cb7d197123",
-        "after_hash": "e645033b1e826d971e49088549290ca6ea73ad0bef614495ee42ec2f4e624277"
-      },
-      {
-        "file": "storage/framework/views/93631687d73504be1ea823cc9f733533.php",
-        "ranges": [
-          {
-            "start": 27,
-            "end": 27
-          },
-          {
-            "start": 66,
-            "end": 66
-          }
-        ],
-        "before_hash": "9447d31f719d95171de47c83e60b1a0fd2782b6ed65d1c2761b0d3644600fec2",
-        "after_hash": "50d632f52b281c682f8fef8af5d65e78636795a3f50229e076a062b3bb6e9d0f"
-      },
-      {
-        "file": "storage/framework/views/99ebbd16773543215394683559811f54.php",
-        "ranges": [
-          {
-            "start": 20,
-            "end": 20
-          }
-        ],
-        "before_hash": "c9f2b49c3c11b5a29c6231f59efebf2f0d006dde0d0f795f58b992b51add0b78",
-        "after_hash": "a19d544d720c0588550acc61e9cb043da83371c1e25a5ab5e6de252bae12584e"
-      },
-      {
-        "file": "storage/framework/views/aa3649c85fb4e7500af91bdf9f93c09a.php",
-        "ranges": [
-          {
-            "start": 21,
-            "end": 21
-          },
-          {
-            "start": 91,
-            "end": 91
-          },
-          {
-            "start": 177,
-            "end": 177
-          }
-        ],
-        "before_hash": "7a4c949de74db1962d17a5c0af8f0fc7842a0156879e312fae98881ebc07dae0",
-        "after_hash": "940cbcdad9a061c9e4a6960394bc37715c1675f79511418bcfba82e328e7edd3"
-      },
-      {
-        "file": "storage/framework/views/cf4ae1cbd7ab64050bbec882838606e7.php",
-        "ranges": [
-          {
-            "start": 10,
-            "end": 10
-          },
-          {
-            "start": 32,
-            "end": 32
-          },
-          {
-            "start": 59,
-            "end": 60
-          },
-          {
-            "start": 63,
-            "end": 64
-          },
-          {
-            "start": 68,
-            "end": 75
-          },
-          {
-            "start": 77,
-            "end": 83
-          }
-        ],
-        "before_hash": "73eeaeaf02b5b113d04c1e69dbf41f55baa8f443033180b4c5d49b1e10c93335",
-        "after_hash": "76c37befb5a449dab69acd86313ff78aacf286bf49f9734880594f4daa95dcec"
+        "before_hash": "8ab5f9abdc3878468b24831b951b9a3e16ac4c86fd0dcc0eada79faac74d53b5",
+        "after_hash": "bde4caf244b3e37fe164321015ff0c6e5a76fa6062084828caf68ad701825b7e"
       }
     ]
   },
   "timing": {
-    "started_at": "2026-11-06T19:47:50.900Z",
-    "completed_at": "2026-11-06T19:47:53.660Z",
-    "duration_ms": 2760,
+    "started_at": "2026-11-06T20:08:47.178Z",
+    "completed_at": "2026-11-06T20:08:49.641Z",
+    "duration_ms": 2463,
     "measurement": "hook_wall_clock"
   },
   "tokens": {
@@ -939,11 +105,11 @@
     "schemaVersion": "mimosa-gate-telemetry/v1",
     "profile": "gate",
     "operation": "Stop",
-    "outcome": "partial/INCONCLUSIVE",
-    "latencyMs": 2760,
-    "peakMemoryBytes": 97296384,
+    "outcome": "complete",
+    "latencyMs": 2463,
+    "peakMemoryBytes": 146411520,
     "memoryMeasurement": "max-observed-process-rss",
-    "scannedFiles": 0,
+    "scannedFiles": 1,
     "cache": {
       "hits": 0,
       "misses": 0,
@@ -968,8 +134,8 @@
   "finding_events": [],
   "findings": [],
   "artifacts": {
-    "immutable_report": ".mimosa/reports/task-review-sess_099766c9-a2c1-4371-9a97-8d50eff811dc-20261106T194753660Z-17124-a0a061bc471b.json",
+    "immutable_report": ".mimosa/reports/task-review-sess_099766c9-a2c1-4371-9a97-8d50eff811dc-20261106T200849641Z-21952-26e9bcae8981.json",
     "latest_report": ".mimosa/reports/task-review-sess_099766c9-a2c1-4371-9a97-8d50eff811dc.json",
-    "history_summary": ".mimosa/history/run-20261106T194753660Z-17124-a0a061bc471b.json"
+    "history_summary": ".mimosa/history/run-20261106T200849641Z-21952-26e9bcae8981.json"
   }
 }
