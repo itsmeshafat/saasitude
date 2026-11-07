@@ -1243,6 +1243,13 @@
         color: var(--popover-foreground);
     }
 
+    /* Hover + selected item follow the theme primary */
+    select option:hover,
+    select option:checked {
+        background-color: var(--primary);
+        color: var(--primary-foreground);
+    }
+
     .form-input::placeholder,
     .form-textarea::placeholder {
         color: var(--muted-foreground);

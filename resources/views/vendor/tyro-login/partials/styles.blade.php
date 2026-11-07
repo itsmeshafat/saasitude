@@ -1138,3 +1138,9 @@
         background-color: var(--popover);
         color: var(--popover-foreground);
     }
+
+    select option:hover,
+    select option:checked {
+        background-color: var(--primary);
+        color: var(--primary-foreground);
+    }
