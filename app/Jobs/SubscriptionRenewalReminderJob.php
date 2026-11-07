@@ -25,11 +25,8 @@ class SubscriptionRenewalReminderJob implements ShouldQueue
             return;
         }
 
+        // owner_id is NOT NULL with cascadeOnDelete — an owner always exists.
         $owner = $subscription->workspace->owner;
-
-        if (! $owner) {
-            return;
-        }
 
         Mail::to($owner->email)->send(
             new SubscriptionRenewalReminder($subscription, $this->daysUntilRenewal),

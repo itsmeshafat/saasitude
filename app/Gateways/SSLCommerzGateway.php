@@ -49,19 +49,19 @@ class SSLCommerzGateway implements PaymentGateway
         $tranId = 'ssl_'.Str::random(16);
 
         $owner = $workspace->owner;
-        $nameParts = explode(' ', $owner?->name ?? 'Customer', 2);
+        $nameParts = explode(' ', $owner->name ?? 'Customer', 2);
 
         $params = [
             'store_id' => config('services.sslcommerz.store_id'),
             'store_passwd' => config('services.sslcommerz.store_password'),
-            'total_amount' => number_format($price->amount / 100, 2, '.', ''),
+            'total_amount' => number_format($price->amount_minor / 100, 2, '.', ''),
             'currency' => strtoupper($price->currency),
             'tran_id' => $tranId,
             'success_url' => $options->successUrl,
             'fail_url' => $options->cancelUrl,
             'cancel_url' => $options->cancelUrl,
-            'cus_name' => $owner?->name ?? $workspace->name,
-            'cus_email' => $owner?->email ?? 'unknown@example.com',
+            'cus_name' => $owner->name ?? $workspace->name,
+            'cus_email' => $owner->email ?? 'unknown@example.com',
             'cus_phone' => '01700000000',
             'cus_add1' => 'Bangladesh',
             'cus_city' => 'Dhaka',
@@ -88,7 +88,7 @@ class SSLCommerzGateway implements PaymentGateway
         \Cache::put("sslcommerz_pending_{$tranId}", [
             'workspace_id' => $workspace->id,
             'plan_price_id' => $price->id,
-            'amount' => $price->amount,
+            'amount' => $price->amount_minor,
             'currency' => $price->currency,
         ], now()->addHour());
 

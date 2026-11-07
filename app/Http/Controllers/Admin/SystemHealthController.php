@@ -44,11 +44,11 @@ class SystemHealthController extends Controller
     private function databaseSizeMb(): string
     {
         try {
-            $size = DB::selectOne('SELECT pg_database_size(current_database()) AS bytes')?->bytes
-                ?? DB::selectOne('SELECT SUM(data_length + index_length) AS bytes FROM information_schema.tables')?->bytes
+            $size = DB::selectOne('SELECT pg_database_size(current_database()) AS bytes')->bytes
+                ?? DB::selectOne('SELECT SUM(data_length + index_length) AS bytes FROM information_schema.tables')->bytes
                 ?? 0;
 
-            return round($size / 1024 / 1024, 1);
+            return number_format($size / 1024 / 1024, 1);
         } catch (\Throwable) {
             return 'unknown';
         }

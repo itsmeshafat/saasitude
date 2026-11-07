@@ -7,6 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
+/**
+ * @property int $id
+ * @property string|null $key
+ * @property string|null $name
+ * @property string|null $type
+ * @property string|null $unit
+ */
 class Feature extends Model
 {
     use HasCrud;
@@ -31,11 +38,17 @@ class Feature extends Model
         'unit' => ['type' => 'text', 'label' => 'Unit', 'rules' => 'nullable|string|max:50', 'help_text' => 'e.g. seats, calls/month'],
     ];
 
+    /**
+     * @return HasMany<PlanFeature, $this>
+     */
     public function planFeatures(): HasMany
     {
         return $this->hasMany(PlanFeature::class);
     }
 
+    /**
+     * @return BelongsToMany<Plan, $this>
+     */
     public function plans(): BelongsToMany
     {
         return $this->belongsToMany(Plan::class, 'plan_features')

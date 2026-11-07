@@ -8,7 +8,22 @@ use HasinHayder\TyroDashboard\Concerns\HasCrud;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Collection;
 
+/**
+ * @property int $id
+ * @property string|null $code
+ * @property string|null $type
+ * @property int|null $value
+ * @property string|null $currency
+ * @property array|null $plan_ids
+ * @property int|null $max_redemptions
+ * @property int|null $redeemed_count
+ * @property Carbon|null $expires_at
+ * @property bool $is_active
+ * @property-read Collection<int, CouponRedemption> $redemptions
+ */
 class Coupon extends Model
 {
     /** @use HasFactory<CouponFactory> */
@@ -45,6 +60,9 @@ class Coupon extends Model
         'is_active' => ['type' => 'boolean', 'label' => 'Active'],
     ];
 
+    /**
+     * @return HasMany<CouponRedemption, $this>
+     */
     public function redemptions(): HasMany
     {
         return $this->hasMany(CouponRedemption::class);

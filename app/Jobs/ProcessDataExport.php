@@ -44,7 +44,7 @@ class ProcessDataExport implements ShouldQueue
             return;
         }
 
-        Mail::to($export->user->email)->queue(new DataExportReady($export->user));
+        Mail::to($export->user->email)->queue(new DataExportReady);
         $notifications->send(
             $export->user,
             'data.export',
@@ -62,17 +62,17 @@ class ProcessDataExport implements ShouldQueue
             'account' => [
                 'name' => $user->name,
                 'email' => $user->email,
-                'created_at' => $user->created_at?->toIso8601String(),
-                'email_verified_at' => $user->email_verified_at?->toIso8601String(),
+                'created_at' => $user->created_at->toIso8601String(),
+                'email_verified_at' => $user->email_verified_at->toIso8601String(),
             ],
-            'workspaces' => $user->workspaces()->with(['workspaceMembers.user:id,name,email', 'subscriptions.plan:id,name', 'invitations'])->get()->map(function ($w) {
+            'workspaces' => $user->workspaces()->with(['workspaceMembers.user:id,name,email', 'subscriptions.plan:id,name', 'invitations'])->get()->map(function ($w) use ($user) {
                 return [
                     'id' => $w->id,
                     'name' => $w->name,
-                    'role' => $w->pivot?->role,
-                    'members' => $w->workspaceMembers->map(fn ($m) => ['name' => $m->user?->name, 'email' => $m->user?->email, 'role' => $m->role]),
-                    'subscriptions' => $w->subscriptions->map(fn ($s) => ['plan' => $s->plan?->name, 'status' => $s->status, 'created_at' => $s->created_at?->toIso8601String()]),
-                    'invitations' => $w->invitations->map(fn ($i) => ['email' => $i->email, 'role' => $i->role, 'created_at' => $i->created_at?->toIso8601String()]),
+                    'role' => data_get($w->workspaceMembers->firstWhere('user_id', $user->id), 'role', 'member'),
+                    'members' => $w->workspaceMembers->map(fn ($m) => ['name' => $m->user->name, 'email' => $m->user->email, 'role' => $m->role]),
+                    'subscriptions' => $w->subscriptions->map(fn ($s) => ['plan' => $s->plan->name, 'status' => $s->status, 'created_at' => $s->created_at->toIso8601String()]),
+                    'invitations' => $w->invitations->map(fn ($i) => ['email' => $i->email, 'role' => $i->role, 'created_at' => $i->created_at->toIso8601String()]),
                 ];
             })->all(),
             'payments' => Payment::whereHas('workspace', fn ($q) => $q->where('owner_id', $user->id))->get(['gateway', 'amount', 'currency', 'status', 'created_at'])->all(),

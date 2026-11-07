@@ -2,11 +2,9 @@
 
 namespace App\Mail;
 
-use App\Models\User;
-
 class DataExportReady extends TransactionalMail
 {
-    public function __construct(User $model)
+    public function __construct()
     {
         parent::__construct(
             subjectLine: 'Your data export is ready',

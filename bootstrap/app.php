@@ -2,8 +2,10 @@
 
 use App\Http\Middleware\EnsureEntitlement;
 use App\Http\Middleware\EnsureWorkspaceContext;
+use App\Http\Middleware\LocalOnly;
 use App\Http\Middleware\PastDueBanner;
 use App\Http\Middleware\RequireIdempotencyKey;
+use App\Http\Middleware\SecurityHeaders;
 use App\Http\Middleware\TrialEndingNotice;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Auth\AuthenticationException;
@@ -27,9 +29,11 @@ return Application::configure(basePath: dirname(__DIR__))
             'workspace.context' => EnsureWorkspaceContext::class,
             'idempotency' => RequireIdempotencyKey::class,
             // PROTOTYPE: allow the throwaway prototype route in local env only
-            'proto.local' => \App\Http\Middleware\LocalOnly::class,
+            'proto.local' => LocalOnly::class,
         ]);
         $middleware->validateCsrfTokens(except: ['webhooks/*']);
+        // Baseline security headers on every response (web + API)
+        $middleware->append(SecurityHeaders::class);
         // Billing banners on authenticated dashboard pages (Phase 10)
         $middleware->web(append: [TrialEndingNotice::class, PastDueBanner::class]);
     })

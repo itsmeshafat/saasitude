@@ -6,6 +6,16 @@ use HasinHayder\TyroDashboard\Concerns\HasCrud;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
+/**
+ * @property int $id
+ * @property int $plan_id
+ * @property string|null $gateway
+ * @property string|null $interval
+ * @property string|null $currency
+ * @property int|null $amount_minor
+ * @property string|null $gateway_price_id
+ * @property-read Plan $plan
+ */
 class PlanPrice extends Model
 {
     use HasCrud;
@@ -47,6 +57,9 @@ class PlanPrice extends Model
         'gateway_price_id' => ['type' => 'text', 'label' => 'Gateway Price ID', 'rules' => 'nullable|string'],
     ];
 
+    /**
+     * @return BelongsTo<Plan, $this>
+     */
     public function plan(): BelongsTo
     {
         return $this->belongsTo(Plan::class);

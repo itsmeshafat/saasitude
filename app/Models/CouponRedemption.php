@@ -2,14 +2,23 @@
 
 namespace App\Models;
 
-use Database\Factories\CouponRedemptionFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Carbon;
 
+/**
+ * @property int $id
+ * @property int $coupon_id
+ * @property int $workspace_id
+ * @property string|null $gateway_coupon_id
+ * @property int|null $amount_off_minor
+ * @property Carbon|null $applied_at
+ * @property-read Coupon $coupon
+ * @property-read Workspace $workspace
+ */
 class CouponRedemption extends Model
 {
-    /** @use HasFactory<CouponRedemptionFactory> */
     use HasFactory;
 
     protected $fillable = [
@@ -21,11 +30,17 @@ class CouponRedemption extends Model
         'applied_at' => 'datetime',
     ];
 
+    /**
+     * @return BelongsTo<Coupon, $this>
+     */
     public function coupon(): BelongsTo
     {
         return $this->belongsTo(Coupon::class);
     }
 
+    /**
+     * @return BelongsTo<Workspace, $this>
+     */
     public function workspace(): BelongsTo
     {
         return $this->belongsTo(Workspace::class);

@@ -47,7 +47,8 @@ class StripeGateway implements PaymentGateway
 
         $customer = $this->stripe()->customers->create([
             'name' => $workspace->name,
-            'metadata' => ['workspace_id' => $workspace->id],
+            // Stripe metadata values must be strings.
+            'metadata' => ['workspace_id' => (string) $workspace->id],
         ]);
 
         return GatewayCustomer::create([
@@ -70,8 +71,8 @@ class StripeGateway implements PaymentGateway
             ]],
             'success_url' => $options->successUrl,
             'cancel_url' => $options->cancelUrl,
-            'metadata' => ['workspace_id' => $workspace->id, 'plan_price_id' => $price->id],
-            'subscription_data' => ['metadata' => ['workspace_id' => $workspace->id, 'plan_price_id' => $price->id]],
+            'metadata' => ['workspace_id' => (string) $workspace->id, 'plan_price_id' => (string) $price->id],
+            'subscription_data' => ['metadata' => ['workspace_id' => (string) $workspace->id, 'plan_price_id' => (string) $price->id]],
         ];
 
         if ($options->trialDays !== null && $options->trialDays > 0) {
@@ -187,8 +188,8 @@ class StripeGateway implements PaymentGateway
             'gateway_customer_id' => $stripeSubscription->customer,
             'status' => $status,
             'trial_ends_at' => $trialEnd,
-            'current_period_start' => Carbon::createFromTimestamp($stripeSubscription->current_period_start),
-            'current_period_end' => Carbon::createFromTimestamp($stripeSubscription->current_period_end),
+            'current_period_start' => Carbon::createFromTimestamp($stripeSubscription['current_period_start']),
+            'current_period_end' => Carbon::createFromTimestamp($stripeSubscription['current_period_end']),
         ]);
 
         app(EntitlementService::class)->flush((int) $workspaceId);

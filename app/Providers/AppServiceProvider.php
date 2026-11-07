@@ -11,6 +11,7 @@ use App\Services\GatewayCustomerResolver;
 use App\Services\GatewayManager;
 use App\Services\Push\FCMDriver;
 use App\Services\SettingsService;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Blade;
@@ -33,6 +34,10 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
+        // N+1 audit (Phase 12): lazy loads throw outside production so tests
+        // and local browsing surface missing eager loads immediately.
+        Model::preventLazyLoading(! app()->isProduction());
+
         // Glass-theme pagination everywhere (Tyro .pagination classes).
         Paginator::defaultView('pagination::tyro');
         Paginator::defaultSimpleView('pagination::tyro');

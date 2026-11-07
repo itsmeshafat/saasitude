@@ -30,7 +30,7 @@ class GenerateInvoice
                 'status' => 'paid',
                 'line_items' => [
                     [
-                        'description' => $payment->subscription?->plan?->name ?? 'Subscription',
+                        'description' => $payment->subscription?->plan->name ?? 'Subscription',
                         'amount' => $payment->amount,
                         'currency' => $payment->currency,
                     ],

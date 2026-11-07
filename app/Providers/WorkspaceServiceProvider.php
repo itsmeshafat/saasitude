@@ -10,6 +10,7 @@ use App\Mail\PaymentFailedMail;
 use App\Mail\PlanChanged;
 use App\Mail\SubscriptionCanceledMail;
 use App\Mail\TrialStarted;
+use App\Models\User;
 use App\Services\NotificationService;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Event;
@@ -23,6 +24,11 @@ class WorkspaceServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Event::listen(Registered::class, function (Registered $event): void {
+            // The framework event carries Authenticatable; only our User has workspaces.
+            if (! $event->user instanceof User) {
+                return;
+            }
+
             app(CreateWorkspace::class)->execute($event->user, $event->user->name, true);
         });
 

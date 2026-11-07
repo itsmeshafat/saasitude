@@ -185,7 +185,8 @@ class Phase10NotificationsEmailTest extends TestCase
 
         $staff = User::factory()->create();
         $service->reply($ticket, $staff, 'On it — checking now.', isStaff: true);
-        $this->assertSame('open', $ticket->fresh()->status); // awaiting customer
+        // Reply must NOT auto-close; assert on the DB row (fresh() literal inference here).
+        $this->assertDatabaseHas('support_tickets', ['id' => $ticket->id, 'status' => 'open']); // awaiting customer
         // Staff reply notifies the customer in-app
         $this->assertDatabaseHas('notifications', ['user_id' => $this->user->id, 'type' => 'support.reply']);
 

@@ -2,15 +2,24 @@
 
 namespace App\Http\Resources\Api\V1;
 
+use App\Models\Plan;
+use App\Models\PlanFeature;
+use App\Models\PlanPrice;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Collection;
 
+/**
+ * @property Plan $resource
+ * @property int $id
+ * @property string|null $name
+ * @property string|null $slug
+ * @property string|null $description
+ * @property-read Collection<int, PlanPrice> $prices
+ * @property-read Collection<int, PlanFeature> $planFeatures
+ */
 class PlanResource extends JsonResource
 {
-    /**
-     * @param  string|null  $currency  filter prices to one currency when given
-     * @return array<string, mixed>
-     */
     public function toArray(Request $request): array
     {
         $currency = $request->query('currency');
@@ -35,8 +44,7 @@ class PlanResource extends JsonResource
             'description' => $this->description,
             'prices' => $prices,
             'features' => $this->whenLoaded('planFeatures', fn () => $this->planFeatures
-                ->filter(fn ($pf) => $pf->feature !== null)
-                ->mapWithKeys(fn ($pf) => [
+                ->mapWithKeys(fn (PlanFeature $pf) => [
                     $pf->feature->key => $pf->feature->type === 'boolean'
                         ? filter_var($pf->value, FILTER_VALIDATE_BOOLEAN)
                         : (int) $pf->value,

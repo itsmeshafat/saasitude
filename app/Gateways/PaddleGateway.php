@@ -64,7 +64,7 @@ class PaddleGateway implements PaymentGateway
 
         $owner = $workspace->owner;
         $customer = $this->paddle()->customers->create(new CreateCustomer(
-            email: $owner?->email ?? 'unknown@example.com',
+            email: $owner->email ?? 'unknown@example.com',
             name: $workspace->name,
         ));
 
@@ -88,7 +88,7 @@ class PaddleGateway implements PaymentGateway
             ]),
         ));
 
-        return new CheckoutSession($transaction->checkout?->url ?? '', $transaction->id);
+        return new CheckoutSession($transaction->checkout->url ?? '', $transaction->id);
     }
 
     public function portalUrl(Workspace $workspace, string $returnUrl): ?string

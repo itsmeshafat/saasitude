@@ -1,0 +1,15 @@
+includes:
+    - vendor/larastan/larastan/extension.neon
+
+parameters:
+    # Level decision recorded in docs/adr/ADR-012-static-analysis-larastan.md
+    level: 5
+
+    paths:
+        - app/
+        - database/
+        - tests/
+
+    excludePaths:
+        - database/migrations/*
+        - storage/

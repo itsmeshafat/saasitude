@@ -97,7 +97,7 @@ class EntitlementServiceTest extends TestCase
     {
         $this->seedFreePlan();
         $this->service->for($this->makeWorkspace())->enforce('max_seats');
-        $this->assertTrue(true);
+        $this->expectNotToPerformAssertions();
     }
 
     public function test_enforce_throws_for_missing_feature_key(): void

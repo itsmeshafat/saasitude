@@ -2,9 +2,21 @@
 
 namespace App\Http\Resources\Api\V1;
 
+use App\Models\Subscription;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Carbon;
 
+/**
+ * @property Subscription $resource
+ * @property int $id
+ * @property string|null $gateway
+ * @property string|null $status
+ * @property Carbon|null $trial_ends_at
+ * @property Carbon|null $current_period_start
+ * @property Carbon|null $current_period_end
+ * @property bool $cancel_at_period_end
+ */
 class SubscriptionResource extends JsonResource
 {
     /** @return array<string, mixed> */

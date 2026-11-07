@@ -40,7 +40,7 @@ class DeleteUserAccount
         }
 
         // The confirmation email must go out while the account still exists.
-        Mail::to($user->email)->queue(new AccountDeletionConfirmed($user));
+        Mail::to($user->email)->queue(new AccountDeletionConfirmed);
 
         DB::transaction(function () use ($user): void {
             TyroAudit::log('account.deleted', $user, $user->only(['name', 'email']), null);

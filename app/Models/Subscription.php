@@ -8,7 +8,26 @@ use App\Events\SubscriptionCanceled;
 use App\Services\EntitlementService;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Carbon;
 
+/**
+ * @property int $id
+ * @property int $workspace_id
+ * @property int $plan_id
+ * @property string|null $gateway
+ * @property string|null $gateway_subscription_id
+ * @property string|null $gateway_customer_id
+ * @property string|null $status
+ * @property Carbon|null $trial_ends_at
+ * @property Carbon|null $current_period_start
+ * @property Carbon|null $current_period_end
+ * @property bool $cancel_at_period_end
+ * @property Carbon|null $canceled_at
+ * @property array|null $metadata
+ * @property bool $app_driven_renewal
+ * @property-read Workspace $workspace
+ * @property-read Plan $plan
+ */
 class Subscription extends Model
 {
     protected $fillable = [
@@ -27,11 +46,17 @@ class Subscription extends Model
         'metadata' => 'array',
     ];
 
+    /**
+     * @return BelongsTo<Workspace, $this>
+     */
     public function workspace(): BelongsTo
     {
         return $this->belongsTo(Workspace::class);
     }
 
+    /**
+     * @return BelongsTo<Plan, $this>
+     */
     public function plan(): BelongsTo
     {
         return $this->belongsTo(Plan::class);
