@@ -1,0 +1,472 @@
+{
+  "schemaVersion": "mimosa-finding-ledger-batch/v1",
+  "batchId": "stop-20261107T000020065Z-13668-3f47db1c6264",
+  "runId": "20261107T000020065Z-13668-3f47db1c6264",
+  "runStatus": "inconclusive",
+  "coverage": {
+    "status": "partial",
+    "reasons": [
+      {
+        "code": "baseline_snapshot_unreadable",
+        "stage": "baseline-read",
+        "target": "storage/framework/views/14f2172eff67d753dbbe3581fa2fdf29.php",
+        "detail": "file is missing from task baseline",
+        "affectsCompletion": true
+      },
+      {
+        "code": "baseline_snapshot_unreadable",
+        "stage": "baseline-read",
+        "target": "storage/framework/views/2ab078eb7e9a19bea3c3a267e6a0543d.php",
+        "detail": "file is missing from task baseline",
+        "affectsCompletion": true
+      },
+      {
+        "code": "baseline_snapshot_unreadable",
+        "stage": "baseline-read",
+        "target": "storage/framework/views/3380d70b73e093522f6a3a7e307b777b.php",
+        "detail": "file is missing from task baseline",
+        "affectsCompletion": true
+      },
+      {
+        "code": "baseline_snapshot_unreadable",
+        "stage": "baseline-read",
+        "target": "storage/framework/views/4552424f2e0b1aec44773bc45e4a7566.php",
+        "detail": "file is missing from task baseline",
+        "affectsCompletion": true
+      },
+      {
+        "code": "baseline_snapshot_unreadable",
+        "stage": "baseline-read",
+        "target": "storage/framework/views/552d3a9144896acaa751469897b9d9fb.php",
+        "detail": "file is missing from task baseline",
+        "affectsCompletion": true
+      },
+      {
+        "code": "baseline_snapshot_unreadable",
+        "stage": "baseline-read",
+        "target": "storage/framework/views/5680eb4b6388f8c955790a2bd17339ef.php",
+        "detail": "file is missing from task baseline",
+        "affectsCompletion": true
+      },
+      {
+        "code": "baseline_snapshot_unreadable",
+        "stage": "baseline-read",
+        "target": "storage/framework/views/6799b2035535c7b936fb1fb88278f0b8.php",
+        "detail": "file is missing from task baseline",
+        "affectsCompletion": true
+      },
+      {
+        "code": "baseline_snapshot_unreadable",
+        "stage": "baseline-read",
+        "target": "storage/framework/views/748734345169925b2ddc394e89d700fe.php",
+        "detail": "file is missing from task baseline",
+        "affectsCompletion": true
+      },
+      {
+        "code": "baseline_snapshot_unreadable",
+        "stage": "baseline-read",
+        "target": "storage/framework/views/7fd4221c00cc0b90b47949496f9c7ac4.php",
+        "detail": "file is missing from task baseline",
+        "affectsCompletion": true
+      },
+      {
+        "code": "baseline_snapshot_unreadable",
+        "stage": "baseline-read",
+        "target": "storage/framework/views/9c0ca0513155529922849d84e1b9e47e.php",
+        "detail": "file is missing from task baseline",
+        "affectsCompletion": true
+      },
+      {
+        "code": "baseline_snapshot_unreadable",
+        "stage": "baseline-read",
+        "target": "storage/framework/views/9e4fc4fa709324ecb192b8073ff35135.php",
+        "detail": "file is missing from task baseline",
+        "affectsCompletion": true
+      },
+      {
+        "code": "baseline_snapshot_unreadable",
+        "stage": "baseline-read",
+        "target": "storage/framework/views/a49d20d64775ee154f82ff65e56096f7.php",
+        "detail": "file is missing from task baseline",
+        "affectsCompletion": true
+      },
+      {
+        "code": "baseline_snapshot_unreadable",
+        "stage": "baseline-read",
+        "target": "storage/framework/views/b8d49a997a5a195ac9a2e744daa1fd33.php",
+        "detail": "file is missing from task baseline",
+        "affectsCompletion": true
+      },
+      {
+        "code": "baseline_snapshot_unreadable",
+        "stage": "baseline-read",
+        "target": "storage/framework/views/ee7d0821d0646cd75d0ca57ce6ed1c63.php",
+        "detail": "file is missing from task baseline",
+        "affectsCompletion": true
+      },
+      {
+        "code": "scanner_failed",
+        "stage": "scan",
+        "target": "resources/views/partials/_password-toggle.blade.php",
+        "detail": "spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+        "affectsCompletion": true
+      },
+      {
+        "code": "scanner_failed",
+        "stage": "scan",
+        "target": "resources/views/vendor/tyro-dashboard/partials/scripts.blade.php",
+        "detail": "spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+        "affectsCompletion": true
+      },
+      {
+        "code": "scanner_failed",
+        "stage": "scan",
+        "target": "storage/framework/views/14f2172eff67d753dbbe3581fa2fdf29.php",
+        "detail": "spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+        "affectsCompletion": true
+      },
+      {
+        "code": "scanner_failed",
+        "stage": "scan",
+        "target": "storage/framework/views/1f9c7e08c63df6ecaf32d1bc0545fe2a.php",
+        "detail": "spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+        "affectsCompletion": true
+      },
+      {
+        "code": "scanner_failed",
+        "stage": "scan",
+        "target": "storage/framework/views/2ab078eb7e9a19bea3c3a267e6a0543d.php",
+        "detail": "spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+        "affectsCompletion": true
+      },
+      {
+        "code": "scanner_failed",
+        "stage": "scan",
+        "target": "storage/framework/views/3380d70b73e093522f6a3a7e307b777b.php",
+        "detail": "spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+        "affectsCompletion": true
+      },
+      {
+        "code": "scanner_failed",
+        "stage": "scan",
+        "target": "storage/framework/views/42aeee8812c416aba4fad1bd8a66fe62.php",
+        "detail": "spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+        "affectsCompletion": true
+      },
+      {
+        "code": "scanner_failed",
+        "stage": "scan",
+        "target": "storage/framework/views/4552424f2e0b1aec44773bc45e4a7566.php",
+        "detail": "spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+        "affectsCompletion": true
+      },
+      {
+        "code": "scanner_failed",
+        "stage": "scan",
+        "target": "storage/framework/views/552d3a9144896acaa751469897b9d9fb.php",
+        "detail": "spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+        "affectsCompletion": true
+      },
+      {
+        "code": "scanner_failed",
+        "stage": "scan",
+        "target": "storage/framework/views/5680eb4b6388f8c955790a2bd17339ef.php",
+        "detail": "spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+        "affectsCompletion": true
+      },
+      {
+        "code": "scanner_failed",
+        "stage": "scan",
+        "target": "storage/framework/views/6799b2035535c7b936fb1fb88278f0b8.php",
+        "detail": "spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+        "affectsCompletion": true
+      },
+      {
+        "code": "scanner_failed",
+        "stage": "scan",
+        "target": "storage/framework/views/73cb7aba6393b29c2f2a74a56cbeb511.php",
+        "detail": "spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+        "affectsCompletion": true
+      },
+      {
+        "code": "scanner_failed",
+        "stage": "scan",
+        "target": "storage/framework/views/748734345169925b2ddc394e89d700fe.php",
+        "detail": "spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+        "affectsCompletion": true
+      },
+      {
+        "code": "scanner_failed",
+        "stage": "scan",
+        "target": "storage/framework/views/7fd4221c00cc0b90b47949496f9c7ac4.php",
+        "detail": "spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+        "affectsCompletion": true
+      },
+      {
+        "code": "scanner_failed",
+        "stage": "scan",
+        "target": "storage/framework/views/9c0ca0513155529922849d84e1b9e47e.php",
+        "detail": "spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+        "affectsCompletion": true
+      },
+      {
+        "code": "scanner_failed",
+        "stage": "scan",
+        "target": "storage/framework/views/9e4fc4fa709324ecb192b8073ff35135.php",
+        "detail": "spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+        "affectsCompletion": true
+      },
+      {
+        "code": "scanner_failed",
+        "stage": "scan",
+        "target": "storage/framework/views/a49d20d64775ee154f82ff65e56096f7.php",
+        "detail": "spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+        "affectsCompletion": true
+      },
+      {
+        "code": "scanner_failed",
+        "stage": "scan",
+        "target": "storage/framework/views/b8d49a997a5a195ac9a2e744daa1fd33.php",
+        "detail": "spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+        "affectsCompletion": true
+      },
+      {
+        "code": "scanner_failed",
+        "stage": "scan",
+        "target": "storage/framework/views/ee7d0821d0646cd75d0ca57ce6ed1c63.php",
+        "detail": "spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+        "affectsCompletion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "baseline-read",
+        "target": "storage/framework/views/14f2172eff67d753dbbe3581fa2fdf29.php",
+        "detail": "baseline_snapshot_unreadable: file is missing from task baseline",
+        "affectsCompletion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "baseline-read",
+        "target": "storage/framework/views/2ab078eb7e9a19bea3c3a267e6a0543d.php",
+        "detail": "baseline_snapshot_unreadable: file is missing from task baseline",
+        "affectsCompletion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "baseline-read",
+        "target": "storage/framework/views/3380d70b73e093522f6a3a7e307b777b.php",
+        "detail": "baseline_snapshot_unreadable: file is missing from task baseline",
+        "affectsCompletion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "baseline-read",
+        "target": "storage/framework/views/4552424f2e0b1aec44773bc45e4a7566.php",
+        "detail": "baseline_snapshot_unreadable: file is missing from task baseline",
+        "affectsCompletion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "baseline-read",
+        "target": "storage/framework/views/552d3a9144896acaa751469897b9d9fb.php",
+        "detail": "baseline_snapshot_unreadable: file is missing from task baseline",
+        "affectsCompletion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "baseline-read",
+        "target": "storage/framework/views/5680eb4b6388f8c955790a2bd17339ef.php",
+        "detail": "baseline_snapshot_unreadable: file is missing from task baseline",
+        "affectsCompletion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "baseline-read",
+        "target": "storage/framework/views/6799b2035535c7b936fb1fb88278f0b8.php",
+        "detail": "baseline_snapshot_unreadable: file is missing from task baseline",
+        "affectsCompletion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "baseline-read",
+        "target": "storage/framework/views/748734345169925b2ddc394e89d700fe.php",
+        "detail": "baseline_snapshot_unreadable: file is missing from task baseline",
+        "affectsCompletion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "baseline-read",
+        "target": "storage/framework/views/7fd4221c00cc0b90b47949496f9c7ac4.php",
+        "detail": "baseline_snapshot_unreadable: file is missing from task baseline",
+        "affectsCompletion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "baseline-read",
+        "target": "storage/framework/views/9c0ca0513155529922849d84e1b9e47e.php",
+        "detail": "baseline_snapshot_unreadable: file is missing from task baseline",
+        "affectsCompletion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "baseline-read",
+        "target": "storage/framework/views/9e4fc4fa709324ecb192b8073ff35135.php",
+        "detail": "baseline_snapshot_unreadable: file is missing from task baseline",
+        "affectsCompletion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "baseline-read",
+        "target": "storage/framework/views/a49d20d64775ee154f82ff65e56096f7.php",
+        "detail": "baseline_snapshot_unreadable: file is missing from task baseline",
+        "affectsCompletion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "baseline-read",
+        "target": "storage/framework/views/b8d49a997a5a195ac9a2e744daa1fd33.php",
+        "detail": "baseline_snapshot_unreadable: file is missing from task baseline",
+        "affectsCompletion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "baseline-read",
+        "target": "storage/framework/views/ee7d0821d0646cd75d0ca57ce6ed1c63.php",
+        "detail": "baseline_snapshot_unreadable: file is missing from task baseline",
+        "affectsCompletion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "scan",
+        "target": "resources/views/partials/_password-toggle.blade.php",
+        "detail": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+        "affectsCompletion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "scan",
+        "target": "resources/views/vendor/tyro-dashboard/partials/scripts.blade.php",
+        "detail": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+        "affectsCompletion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "scan",
+        "target": "storage/framework/views/14f2172eff67d753dbbe3581fa2fdf29.php",
+        "detail": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+        "affectsCompletion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "scan",
+        "target": "storage/framework/views/1f9c7e08c63df6ecaf32d1bc0545fe2a.php",
+        "detail": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+        "affectsCompletion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "scan",
+        "target": "storage/framework/views/2ab078eb7e9a19bea3c3a267e6a0543d.php",
+        "detail": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+        "affectsCompletion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "scan",
+        "target": "storage/framework/views/3380d70b73e093522f6a3a7e307b777b.php",
+        "detail": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+        "affectsCompletion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "scan",
+        "target": "storage/framework/views/42aeee8812c416aba4fad1bd8a66fe62.php",
+        "detail": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+        "affectsCompletion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "scan",
+        "target": "storage/framework/views/4552424f2e0b1aec44773bc45e4a7566.php",
+        "detail": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+        "affectsCompletion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "scan",
+        "target": "storage/framework/views/552d3a9144896acaa751469897b9d9fb.php",
+        "detail": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+        "affectsCompletion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "scan",
+        "target": "storage/framework/views/5680eb4b6388f8c955790a2bd17339ef.php",
+        "detail": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+        "affectsCompletion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "scan",
+        "target": "storage/framework/views/6799b2035535c7b936fb1fb88278f0b8.php",
+        "detail": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+        "affectsCompletion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "scan",
+        "target": "storage/framework/views/73cb7aba6393b29c2f2a74a56cbeb511.php",
+        "detail": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+        "affectsCompletion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "scan",
+        "target": "storage/framework/views/748734345169925b2ddc394e89d700fe.php",
+        "detail": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+        "affectsCompletion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "scan",
+        "target": "storage/framework/views/7fd4221c00cc0b90b47949496f9c7ac4.php",
+        "detail": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+        "affectsCompletion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "scan",
+        "target": "storage/framework/views/9c0ca0513155529922849d84e1b9e47e.php",
+        "detail": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+        "affectsCompletion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "scan",
+        "target": "storage/framework/views/9e4fc4fa709324ecb192b8073ff35135.php",
+        "detail": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+        "affectsCompletion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "scan",
+        "target": "storage/framework/views/a49d20d64775ee154f82ff65e56096f7.php",
+        "detail": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+        "affectsCompletion": true
+      }
+    ]
+  },
+  "source": {
+    "component": "zcode-hook",
+    "operationId": "Stop"
+  },
+  "revision": "3625453aeebe4c80e457e995b57b288bf24edf2d",
+  "diffHash": "2b65e4f180b54b95c149ccf05d6ad18d403b72306431ddd21693164e7550ec20",
+  "rulesVersion": "unavailable",
+  "sessionHash": "f3ada869c86656b16895682b030512bfad02103280be676ea79ad71d62f6803b",
+  "reportRef": ".mimosa/reports/task-review-sess_099766c9-a2c1-4371-9a97-8d50eff811dc-20261107T000020065Z-13668-3f47db1c6264.json",
+  "events": [],
+  "observedFindingIds": [],
+  "verifiedFiles": [],
+  "recordedAt": "2026-11-07T00:00:21.034Z"
+}

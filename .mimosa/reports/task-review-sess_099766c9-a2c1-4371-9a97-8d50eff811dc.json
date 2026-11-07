@@ -1,136 +1,91 @@
 {
   "schema_version": "mimosa-task-review/v2",
-  "run_id": "20261106T235513837Z-47732-a433ea6ba3fb",
+  "run_id": "20261107T000020065Z-13668-3f47db1c6264",
   "run_status": "inconclusive",
   "errors": [
     {
-      "stage": "candidate-select",
-      "target": "storage/framework/views/ba18aa240abfc8ad5e4d615f1c78e6f8.php",
-      "reason": "candidate_limit_exceeded: 7 changed reviewable file(s) were not scanned because the limit is 20"
-    },
-    {
       "stage": "baseline-read",
-      "target": "storage/framework/views/044eed5c877cb9c2b92909571caccd1e.php",
+      "target": "storage/framework/views/14f2172eff67d753dbbe3581fa2fdf29.php",
       "reason": "baseline_snapshot_unreadable: file is missing from task baseline"
     },
     {
       "stage": "baseline-read",
-      "target": "storage/framework/views/0488f6e3b1b5d752108a64eff0ed73a1.php",
+      "target": "storage/framework/views/2ab078eb7e9a19bea3c3a267e6a0543d.php",
       "reason": "baseline_snapshot_unreadable: file is missing from task baseline"
     },
     {
       "stage": "baseline-read",
-      "target": "storage/framework/views/063324d9131729d88647be1558075bdc.php",
+      "target": "storage/framework/views/3380d70b73e093522f6a3a7e307b777b.php",
       "reason": "baseline_snapshot_unreadable: file is missing from task baseline"
     },
     {
       "stage": "baseline-read",
-      "target": "storage/framework/views/06ef796525ad21ef6659fe401636b9e0.php",
+      "target": "storage/framework/views/4552424f2e0b1aec44773bc45e4a7566.php",
       "reason": "baseline_snapshot_unreadable: file is missing from task baseline"
     },
     {
       "stage": "baseline-read",
-      "target": "storage/framework/views/12e2d950b8f49e3975a4d2c8bc28b200.php",
+      "target": "storage/framework/views/552d3a9144896acaa751469897b9d9fb.php",
       "reason": "baseline_snapshot_unreadable: file is missing from task baseline"
     },
     {
       "stage": "baseline-read",
-      "target": "storage/framework/views/1f6ff2db0a3e6205a98d6aeb0f839903.php",
+      "target": "storage/framework/views/5680eb4b6388f8c955790a2bd17339ef.php",
       "reason": "baseline_snapshot_unreadable: file is missing from task baseline"
     },
     {
       "stage": "baseline-read",
-      "target": "storage/framework/views/378c4855ab36498435d4554d7938a60b.php",
+      "target": "storage/framework/views/6799b2035535c7b936fb1fb88278f0b8.php",
       "reason": "baseline_snapshot_unreadable: file is missing from task baseline"
     },
     {
       "stage": "baseline-read",
-      "target": "storage/framework/views/3e85958846c673e0d00c7f57f114dfed.php",
+      "target": "storage/framework/views/748734345169925b2ddc394e89d700fe.php",
       "reason": "baseline_snapshot_unreadable: file is missing from task baseline"
     },
     {
       "stage": "baseline-read",
-      "target": "storage/framework/views/3f41a55e87b2322baeae665f0ebf2036.php",
+      "target": "storage/framework/views/7fd4221c00cc0b90b47949496f9c7ac4.php",
       "reason": "baseline_snapshot_unreadable: file is missing from task baseline"
     },
     {
       "stage": "baseline-read",
-      "target": "storage/framework/views/52e8e6bb84278a30db7d3210d8397a63.php",
+      "target": "storage/framework/views/9c0ca0513155529922849d84e1b9e47e.php",
       "reason": "baseline_snapshot_unreadable: file is missing from task baseline"
     },
     {
       "stage": "baseline-read",
-      "target": "storage/framework/views/60b17607a8e1e0f5f9ab2034e9b99bdd.php",
+      "target": "storage/framework/views/9e4fc4fa709324ecb192b8073ff35135.php",
       "reason": "baseline_snapshot_unreadable: file is missing from task baseline"
     },
     {
       "stage": "baseline-read",
-      "target": "storage/framework/views/61cde8daa1881b7a09dbb4a8b55edf6a.php",
+      "target": "storage/framework/views/a49d20d64775ee154f82ff65e56096f7.php",
       "reason": "baseline_snapshot_unreadable: file is missing from task baseline"
     },
     {
       "stage": "baseline-read",
-      "target": "storage/framework/views/73cb7aba6393b29c2f2a74a56cbeb511.php",
+      "target": "storage/framework/views/b8d49a997a5a195ac9a2e744daa1fd33.php",
       "reason": "baseline_snapshot_unreadable: file is missing from task baseline"
     },
     {
       "stage": "baseline-read",
-      "target": "storage/framework/views/8a54f5e8efe950236195715294046fdf.php",
-      "reason": "baseline_snapshot_unreadable: file is missing from task baseline"
-    },
-    {
-      "stage": "baseline-read",
-      "target": "storage/framework/views/945a24c213beeb079c01c0967fcf90c6.php",
-      "reason": "baseline_snapshot_unreadable: file is missing from task baseline"
-    },
-    {
-      "stage": "baseline-read",
-      "target": "storage/framework/views/950364cc3b79dc2004779f0836819165.php",
-      "reason": "baseline_snapshot_unreadable: file is missing from task baseline"
-    },
-    {
-      "stage": "baseline-read",
-      "target": "storage/framework/views/a3479e1d558ca8c868aedd47c5bcf367.php",
-      "reason": "baseline_snapshot_unreadable: file is missing from task baseline"
-    },
-    {
-      "stage": "baseline-read",
-      "target": "storage/framework/views/a7b50f51c3a0fc85114e98c998d5571e.php",
+      "target": "storage/framework/views/ee7d0821d0646cd75d0ca57ce6ed1c63.php",
       "reason": "baseline_snapshot_unreadable: file is missing from task baseline"
     },
     {
       "stage": "scan",
-      "target": "storage/framework/views/044eed5c877cb9c2b92909571caccd1e.php",
+      "target": "resources/views/partials/_password-toggle.blade.php",
       "reason": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT"
     },
     {
       "stage": "scan",
-      "target": "storage/framework/views/0488f6e3b1b5d752108a64eff0ed73a1.php",
+      "target": "resources/views/vendor/tyro-dashboard/partials/scripts.blade.php",
       "reason": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT"
     },
     {
       "stage": "scan",
-      "target": "storage/framework/views/05e4d4bac7c87e6ee819878dc4ef930b.php",
-      "reason": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT"
-    },
-    {
-      "stage": "scan",
-      "target": "storage/framework/views/063324d9131729d88647be1558075bdc.php",
-      "reason": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT"
-    },
-    {
-      "stage": "scan",
-      "target": "storage/framework/views/06ef796525ad21ef6659fe401636b9e0.php",
-      "reason": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT"
-    },
-    {
-      "stage": "scan",
-      "target": "storage/framework/views/12e2d950b8f49e3975a4d2c8bc28b200.php",
-      "reason": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT"
-    },
-    {
-      "stage": "scan",
-      "target": "storage/framework/views/1f6ff2db0a3e6205a98d6aeb0f839903.php",
+      "target": "storage/framework/views/14f2172eff67d753dbbe3581fa2fdf29.php",
       "reason": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT"
     },
     {
@@ -140,32 +95,37 @@
     },
     {
       "stage": "scan",
-      "target": "storage/framework/views/378c4855ab36498435d4554d7938a60b.php",
+      "target": "storage/framework/views/2ab078eb7e9a19bea3c3a267e6a0543d.php",
       "reason": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT"
     },
     {
       "stage": "scan",
-      "target": "storage/framework/views/3e85958846c673e0d00c7f57f114dfed.php",
+      "target": "storage/framework/views/3380d70b73e093522f6a3a7e307b777b.php",
       "reason": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT"
     },
     {
       "stage": "scan",
-      "target": "storage/framework/views/3f41a55e87b2322baeae665f0ebf2036.php",
+      "target": "storage/framework/views/42aeee8812c416aba4fad1bd8a66fe62.php",
       "reason": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT"
     },
     {
       "stage": "scan",
-      "target": "storage/framework/views/52e8e6bb84278a30db7d3210d8397a63.php",
+      "target": "storage/framework/views/4552424f2e0b1aec44773bc45e4a7566.php",
       "reason": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT"
     },
     {
       "stage": "scan",
-      "target": "storage/framework/views/60b17607a8e1e0f5f9ab2034e9b99bdd.php",
+      "target": "storage/framework/views/552d3a9144896acaa751469897b9d9fb.php",
       "reason": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT"
     },
     {
       "stage": "scan",
-      "target": "storage/framework/views/61cde8daa1881b7a09dbb4a8b55edf6a.php",
+      "target": "storage/framework/views/5680eb4b6388f8c955790a2bd17339ef.php",
+      "reason": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT"
+    },
+    {
+      "stage": "scan",
+      "target": "storage/framework/views/6799b2035535c7b936fb1fb88278f0b8.php",
       "reason": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT"
     },
     {
@@ -175,27 +135,37 @@
     },
     {
       "stage": "scan",
-      "target": "storage/framework/views/8a54f5e8efe950236195715294046fdf.php",
+      "target": "storage/framework/views/748734345169925b2ddc394e89d700fe.php",
       "reason": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT"
     },
     {
       "stage": "scan",
-      "target": "storage/framework/views/945a24c213beeb079c01c0967fcf90c6.php",
+      "target": "storage/framework/views/7fd4221c00cc0b90b47949496f9c7ac4.php",
       "reason": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT"
     },
     {
       "stage": "scan",
-      "target": "storage/framework/views/950364cc3b79dc2004779f0836819165.php",
+      "target": "storage/framework/views/9c0ca0513155529922849d84e1b9e47e.php",
       "reason": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT"
     },
     {
       "stage": "scan",
-      "target": "storage/framework/views/a3479e1d558ca8c868aedd47c5bcf367.php",
+      "target": "storage/framework/views/9e4fc4fa709324ecb192b8073ff35135.php",
       "reason": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT"
     },
     {
       "stage": "scan",
-      "target": "storage/framework/views/a7b50f51c3a0fc85114e98c998d5571e.php",
+      "target": "storage/framework/views/a49d20d64775ee154f82ff65e56096f7.php",
+      "reason": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT"
+    },
+    {
+      "stage": "scan",
+      "target": "storage/framework/views/b8d49a997a5a195ac9a2e744daa1fd33.php",
+      "reason": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT"
+    },
+    {
+      "stage": "scan",
+      "target": "storage/framework/views/ee7d0821d0646cd75d0ca57ce6ed1c63.php",
       "reason": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT"
     }
   ],
@@ -205,33 +175,33 @@
     "scope": "hook_observed_diff",
     "baseline": {
       "complete": true,
-      "captured_files": 493,
+      "captured_files": 520,
       "candidate_limit": 5000,
       "truncated": false,
       "enumeration_error_count": 0,
       "snapshot_error_count": 0,
-      "compensated_target_count": 2
+      "compensated_target_count": 5
     },
     "change_tracking": {
-      "touched_observed": 0,
-      "touched_retained": 0,
+      "touched_observed": 2,
+      "touched_retained": 2,
       "truncated": false,
       "bash_mutation": true,
-      "bash_discovered": 27,
+      "bash_discovered": 18,
       "bash_discovery_limit": 80,
       "bash_discovery_truncated": false
     },
     "candidates": {
-      "eligible_files": 27,
-      "selected_files": 20,
+      "eligible_files": 19,
+      "selected_files": 19,
       "limit": 20,
-      "truncated": true
+      "truncated": false
     },
     "scanning": {
-      "required_files": 20,
+      "required_files": 19,
       "scanned_files": 0,
       "skipped_files": 0,
-      "failed_files": 20,
+      "failed_files": 19,
       "project_checks_required": 0,
       "project_checks_completed": 0
     },
@@ -242,191 +212,127 @@
       "truncated": false
     },
     "reason_counts": {
-      "candidate_limit_exceeded": 1,
-      "baseline_snapshot_unreadable": 18,
-      "scanner_failed": 20,
-      "project_check_failed": 39
+      "baseline_snapshot_unreadable": 14,
+      "scanner_failed": 19,
+      "project_check_failed": 33
     },
     "reasons": [
       {
-        "code": "candidate_limit_exceeded",
-        "stage": "candidate-select",
-        "target": "storage/framework/views/ba18aa240abfc8ad5e4d615f1c78e6f8.php",
-        "detail": "7 changed reviewable file(s) were not scanned because the limit is 20",
-        "affects_completion": true
-      },
-      {
         "code": "baseline_snapshot_unreadable",
         "stage": "baseline-read",
-        "target": "storage/framework/views/044eed5c877cb9c2b92909571caccd1e.php",
+        "target": "storage/framework/views/14f2172eff67d753dbbe3581fa2fdf29.php",
         "detail": "file is missing from task baseline",
         "affects_completion": true
       },
       {
         "code": "baseline_snapshot_unreadable",
         "stage": "baseline-read",
-        "target": "storage/framework/views/0488f6e3b1b5d752108a64eff0ed73a1.php",
+        "target": "storage/framework/views/2ab078eb7e9a19bea3c3a267e6a0543d.php",
         "detail": "file is missing from task baseline",
         "affects_completion": true
       },
       {
         "code": "baseline_snapshot_unreadable",
         "stage": "baseline-read",
-        "target": "storage/framework/views/063324d9131729d88647be1558075bdc.php",
+        "target": "storage/framework/views/3380d70b73e093522f6a3a7e307b777b.php",
         "detail": "file is missing from task baseline",
         "affects_completion": true
       },
       {
         "code": "baseline_snapshot_unreadable",
         "stage": "baseline-read",
-        "target": "storage/framework/views/06ef796525ad21ef6659fe401636b9e0.php",
+        "target": "storage/framework/views/4552424f2e0b1aec44773bc45e4a7566.php",
         "detail": "file is missing from task baseline",
         "affects_completion": true
       },
       {
         "code": "baseline_snapshot_unreadable",
         "stage": "baseline-read",
-        "target": "storage/framework/views/12e2d950b8f49e3975a4d2c8bc28b200.php",
+        "target": "storage/framework/views/552d3a9144896acaa751469897b9d9fb.php",
         "detail": "file is missing from task baseline",
         "affects_completion": true
       },
       {
         "code": "baseline_snapshot_unreadable",
         "stage": "baseline-read",
-        "target": "storage/framework/views/1f6ff2db0a3e6205a98d6aeb0f839903.php",
+        "target": "storage/framework/views/5680eb4b6388f8c955790a2bd17339ef.php",
         "detail": "file is missing from task baseline",
         "affects_completion": true
       },
       {
         "code": "baseline_snapshot_unreadable",
         "stage": "baseline-read",
-        "target": "storage/framework/views/378c4855ab36498435d4554d7938a60b.php",
+        "target": "storage/framework/views/6799b2035535c7b936fb1fb88278f0b8.php",
         "detail": "file is missing from task baseline",
         "affects_completion": true
       },
       {
         "code": "baseline_snapshot_unreadable",
         "stage": "baseline-read",
-        "target": "storage/framework/views/3e85958846c673e0d00c7f57f114dfed.php",
+        "target": "storage/framework/views/748734345169925b2ddc394e89d700fe.php",
         "detail": "file is missing from task baseline",
         "affects_completion": true
       },
       {
         "code": "baseline_snapshot_unreadable",
         "stage": "baseline-read",
-        "target": "storage/framework/views/3f41a55e87b2322baeae665f0ebf2036.php",
+        "target": "storage/framework/views/7fd4221c00cc0b90b47949496f9c7ac4.php",
         "detail": "file is missing from task baseline",
         "affects_completion": true
       },
       {
         "code": "baseline_snapshot_unreadable",
         "stage": "baseline-read",
-        "target": "storage/framework/views/52e8e6bb84278a30db7d3210d8397a63.php",
+        "target": "storage/framework/views/9c0ca0513155529922849d84e1b9e47e.php",
         "detail": "file is missing from task baseline",
         "affects_completion": true
       },
       {
         "code": "baseline_snapshot_unreadable",
         "stage": "baseline-read",
-        "target": "storage/framework/views/60b17607a8e1e0f5f9ab2034e9b99bdd.php",
+        "target": "storage/framework/views/9e4fc4fa709324ecb192b8073ff35135.php",
         "detail": "file is missing from task baseline",
         "affects_completion": true
       },
       {
         "code": "baseline_snapshot_unreadable",
         "stage": "baseline-read",
-        "target": "storage/framework/views/61cde8daa1881b7a09dbb4a8b55edf6a.php",
+        "target": "storage/framework/views/a49d20d64775ee154f82ff65e56096f7.php",
         "detail": "file is missing from task baseline",
         "affects_completion": true
       },
       {
         "code": "baseline_snapshot_unreadable",
         "stage": "baseline-read",
-        "target": "storage/framework/views/73cb7aba6393b29c2f2a74a56cbeb511.php",
+        "target": "storage/framework/views/b8d49a997a5a195ac9a2e744daa1fd33.php",
         "detail": "file is missing from task baseline",
         "affects_completion": true
       },
       {
         "code": "baseline_snapshot_unreadable",
         "stage": "baseline-read",
-        "target": "storage/framework/views/8a54f5e8efe950236195715294046fdf.php",
-        "detail": "file is missing from task baseline",
-        "affects_completion": true
-      },
-      {
-        "code": "baseline_snapshot_unreadable",
-        "stage": "baseline-read",
-        "target": "storage/framework/views/945a24c213beeb079c01c0967fcf90c6.php",
-        "detail": "file is missing from task baseline",
-        "affects_completion": true
-      },
-      {
-        "code": "baseline_snapshot_unreadable",
-        "stage": "baseline-read",
-        "target": "storage/framework/views/950364cc3b79dc2004779f0836819165.php",
-        "detail": "file is missing from task baseline",
-        "affects_completion": true
-      },
-      {
-        "code": "baseline_snapshot_unreadable",
-        "stage": "baseline-read",
-        "target": "storage/framework/views/a3479e1d558ca8c868aedd47c5bcf367.php",
-        "detail": "file is missing from task baseline",
-        "affects_completion": true
-      },
-      {
-        "code": "baseline_snapshot_unreadable",
-        "stage": "baseline-read",
-        "target": "storage/framework/views/a7b50f51c3a0fc85114e98c998d5571e.php",
+        "target": "storage/framework/views/ee7d0821d0646cd75d0ca57ce6ed1c63.php",
         "detail": "file is missing from task baseline",
         "affects_completion": true
       },
       {
         "code": "scanner_failed",
         "stage": "scan",
-        "target": "storage/framework/views/044eed5c877cb9c2b92909571caccd1e.php",
+        "target": "resources/views/partials/_password-toggle.blade.php",
         "detail": "spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
         "affects_completion": true
       },
       {
         "code": "scanner_failed",
         "stage": "scan",
-        "target": "storage/framework/views/0488f6e3b1b5d752108a64eff0ed73a1.php",
+        "target": "resources/views/vendor/tyro-dashboard/partials/scripts.blade.php",
         "detail": "spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
         "affects_completion": true
       },
       {
         "code": "scanner_failed",
         "stage": "scan",
-        "target": "storage/framework/views/05e4d4bac7c87e6ee819878dc4ef930b.php",
-        "detail": "spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
-        "affects_completion": true
-      },
-      {
-        "code": "scanner_failed",
-        "stage": "scan",
-        "target": "storage/framework/views/063324d9131729d88647be1558075bdc.php",
-        "detail": "spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
-        "affects_completion": true
-      },
-      {
-        "code": "scanner_failed",
-        "stage": "scan",
-        "target": "storage/framework/views/06ef796525ad21ef6659fe401636b9e0.php",
-        "detail": "spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
-        "affects_completion": true
-      },
-      {
-        "code": "scanner_failed",
-        "stage": "scan",
-        "target": "storage/framework/views/12e2d950b8f49e3975a4d2c8bc28b200.php",
-        "detail": "spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
-        "affects_completion": true
-      },
-      {
-        "code": "scanner_failed",
-        "stage": "scan",
-        "target": "storage/framework/views/1f6ff2db0a3e6205a98d6aeb0f839903.php",
+        "target": "storage/framework/views/14f2172eff67d753dbbe3581fa2fdf29.php",
         "detail": "spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
         "affects_completion": true
       },
@@ -440,42 +346,49 @@
       {
         "code": "scanner_failed",
         "stage": "scan",
-        "target": "storage/framework/views/378c4855ab36498435d4554d7938a60b.php",
+        "target": "storage/framework/views/2ab078eb7e9a19bea3c3a267e6a0543d.php",
         "detail": "spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
         "affects_completion": true
       },
       {
         "code": "scanner_failed",
         "stage": "scan",
-        "target": "storage/framework/views/3e85958846c673e0d00c7f57f114dfed.php",
+        "target": "storage/framework/views/3380d70b73e093522f6a3a7e307b777b.php",
         "detail": "spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
         "affects_completion": true
       },
       {
         "code": "scanner_failed",
         "stage": "scan",
-        "target": "storage/framework/views/3f41a55e87b2322baeae665f0ebf2036.php",
+        "target": "storage/framework/views/42aeee8812c416aba4fad1bd8a66fe62.php",
         "detail": "spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
         "affects_completion": true
       },
       {
         "code": "scanner_failed",
         "stage": "scan",
-        "target": "storage/framework/views/52e8e6bb84278a30db7d3210d8397a63.php",
+        "target": "storage/framework/views/4552424f2e0b1aec44773bc45e4a7566.php",
         "detail": "spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
         "affects_completion": true
       },
       {
         "code": "scanner_failed",
         "stage": "scan",
-        "target": "storage/framework/views/60b17607a8e1e0f5f9ab2034e9b99bdd.php",
+        "target": "storage/framework/views/552d3a9144896acaa751469897b9d9fb.php",
         "detail": "spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
         "affects_completion": true
       },
       {
         "code": "scanner_failed",
         "stage": "scan",
-        "target": "storage/framework/views/61cde8daa1881b7a09dbb4a8b55edf6a.php",
+        "target": "storage/framework/views/5680eb4b6388f8c955790a2bd17339ef.php",
+        "detail": "spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+        "affects_completion": true
+      },
+      {
+        "code": "scanner_failed",
+        "stage": "scan",
+        "target": "storage/framework/views/6799b2035535c7b936fb1fb88278f0b8.php",
         "detail": "spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
         "affects_completion": true
       },
@@ -489,456 +402,497 @@
       {
         "code": "scanner_failed",
         "stage": "scan",
-        "target": "storage/framework/views/8a54f5e8efe950236195715294046fdf.php",
+        "target": "storage/framework/views/748734345169925b2ddc394e89d700fe.php",
         "detail": "spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
         "affects_completion": true
       },
       {
         "code": "scanner_failed",
         "stage": "scan",
-        "target": "storage/framework/views/945a24c213beeb079c01c0967fcf90c6.php",
+        "target": "storage/framework/views/7fd4221c00cc0b90b47949496f9c7ac4.php",
         "detail": "spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
         "affects_completion": true
       },
       {
         "code": "scanner_failed",
         "stage": "scan",
-        "target": "storage/framework/views/950364cc3b79dc2004779f0836819165.php",
+        "target": "storage/framework/views/9c0ca0513155529922849d84e1b9e47e.php",
         "detail": "spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
         "affects_completion": true
       },
       {
         "code": "scanner_failed",
         "stage": "scan",
-        "target": "storage/framework/views/a3479e1d558ca8c868aedd47c5bcf367.php",
+        "target": "storage/framework/views/9e4fc4fa709324ecb192b8073ff35135.php",
         "detail": "spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
         "affects_completion": true
       },
       {
         "code": "scanner_failed",
         "stage": "scan",
-        "target": "storage/framework/views/a7b50f51c3a0fc85114e98c998d5571e.php",
+        "target": "storage/framework/views/a49d20d64775ee154f82ff65e56096f7.php",
+        "detail": "spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+        "affects_completion": true
+      },
+      {
+        "code": "scanner_failed",
+        "stage": "scan",
+        "target": "storage/framework/views/b8d49a997a5a195ac9a2e744daa1fd33.php",
+        "detail": "spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+        "affects_completion": true
+      },
+      {
+        "code": "scanner_failed",
+        "stage": "scan",
+        "target": "storage/framework/views/ee7d0821d0646cd75d0ca57ce6ed1c63.php",
         "detail": "spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
         "affects_completion": true
       },
       {
         "code": "project_check_failed",
-        "stage": "candidate-select",
-        "target": "storage/framework/views/ba18aa240abfc8ad5e4d615f1c78e6f8.php",
-        "detail": "candidate_limit_exceeded: 7 changed reviewable file(s) were not scanned because the limit is 20",
-        "affects_completion": true
-      },
-      {
-        "code": "project_check_failed",
         "stage": "baseline-read",
-        "target": "storage/framework/views/044eed5c877cb9c2b92909571caccd1e.php",
+        "target": "storage/framework/views/14f2172eff67d753dbbe3581fa2fdf29.php",
         "detail": "baseline_snapshot_unreadable: file is missing from task baseline",
         "affects_completion": true
       },
       {
         "code": "project_check_failed",
         "stage": "baseline-read",
-        "target": "storage/framework/views/0488f6e3b1b5d752108a64eff0ed73a1.php",
+        "target": "storage/framework/views/2ab078eb7e9a19bea3c3a267e6a0543d.php",
         "detail": "baseline_snapshot_unreadable: file is missing from task baseline",
         "affects_completion": true
       },
       {
         "code": "project_check_failed",
         "stage": "baseline-read",
-        "target": "storage/framework/views/063324d9131729d88647be1558075bdc.php",
+        "target": "storage/framework/views/3380d70b73e093522f6a3a7e307b777b.php",
         "detail": "baseline_snapshot_unreadable: file is missing from task baseline",
         "affects_completion": true
       },
       {
         "code": "project_check_failed",
         "stage": "baseline-read",
-        "target": "storage/framework/views/06ef796525ad21ef6659fe401636b9e0.php",
+        "target": "storage/framework/views/4552424f2e0b1aec44773bc45e4a7566.php",
         "detail": "baseline_snapshot_unreadable: file is missing from task baseline",
         "affects_completion": true
       },
       {
         "code": "project_check_failed",
         "stage": "baseline-read",
-        "target": "storage/framework/views/12e2d950b8f49e3975a4d2c8bc28b200.php",
+        "target": "storage/framework/views/552d3a9144896acaa751469897b9d9fb.php",
         "detail": "baseline_snapshot_unreadable: file is missing from task baseline",
         "affects_completion": true
       },
       {
         "code": "project_check_failed",
         "stage": "baseline-read",
-        "target": "storage/framework/views/1f6ff2db0a3e6205a98d6aeb0f839903.php",
+        "target": "storage/framework/views/5680eb4b6388f8c955790a2bd17339ef.php",
         "detail": "baseline_snapshot_unreadable: file is missing from task baseline",
         "affects_completion": true
       },
       {
         "code": "project_check_failed",
         "stage": "baseline-read",
-        "target": "storage/framework/views/378c4855ab36498435d4554d7938a60b.php",
+        "target": "storage/framework/views/6799b2035535c7b936fb1fb88278f0b8.php",
         "detail": "baseline_snapshot_unreadable: file is missing from task baseline",
         "affects_completion": true
       },
       {
         "code": "project_check_failed",
         "stage": "baseline-read",
-        "target": "storage/framework/views/3e85958846c673e0d00c7f57f114dfed.php",
+        "target": "storage/framework/views/748734345169925b2ddc394e89d700fe.php",
         "detail": "baseline_snapshot_unreadable: file is missing from task baseline",
         "affects_completion": true
       },
       {
         "code": "project_check_failed",
         "stage": "baseline-read",
-        "target": "storage/framework/views/3f41a55e87b2322baeae665f0ebf2036.php",
+        "target": "storage/framework/views/7fd4221c00cc0b90b47949496f9c7ac4.php",
         "detail": "baseline_snapshot_unreadable: file is missing from task baseline",
         "affects_completion": true
       },
       {
         "code": "project_check_failed",
         "stage": "baseline-read",
-        "target": "storage/framework/views/52e8e6bb84278a30db7d3210d8397a63.php",
+        "target": "storage/framework/views/9c0ca0513155529922849d84e1b9e47e.php",
         "detail": "baseline_snapshot_unreadable: file is missing from task baseline",
         "affects_completion": true
       },
       {
         "code": "project_check_failed",
         "stage": "baseline-read",
-        "target": "storage/framework/views/60b17607a8e1e0f5f9ab2034e9b99bdd.php",
+        "target": "storage/framework/views/9e4fc4fa709324ecb192b8073ff35135.php",
         "detail": "baseline_snapshot_unreadable: file is missing from task baseline",
         "affects_completion": true
       },
       {
         "code": "project_check_failed",
         "stage": "baseline-read",
-        "target": "storage/framework/views/61cde8daa1881b7a09dbb4a8b55edf6a.php",
+        "target": "storage/framework/views/a49d20d64775ee154f82ff65e56096f7.php",
         "detail": "baseline_snapshot_unreadable: file is missing from task baseline",
         "affects_completion": true
       },
       {
         "code": "project_check_failed",
         "stage": "baseline-read",
+        "target": "storage/framework/views/b8d49a997a5a195ac9a2e744daa1fd33.php",
+        "detail": "baseline_snapshot_unreadable: file is missing from task baseline",
+        "affects_completion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "baseline-read",
+        "target": "storage/framework/views/ee7d0821d0646cd75d0ca57ce6ed1c63.php",
+        "detail": "baseline_snapshot_unreadable: file is missing from task baseline",
+        "affects_completion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "scan",
+        "target": "resources/views/partials/_password-toggle.blade.php",
+        "detail": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+        "affects_completion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "scan",
+        "target": "resources/views/vendor/tyro-dashboard/partials/scripts.blade.php",
+        "detail": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+        "affects_completion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "scan",
+        "target": "storage/framework/views/14f2172eff67d753dbbe3581fa2fdf29.php",
+        "detail": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+        "affects_completion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "scan",
+        "target": "storage/framework/views/1f9c7e08c63df6ecaf32d1bc0545fe2a.php",
+        "detail": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+        "affects_completion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "scan",
+        "target": "storage/framework/views/2ab078eb7e9a19bea3c3a267e6a0543d.php",
+        "detail": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+        "affects_completion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "scan",
+        "target": "storage/framework/views/3380d70b73e093522f6a3a7e307b777b.php",
+        "detail": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+        "affects_completion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "scan",
+        "target": "storage/framework/views/42aeee8812c416aba4fad1bd8a66fe62.php",
+        "detail": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+        "affects_completion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "scan",
+        "target": "storage/framework/views/4552424f2e0b1aec44773bc45e4a7566.php",
+        "detail": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+        "affects_completion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "scan",
+        "target": "storage/framework/views/552d3a9144896acaa751469897b9d9fb.php",
+        "detail": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+        "affects_completion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "scan",
+        "target": "storage/framework/views/5680eb4b6388f8c955790a2bd17339ef.php",
+        "detail": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+        "affects_completion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "scan",
+        "target": "storage/framework/views/6799b2035535c7b936fb1fb88278f0b8.php",
+        "detail": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+        "affects_completion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "scan",
         "target": "storage/framework/views/73cb7aba6393b29c2f2a74a56cbeb511.php",
-        "detail": "baseline_snapshot_unreadable: file is missing from task baseline",
-        "affects_completion": true
-      },
-      {
-        "code": "project_check_failed",
-        "stage": "baseline-read",
-        "target": "storage/framework/views/8a54f5e8efe950236195715294046fdf.php",
-        "detail": "baseline_snapshot_unreadable: file is missing from task baseline",
-        "affects_completion": true
-      },
-      {
-        "code": "project_check_failed",
-        "stage": "baseline-read",
-        "target": "storage/framework/views/945a24c213beeb079c01c0967fcf90c6.php",
-        "detail": "baseline_snapshot_unreadable: file is missing from task baseline",
-        "affects_completion": true
-      },
-      {
-        "code": "project_check_failed",
-        "stage": "baseline-read",
-        "target": "storage/framework/views/950364cc3b79dc2004779f0836819165.php",
-        "detail": "baseline_snapshot_unreadable: file is missing from task baseline",
-        "affects_completion": true
-      },
-      {
-        "code": "project_check_failed",
-        "stage": "baseline-read",
-        "target": "storage/framework/views/a3479e1d558ca8c868aedd47c5bcf367.php",
-        "detail": "baseline_snapshot_unreadable: file is missing from task baseline",
-        "affects_completion": true
-      },
-      {
-        "code": "project_check_failed",
-        "stage": "baseline-read",
-        "target": "storage/framework/views/a7b50f51c3a0fc85114e98c998d5571e.php",
-        "detail": "baseline_snapshot_unreadable: file is missing from task baseline",
-        "affects_completion": true
-      },
-      {
-        "code": "project_check_failed",
-        "stage": "scan",
-        "target": "storage/framework/views/044eed5c877cb9c2b92909571caccd1e.php",
         "detail": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
         "affects_completion": true
       },
       {
         "code": "project_check_failed",
         "stage": "scan",
-        "target": "storage/framework/views/0488f6e3b1b5d752108a64eff0ed73a1.php",
+        "target": "storage/framework/views/748734345169925b2ddc394e89d700fe.php",
         "detail": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
         "affects_completion": true
       },
       {
         "code": "project_check_failed",
         "stage": "scan",
-        "target": "storage/framework/views/05e4d4bac7c87e6ee819878dc4ef930b.php",
+        "target": "storage/framework/views/7fd4221c00cc0b90b47949496f9c7ac4.php",
         "detail": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
         "affects_completion": true
       },
       {
         "code": "project_check_failed",
         "stage": "scan",
-        "target": "storage/framework/views/063324d9131729d88647be1558075bdc.php",
+        "target": "storage/framework/views/9c0ca0513155529922849d84e1b9e47e.php",
         "detail": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
         "affects_completion": true
       },
       {
         "code": "project_check_failed",
         "stage": "scan",
-        "target": "storage/framework/views/06ef796525ad21ef6659fe401636b9e0.php",
+        "target": "storage/framework/views/9e4fc4fa709324ecb192b8073ff35135.php",
         "detail": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
         "affects_completion": true
       },
       {
         "code": "project_check_failed",
         "stage": "scan",
-        "target": "storage/framework/views/12e2d950b8f49e3975a4d2c8bc28b200.php",
+        "target": "storage/framework/views/a49d20d64775ee154f82ff65e56096f7.php",
         "detail": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
         "affects_completion": true
       }
     ],
     "reasons_truncated": true
   },
-  "generated_at": "2026-11-06T23:55:13.837Z",
+  "generated_at": "2026-11-07T00:00:20.065Z",
   "session_id": "sess_099766c9-a2c1-4371-9a97-8d50eff811dc",
   "target": ".",
-  "revision": "de77d5db12907ab85c487217e98aa9607ef6e8c1",
+  "revision": "3625453aeebe4c80e457e995b57b288bf24edf2d",
   "rules_version": "unavailable",
-  "diff_hash": "6ace53114b0472b357d425216b936a826dada99fc0be8885762c342279929262",
+  "diff_hash": "2b65e4f180b54b95c149ccf05d6ad18d403b72306431ddd21693164e7550ec20",
   "diff": {
     "algorithm": "sha256",
-    "changed_file_count": 20,
+    "changed_file_count": 19,
     "changed_files": [
       {
-        "file": "storage/framework/views/044eed5c877cb9c2b92909571caccd1e.php",
+        "file": "resources/views/partials/_password-toggle.blade.php",
         "ranges": [
           {
             "start": 1,
-            "end": 94
+            "end": 63
           }
         ],
         "before_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-        "after_hash": "d07404f5c2b79cefb15fc8e4a877e8cb6cca35ab711957a2228b644763db528a"
+        "after_hash": "b11908c1c2d6623fe056d2ae23a53a835477a1b403e65e5123cd9a7f19eb2ae9"
       },
       {
-        "file": "storage/framework/views/0488f6e3b1b5d752108a64eff0ed73a1.php",
+        "file": "resources/views/vendor/tyro-dashboard/partials/scripts.blade.php",
         "ranges": [
           {
             "start": 1,
-            "end": 93
+            "end": 3
           }
         ],
-        "before_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-        "after_hash": "b009a7247f43c0d4bb95a675ebe722d9726e9d8a96d31d05206133ca098dfcd1"
+        "before_hash": "b8cd8aaf3865af849a0e3f05e0c7cd6baa2b6bc878cf9ab6334f3adb76934df7",
+        "after_hash": "9d7cd895780356f082f345c90a729512db4907b66add522a2fe0f1174080ce55"
       },
       {
-        "file": "storage/framework/views/05e4d4bac7c87e6ee819878dc4ef930b.php",
-        "ranges": [
-          {
-            "start": 27,
-            "end": 28
-          },
-          {
-            "start": 136,
-            "end": 136
-          }
-        ],
-        "before_hash": "2d39fad8a881078eb5d6c03a5face4c7379b60b7087d00f6e51961e61f8f68bb",
-        "after_hash": "42d0975fd91482380b89b81e180a528c041bfe28118583ea80eb8402bd39e825"
-      },
-      {
-        "file": "storage/framework/views/063324d9131729d88647be1558075bdc.php",
+        "file": "storage/framework/views/14f2172eff67d753dbbe3581fa2fdf29.php",
         "ranges": [
           {
             "start": 1,
-            "end": 215
+            "end": 402
           }
         ],
         "before_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-        "after_hash": "02804dd59471a9c6e5dc63e328be2d8687828ff858ee03d1614f13e0070258f7"
-      },
-      {
-        "file": "storage/framework/views/06ef796525ad21ef6659fe401636b9e0.php",
-        "ranges": [
-          {
-            "start": 1,
-            "end": 107
-          }
-        ],
-        "before_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-        "after_hash": "f9a02d994d516e03f481b0cead1d60b3ce36799a2606b76ca8e698363d92bb92"
-      },
-      {
-        "file": "storage/framework/views/12e2d950b8f49e3975a4d2c8bc28b200.php",
-        "ranges": [
-          {
-            "start": 1,
-            "end": 280
-          }
-        ],
-        "before_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-        "after_hash": "c15006b3edec6febb0331a68c1c1f96ab66f738b77fc71d5e239f44dde7105da"
-      },
-      {
-        "file": "storage/framework/views/1f6ff2db0a3e6205a98d6aeb0f839903.php",
-        "ranges": [
-          {
-            "start": 1,
-            "end": 156
-          }
-        ],
-        "before_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-        "after_hash": "262c57ccae342563ccec2ef7baa5edca2be8d93f5f56cface2eab00ef9750a74"
+        "after_hash": "6922eb4a7d1d0113c560340ec9b3fee83c3dd80270b130b54b113aa8c3ef5f22"
       },
       {
         "file": "storage/framework/views/1f9c7e08c63df6ecaf32d1bc0545fe2a.php",
         "ranges": [
           {
-            "start": 1231,
-            "end": 1237
+            "start": 3415,
+            "end": 3456
           }
         ],
-        "before_hash": "739a1223237aedd46b345b030fb50f8f07d068138cd36c0c21be195418939480",
-        "after_hash": "91e3a1343425cc9cbd486899d297cf8c9c427e7599ccb0d268cac02c35c59465"
+        "before_hash": "91e3a1343425cc9cbd486899d297cf8c9c427e7599ccb0d268cac02c35c59465",
+        "after_hash": "19d4d30b4ee79497bbde567ed4cd7f068649efe972874aba9268323c9319541f"
       },
       {
-        "file": "storage/framework/views/378c4855ab36498435d4554d7938a60b.php",
+        "file": "storage/framework/views/2ab078eb7e9a19bea3c3a267e6a0543d.php",
         "ranges": [
           {
             "start": 1,
-            "end": 453
+            "end": 124
           }
         ],
         "before_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-        "after_hash": "48a84fc9ed64bcd4d4d7f06bb25d9bca798f3cf283a14a90dcf6d123bb77d2cc"
+        "after_hash": "16b8fe952d03445e78bc36c289eef7581402af1d5bc2d210e52853ae7643cfc1"
       },
       {
-        "file": "storage/framework/views/3e85958846c673e0d00c7f57f114dfed.php",
+        "file": "storage/framework/views/3380d70b73e093522f6a3a7e307b777b.php",
         "ranges": [
           {
             "start": 1,
-            "end": 126
+            "end": 13
           }
         ],
         "before_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-        "after_hash": "82448e2c2ef893b51a2c78ab6ea24c7c6d6d44463d629dbae0a39f703b62b6c4"
+        "after_hash": "74b9d2f37a81c5c35036bbb1253bea40ef452a194a907aa9e5941af3cbabc3e5"
       },
       {
-        "file": "storage/framework/views/3f41a55e87b2322baeae665f0ebf2036.php",
+        "file": "storage/framework/views/42aeee8812c416aba4fad1bd8a66fe62.php",
         "ranges": [
           {
             "start": 1,
-            "end": 150
+            "end": 3
           }
         ],
-        "before_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-        "after_hash": "868c4a57bf3f459ed7f52858c0004d731c9194b992da5c101056c6c8421a8aeb"
+        "before_hash": "0720c8a21a1146711227d182cd803ccece79ee7a5e5e5d73e778b473397eb972",
+        "after_hash": "5a61ddb2fab2cbcba181b39fd7ff30e96803699035c0cfebe738c4e2768c1278"
       },
       {
-        "file": "storage/framework/views/52e8e6bb84278a30db7d3210d8397a63.php",
+        "file": "storage/framework/views/4552424f2e0b1aec44773bc45e4a7566.php",
         "ranges": [
           {
             "start": 1,
-            "end": 786
+            "end": 110
           }
         ],
         "before_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-        "after_hash": "9dda0ccbbfff35caad32fc0494bacdd6215504be8c653020a7831247df1516a6"
+        "after_hash": "417b6f49afb7295487729f7a914a75c819512cf2b1e9d115a1a3c82ec46679b8"
       },
       {
-        "file": "storage/framework/views/60b17607a8e1e0f5f9ab2034e9b99bdd.php",
+        "file": "storage/framework/views/552d3a9144896acaa751469897b9d9fb.php",
         "ranges": [
           {
             "start": 1,
-            "end": 90
+            "end": 101
           }
         ],
         "before_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-        "after_hash": "d17554d2e67f0f2c524b392b811f7aa35e047631e42942bd768e0a917e8eaab3"
+        "after_hash": "54ad733447977617e1fbcdd56da9978a78fcc3e45b8396064c82699050928caa"
       },
       {
-        "file": "storage/framework/views/61cde8daa1881b7a09dbb4a8b55edf6a.php",
+        "file": "storage/framework/views/5680eb4b6388f8c955790a2bd17339ef.php",
         "ranges": [
           {
             "start": 1,
-            "end": 765
+            "end": 1141
           }
         ],
         "before_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-        "after_hash": "912584d49fefeb82897dd623e5b7d97a48f8fdf630260508fb26994635fe616a"
+        "after_hash": "e33eb9d2f281b6c73688ddd93190d3775324f58042f1b283f57839c32adc6996"
+      },
+      {
+        "file": "storage/framework/views/6799b2035535c7b936fb1fb88278f0b8.php",
+        "ranges": [
+          {
+            "start": 1,
+            "end": 209
+          }
+        ],
+        "before_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "after_hash": "ec66b7ad8be39cf6da3c703410f5cc1b0b72f71cda648473e142d387746d0440"
       },
       {
         "file": "storage/framework/views/73cb7aba6393b29c2f2a74a56cbeb511.php",
         "ranges": [
           {
-            "start": 1,
-            "end": 142
+            "start": 137,
+            "end": 137
           }
         ],
-        "before_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-        "after_hash": "49e5170d2cbb7512367ea6c0b274e0e0689a2fad7316f20692a406402cef3c3f"
+        "before_hash": "49e5170d2cbb7512367ea6c0b274e0e0689a2fad7316f20692a406402cef3c3f",
+        "after_hash": "c4c455c72f655a2487163ae3eccd59fb000e2cef9bf57b3b86d6fbf7819963bd"
       },
       {
-        "file": "storage/framework/views/8a54f5e8efe950236195715294046fdf.php",
+        "file": "storage/framework/views/748734345169925b2ddc394e89d700fe.php",
         "ranges": [
           {
             "start": 1,
-            "end": 429
+            "end": 213
           }
         ],
         "before_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-        "after_hash": "c26cc3116750ef9b5488187dc9362658894da44711035513cdf213fba39c17c7"
+        "after_hash": "9090e887f992d2809848b54f7373ed446ef31096a93c694a556af10965e19c2e"
       },
       {
-        "file": "storage/framework/views/945a24c213beeb079c01c0967fcf90c6.php",
+        "file": "storage/framework/views/7fd4221c00cc0b90b47949496f9c7ac4.php",
         "ranges": [
           {
             "start": 1,
-            "end": 133
+            "end": 358
           }
         ],
         "before_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-        "after_hash": "0cedc614a8155fa0cfd6fe3b351f7d08a4cb4a1b014043d8d0343e9beff00d48"
+        "after_hash": "d97cbd2fd32d5a64f81cd7f782e0fc867e8327beba47e8d9d51bfabd8edfe6c1"
       },
       {
-        "file": "storage/framework/views/950364cc3b79dc2004779f0836819165.php",
+        "file": "storage/framework/views/9c0ca0513155529922849d84e1b9e47e.php",
         "ranges": [
           {
             "start": 1,
-            "end": 217
+            "end": 289
           }
         ],
         "before_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-        "after_hash": "a36d8913b8bc8d47fa04b32c43c5343b98c7bab998c1963d121aaecee1f8e2ae"
+        "after_hash": "95e9e9e67a20913e1e30104a40e0907ece7434203d28d47fe362d77c48610522"
       },
       {
-        "file": "storage/framework/views/a3479e1d558ca8c868aedd47c5bcf367.php",
+        "file": "storage/framework/views/9e4fc4fa709324ecb192b8073ff35135.php",
         "ranges": [
           {
             "start": 1,
-            "end": 132
+            "end": 121
           }
         ],
         "before_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-        "after_hash": "41be423fda7106870389fffe197e3e92949330a9ee11d49869a6167b2d084c02"
+        "after_hash": "340a995903493ee2820ddfe828bb4b1889344017b19d00ff5e704af78620ac36"
       },
       {
-        "file": "storage/framework/views/a7b50f51c3a0fc85114e98c998d5571e.php",
+        "file": "storage/framework/views/a49d20d64775ee154f82ff65e56096f7.php",
         "ranges": [
           {
             "start": 1,
-            "end": 96
+            "end": 56
           }
         ],
         "before_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-        "after_hash": "5b64bbb6d2d95f5ea9cf7466a569effb34587332daca976198c0241c1f211f21"
+        "after_hash": "2ca5d5eafe720779ddbdabbfbe09aac56d6f25b1e56900fad9f4ed12d654a5e0"
+      },
+      {
+        "file": "storage/framework/views/b8d49a997a5a195ac9a2e744daa1fd33.php",
+        "ranges": [
+          {
+            "start": 1,
+            "end": 205
+          }
+        ],
+        "before_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "after_hash": "5d82fd637883b813c9ff09d1be88f72a7cd9c16094915326565545bb11745258"
+      },
+      {
+        "file": "storage/framework/views/ee7d0821d0646cd75d0ca57ce6ed1c63.php",
+        "ranges": [
+          {
+            "start": 1,
+            "end": 231
+          }
+        ],
+        "before_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "after_hash": "ecdb75b7cc10a9288bef2b87dd2ad1b75478f754ee9d88532dd0b6ee8b921a1c"
       }
     ]
   },
   "timing": {
-    "started_at": "2026-11-06T23:55:10.983Z",
-    "completed_at": "2026-11-06T23:55:13.837Z",
-    "duration_ms": 2854,
+    "started_at": "2026-11-07T00:00:16.907Z",
+    "completed_at": "2026-11-07T00:00:20.065Z",
+    "duration_ms": 3158,
     "measurement": "hook_wall_clock"
   },
   "tokens": {
@@ -953,8 +907,8 @@
     "profile": "gate",
     "operation": "Stop",
     "outcome": "partial/INCONCLUSIVE",
-    "latencyMs": 2854,
-    "peakMemoryBytes": 97398784,
+    "latencyMs": 3158,
+    "peakMemoryBytes": 96366592,
     "memoryMeasurement": "max-observed-process-rss",
     "scannedFiles": 0,
     "cache": {
@@ -981,8 +935,8 @@
   "finding_events": [],
   "findings": [],
   "artifacts": {
-    "immutable_report": ".mimosa/reports/task-review-sess_099766c9-a2c1-4371-9a97-8d50eff811dc-20261106T235513837Z-47732-a433ea6ba3fb.json",
+    "immutable_report": ".mimosa/reports/task-review-sess_099766c9-a2c1-4371-9a97-8d50eff811dc-20261107T000020065Z-13668-3f47db1c6264.json",
     "latest_report": ".mimosa/reports/task-review-sess_099766c9-a2c1-4371-9a97-8d50eff811dc.json",
-    "history_summary": ".mimosa/history/run-20261106T235513837Z-47732-a433ea6ba3fb.json"
+    "history_summary": ".mimosa/history/run-20261107T000020065Z-13668-3f47db1c6264.json"
   }
 }

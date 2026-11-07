@@ -1,3 +1,6 @@
+
+<?php echo $__env->make('partials._password-toggle', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+
 <script>
     // Theme management
     function getTheme() {
@@ -267,10 +270,10 @@
         }
 
         // Legacy alert auto-dismiss (for non-toast mode)
-        const notificationStyle = '{{ config('tyro-dashboard.notifications.notification_style', 'legacy') }}';
+        const notificationStyle = '<?php echo e(config('tyro-dashboard.notifications.notification_style', 'legacy')); ?>';
         if (notificationStyle === 'legacy') {
             const alerts = document.querySelectorAll('.alert');
-            const dismissTime = {{ config('tyro-dashboard.notifications.auto_dismiss_seconds', 5) * 1000 }};
+            const dismissTime = <?php echo e(config('tyro-dashboard.notifications.auto_dismiss_seconds', 5) * 1000); ?>;
             
             alerts.forEach(alert => {
                 setTimeout(() => {
@@ -473,14 +476,14 @@
     });
 </script>
 
-@if(config('tyro-dashboard.features.heartbeat', true))
+<?php if(config('tyro-dashboard.features.heartbeat', true)): ?>
 <script>
     // Heartbeat: POST a beat every 5 minutes so online detection works
     // regardless of the session driver. The last-beat timestamp is persisted
     // in localStorage so a page refresh schedules only the remaining delay
     // instead of restarting the interval.
     (function() {
-        const heartbeatUrl = @json(route(\HasinHayder\TyroDashboard\Support\DashboardRoute::name('heartbeat')));
+        const heartbeatUrl = <?php echo json_encode(route(\HasinHayder\TyroDashboard\Support\DashboardRoute::name('heartbeat')), 15, 512) ?>;
         const storageKey = 'tyro-dashboard-heartbeat';
         const interval = 300000; // 5 minutes
 
@@ -516,4 +519,5 @@
         setTimeout(fire, remaining);
     })();
 </script>
-@endif
+<?php endif; ?>
+<?php /**PATH C:\laragon\www\saas\resources\views\vendor\tyro-dashboard/partials/scripts.blade.php ENDPATH**/ ?>
