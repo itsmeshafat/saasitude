@@ -1,0 +1,158 @@
+
+<?php
+    $tl = fn (string $path, $default = null) => config('tyro-login.'.$path, $default);
+?>
+
+<div class="vtabs-panel" id="vtab-tyro-login-extra">
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Tyro Login — advanced settings</h3>
+        </div>
+        <div class="card-body">
+            <p class="sys-settings-section-description" style="margin-bottom:1.25rem;">
+                Settings the package's System Settings form does not cover.
+                Saved via the app's own endpoint; requires the <code>settings.manage</code> privilege.
+                Saved values are written to <code>.env</code> — a config refresh applies them everywhere.
+                Route prefix and user-model bindings are deploy-time settings and are intentionally excluded.
+            </p>
+
+            <div class="sys-settings-surface mb-6">
+                <h4 class="sys-settings-surface-title">Registration &amp; roles</h4>
+                <div class="form-group">
+                    <p class="form-label">Assign default role on registration <span class="env-key">TYRO_LOGIN_ASSIGN_DEFAULT_ROLE</span></p>
+                    <input type="hidden" name="TYRO_LOGIN_ASSIGN_DEFAULT_ROLE" value="0" data-extra-field disabled>
+                    <input type="checkbox" name="TYRO_LOGIN_ASSIGN_DEFAULT_ROLE" value="1" class="toggle-input" data-extra-field disabled
+                           <?php echo e($tl('tyro.assign_default_role', true) ? 'checked' : ''); ?>>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="TYRO_LOGIN_DEFAULT_ROLE_SLUG">Default role slug <span class="env-key">TYRO_LOGIN_DEFAULT_ROLE_SLUG</span></label>
+                    <input type="text" name="TYRO_LOGIN_DEFAULT_ROLE_SLUG" id="TYRO_LOGIN_DEFAULT_ROLE_SLUG" class="form-input"
+                           data-extra-field disabled value="<?php echo e($tl('tyro.default_role_slug', 'user')); ?>" maxlength="100">
+                    <p class="form-hint">Role slug assigned to self-registered users.</p>
+                </div>
+            </div>
+
+            <div class="sys-settings-surface mb-6">
+                <h4 class="sys-settings-surface-title">Magic link confirmation page</h4>
+                <div class="form-group">
+                    <p class="form-label">Require confirmation click <span class="env-key">TYRO_LOGIN_MAGIC_LINK_REQUIRE_CONFIRMATION</span></p>
+                    <input type="hidden" name="TYRO_LOGIN_MAGIC_LINK_REQUIRE_CONFIRMATION" value="0" data-extra-field disabled>
+                    <input type="checkbox" name="TYRO_LOGIN_MAGIC_LINK_REQUIRE_CONFIRMATION" value="1" class="toggle-input" data-extra-field disabled
+                           <?php echo e($tl('magic_link_require_confirmation', true) ? 'checked' : ''); ?>>
+                    <p class="form-hint">Off = clicking the email link signs the user in directly.</p>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="TYRO_LOGIN_MAGIC_LINK_CONFIRM_TITLE">Page title <span class="env-key">TYRO_LOGIN_MAGIC_LINK_CONFIRM_TITLE</span></label>
+                    <input type="text" name="TYRO_LOGIN_MAGIC_LINK_CONFIRM_TITLE" id="TYRO_LOGIN_MAGIC_LINK_CONFIRM_TITLE" class="form-input"
+                           data-extra-field disabled value="<?php echo e($tl('auth_pages.magic_link_confirm.title', 'Confirm Login')); ?>" maxlength="255">
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="TYRO_LOGIN_MAGIC_LINK_CONFIRM_SUBTITLE">Page subtitle <span class="env-key">TYRO_LOGIN_MAGIC_LINK_CONFIRM_SUBTITLE</span></label>
+                    <input type="text" name="TYRO_LOGIN_MAGIC_LINK_CONFIRM_SUBTITLE" id="TYRO_LOGIN_MAGIC_LINK_CONFIRM_SUBTITLE" class="form-input"
+                           data-extra-field disabled value="<?php echo e($tl('auth_pages.magic_link_confirm.subtitle')); ?>" maxlength="500">
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="TYRO_LOGIN_MAGIC_LINK_CONFIRM_BUTTON">Button text <span class="env-key">TYRO_LOGIN_MAGIC_LINK_CONFIRM_BUTTON</span></label>
+                    <input type="text" name="TYRO_LOGIN_MAGIC_LINK_CONFIRM_BUTTON" id="TYRO_LOGIN_MAGIC_LINK_CONFIRM_BUTTON" class="form-input"
+                           data-extra-field disabled value="<?php echo e($tl('auth_pages.magic_link_confirm.button_text', 'Log In')); ?>" maxlength="100">
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="TYRO_LOGIN_MAGIC_LINK_CONFIRM_BG_TITLE">Background title <span class="env-key">TYRO_LOGIN_MAGIC_LINK_CONFIRM_BG_TITLE</span></label>
+                    <input type="text" name="TYRO_LOGIN_MAGIC_LINK_CONFIRM_BG_TITLE" id="TYRO_LOGIN_MAGIC_LINK_CONFIRM_BG_TITLE" class="form-input"
+                           data-extra-field disabled value="<?php echo e($tl('auth_pages.magic_link_confirm.background_title')); ?>" maxlength="255">
+                </div>
+                <div class="form-group" style="margin-bottom:0;">
+                    <label class="form-label" for="TYRO_LOGIN_MAGIC_LINK_CONFIRM_BG_DESCRIPTION">Background description <span class="env-key">TYRO_LOGIN_MAGIC_LINK_CONFIRM_BG_DESCRIPTION</span></label>
+                    <input type="text" name="TYRO_LOGIN_MAGIC_LINK_CONFIRM_BG_DESCRIPTION" id="TYRO_LOGIN_MAGIC_LINK_CONFIRM_BG_DESCRIPTION" class="form-input"
+                           data-extra-field disabled value="<?php echo e($tl('auth_pages.magic_link_confirm.background_description')); ?>" maxlength="500">
+                </div>
+            </div>
+
+            <div class="sys-settings-surface mb-6">
+                <h4 class="sys-settings-surface-title">Force logout</h4>
+                <p class="sys-settings-surface-description">Invalidate all existing sessions when a user's password changes.</p>
+                <div class="form-group">
+                    <p class="form-label">Enabled <span class="env-key">TYRO_LOGIN_FORCE_LOGOUT_ENABLED</span></p>
+                    <input type="hidden" name="TYRO_LOGIN_FORCE_LOGOUT_ENABLED" value="0" data-extra-field disabled>
+                    <input type="checkbox" name="TYRO_LOGIN_FORCE_LOGOUT_ENABLED" value="1" class="toggle-input" data-extra-field disabled
+                           <?php echo e($tl('force_logout.enabled', true) ? 'checked' : ''); ?>>
+                </div>
+                <div class="form-group" style="margin-bottom:0;">
+                    <label class="form-label" for="TYRO_LOGIN_FORCE_LOGOUT_TTL">Flag lifetime (minutes) <span class="env-key">TYRO_LOGIN_FORCE_LOGOUT_TTL</span></label>
+                    <input type="number" name="TYRO_LOGIN_FORCE_LOGOUT_TTL" id="TYRO_LOGIN_FORCE_LOGOUT_TTL" class="form-input" min="1" max="527040"
+                           data-extra-field disabled value="<?php echo e($tl('force_logout.ttl')); ?>">
+                    <p class="form-hint">A forced logout can never expire before the user's session does.</p>
+                </div>
+            </div>
+
+            <div class="sys-settings-surface mb-6">
+                <h4 class="sys-settings-surface-title">Emails</h4>
+                <div class="form-group" style="margin-bottom:0;">
+                    <p class="form-label">Queue transactional emails <span class="env-key">TYRO_LOGIN_EMAILS_QUEUE</span></p>
+                    <input type="hidden" name="TYRO_LOGIN_EMAILS_QUEUE" value="0" data-extra-field disabled>
+                    <input type="checkbox" name="TYRO_LOGIN_EMAILS_QUEUE" value="1" class="toggle-input" data-extra-field disabled
+                           <?php echo e($tl('emails.queue', false) ? 'checked' : ''); ?>>
+                    <p class="form-hint">On = emails send via the queue. Off = send synchronously (never dropped in local dev).</p>
+                </div>
+            </div>
+
+            <div class="sys-settings-surface mb-6">
+                <h4 class="sys-settings-surface-title">Developer</h4>
+                <div class="form-group" style="margin-bottom:0;">
+                    <p class="form-label">Debug mode <span class="env-key">TYRO_LOGIN_DEBUG</span></p>
+                    <input type="hidden" name="TYRO_LOGIN_DEBUG" value="0" data-extra-field disabled>
+                    <input type="checkbox" name="TYRO_LOGIN_DEBUG" value="1" class="toggle-input" data-extra-field disabled
+                           <?php echo e($tl('debug', false) ? 'checked' : ''); ?>>
+                    <p class="form-hint">Shows diagnostic details on the sign-in pages. Turn off in production.</p>
+                </div>
+            </div>
+
+            <button type="button" class="btn btn-primary btn-sm" id="tyroLoginExtraSave"
+                    <?php if (! (auth()->user()?->hasPrivilege('settings.manage'))): ?> disabled <?php endif; ?>>
+                Save Tyro Login settings
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+    (function () {
+        var saveBtn = document.getElementById('tyroLoginExtraSave');
+        if (!saveBtn) return;
+
+        saveBtn.addEventListener('click', function () {
+            var panel = document.getElementById('vtab-tyro-login-extra');
+            var token = document.querySelector('#systemSettingsForm input[name="_token"]')?.value
+                || document.querySelector('meta[name="csrf-token"]')?.content;
+            var data = new FormData();
+
+            panel.querySelectorAll('[data-extra-field]').forEach(function (f) {
+                f.disabled = false;
+                if (f.type === 'checkbox') {
+                    if (f.checked) data.append(f.name, f.value);
+                } else {
+                    data.append(f.name, f.value);
+                }
+                f.disabled = true; // never submit with the hub's System Settings form
+            });
+
+            saveBtn.disabled = true;
+            saveBtn.textContent = 'Saving…';
+
+            fetch('<?php echo e(route('admin.tyro-login-extra.update')); ?>', {
+                method: 'POST',
+                headers: { 'X-CSRF-TOKEN': token || '', 'X-Requested-With': 'XMLHttpRequest', 'Accept': 'application/json' },
+                body: data,
+            }).then(function (res) { return res.json().then(function (j) { return { ok: res.ok, j: j }; }); })
+              .then(function (r) {
+                  if (!r.ok) throw new Error(r.j.message || 'Save failed');
+                  window.location.reload();
+              })
+              .catch(function (err) {
+                  saveBtn.disabled = false;
+                  saveBtn.textContent = 'Save Tyro Login settings (failed — retry)';
+              });
+        });
+    })();
+</script>
+<?php /**PATH C:\laragon\www\saas\resources\views\vendor\tyro-dashboard/settings/partials/_tab-tyro-login-extra.blade.php ENDPATH**/ ?>

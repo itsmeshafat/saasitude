@@ -2,6 +2,14 @@
 @include('tyro-login::partials.shadcn-theme')
 
 <style>
+    /* Alpine FOUC guard — MUST be first: hide x-cloak elements before
+       Alpine.js processes directives (700KB script loads last, creating
+       a visible flash of raw markup without this). */
+    [x-cloak] {
+        display: none !important;
+    }
+
+
     *,
     *::before,
     *::after {

@@ -1,0 +1,308 @@
+{
+  "schema_version": "mimosa-task-review/v2",
+  "run_id": "20261107T000946534Z-7224-23e8c47e481e",
+  "run_status": "inconclusive",
+  "errors": [
+    {
+      "stage": "baseline-read",
+      "target": "storage/framework/views/92fd0f8a6cb3d98e88430189da944e6b.php",
+      "reason": "baseline_snapshot_unreadable: file is missing from task baseline"
+    },
+    {
+      "stage": "baseline-read",
+      "target": "storage/framework/views/ee7d0821d0646cd75d0ca57ce6ed1c63.php",
+      "reason": "baseline_snapshot_unreadable: file is missing from task baseline"
+    },
+    {
+      "stage": "scan",
+      "target": "storage/framework/views/1f9c7e08c63df6ecaf32d1bc0545fe2a.php",
+      "reason": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT"
+    },
+    {
+      "stage": "scan",
+      "target": "storage/framework/views/5680eb4b6388f8c955790a2bd17339ef.php",
+      "reason": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT"
+    },
+    {
+      "stage": "scan",
+      "target": "storage/framework/views/73cb7aba6393b29c2f2a74a56cbeb511.php",
+      "reason": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT"
+    },
+    {
+      "stage": "scan",
+      "target": "storage/framework/views/92fd0f8a6cb3d98e88430189da944e6b.php",
+      "reason": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT"
+    },
+    {
+      "stage": "scan",
+      "target": "storage/framework/views/ee7d0821d0646cd75d0ca57ce6ed1c63.php",
+      "reason": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT"
+    }
+  ],
+  "coverage": {
+    "schema_version": "mimosa-hook-coverage/v1",
+    "status": "partial",
+    "scope": "hook_observed_diff",
+    "baseline": {
+      "complete": true,
+      "captured_files": 525,
+      "candidate_limit": 5000,
+      "truncated": false,
+      "enumeration_error_count": 0,
+      "snapshot_error_count": 0,
+      "compensated_target_count": 3
+    },
+    "change_tracking": {
+      "touched_observed": 0,
+      "touched_retained": 0,
+      "truncated": false,
+      "bash_mutation": true,
+      "bash_discovered": 5,
+      "bash_discovery_limit": 80,
+      "bash_discovery_truncated": false
+    },
+    "candidates": {
+      "eligible_files": 5,
+      "selected_files": 5,
+      "limit": 20,
+      "truncated": false
+    },
+    "scanning": {
+      "required_files": 5,
+      "scanned_files": 0,
+      "skipped_files": 0,
+      "failed_files": 5,
+      "project_checks_required": 0,
+      "project_checks_completed": 0
+    },
+    "notification": {
+      "eligible_findings": 0,
+      "detailed_findings": 0,
+      "detail_limit": 3,
+      "truncated": false
+    },
+    "reason_counts": {
+      "baseline_snapshot_unreadable": 2,
+      "scanner_failed": 5,
+      "project_check_failed": 7
+    },
+    "reasons": [
+      {
+        "code": "baseline_snapshot_unreadable",
+        "stage": "baseline-read",
+        "target": "storage/framework/views/92fd0f8a6cb3d98e88430189da944e6b.php",
+        "detail": "file is missing from task baseline",
+        "affects_completion": true
+      },
+      {
+        "code": "baseline_snapshot_unreadable",
+        "stage": "baseline-read",
+        "target": "storage/framework/views/ee7d0821d0646cd75d0ca57ce6ed1c63.php",
+        "detail": "file is missing from task baseline",
+        "affects_completion": true
+      },
+      {
+        "code": "scanner_failed",
+        "stage": "scan",
+        "target": "storage/framework/views/1f9c7e08c63df6ecaf32d1bc0545fe2a.php",
+        "detail": "spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+        "affects_completion": true
+      },
+      {
+        "code": "scanner_failed",
+        "stage": "scan",
+        "target": "storage/framework/views/5680eb4b6388f8c955790a2bd17339ef.php",
+        "detail": "spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+        "affects_completion": true
+      },
+      {
+        "code": "scanner_failed",
+        "stage": "scan",
+        "target": "storage/framework/views/73cb7aba6393b29c2f2a74a56cbeb511.php",
+        "detail": "spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+        "affects_completion": true
+      },
+      {
+        "code": "scanner_failed",
+        "stage": "scan",
+        "target": "storage/framework/views/92fd0f8a6cb3d98e88430189da944e6b.php",
+        "detail": "spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+        "affects_completion": true
+      },
+      {
+        "code": "scanner_failed",
+        "stage": "scan",
+        "target": "storage/framework/views/ee7d0821d0646cd75d0ca57ce6ed1c63.php",
+        "detail": "spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+        "affects_completion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "baseline-read",
+        "target": "storage/framework/views/92fd0f8a6cb3d98e88430189da944e6b.php",
+        "detail": "baseline_snapshot_unreadable: file is missing from task baseline",
+        "affects_completion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "baseline-read",
+        "target": "storage/framework/views/ee7d0821d0646cd75d0ca57ce6ed1c63.php",
+        "detail": "baseline_snapshot_unreadable: file is missing from task baseline",
+        "affects_completion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "scan",
+        "target": "storage/framework/views/1f9c7e08c63df6ecaf32d1bc0545fe2a.php",
+        "detail": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+        "affects_completion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "scan",
+        "target": "storage/framework/views/5680eb4b6388f8c955790a2bd17339ef.php",
+        "detail": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+        "affects_completion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "scan",
+        "target": "storage/framework/views/73cb7aba6393b29c2f2a74a56cbeb511.php",
+        "detail": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+        "affects_completion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "scan",
+        "target": "storage/framework/views/92fd0f8a6cb3d98e88430189da944e6b.php",
+        "detail": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+        "affects_completion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "scan",
+        "target": "storage/framework/views/ee7d0821d0646cd75d0ca57ce6ed1c63.php",
+        "detail": "scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+        "affects_completion": true
+      }
+    ],
+    "reasons_truncated": false
+  },
+  "generated_at": "2026-11-07T00:09:46.534Z",
+  "session_id": "sess_099766c9-a2c1-4371-9a97-8d50eff811dc",
+  "target": ".",
+  "revision": "1341530fbf4742aa639418f3230950deffaec7df",
+  "rules_version": "unavailable",
+  "diff_hash": "63e6865bc5cb5806eb0b4e47c29c359034ca5a2c11dcd1e3c6d5897438602432",
+  "diff": {
+    "algorithm": "sha256",
+    "changed_file_count": 5,
+    "changed_files": [
+      {
+        "file": "storage/framework/views/1f9c7e08c63df6ecaf32d1bc0545fe2a.php",
+        "ranges": [
+          {
+            "start": 1238,
+            "end": 1244
+          }
+        ],
+        "before_hash": "19d4d30b4ee79497bbde567ed4cd7f068649efe972874aba9268323c9319541f",
+        "after_hash": "ef4b1b1375b55355068111955cd91c46341098aa00075619d40a5826f79d1627"
+      },
+      {
+        "file": "storage/framework/views/5680eb4b6388f8c955790a2bd17339ef.php",
+        "ranges": [
+          {
+            "start": 1141,
+            "end": 1146
+          }
+        ],
+        "before_hash": "e33eb9d2f281b6c73688ddd93190d3775324f58042f1b283f57839c32adc6996",
+        "after_hash": "015409f78dfed78b5e541cc3939bdf229429f3510540bfc7bec5a3974b60cce0"
+      },
+      {
+        "file": "storage/framework/views/73cb7aba6393b29c2f2a74a56cbeb511.php",
+        "ranges": [
+          {
+            "start": 137,
+            "end": 137
+          }
+        ],
+        "before_hash": "123cad6e04de9a41950059edac41ae6ef241660415d11000991bc50a0b2db310",
+        "after_hash": "86e03735d35806de83052cbd7c26af6d1e4a8de846fc1f0335a3ffa2529335f9"
+      },
+      {
+        "file": "storage/framework/views/92fd0f8a6cb3d98e88430189da944e6b.php",
+        "ranges": [
+          {
+            "start": 1,
+            "end": 179
+          }
+        ],
+        "before_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "after_hash": "c6380b8c7404df790da68d04f0e99c981d2896351f4bf3398a173da7726016fe"
+      },
+      {
+        "file": "storage/framework/views/ee7d0821d0646cd75d0ca57ce6ed1c63.php",
+        "ranges": [
+          {
+            "start": 1,
+            "end": 231
+          }
+        ],
+        "before_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "after_hash": "ecdb75b7cc10a9288bef2b87dd2ad1b75478f754ee9d88532dd0b6ee8b921a1c"
+      }
+    ]
+  },
+  "timing": {
+    "started_at": "2026-11-07T00:09:40.941Z",
+    "completed_at": "2026-11-07T00:09:46.534Z",
+    "duration_ms": 5593,
+    "measurement": "hook_wall_clock"
+  },
+  "tokens": {
+    "input": 0,
+    "output": 0,
+    "total": 0,
+    "model_calls": 0,
+    "measurement": "known-zero"
+  },
+  "telemetry": {
+    "schemaVersion": "mimosa-gate-telemetry/v1",
+    "profile": "gate",
+    "operation": "Stop",
+    "outcome": "partial/INCONCLUSIVE",
+    "latencyMs": 5593,
+    "peakMemoryBytes": 97390592,
+    "memoryMeasurement": "max-observed-process-rss",
+    "scannedFiles": 0,
+    "cache": {
+      "hits": 0,
+      "misses": 0,
+      "measurement": "not-applicable"
+    },
+    "denyCount": 0,
+    "tokens": {
+      "input": 0,
+      "output": 0,
+      "total": 0,
+      "modelCalls": 0,
+      "measurement": "known-zero"
+    }
+  },
+  "finding_count": 0,
+  "rewake_finding_count": 0,
+  "evidence_boundary": {
+    "scan": "candidate",
+    "static_fix_verification": "observed_static_only",
+    "runtime_verification": "not_performed"
+  },
+  "finding_events": [],
+  "findings": [],
+  "artifacts": {
+    "immutable_report": ".mimosa/reports/task-review-sess_099766c9-a2c1-4371-9a97-8d50eff811dc-20261107T000946534Z-7224-23e8c47e481e.json",
+    "latest_report": ".mimosa/reports/task-review-sess_099766c9-a2c1-4371-9a97-8d50eff811dc.json",
+    "history_summary": ".mimosa/history/run-20261107T000946534Z-7224-23e8c47e481e.json"
+  }
+}

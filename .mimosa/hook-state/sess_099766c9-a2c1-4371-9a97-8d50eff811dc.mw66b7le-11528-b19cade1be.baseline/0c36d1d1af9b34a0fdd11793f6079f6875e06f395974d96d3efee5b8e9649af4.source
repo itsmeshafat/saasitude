@@ -1,0 +1,20 @@
+<?php $__env->startSection('title', 'Changelog'); ?>
+<?php $__env->startSection('meta_description', 'What changed in '.config('app.name').' — new features, fixes and improvements.'); ?>
+
+<?php $__env->startSection('content'); ?>
+
+<section class="changelog">
+    <h1>Changelog</h1>
+    <?php $__empty_1 = true; $__currentLoopData = $entries; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $version => $html): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+        <article class="entry glass">
+            <h2><?php echo e(ucfirst($version)); ?></h2>
+            <?php echo $html; ?>
+
+        </article>
+    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+        <p style="color:var(--muted-foreground)">No changelog entries yet.</p>
+    <?php endif; ?>
+</section>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.public', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH C:\laragon\www\saas\resources\views/public/changelog.blade.php ENDPATH**/ ?>

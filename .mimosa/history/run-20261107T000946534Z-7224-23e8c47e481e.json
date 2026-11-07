@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "mimosa-finding-history/v1",
+  "runId": "20261107T000946534Z-7224-23e8c47e481e",
+  "runStatus": "inconclusive",
+  "errors": [
+    "baseline-read:storage/framework/views/92fd0f8a6cb3d98e88430189da944e6b.php: baseline_snapshot_unreadable: file is missing from task baseline",
+    "baseline-read:storage/framework/views/ee7d0821d0646cd75d0ca57ce6ed1c63.php: baseline_snapshot_unreadable: file is missing from task baseline",
+    "scan:storage/framework/views/1f9c7e08c63df6ecaf32d1bc0545fe2a.php: scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+    "scan:storage/framework/views/5680eb4b6388f8c955790a2bd17339ef.php: scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+    "scan:storage/framework/views/73cb7aba6393b29c2f2a74a56cbeb511.php: scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+    "scan:storage/framework/views/92fd0f8a6cb3d98e88430189da944e6b.php: scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT",
+    "scan:storage/framework/views/ee7d0821d0646cd75d0ca57ce6ed1c63.php: scanner_failed: spawnSync C:\\laragon\\bin\\nodejs\\node-v26\\node.exe ETIMEDOUT"
+  ],
+  "target": ".",
+  "revision": "1341530fbf4742aa639418f3230950deffaec7df",
+  "diffHash": "63e6865bc5cb5806eb0b4e47c29c359034ca5a2c11dcd1e3c6d5897438602432",
+  "rulesVersion": "unavailable",
+  "recordedAt": "2026-11-07T00:09:46.534Z",
+  "timing": {
+    "startedAt": "2026-11-07T00:09:40.941Z",
+    "completedAt": "2026-11-07T00:09:46.534Z",
+    "durationMs": 5593
+  },
+  "tokens": {
+    "input": 0,
+    "output": 0,
+    "total": 0,
+    "modelCalls": 0,
+    "measurement": "known-zero"
+  },
+  "findings": {
+    "total": 0,
+    "bySeverity": {},
+    "byStatus": {}
+  },
+  "coverage": {
+    "status": "partial",
+    "reasonCounts": {
+      "baseline_snapshot_unreadable": 2,
+      "scanner_failed": 5,
+      "project_check_failed": 7
+    }
+  },
+  "evidenceBoundary": "static_only",
+  "immutableReport": ".mimosa/reports/task-review-sess_099766c9-a2c1-4371-9a97-8d50eff811dc-20261107T000946534Z-7224-23e8c47e481e.json"
+}

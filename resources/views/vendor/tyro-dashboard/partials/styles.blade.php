@@ -2,6 +2,12 @@
 @include('tyro-dashboard::partials.shadcn-theme')
 
 <style>
+    /* Alpine FOUC guard — hide x-cloak elements before Alpine loads */
+    [x-cloak] {
+        display: none !important;
+    }
+
+
     /* Guard: hidden (visibility-only) dropdown menus must not create horizontal scroll on mobile */
     body {
         overflow-x: hidden;
