@@ -1,0 +1,51 @@
+/* First-run installer wizard — Cobalt Glass tokens, no hard-coded colors. */
+@layer components {
+.install-wrap { max-width: 760px; padding: 40px 24px 48px; }
+.install-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px; }
+.install-brand { font-size: 20px; font-weight: 800; }
+.install-brand span { color: var(--primary); font-weight: 600; font-size: 14px; margin-left: 8px; }
+.install-steps { display: flex; gap: 6px; margin-bottom: 24px; flex-wrap: wrap; }
+.install-step { display: flex; align-items: center; gap: 8px; padding: 8px 14px; border-radius: 999px;
+               border: 1px solid var(--glass-border); background: var(--glass); font-size: 13px;
+               color: var(--muted-foreground); flex-wrap: wrap; }
+.install-step.is-current { border-color: var(--primary); color: var(--foreground); font-weight: 600; }
+.install-step.is-done .install-step-dot { background: var(--primary); color: var(--primary-foreground); }
+.install-step-dot { width: 22px; height: 22px; border-radius: 50%; border: 1px solid var(--glass-border);
+                   display: inline-flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; }
+.install-step-label { white-space: nowrap; letter-spacing: normal; }
+.install-flash { border: 1px solid var(--success, var(--primary)); border-radius: var(--radius); padding: 12px 16px;
+                margin-bottom: 16px; font-size: 14px; color: var(--foreground); background: var(--glass); }
+.install-card { border-radius: 18px; padding: 32px; }
+.install-card h1 { font-size: 24px; margin-bottom: 8px; }
+.install-lead { color: var(--muted-foreground); font-size: 15px; margin-bottom: 24px; line-height: 1.6; }
+.install-optional { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em;
+                   color: var(--muted-foreground); border: 1px solid var(--glass-border); border-radius: 999px;
+                   padding: 3px 10px; vertical-align: middle; margin-left: 8px; }
+.install-checks { list-style: none; padding: 0; margin: 0 0 24px; display: grid; gap: 8px; }
+.install-checks li { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-radius: 12px;
+                    background: var(--muted); border: 1px solid var(--glass-border); font-size: 14px; }
+.install-checks li.ok .install-check-icon { color: var(--success, var(--primary)); }
+.install-checks li.fail { border-color: var(--destructive); }
+.install-checks li.fail .install-check-icon { color: var(--destructive); font-weight: 800; }
+.install-checks li.warn .install-check-icon { color: var(--warning, var(--primary)); }
+.install-check-tag { margin-left: auto; font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em;
+                    color: var(--muted-foreground); border: 1px solid var(--glass-border); padding: 2px 8px; border-radius: 999px; }
+.install-field { margin-bottom: 16px; display: flex; flex-direction: column; gap: 6px; }
+.install-field label { font-size: 13px; font-weight: 600; }
+.install-field .form-input, .install-field .form-select { padding: 10px 12px; border-radius: 10px;
+    border: 1px solid var(--input, var(--border)); background: var(--background); color: var(--foreground); font-size: 14px; }
+.install-hint { font-size: 12px; color: var(--muted-foreground); }
+.install-hint-inline { font-weight: 400; color: var(--muted-foreground); }
+.install-error { border: 1px solid var(--destructive); border-radius: 10px; padding: 10px 14px;
+                color: var(--foreground); font-size: 14px; margin-bottom: 16px; background: var(--muted); }
+.install-next { margin-top: 8px; }
+.install-actions { display: flex; gap: 12px; justify-content: flex-end; margin-top: 24px; flex-wrap: wrap; }
+.install-gateway { border: 1px solid var(--glass-border); border-radius: 14px; padding: 16px 20px; margin-bottom: 16px; }
+.install-gateway summary { cursor: pointer; font-weight: 700; font-size: 15px; margin-bottom: 8px; }
+.install-demo-box { border: 1px solid var(--glass-border); border-radius: 14px; padding: 20px; font-size: 14px; }
+.install-demo-box ul { margin: 12px 0; padding-left: 20px; display: grid; gap: 6px; color: var(--muted-foreground); }
+.install-demo-box code { background: var(--muted); border-radius: 6px; padding: 1px 6px; font-size: 13px; }
+.install-warn { color: var(--warning, var(--foreground)); font-size: 13px; }
+.install-footer { text-align: center; font-size: 13px; color: var(--muted-foreground); margin-top: 32px; }
+.install-footer a { color: var(--foreground); }
+}

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -24,6 +25,8 @@ use Illuminate\Support\Collection;
  */
 class SupportTicket extends Model
 {
+    use HasFactory;
+
     protected $fillable = [
         'number', 'user_id', 'workspace_id', 'guest_email', 'subject', 'category', 'status', 'closed_at',
     ];

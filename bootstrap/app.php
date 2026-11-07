@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Middleware\BlockIfInstalled;
 use App\Http\Middleware\EnsureEntitlement;
 use App\Http\Middleware\EnsureWorkspaceContext;
 use App\Http\Middleware\LocalOnly;
 use App\Http\Middleware\PastDueBanner;
+use App\Http\Middleware\RedirectIfNotInstalled;
 use App\Http\Middleware\RequireIdempotencyKey;
 use App\Http\Middleware\SecurityHeaders;
 use App\Http\Middleware\TrialEndingNotice;
@@ -30,10 +32,14 @@ return Application::configure(basePath: dirname(__DIR__))
             'idempotency' => RequireIdempotencyKey::class,
             // PROTOTYPE: allow the throwaway prototype route in local env only
             'proto.local' => LocalOnly::class,
+            // First-run installer: /install* 404s once installed.lock exists
+            'install.locked' => BlockIfInstalled::class,
         ]);
         $middleware->validateCsrfTokens(except: ['webhooks/*']);
         // Baseline security headers on every response (web + API)
         $middleware->append(SecurityHeaders::class);
+        // Pre-install gate: everything redirects to /install until the lock file exists
+        $middleware->prepend(RedirectIfNotInstalled::class);
         // Billing banners on authenticated dashboard pages (Phase 10)
         $middleware->web(append: [TrialEndingNotice::class, PastDueBanner::class]);
     })

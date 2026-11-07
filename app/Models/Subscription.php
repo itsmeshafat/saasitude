@@ -6,6 +6,7 @@ use App\Events\PaymentFailed;
 use App\Events\SubscriptionActivated;
 use App\Events\SubscriptionCanceled;
 use App\Services\EntitlementService;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Carbon;
@@ -30,6 +31,8 @@ use Illuminate\Support\Carbon;
  */
 class Subscription extends Model
 {
+    use HasFactory;
+
     protected $fillable = [
         'workspace_id', 'plan_id', 'gateway', 'gateway_subscription_id',
         'gateway_customer_id', 'status', 'trial_ends_at', 'current_period_start',

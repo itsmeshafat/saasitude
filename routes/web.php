@@ -18,6 +18,7 @@ use App\Http\Controllers\BillingController;
 use App\Http\Controllers\BillingOverviewController;
 use App\Http\Controllers\CancelSubscriptionController;
 use App\Http\Controllers\DataPrivacyController;
+use App\Http\Controllers\Install\InstallController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\NotificationsController;
 use App\Http\Controllers\PaddleWebhookController;
@@ -164,4 +165,18 @@ Route::middleware(['auth', 'tyro-dashboard.admin'])->group(function (): void {
     Route::get('dashboard/email-templates', [EmailTemplatesController::class, 'index'])->name('admin.email-templates');
     Route::get('dashboard/email-templates/{key}', [EmailTemplatesController::class, 'show'])->name('admin.email-templates.show');
     Route::post('dashboard/email-templates/{key}/send-test', [EmailTemplatesController::class, 'sendTest'])->name('admin.email-templates.send-test');
+});
+
+// First-run installer wizard (locked by storage/app/installed.lock).
+Route::middleware(['web', 'install.locked'])->group(function (): void {
+    Route::get('install', [InstallController::class, 'index'])->name('install.index');
+    Route::get('install/requirements', [InstallController::class, 'requirements'])->name('install.requirements');
+    Route::get('install/database', [InstallController::class, 'databaseForm'])->name('install.database.form');
+    Route::post('install/database', [InstallController::class, 'database'])->name('install.database');
+    Route::get('install/admin', [InstallController::class, 'adminForm'])->name('install.admin.form');
+    Route::post('install/admin', [InstallController::class, 'admin'])->name('install.admin');
+    Route::get('install/gateway', [InstallController::class, 'gatewayForm'])->name('install.gateway.form');
+    Route::post('install/gateway', [InstallController::class, 'gateway'])->name('install.gateway');
+    Route::get('install/demo', [InstallController::class, 'demoForm'])->name('install.demo.form');
+    Route::post('install/demo', [InstallController::class, 'demo'])->name('install.demo');
 });

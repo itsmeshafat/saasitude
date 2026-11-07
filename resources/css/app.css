@@ -1,5 +1,6 @@
 @import 'tailwindcss';
 @import './public.css';
+@import './install.css';
 
 /* Explicit scan sources — auto-detection was missing dashboard views */
 @source '../views';

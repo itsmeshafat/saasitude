@@ -42,3 +42,9 @@ Phase 1 — finalised 2026-11-04. Update this file; never let it drift from the 
 **CouponRedemption** — The record of a workspace applying a coupon: coupon, workspace, optional gateway coupon id, amount off in minor units, and `applied_at`. Stored in `coupon_redemptions`. `coupons.redeemed_count` is incremented atomically when a redemption is recorded.
 
 **GatewayManager** — App service (`app/Services/GatewayManager.php`) that resolves gateway adapters by key (`stripe`, `paddle`, `sslcommerz`), lists all registered gateways, exposes the container-default gateway, and routes checkout by currency (BDT → SSLCommerz, otherwise default). Singleton.
+
+**Installer** — First-run 5-step web wizard at `/install` (requirements → database → admin → gateways → demo data). Logic lives in `app/Services/Install/*`; routes are guarded by the `install.locked` middleware. Only usable before the Installed Lock exists.
+
+**Installed Lock** — The marker file `storage/app/installed.lock`. While absent, the global `RedirectIfNotInstalled` middleware sends every request except `/install*`, `/up` and static assets to the installer; once present, `/install*` 404s. Deliberately a file (not a DB row) so the lock survives the database being dropped.
+
+**Demo Data** — Optional installer dataset (`DemoDataSeeder`) that populates workspaces in every subscription state, payments, invoices, coupons, tickets and a member user (`demo@demo.com` / `password`). Idempotent; removable with `php artisan saas:reset-demo`.

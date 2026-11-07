@@ -73,35 +73,31 @@ Landing page · DB-driven pricing (monthly/annual toggle) · Changelog · Contac
 
 ## Setup
 
+The fastest path is the **web installer** — clone, install dependencies, serve, and open the app in a browser:
+
 ```bash
-# 1. Clone and install
 git clone <your-repo-url> saas-boilerplate
 cd saas-boilerplate
 composer install
-npm install
-
-# 2. Configure
-cp .env.example .env
-php artisan key:generate
-
-# Edit .env — at minimum:
-#   DB_CONNECTION=mysql, DB_DATABASE=..., DB_USERNAME=..., DB_PASSWORD=...
-#   TYRO_DASHBOARD_APP_NAME="Your SaaS"
-#   TYRO_DASHBOARD_PREFIX=dashboard
-
-# 3. Migrate & seed (roles, default settings, plans from config/saas-plans.php)
-php artisan migrate --seed
-
-# 4. Build assets & start
-npm run build
+npm install && npm run build
 php artisan serve
 ```
 
-Visit `http://localhost:8000`, register, and you land in the dashboard with a personal workspace.
+Open `http://localhost:8000` and the 5-step installer takes over:
 
-### Create a superuser
+1. **Requirements** — PHP version, extensions, writable paths checked for you
+2. **Database** — enter MySQL (or SQLite) credentials; verified, written to `.env`, migrated
+3. **Admin account** — your super-admin, with a personal workspace like any registration
+4. **Gateways** *(optional)* — Stripe/Paddle/SSLCommerz keys, stored encrypted; skippable
+5. **Demo data** *(optional)* — one click and every screen has something to show (`demo@demo.com` / `password`; remove later with `php artisan saas:reset-demo`)
+
+Once finished, the installer locks itself (`storage/app/installed.lock`) and never appears again. Prefer the terminal? The manual route still works:
 
 ```bash
+cp .env.example .env
+php artisan key:generate
+# edit DB_* in .env
+php artisan migrate --seed
 php artisan tyro-dashboard:createsuperuser
 ```
 

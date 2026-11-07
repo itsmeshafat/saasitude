@@ -5,6 +5,7 @@ namespace App\Models;
 use HasinHayder\Tyro\Support\TyroAudit;
 use HasinHayder\TyroDashboard\Concerns\HasCrud;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -24,6 +25,7 @@ use Illuminate\Support\Facades\Schema;
 class Plan extends Model
 {
     use HasCrud { getResourceConfig as baseGetResourceConfig; }
+    use HasFactory;
 
     /**
      * Append a sidebar icon to the HasCrud resource config so the Data
