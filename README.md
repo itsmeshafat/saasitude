@@ -1,58 +1,175 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# SaaS Boilerplate — Laravel
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+**Launch your SaaS with billing that just works.**
 
-## About Laravel
+A production-ready Laravel 12 SaaS starter with multi-gateway billing (Stripe · Paddle · SSLCommerz), workspace-based teams, a data-driven entitlements engine, a full admin console, and a mobile-ready API — on top of the beautiful [Tyro Dashboard](https://tyrolabs.dev) by [Hasin Hayder](https://github.com/hasinhayder).
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+![Landing Page](docs/screenshots/landing.png)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+---
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Why this boilerplate
 
-## Learning Laravel
+Stop rebuilding billing for every product. This repo gives you the unglamorous 80% of every SaaS — auth, teams, plans, subscriptions, invoices, webhooks, refunds, notifications, admin tooling — so you can spend your time on the 20% that makes your product unique.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- ✅ **Multi-gateway billing** — Stripe, Paddle (Billing, MoR tax) and SSLCommerz behind one `PaymentGateway` interface. Swap or add gateways without touching business logic.
+- ✅ **Verified-webhook-only payment state** — signature/hash verification → unique event store → queued, idempotent processing. Return URLs never grant access.
+- ✅ **Workspaces as the billable entity** — every user gets a personal workspace; invite teammates with owner / admin / member / billing roles.
+- ✅ **Entitlements engine** — plans and limits are *data*, not code. `Entitlements::for($workspace)->can('feature_key')` everywhere; never check plan-name strings.
+- ✅ **Integer money** — minor units + ISO currency (`1200, 'USD'`). No floats, ever.
+- ✅ **Full admin console** — MRR/ARR/churn overview, workspace management, subscription timelines, refunds, webhook replay, gateway settings, email previews, support inbox, system health.
+- ✅ **Mobile API** — versioned `/api/v1` with Sanctum token abilities, workspace context header, cursor pagination, idempotency keys, one error envelope.
+- ✅ **Beautiful out of the box** — Tyro Dashboard (shadcn CSS variables, dark mode, WCAG-conscious), plus a public landing/pricing/changelog site driven by the plans tables.
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Screenshots
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+| | |
+|---|---|
+| ![Admin Overview](docs/screenshots/admin-overview.png) | ![Billing Overview](docs/screenshots/billing-overview.png) |
+| *Admin console — MRR, trials, churn, failed payments* | *User billing — plan, usage meters, renewal* |
+| ![Subscriptions](docs/screenshots/subscriptions-admin.png) | ![Team](docs/screenshots/team.png) |
+| *Subscriptions — filter by status/gateway, export CSV* | *Team management — invite, roles, transfer ownership* |
+| ![Pricing](docs/screenshots/pricing.png) | |
+| *Public pricing — DB-driven, currency & interval toggle* | |
 
-## Agentic Development
+## What's inside
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+### Billing core
+- **Adapters**: `StripeGateway`, `PaddleGateway`, `SSLCommerzGateway` behind a shared interface (`app/Gateways/`)
+- **Subscription state machine** with domain events (activated, payment failed, trial ending, canceled…)
+- **Webhook pipeline**: verify → store (`webhook_events`, unique per gateway + event id) → queue job → idempotent replay from the admin UI
+- **Invoices** with sequential numbers (`INV-YYYY-NNNNNN`) and PDF download
+- **Payments & refunds** (audited, privilege-gated), **coupons** with redemption tracking
+- **App-driven renewals** for SSLCommerz: 7/3/1-day reminder emails, grace period, auto-downgrade (see `app/Jobs/`)
+
+### Workspaces & teams
+- Personal workspace auto-created on registration
+- Owner / admin / member / billing roles in `workspace_members`
+- Token-based email invitations, ownership transfer, workspace switcher
+
+### Plans & entitlements
+- `plans` / `plan_prices` / `features` / `plan_features` — all editable via HasCrud admin resources
+- `Entitlements::for($workspace)->can($key)` / `->limit($key)` + `entitled` middleware and Blade directive
+- Usage records with period counters; downgrade pre-check warns when usage exceeds the new plan
+
+### Admin console (`/dashboard/*-admin`)
+Overview metrics · Workspaces (suspend / restore / force plan / extend trial) · Subscriptions with state timelines · Payments & refunds · Invoices (regenerate PDF) · Webhook events (payload viewer + replay) · Gateway settings (masked keys, connection test) · Email template previews & test sends · Support inbox · System health · CSV/PDF exports
+
+### User screens (`/dashboard`)
+Billing overview · Change plan with proration preview · Checkout (gateway selector + coupon) · Invoices & receipts · Cancel flow with reason survey · Payment methods · API keys · Notifications with preferences · Support tickets · Data export & account deletion
+
+### Mobile API (`/api/v1`)
+Sanctum token abilities, `X-Workspace-Id` context, cursor pagination, `Idempotency-Key` on payment POSTs, stable snake_case error codes. Covers workspaces, members, subscription lifecycle, checkout, invoices, payments, usage, devices, notifications and data rights.
+
+### Public site
+Landing page · DB-driven pricing (monthly/annual toggle) · Changelog · Contact → support inbox · Legal pages · sitemap.xml · OpenGraph tags
+
+## Requirements
+
+- PHP 8.2+ (built on 8.5)
+- MySQL 8+, Redis
+- Node.js 20+ & npm
+- Composer
+
+## Setup
 
 ```bash
-composer require laravel/boost --dev
+# 1. Clone and install
+git clone <your-repo-url> saas-boilerplate
+cd saas-boilerplate
+composer install
+npm install
 
-php artisan boost:install
+# 2. Configure
+cp .env.example .env
+php artisan key:generate
+
+# Edit .env — at minimum:
+#   DB_CONNECTION=mysql, DB_DATABASE=..., DB_USERNAME=..., DB_PASSWORD=...
+#   TYRO_DASHBOARD_APP_NAME="Your SaaS"
+#   TYRO_DASHBOARD_PREFIX=dashboard
+
+# 3. Migrate & seed (roles, default settings, plans from config/saas-plans.php)
+php artisan migrate --seed
+
+# 4. Build assets & start
+npm run build
+php artisan serve
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+Visit `http://localhost:8000`, register, and you land in the dashboard with a personal workspace.
 
-## Contributing
+### Create a superuser
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```bash
+php artisan tyro-dashboard:createsuperuser
+```
 
-## Code of Conduct
+### Gateway configuration
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Add keys per gateway in `.env` (or via **Admin → Gateway Settings**, stored encrypted in the `settings` table):
 
-## Security Vulnerabilities
+```env
+STRIPE_SECRET=sk_test_...
+STRIPE_WEBHOOK_SECRET=whsec_...
+PADDLE_API_KEY=...
+PADDLE_WEBHOOK_SECRET=...
+SSLCOMMERZ_STORE_ID=...
+SSLCOMMERZ_STORE_PASSWORD=...
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Webhook endpoints (add these in each gateway dashboard; `/webhooks/*` routes are CSRF-exempt):
+
+```
+POST /webhooks/stripe
+POST /webhooks/paddle
+POST /webhooks/sslcommerz
+```
+
+### Scheduler & queues
+
+Production `cron` entry:
+
+```
+* * * * * cd /path-to-app && php artisan schedule:run >> /dev/null 2>&1
+```
+
+Run a worker (webhooks, emails, renewals, data exports are queued):
+
+```bash
+php artisan queue:work --tries=3
+```
+
+## Testing
+
+```bash
+php artisan test          # full suite (166+ tests, gateway fakes — no real API calls)
+vendor/bin/pint           # style
+vendor/bin/phpstan analyse --memory-limit=1G   # Larastan level 5
+```
+
+## Documentation
+
+| Doc | Contents |
+|---|---|
+| [`docs/00-research.md`](docs/00-research.md) · [`docs/00-audit.md`](docs/00-audit.md) | Research & gap analysis vs Tyro |
+| [`docs/01-prd.md`](docs/01-prd.md) · [`docs/02-architecture.md`](docs/02-architecture.md) | Product spec & architecture |
+| [`docs/04-billing.md`](docs/04-billing.md) | Gateway rules, emails, plan placeholders |
+| [`docs/adr/`](docs/adr/) | 12 Architecture Decision Records |
+| [`GLOSSARY.md`](GLOSSARY.md) | Domain terms |
+| [`AGENTS.md`](AGENTS.md) | Full contribution rules & decision tree |
+
+## Tech stack
+
+[Laravel 12](https://laravel.com) · [Tyro Dashboard](https://tyrolabs.dev) & [Tyro Login](https://hasinhayder.github.io/tyro-login) by [Hasin Hayder](https://github.com/hasinhayder) · Blade + Tailwind + Alpine (shadcn CSS variables) · MySQL · Redis · Sanctum · PHPUnit · Larastan L5 · Pint
+
+## Credits & gratitude
+
+Built on the shoulders of giants — thank you:
+
+- **[Hasin Hayder](https://github.com/hasinhayder)** for [Tyro](https://tyrolabs.dev), [Tyro Login](https://hasinhayder.github.io/tyro-login) and [Tyro Dashboard](https://github.com/hasinhayder/tyro-dashboard) — the auth, RBAC and dashboard foundations this project builds on.
+- The **[Laravel](https://laravel.com)**, **[Tailwind CSS](https://tailwindcss.com)** and **[Stripe](https://stripe.com)** teams and their ecosystems.
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+MIT — see [LICENSE](LICENSE).

@@ -52,6 +52,12 @@
             <a href="{{ route('public.legal', 'privacy') }}">Privacy</a>
             <a href="{{ route('public.legal', 'refund-policy') }}">Refunds</a>
         </div>
+        <div class="pub-footer-credits">
+            Built on
+            <a href="https://laravel.com" target="_blank" rel="noopener">Laravel</a> ·
+            <a href="https://tyrolabs.dev" target="_blank" rel="noopener">Tyro</a>
+            by <a href="https://github.com/hasinhayder" target="_blank" rel="noopener">Hasin Hayder</a>
+        </div>
     </footer>
 </div>
 <script>

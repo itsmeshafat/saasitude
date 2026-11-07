@@ -41,6 +41,22 @@
     </div>
 </section>
 
+<section class="gratitude glass">
+    <span class="eyebrow">With gratitude</span>
+    <h2 style="font-size:24px;margin:12px 0 16px">Built on the shoulders of giants</h2>
+    <p style="color:var(--muted-foreground);margin-bottom:24px">
+        This product stands on work we deeply admire. The dashboard, authentication and RBAC
+        foundations come from
+        <a href="https://tyrolabs.dev" target="_blank" rel="noopener"><strong>Tyro</strong></a>
+        by <a href="https://github.com/hasinhayder" target="_blank" rel="noopener"><strong>Hasin Hayder</strong></a> —
+        thank you for building tools that let the rest of us ship faster. And to the
+        <a href="https://laravel.com" target="_blank" rel="noopener"><strong>Laravel</strong></a>,
+        <a href="https://tailwindcss.com" target="_blank" rel="noopener"><strong>Tailwind CSS</strong></a> and
+        <a href="https://stripe.com" target="_blank" rel="noopener"><strong>Stripe</strong></a> teams:
+        none of this exists without you.
+    </p>
+</section>
+
 <section class="bottom-cta glass">
     <span class="eyebrow">Get started</span>
     <h2 style="font-size:32px;margin:12px 0 24px">Simple pricing, no surprises</h2>
