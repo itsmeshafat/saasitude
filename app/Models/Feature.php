@@ -16,7 +16,20 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  */
 class Feature extends Model
 {
-    use HasCrud;
+    use HasCrud { getResourceConfig as baseGetResourceConfig; }
+
+    /**
+     * Append a sidebar icon to the HasCrud resource config so the Data
+     * section shows a distinct menu icon per resource.
+     *
+     * @return array<string, mixed>
+     */
+    public static function getResourceConfig(): array
+    {
+        return array_merge(static::baseGetResourceConfig(), [
+            'icon' => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6h11"/><path stroke-linecap="round" stroke-linejoin="round" d="M10 12h11"/><path stroke-linecap="round" stroke-linejoin="round" d="M10 18h11"/><path stroke-linecap="round" stroke-linejoin="round" d="M3 6l1.5 1.5L7 5"/><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l1.5 1.5L7 11"/><path stroke-linecap="round" stroke-linejoin="round" d="M3 18l1.5 1.5L7 17"/></svg>',
+        ]);
+    }
 
     protected $fillable = ['key', 'name', 'type', 'unit'];
 

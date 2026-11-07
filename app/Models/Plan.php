@@ -23,7 +23,20 @@ use Illuminate\Support\Facades\Schema;
  */
 class Plan extends Model
 {
-    use HasCrud;
+    use HasCrud { getResourceConfig as baseGetResourceConfig; }
+
+    /**
+     * Append a sidebar icon to the HasCrud resource config so the Data
+     * section shows a distinct menu icon per resource.
+     *
+     * @return array<string, mixed>
+     */
+    public static function getResourceConfig(): array
+    {
+        return array_merge(static::baseGetResourceConfig(), [
+            'icon' => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 2L2 7l10 5 10-5-10-5z"/><path stroke-linecap="round" stroke-linejoin="round" d="M2 17l10 5 10-5"/><path stroke-linecap="round" stroke-linejoin="round" d="M2 12l10 5 10-5"/></svg>',
+        ]);
+    }
 
     protected $fillable = ['name', 'slug', 'description', 'is_public', 'is_archived', 'price_version'];
 
