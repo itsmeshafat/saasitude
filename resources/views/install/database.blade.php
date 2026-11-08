@@ -24,16 +24,16 @@
     <div data-mysql-only>
         <div class="install-field">
             <label for="host">Host</label>
-            <input id="host" name="host" type="text" value="{{ old('host', '127.0.0.1') }}" class="form-input" required>
+            <input id="host" name="host" type="text" value="{{ old('host', '127.0.0.1') }}" class="form-input">
             @error('host')<span class="install-error">{{ $message }}</span>@enderror
         </div>
         <div class="install-field">
             <label for="port">Port</label>
-            <input id="port" name="port" type="number" value="{{ old('port', '3306') }}" class="form-input" required>
+            <input id="port" name="port" type="number" value="{{ old('port', '3306') }}" class="form-input">
         </div>
         <div class="install-field">
             <label for="username">Username</label>
-            <input id="username" name="username" type="text" value="{{ old('username') }}" class="form-input" required>
+            <input id="username" name="username" type="text" value="{{ old('username') }}" class="form-input">
         </div>
         <div class="install-field">
             <label for="password">Password</label>
@@ -50,7 +50,7 @@
     <div data-mysql-only>
         <div class="install-field">
             <label for="database-mysql">Database name</label>
-            <input id="database-mysql" name="database" type="text" value="{{ old('database') }}" class="form-input" required>
+            <input id="database-mysql" name="database" type="text" value="{{ old('database') }}" class="form-input">
             @error('database')<span class="install-error">{{ $message }}</span>@enderror
         </div>
     </div>
@@ -65,10 +65,24 @@
 
 <script>
     var select = document.getElementById('connection');
+    // Toggle visibility AND disable/require inputs per connection so hidden
+    // fields never submit, block native validation, or collide by name.
     var toggle = function () {
         var mysql = select.value === 'mysql';
-        document.querySelectorAll('[data-mysql-only]').forEach(function (el) { el.hidden = !mysql; });
-        document.querySelectorAll('[data-sqlite-only]').forEach(function (el) { el.hidden = mysql; });
+        document.querySelectorAll('[data-mysql-only]').forEach(function (group) {
+            group.hidden = !mysql;
+            group.querySelectorAll('input').forEach(function (input) {
+                input.disabled = !mysql;
+                input.required = mysql;
+            });
+        });
+        document.querySelectorAll('[data-sqlite-only]').forEach(function (group) {
+            group.hidden = mysql;
+            group.querySelectorAll('input').forEach(function (input) {
+                input.disabled = mysql;
+                input.required = !mysql;
+            });
+        });
     };
     select.addEventListener('change', toggle);
     toggle();
