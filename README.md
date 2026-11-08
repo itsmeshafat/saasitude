@@ -47,7 +47,7 @@ Every SaaS rebuilds the same 80%: auth, teams, plans, subscriptions, invoices, w
 ## 🚀 Quick start (60 seconds)
 
 ```bash
-git clone https://github.com/itsmeshafat/saas-boilerplate-laravel.git saasitude
+git clone https://github.com/itsmeshafat/saasitude.git saasitude
 cd saasitude
 composer install
 npm install && npm run build

@@ -5,7 +5,7 @@ Thanks for your interest in making SaaSitude better!
 ## Setup
 
 ```bash
-git clone https://github.com/itsmeshafat/saas-boilerplate-laravel.git
+git clone https://github.com/itsmeshafat/saasitude.git
 cd saas-boilerplate-laravel
 composer install
 npm install && npm run build
@@ -49,5 +49,5 @@ Read first: [`AGENTS.md`](AGENTS.md) (project rules), [`GLOSSARY.md`](GLOSSARY.m
 
 ## Reporting bugs & security
 
-Bugs: [open an issue](https://github.com/itsmeshafat/saas-boilerplate-laravel/issues) with reproduction steps and stack trace.
+Bugs: [open an issue](https://github.com/itsmeshafat/saasitude/issues) with reproduction steps and stack trace.
 Security: see [`SECURITY.md`](SECURITY.md) — please don't open public issues for vulnerabilities.
