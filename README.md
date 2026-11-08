@@ -253,6 +253,17 @@ Built on the shoulders of giants — thank you:
 - **[Hasin Hayder](https://github.com/hasinhayder)** for [Tyro](https://tyrolabs.dev), [Tyro Login](https://hasinhayder.github.io/tyro-login) and [Tyro Dashboard](https://github.com/hasinhayder/tyro-dashboard) — the auth, RBAC and dashboard foundations SaaSitude is built on. 💚
 - The **[Laravel](https://laravel.com)**, **[Tailwind CSS](https://tailwindcss.com)**, **[shadcn](https://ui.shadcn.com)** and **[Stripe](https://stripe.com)** teams and their ecosystems.
 
+## 💚 Sponsor
+
+If SaaSitude saves you weeks of work, consider supporting its development:
+
+<p align="center">
+  <a href="https://www.buymeacoffee.com/itsmeshafat"><img src="https://img.shields.io/badge/Buy%20Me%20a%20Coffee-support%20Shafat-ffdd00?logo=buy-me-a-coffee&logoColor=black" alt="Buy Me a Coffee"></a>
+  <a href="https://www.supportkori.com/itsmeshafat"><img src="https://img.shields.io/badge/Supportkori-support%20%E2%82%B3%E2%82%B3%20BD-7c3aed" alt="Supportkori"></a>
+</p>
+
+Every coffee funds the next feature — more gateways, more screens, more docs. ☕
+
 ## 📄 License
 
 MIT — see [LICENSE](LICENSE).
