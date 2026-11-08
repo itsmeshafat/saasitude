@@ -43,16 +43,21 @@ final class EnvWriter
         File::put($this->envPath, $content);
     }
 
-    /** Generate and persist APP_KEY (base64:... cipher AES-256-CBC). */
-    public function ensureAppKey(): void
+    /**
+     * Ensure APP_KEY exists (generating one if missing) and return the
+     * effective key so the current request can use it at runtime.
+     */
+    public function ensureAppKey(): string
     {
         $content = File::exists($this->envPath) ? File::get($this->envPath) : '';
-        if (preg_match('/^APP_KEY=base64:.+$/m', $content)) {
-            return;
+        if (preg_match('/^APP_KEY="?base64:.+"?$/m', $content, $matches)) {
+            return trim(str_replace('APP_KEY=', '', $matches[0]), '"');
         }
 
         $key = 'base64:'.base64_encode(Encrypter::generateKey('AES-256-CBC'));
         $this->write(['APP_KEY' => $key]);
+
+        return $key;
     }
 
     /** Absolute path this writer targets (exposed for the DB step reload). */

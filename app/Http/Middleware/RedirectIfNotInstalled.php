@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Services\Install\EnvWriter;
 use App\Services\Install\InstallerState;
 use Closure;
 use Illuminate\Http\Request;
@@ -11,11 +12,20 @@ use Symfony\Component\HttpFoundation\Response;
  * Global pre-install gate: while the installed.lock marker is absent,
  * every request except the installer itself (and health/up) redirects
  * to /install so the wizard is the only usable surface.
+ *
+ * Also bootstraps the runtime APP_KEY on the very first request: a
+ * fresh clone has no .env at all, and the web group's cookie
+ * encryption needs a key before even step 1 can render.
  */
 class RedirectIfNotInstalled
 {
     public function handle(Request $request, Closure $next): Response
     {
+        if (! InstallerState::installed() && empty(config('app.key'))) {
+            $key = app(EnvWriter::class)->ensureAppKey();
+            config(['app.key' => $key]);
+        }
+
         if (InstallerState::installed()) {
             return $next($request);
         }

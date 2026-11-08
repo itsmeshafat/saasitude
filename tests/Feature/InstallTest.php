@@ -49,6 +49,17 @@ class InstallTest extends TestCase
         $this->get('/install/requirements')->assertOk()->assertSee('Requirements');
     }
 
+    public function test_first_request_bootstraps_missing_app_key(): void
+    {
+        // Fresh clone: no .env at all and no configured key — the
+        // pre-install gate must generate one before any page renders.
+        config(['app.key' => null]);
+
+        $this->get('/install/requirements')->assertOk();
+
+        $this->assertMatchesRegularExpression('/^APP_KEY="base64:.+"$/m', file_get_contents($this->envPath));
+    }
+
     public function test_install_routes_404_after_lock_file_exists(): void
     {
         touch($this->lockPath);
