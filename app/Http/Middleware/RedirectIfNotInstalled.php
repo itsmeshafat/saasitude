@@ -22,8 +22,15 @@ class RedirectIfNotInstalled
     public function handle(Request $request, Closure $next): Response
     {
         if (! InstallerState::installed() && empty(config('app.key'))) {
-            $key = app(EnvWriter::class)->ensureAppKey();
-            config(['app.key' => $key]);
+            $writer = app(EnvWriter::class);
+            $key = $writer->ensureAppKey();
+
+            // .env.example defaults sessions/cache to the database, but no
+            // usable DB exists before step 2 — pin file stores so the
+            // wizard renders. DatabaseTester restores the DB stores after
+            // migrations run.
+            $writer->write(['SESSION_DRIVER' => 'file', 'CACHE_STORE' => 'file']);
+            config(['app.key' => $key, 'session.driver' => 'file', 'cache.default' => 'file']);
         }
 
         if (InstallerState::installed()) {

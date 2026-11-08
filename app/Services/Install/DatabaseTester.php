@@ -3,12 +3,13 @@
 namespace App\Services\Install;
 
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Config;
 use PDO;
 
 /**
  * Step 2 — verifies the submitted database credentials with a raw PDO
  * connection BEFORE anything is written, then persists the config,
- * reloads the app's DB config and runs migrations.
+ * switches the running process to the new connection and migrates.
  */
 final class DatabaseTester
 {
@@ -21,13 +22,9 @@ final class DatabaseTester
      */
     public function install(array $credentials): void
     {
-        if ($credentials['connection'] === 'sqlite') {
-            $path = $credentials['database'];
-            if (! is_file($path)) {
-                throw new \RuntimeException("SQLite file does not exist: {$path}");
-            }
-            new PDO('sqlite:'.$path);
-        } else {
+        $isMysql = $credentials['connection'] === 'mysql';
+
+        if ($isMysql) {
             $dsn = sprintf(
                 'mysql:host=%s;port=%s;dbname=%s;charset=utf8mb4',
                 $credentials['host'],
@@ -38,22 +35,46 @@ final class DatabaseTester
                 PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
                 PDO::ATTR_TIMEOUT => 5,
             ]);
+        } else {
+            $path = $credentials['database'];
+            if (! is_file($path)) {
+                throw new \RuntimeException("SQLite file does not exist: {$path}");
+            }
+            new PDO('sqlite:'.$path);
         }
 
         $this->envWriter->write([
             'APP_URL' => $credentials['app_url'] ?? null,
             'DB_CONNECTION' => $credentials['connection'],
-            'DB_HOST' => $credentials['connection'] === 'mysql' ? $credentials['host'] : null,
-            'DB_PORT' => $credentials['connection'] === 'mysql' ? $credentials['port'] : null,
+            'DB_HOST' => $isMysql ? $credentials['host'] : null,
+            'DB_PORT' => $isMysql ? $credentials['port'] : null,
             'DB_DATABASE' => $credentials['database'],
-            'DB_USERNAME' => $credentials['connection'] === 'mysql' ? $credentials['username'] : null,
-            'DB_PASSWORD' => $credentials['connection'] === 'mysql' ? $credentials['password'] : null,
+            'DB_USERNAME' => $isMysql ? $credentials['username'] : null,
+            'DB_PASSWORD' => $isMysql ? $credentials['password'] : null,
+            // The pre-install gate pinned file stores (no usable DB yet);
+            // migrations create the tables, so switch back to DB stores.
+            'SESSION_DRIVER' => 'database',
+            'CACHE_STORE' => 'database',
         ]);
         $this->envWriter->ensureAppKey();
 
-        // Re-read the written .env so this process uses the new database.
-        app()->loadEnvironmentFrom($this->envWriter->path());
-        Artisan::call('config:clear');
+        // Point the RUNNING process at the new database (env/config were
+        // read at boot; the .env write alone does not affect this request).
+        Config::set('database.default', $credentials['connection']);
+        Config::set("database.connections.{$credentials['connection']}", $isMysql ? [
+            'driver' => 'mysql',
+            'host' => $credentials['host'],
+            'port' => $credentials['port'],
+            'database' => $credentials['database'],
+            'username' => $credentials['username'],
+            'password' => $credentials['password'],
+            'charset' => 'utf8mb4',
+        ] : [
+            'driver' => 'sqlite',
+            'database' => $credentials['database'],
+        ]);
+        Config::set(['session.driver' => 'database', 'cache.default' => 'database']);
+
         Artisan::call('migrate', ['--force' => true]);
     }
 }

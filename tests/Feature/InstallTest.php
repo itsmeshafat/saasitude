@@ -57,7 +57,11 @@ class InstallTest extends TestCase
 
         $this->get('/install/requirements')->assertOk();
 
-        $this->assertMatchesRegularExpression('/^APP_KEY="base64:.+"$/m', file_get_contents($this->envPath));
+        $env = file_get_contents($this->envPath);
+        $this->assertMatchesRegularExpression('/^APP_KEY="base64:.+"$/m', $env);
+        // File stores pinned until a real database is configured.
+        $this->assertMatchesRegularExpression('/^SESSION_DRIVER="file"$/m', $env);
+        $this->assertMatchesRegularExpression('/^CACHE_STORE="file"$/m', $env);
     }
 
     public function test_install_routes_404_after_lock_file_exists(): void
