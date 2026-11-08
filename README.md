@@ -6,7 +6,8 @@
 
 <p align="center">
   <strong>Launch your SaaS with billing that just works.</strong><br>
-  Workspaces · Subscriptions · Entitlements · Admin console · Mobile API — powered by Stripe, Paddle &amp; SSLCommerz.
+  Workspaces · Subscriptions · Entitlements · Admin console · Mobile API.<br>
+  Built on <a href="https://tyrolabs.dev">Tyro</a> by <a href="https://github.com/hasinhayder">Hasin Hayder</a> · billed via Stripe, Paddle &amp; SSLCommerz.
 </p>
 
 <p align="center">
