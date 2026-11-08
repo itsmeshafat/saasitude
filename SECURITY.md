@@ -2,7 +2,7 @@
 
 ## Reporting a vulnerability
 
-Found something that shouldn't be public? Please email **security@saasitude.dev**
+Found something that shouldn't be public? Please email **hello@itsmeshafat.com**
 (replace with your real inbox before launch) with details and reproduction steps.
 Don't open a public issue for vulnerabilities. We aim to respond within 72 hours.
 
