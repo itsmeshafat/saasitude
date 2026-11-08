@@ -1130,7 +1130,6 @@
         width: 18px;
         height: 18px;
     }
-</style>
 
     /* Native select popup items — theme-aware */
     select option,
@@ -1144,3 +1143,4 @@
         background-color: var(--primary);
         color: var(--primary-foreground);
     }
+</style>
