@@ -28,3 +28,10 @@ Thumbs.db
 
 # Tyro Checkpoint
 storage/tyro-checkpoints
+
+# Agent session scratch
+/.playwright-mcp
+/.zcode
+
+# Installer runtime state
+/storage/app/installed.lock
