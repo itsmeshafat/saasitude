@@ -67,7 +67,14 @@ class PlanPrice extends Model
         ],
         'currency' => ['type' => 'text', 'label' => 'Currency (ISO)', 'rules' => 'required|size:3'],
         'amount_minor' => ['type' => 'text', 'label' => 'Amount (minor units)', 'rules' => 'required|integer|min:0', 'help_text' => 'e.g. 999 = $9.99 or ৳999'],
-        'gateway_price_id' => ['type' => 'text', 'label' => 'Gateway Price ID', 'rules' => 'nullable|string'],
+        'gateway_price_id' => [
+            'type' => 'text',
+            'label' => 'Gateway Price ID',
+            'rules' => 'nullable|string',
+            // Not a local BelongsTo: HasCrud guesses "gatewayPrice" from
+            // the *_id suffix and the index eager-load then 500s. Null it.
+            'relationship' => null,
+        ],
     ];
 
     /**

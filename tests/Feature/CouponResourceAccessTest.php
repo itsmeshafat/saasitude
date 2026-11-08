@@ -42,6 +42,20 @@ class CouponResourceAccessTest extends TestCase
             ->assertSee('ADMINONLY');
     }
 
+    public function test_admin_can_list_plan_prices(): void
+    {
+        // Regression: HasCrud guesses a "gatewayPrice" BelongsTo from
+        // gateway_price_id and the index eager-load 500s unless the
+        // override nulls the relationship.
+        $admin = User::factory()->create();
+        $role = Role::firstOrCreate(['slug' => 'admin'], ['name' => 'Admin']);
+        $admin->roles()->attach($role);
+
+        $this->actingAs($admin)
+            ->get('/dashboard/resources/plan_prices')
+            ->assertOk();
+    }
+
     public function test_coupon_with_redemptions_cannot_be_deleted(): void
     {
         $this->expectException(\RuntimeException::class);
