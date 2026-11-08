@@ -16,6 +16,22 @@ final class DatabaseTester
     public function __construct(private readonly EnvWriter $envWriter) {}
 
     /**
+     * Tyro packages register their migrations only when running in a real
+     * console (PHP_SAPI check), which is false for Artisan::call() during
+     * a web request — register them explicitly so the wizard migrates the
+     * roles/privileges/audit tables too.
+     */
+    private function registerPackageMigrations(): void
+    {
+        $migrator = app('migrator');
+        foreach (glob(base_path('vendor/hasinhayder/*/database/migrations')) ?: [] as $path) {
+            if (! in_array($path, $migrator->paths(), true)) {
+                $migrator->path($path);
+            }
+        }
+    }
+
+    /**
      * @param  array<string, mixed>  $credentials  Validated input.
      *
      * @throws \PDOException on connection failure (message surfaced to the form). (message surfaced to the form).
@@ -75,6 +91,7 @@ final class DatabaseTester
         ]);
         Config::set(['session.driver' => 'database', 'cache.default' => 'database']);
 
+        $this->registerPackageMigrations();
         Artisan::call('migrate', ['--force' => true]);
     }
 }
