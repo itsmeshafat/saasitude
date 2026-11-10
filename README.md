@@ -80,6 +80,14 @@ php artisan tyro-dashboard:createsuperuser
 ```
 </details>
 
+## 🎬 Demo video
+
+<a href="https://youtu.be/fhKQv4Cgoak">
+  <img src="https://img.youtube.com/vi/fhKQv4Cgoak/maxresdefault.jpg" alt="SaaSitude demo video" width="720">
+</a>
+
+> **SaaSitude — Stop Rebuilding Billing**: the installer, billing core, admin console and API, in five minutes. [▶ Watch on YouTube](https://youtu.be/fhKQv4Cgoak)
+
 ## 📸 Screenshots
 
 | | |
