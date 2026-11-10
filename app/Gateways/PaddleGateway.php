@@ -223,7 +223,6 @@ class PaddleGateway implements PaymentGateway
         if ($subscription->eventIsStale($eventTime)) {
             return;
         }
-        $subscription->markEventApplied($eventTime);
 
         $periodStart = isset($data['current_billing_period']['starts_at'])
             ? Carbon::parse($data['current_billing_period']['starts_at'])
@@ -236,6 +235,7 @@ class PaddleGateway implements PaymentGateway
             'current_period_start' => $periodStart,
             'current_period_end' => $periodEnd,
         ]));
+        $subscription->markEventApplied($eventTime);
     }
 
     private function handleSubscriptionUpdated(array $data, ?Carbon $eventTime): void
@@ -248,7 +248,6 @@ class PaddleGateway implements PaymentGateway
         if ($subscription->eventIsStale($eventTime)) {
             return;
         }
-        $subscription->markEventApplied($eventTime);
 
         $status = $data['status'] ?? $subscription->status;
 
@@ -269,6 +268,7 @@ class PaddleGateway implements PaymentGateway
             $subscription->update(['status' => $status]);
             app(EntitlementService::class)->flush($subscription->workspace_id);
         }
+        $subscription->markEventApplied($eventTime);
     }
 
     private function handleSubscriptionCanceled(array $data, ?Carbon $eventTime): void
@@ -277,8 +277,8 @@ class PaddleGateway implements PaymentGateway
         if ($subscription?->eventIsStale($eventTime)) {
             return;
         }
-        $subscription?->markEventApplied($eventTime);
         $subscription?->cancel(immediately: true);
+        $subscription?->markEventApplied($eventTime);
     }
 
     private function handleSubscriptionPastDue(array $data, ?Carbon $eventTime): void
@@ -287,8 +287,8 @@ class PaddleGateway implements PaymentGateway
         if ($subscription?->eventIsStale($eventTime)) {
             return;
         }
-        $subscription?->markEventApplied($eventTime);
         $subscription?->markPastDue();
+        $subscription?->markEventApplied($eventTime);
     }
 
     private function handleTransactionCompleted(array $data, ?Carbon $eventTime): void
@@ -306,10 +306,10 @@ class PaddleGateway implements PaymentGateway
         if ($subscription->eventIsStale($eventTime)) {
             return;
         }
-        $subscription->markEventApplied($eventTime);
 
         $subscription->update(['status' => 'active']);
         app(EntitlementService::class)->flush($subscription->workspace_id);
+        $subscription->markEventApplied($eventTime);
     }
 
     private function handleTransactionPaymentFailed(array $data, ?Carbon $eventTime): void
@@ -323,7 +323,7 @@ class PaddleGateway implements PaymentGateway
         if ($subscription?->eventIsStale($eventTime)) {
             return;
         }
-        $subscription?->markEventApplied($eventTime);
         $subscription?->markPastDue();
+        $subscription?->markEventApplied($eventTime);
     }
 }

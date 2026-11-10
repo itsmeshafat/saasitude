@@ -57,6 +57,12 @@ high-water mark:
 - Handlers skip stale events entirely and advance the mark only
   forward (`markEventApplied()` is monotonic), so admin replay of an
   older webhook is provably inert.
+- The mark is advanced **after** a successful state apply, never before:
+  a failed handler + queue retry must not find its own event "stale"
+  and silently drop it.
+- Gateway timestamps are second-resolution; the comparison is `lt`, so
+  two events in the same second may still apply out of order (accepted
+  tie-tolerance).
 
 ## Alternatives considered
 

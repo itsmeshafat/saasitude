@@ -219,7 +219,6 @@ class SSLCommerzGateway implements PaymentGateway
         }
 
         if ($subscription) {
-            $subscription->markEventApplied(isset($event['occurred_at']) ? Carbon::parse($event['occurred_at']) : null);
             $subscription->activate([
                 'plan_id' => $price->plan_id,
                 'current_period_start' => now(),
@@ -240,5 +239,7 @@ class SSLCommerzGateway implements PaymentGateway
         }
 
         app(EntitlementService::class)->flush((int) $workspaceId);
+        $eventTime = isset($event['occurred_at']) ? Carbon::parse($event['occurred_at']) : null;
+        $subscription?->markEventApplied($eventTime);
     }
 }

@@ -76,7 +76,9 @@ class Subscription extends Model
      * applied event time must be ignored, so out-of-order delivery or
      * admin replay can never rewind state (e.g. revive a canceled
      * subscription with a stale "active" snapshot). Events without a
-     * timestamp are always applied — we can't judge their age.
+     * timestamp are always applied — we can't judge their age. Gateway
+     * timestamps have second resolution, so two events within the same
+     * second can still reorder; the mark tolerates ties (lt, not lte).
      */
     public function eventIsStale(?Carbon $eventTime): bool
     {

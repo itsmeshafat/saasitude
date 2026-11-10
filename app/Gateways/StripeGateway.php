@@ -213,7 +213,6 @@ class StripeGateway implements PaymentGateway
         if ($subscription->eventIsStale($eventTime)) {
             return;
         }
-        $subscription->markEventApplied($eventTime);
 
         $status = $stripeSubscription['status'];
         $cancelAtPeriodEnd = (bool) $stripeSubscription['cancel_at_period_end'];
@@ -232,6 +231,10 @@ class StripeGateway implements PaymentGateway
             ]);
             app(EntitlementService::class)->flush($subscription->workspace_id);
         }
+
+        // Advance the mark only after a successful apply, so a failed
+        // handler + retry never loses the event as "stale".
+        $subscription->markEventApplied($eventTime);
     }
 
     private function handleSubscriptionDeleted(array $stripeSubscription, ?Carbon $eventTime): void
@@ -241,8 +244,8 @@ class StripeGateway implements PaymentGateway
         if ($subscription?->eventIsStale($eventTime)) {
             return;
         }
-        $subscription?->markEventApplied($eventTime);
         $subscription?->cancel(immediately: true);
+        $subscription?->markEventApplied($eventTime);
     }
 
     private function handleInvoicePaid(array $invoice, ?Carbon $eventTime): void
@@ -261,7 +264,6 @@ class StripeGateway implements PaymentGateway
         if ($subscription->eventIsStale($eventTime)) {
             return;
         }
-        $subscription->markEventApplied($eventTime);
 
         $subscription->update([
             'status' => 'active',
@@ -269,6 +271,7 @@ class StripeGateway implements PaymentGateway
             'current_period_end' => Carbon::createFromTimestamp($invoice['period_end']),
         ]);
         app(EntitlementService::class)->flush($subscription->workspace_id);
+        $subscription->markEventApplied($eventTime);
     }
 
     private function handleInvoicePaymentFailed(array $invoice, ?Carbon $eventTime): void
@@ -282,7 +285,7 @@ class StripeGateway implements PaymentGateway
         if ($subscription?->eventIsStale($eventTime)) {
             return;
         }
-        $subscription?->markEventApplied($eventTime);
         $subscription?->markPastDue();
+        $subscription?->markEventApplied($eventTime);
     }
 }
