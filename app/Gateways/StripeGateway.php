@@ -144,17 +144,23 @@ class StripeGateway implements PaymentGateway
 
     public function handleEvent(array $event): void
     {
+        // Monotonic guard (ADR-008): gateway event timestamp drives a
+        // per-subscription high-water mark; older events are stale.
+        $eventTime = isset($event['created'])
+            ? Carbon::createFromTimestamp($event['created'])
+            : null;
+
         match ($event['type']) {
-            'checkout.session.completed' => $this->handleCheckoutCompleted($event['data']['object']),
-            'customer.subscription.updated' => $this->handleSubscriptionUpdated($event['data']['object']),
-            'customer.subscription.deleted' => $this->handleSubscriptionDeleted($event['data']['object']),
-            'invoice.paid' => $this->handleInvoicePaid($event['data']['object']),
-            'invoice.payment_failed' => $this->handleInvoicePaymentFailed($event['data']['object']),
+            'checkout.session.completed' => $this->handleCheckoutCompleted($event['data']['object'], $eventTime),
+            'customer.subscription.updated' => $this->handleSubscriptionUpdated($event['data']['object'], $eventTime),
+            'customer.subscription.deleted' => $this->handleSubscriptionDeleted($event['data']['object'], $eventTime),
+            'invoice.paid' => $this->handleInvoicePaid($event['data']['object'], $eventTime),
+            'invoice.payment_failed' => $this->handleInvoicePaymentFailed($event['data']['object'], $eventTime),
             default => null,
         };
     }
 
-    private function handleCheckoutCompleted(array $session): void
+    private function handleCheckoutCompleted(array $session, ?Carbon $eventTime): void
     {
         if (($session['mode'] ?? '') !== 'subscription') {
             return;
@@ -180,7 +186,7 @@ class StripeGateway implements PaymentGateway
 
         $status = $stripeSubscription->status === 'trialing' ? 'trialing' : 'active';
 
-        Subscription::create([
+        $subscription = Subscription::create([
             'workspace_id' => $workspaceId,
             'plan_id' => $price->plan_id,
             'gateway' => 'stripe',
@@ -192,16 +198,22 @@ class StripeGateway implements PaymentGateway
             'current_period_end' => Carbon::createFromTimestamp($stripeSubscription['current_period_end']),
         ]);
 
+        $subscription->markEventApplied($eventTime);
         app(EntitlementService::class)->flush((int) $workspaceId);
     }
 
-    private function handleSubscriptionUpdated(array $stripeSubscription): void
+    private function handleSubscriptionUpdated(array $stripeSubscription, ?Carbon $eventTime): void
     {
         $subscription = Subscription::where('gateway_subscription_id', $stripeSubscription['id'])->first();
 
         if (! $subscription) {
             return;
         }
+
+        if ($subscription->eventIsStale($eventTime)) {
+            return;
+        }
+        $subscription->markEventApplied($eventTime);
 
         $status = $stripeSubscription['status'];
         $cancelAtPeriodEnd = (bool) $stripeSubscription['cancel_at_period_end'];
@@ -222,14 +234,18 @@ class StripeGateway implements PaymentGateway
         }
     }
 
-    private function handleSubscriptionDeleted(array $stripeSubscription): void
+    private function handleSubscriptionDeleted(array $stripeSubscription, ?Carbon $eventTime): void
     {
         $subscription = Subscription::where('gateway_subscription_id', $stripeSubscription['id'])->first();
 
+        if ($subscription?->eventIsStale($eventTime)) {
+            return;
+        }
+        $subscription?->markEventApplied($eventTime);
         $subscription?->cancel(immediately: true);
     }
 
-    private function handleInvoicePaid(array $invoice): void
+    private function handleInvoicePaid(array $invoice, ?Carbon $eventTime): void
     {
         // Phase 7 (T-019): generate Invoice record. For now sync period.
         $subId = $invoice['subscription'] ?? null;
@@ -242,6 +258,11 @@ class StripeGateway implements PaymentGateway
             return;
         }
 
+        if ($subscription->eventIsStale($eventTime)) {
+            return;
+        }
+        $subscription->markEventApplied($eventTime);
+
         $subscription->update([
             'status' => 'active',
             'current_period_start' => Carbon::createFromTimestamp($invoice['period_start']),
@@ -250,7 +271,7 @@ class StripeGateway implements PaymentGateway
         app(EntitlementService::class)->flush($subscription->workspace_id);
     }
 
-    private function handleInvoicePaymentFailed(array $invoice): void
+    private function handleInvoicePaymentFailed(array $invoice, ?Carbon $eventTime): void
     {
         $subId = $invoice['subscription'] ?? null;
         if (! $subId) {
@@ -258,6 +279,10 @@ class StripeGateway implements PaymentGateway
         }
 
         $subscription = Subscription::where('gateway_subscription_id', $subId)->first();
+        if ($subscription?->eventIsStale($eventTime)) {
+            return;
+        }
+        $subscription?->markEventApplied($eventTime);
         $subscription?->markPastDue();
     }
 }

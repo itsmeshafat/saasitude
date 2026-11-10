@@ -12,6 +12,7 @@ use App\Models\Subscription;
 use App\Models\Workspace;
 use App\Services\EntitlementService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
 
@@ -211,7 +212,14 @@ class SSLCommerzGateway implements PaymentGateway
             ->latest()
             ->first();
 
+        // Monotonic guard (ADR-008): ignore renewal events older than the
+        // last applied one (replayed IPNs cannot rewind the period).
+        if ($subscription && $subscription->eventIsStale(isset($event['occurred_at']) ? Carbon::parse($event['occurred_at']) : null)) {
+            return;
+        }
+
         if ($subscription) {
+            $subscription->markEventApplied(isset($event['occurred_at']) ? Carbon::parse($event['occurred_at']) : null);
             $subscription->activate([
                 'plan_id' => $price->plan_id,
                 'current_period_start' => now(),

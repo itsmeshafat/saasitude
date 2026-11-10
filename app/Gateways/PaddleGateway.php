@@ -157,19 +157,23 @@ class PaddleGateway implements PaymentGateway
 
     public function handleEvent(array $event): void
     {
+        // Monotonic guard (ADR-008): occurred_at drives the per-subscription
+        // high-water mark; older events are stale and ignored.
+        $eventTime = isset($event['occurred_at']) ? Carbon::parse($event['occurred_at']) : null;
+
         match ($event['event_type'] ?? '') {
-            'subscription.activated' => $this->handleSubscriptionActivated($event['data']),
-            'subscription.created' => $this->handleSubscriptionCreated($event['data']),
-            'subscription.updated' => $this->handleSubscriptionUpdated($event['data']),
-            'subscription.canceled' => $this->handleSubscriptionCanceled($event['data']),
-            'subscription.past_due' => $this->handleSubscriptionPastDue($event['data']),
-            'transaction.completed' => $this->handleTransactionCompleted($event['data']),
-            'transaction.payment_failed' => $this->handleTransactionPaymentFailed($event['data']),
+            'subscription.activated' => $this->handleSubscriptionActivated($event['data'], $eventTime),
+            'subscription.created' => $this->handleSubscriptionCreated($event['data'], $eventTime),
+            'subscription.updated' => $this->handleSubscriptionUpdated($event['data'], $eventTime),
+            'subscription.canceled' => $this->handleSubscriptionCanceled($event['data'], $eventTime),
+            'subscription.past_due' => $this->handleSubscriptionPastDue($event['data'], $eventTime),
+            'transaction.completed' => $this->handleTransactionCompleted($event['data'], $eventTime),
+            'transaction.payment_failed' => $this->handleTransactionPaymentFailed($event['data'], $eventTime),
             default => null,
         };
     }
 
-    private function handleSubscriptionCreated(array $data): void
+    private function handleSubscriptionCreated(array $data, ?Carbon $eventTime): void
     {
         $customData = $data['custom_data'] ?? [];
         $workspaceId = $customData['workspace_id'] ?? null;
@@ -193,7 +197,7 @@ class PaddleGateway implements PaymentGateway
             ? Carbon::parse($data['current_billing_period']['ends_at'])
             : now()->addMonth();
 
-        Subscription::create([
+        $subscription = Subscription::create([
             'workspace_id' => $workspaceId,
             'plan_id' => $price->plan_id,
             'gateway' => 'paddle',
@@ -205,15 +209,21 @@ class PaddleGateway implements PaymentGateway
             'current_period_end' => $periodEnd,
         ]);
 
+        $subscription->markEventApplied($eventTime);
         app(EntitlementService::class)->flush((int) $workspaceId);
     }
 
-    private function handleSubscriptionActivated(array $data): void
+    private function handleSubscriptionActivated(array $data, ?Carbon $eventTime): void
     {
         $subscription = Subscription::where('gateway_subscription_id', $data['id'])->first();
         if (! $subscription) {
             return;
         }
+
+        if ($subscription->eventIsStale($eventTime)) {
+            return;
+        }
+        $subscription->markEventApplied($eventTime);
 
         $periodStart = isset($data['current_billing_period']['starts_at'])
             ? Carbon::parse($data['current_billing_period']['starts_at'])
@@ -228,12 +238,17 @@ class PaddleGateway implements PaymentGateway
         ]));
     }
 
-    private function handleSubscriptionUpdated(array $data): void
+    private function handleSubscriptionUpdated(array $data, ?Carbon $eventTime): void
     {
         $subscription = Subscription::where('gateway_subscription_id', $data['id'])->first();
         if (! $subscription) {
             return;
         }
+
+        if ($subscription->eventIsStale($eventTime)) {
+            return;
+        }
+        $subscription->markEventApplied($eventTime);
 
         $status = $data['status'] ?? $subscription->status;
 
@@ -256,19 +271,27 @@ class PaddleGateway implements PaymentGateway
         }
     }
 
-    private function handleSubscriptionCanceled(array $data): void
+    private function handleSubscriptionCanceled(array $data, ?Carbon $eventTime): void
     {
         $subscription = Subscription::where('gateway_subscription_id', $data['id'])->first();
+        if ($subscription?->eventIsStale($eventTime)) {
+            return;
+        }
+        $subscription?->markEventApplied($eventTime);
         $subscription?->cancel(immediately: true);
     }
 
-    private function handleSubscriptionPastDue(array $data): void
+    private function handleSubscriptionPastDue(array $data, ?Carbon $eventTime): void
     {
         $subscription = Subscription::where('gateway_subscription_id', $data['id'])->first();
+        if ($subscription?->eventIsStale($eventTime)) {
+            return;
+        }
+        $subscription?->markEventApplied($eventTime);
         $subscription?->markPastDue();
     }
 
-    private function handleTransactionCompleted(array $data): void
+    private function handleTransactionCompleted(array $data, ?Carbon $eventTime): void
     {
         $subId = $data['subscription_id'] ?? null;
         if (! $subId) {
@@ -280,11 +303,16 @@ class PaddleGateway implements PaymentGateway
             return;
         }
 
+        if ($subscription->eventIsStale($eventTime)) {
+            return;
+        }
+        $subscription->markEventApplied($eventTime);
+
         $subscription->update(['status' => 'active']);
         app(EntitlementService::class)->flush($subscription->workspace_id);
     }
 
-    private function handleTransactionPaymentFailed(array $data): void
+    private function handleTransactionPaymentFailed(array $data, ?Carbon $eventTime): void
     {
         $subId = $data['subscription_id'] ?? null;
         if (! $subId) {
@@ -292,6 +320,10 @@ class PaddleGateway implements PaymentGateway
         }
 
         $subscription = Subscription::where('gateway_subscription_id', $subId)->first();
+        if ($subscription?->eventIsStale($eventTime)) {
+            return;
+        }
+        $subscription?->markEventApplied($eventTime);
         $subscription?->markPastDue();
     }
 }

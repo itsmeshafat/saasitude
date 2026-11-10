@@ -46,6 +46,7 @@ class Subscription extends Model
         'cancel_at_period_end' => 'boolean',
         'app_driven_renewal' => 'boolean',
         'canceled_at' => 'datetime',
+        'last_event_at' => 'datetime',
         'metadata' => 'array',
     ];
 
@@ -68,6 +69,37 @@ class Subscription extends Model
     public function isActive(): bool
     {
         return in_array($this->status, ['active', 'trialing']);
+    }
+
+    /**
+     * Monotonic webhook guard (ADR-008): an event older than the last
+     * applied event time must be ignored, so out-of-order delivery or
+     * admin replay can never rewind state (e.g. revive a canceled
+     * subscription with a stale "active" snapshot). Events without a
+     * timestamp are always applied — we can't judge their age.
+     */
+    public function eventIsStale(?Carbon $eventTime): bool
+    {
+        if ($eventTime === null || $this->last_event_at === null) {
+            return false;
+        }
+
+        return $eventTime->lt($this->last_event_at)
+            // Cancellation is terminal: even without a high-water mark,
+            // nothing older than canceled_at may revive the subscription.
+            || ($this->canceled_at !== null && $this->status === 'canceled' && $eventTime->lt($this->canceled_at));
+    }
+
+    /** Advance the high-water mark; never moves backwards. */
+    public function markEventApplied(?Carbon $eventTime): void
+    {
+        if ($eventTime === null) {
+            return;
+        }
+
+        if ($this->last_event_at === null || $eventTime->gt($this->last_event_at)) {
+            $this->forceFill(['last_event_at' => $eventTime])->save();
+        }
     }
 
     public function activate(array $periodData = []): void

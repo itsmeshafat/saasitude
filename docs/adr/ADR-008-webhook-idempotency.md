@@ -39,6 +39,25 @@ Signature verification before storage prevents the table being filled with unaut
 - Admin dashboard shows failed events with a replay button (Phase 8 screen).
 - Webhook endpoint rate limit: 300 req/min per gateway IP range.
 
+### Monotonic event ordering (added 2026-11-10)
+
+Duplicate suppression alone does not protect against *out-of-order or
+replayed older* events: a stale `subscription.updated (active)` arriving
+after a newer `subscription.deleted` would resurrect a canceled
+subscription. Every gateway handler therefore applies a per-subscription
+high-water mark:
+
+- `subscriptions.last_event_at` stores the event time of the last
+  APPLIED event (Stripe `created`, Paddle `occurred_at`, SSLCommerz
+  `occurred_at` when present).
+- `Subscription::eventIsStale()` returns true for any event older than
+  the mark (events without a timestamp are always applied — their age
+  can't be judged); cancellation is additionally treated as terminal
+  relative to `canceled_at`.
+- Handlers skip stale events entirely and advance the mark only
+  forward (`markEventApplied()` is monotonic), so admin replay of an
+  older webhook is provably inert.
+
 ## Alternatives considered
 
 **Application-level duplicate check only** — rejected: race condition under concurrent delivery; not safe.
